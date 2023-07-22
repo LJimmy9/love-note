@@ -1,4 +1,4 @@
-import type { RuneClient } from "rune-games-sdk/multiplayer";
+import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
 
 export interface Card {
   id: string;
@@ -8,86 +8,52 @@ export interface Card {
   restrictionToPlayer: string;
 }
 
-export interface Player {
-  id: string;
+export interface GamePlayer {
+  playerId: string;
   displayName: string;
   avatarUrl: string;
   playerIdentity: string;
-  playerHand: Card[];
-  isAdmin: boolean;
+  playerHand: Card[] | [];
 }
 
 export interface AllPlayers {
-  [key: string]: Player;
+  [key: string]: GamePlayer;
 }
 
 export interface GameState {
-  count: number;
+  readyToStart: boolean;
+  started: boolean;
   players: AllPlayers;
-  // TODO: set logic up later if admin leaves game
-  adminID: string;
 }
 
 type GameActions = {
-  increment: (params: { amount: number }) => void;
-  enterWaitingRoom: () => void;
-  // addPlayer: (params: { playerName: string; avatar: string }) => void;
-  updatePlayerInfo: (params: { playerName: string; avatar: string }) => void;
+  updatePlayers: (params: { player: Player }) => void;
 };
 
 declare global {
   const Rune: RuneClient<GameState, GameActions>;
 }
 
-export function getCount(game: GameState) {
-  return game.count;
-}
-
-export function addPlayer(game: GameState, playerId: string) {
-  const player: Player = {
-    ...game.players[playerId],
-    displayName: "",
-    avatarUrl: "",
-    playerIdentity: "",
-    playerHand: [],
-    isAdmin: game.count === 0 ? true : false,
-    id: playerId,
-  };
-
-  game.players[playerId] = player;
-}
-
 Rune.initLogic({
-  // for some reason phone automatically adds 4 phones even though there are no players yet
-  // for now: we'll set minPlayers to 1 and create the conditional logic on frontend to allow players to start the game
   minPlayers: 1,
   maxPlayers: 6,
   setup: (): GameState => {
-    return { count: 0, players: {}, adminID: "" };
+    return { readyToStart: false, started: false, players: {} };
+  },
+  update: ({ game }) => {
+    if (Object.keys(game.players).length >= 4) game.readyToStart = true;
   },
   actions: {
-    increment: ({ amount }, { game }) => {
-      game.count += amount;
-    },
-
-    enterWaitingRoom: (_, { game, playerId }) => {
-      addPlayer(game, playerId);
-      game.count += 1;
-    },
-
-    updatePlayerInfo: ({ playerName, avatar }, { game, playerId }) => {
-      // console.log("game.players[playerId]", game.players[playerId]);
-      game.players[playerId].displayName = playerName;
-      game.players[playerId].avatarUrl = avatar;
-      // game.players[playerId].isAdmin = game.count === 1 ? true : false;
+    updatePlayers: ({ player }, { game }) => {
+      game.players[player.playerId] = {
+        ...player,
+        playerIdentity: "",
+        playerHand: [],
+      };
     },
   },
   events: {
-    playerJoined: () => {
-      // Handle player joined
-    },
-    playerLeft() {
-      // Handle player left
-    },
+    playerJoined: () => {},
+    playerLeft() {},
   },
 });
