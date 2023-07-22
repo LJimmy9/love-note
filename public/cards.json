@@ -1,0 +1,73 @@
+[
+  {
+    "cardId": "",
+    "name": "Love Note",
+    "image": "",
+    "number": 0,
+    "description": "A love note that gets passed around, lovers must write at least x amount of notes in the Love Note to win the game.",
+    "restrictionToRole": "Lover"
+  },
+  {
+    "cardId": "",
+    "name": "Tattle",
+    "image": "",
+    "number": 1,
+    "description": "Tattle on the lovers for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and Tattle Tale wins the game.",
+    "restrictionToRole": "Tattle Tale"
+  },
+  {
+    "cardId": "",
+    "name": "Absent",
+    "image": "",
+    "number": 2,
+    "description": "You weren't at school! The teacher doesn't believe the tattle tale. This card can be played by each student only once.",
+    "restrictionToRole": ""
+  },  {
+    "cardId": "",
+    "name": "Pass Direction",
+    "image": "",
+    "number": 3,
+    "description": "Every student must pass their lowest card to the direction displayed. If 'Opposite Day' card has been played, the direction changes to the opposite direction.",
+    "restrictionToRole": ""
+  },
+  {
+    "cardId": "",
+    "name": "Trade Snacks",
+    "image": "",
+    "number": 4,
+    "description": "Pick a student to give you their lowest card, you may give them any card in your hand in exchange.",
+    "restrictionToRole": ""
+  },
+  {
+    "cardId": "",
+    "name": "Nosy Glance",
+    "image": "",
+    "number": 5,
+    "description": "A good day to be nosy, pick a student to peek at the cards in their hands.",
+    "restrictionToRole": ""
+  },
+  {
+    "cardId": "",
+    "name": "Cupid",
+    "image": "",
+    "number": 6,
+    "description": "Cupid has come from above! Everyone must select the lowest card in their hand and place it in the middle. Lovers can swap a card in their hand for any student's card. The lovers cannot see the card they choose.",
+    "restrictionToRole": ""
+  },
+  {
+    "cardId": "",
+    "name": "Opposite Day",
+    "image": "",
+    "number": 7,
+    "description": "It's opposite day! Once this card is played, the direction of the Pass Direction card is now opposite.",
+    "restrictionToRole": ""
+  },
+  {
+    "cardId": "",
+    "name": "Graffiti",
+    "image": "",
+    "number": 8,
+    "description": "Someone mischevious has scribbled out a note from the love note. The love note loses a note.",
+    "restrictionToRole": ""
+  }
+]
