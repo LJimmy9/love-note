@@ -21,8 +21,8 @@ export interface GamePlayer {
   playerId: string;
   displayName: string;
   avatarUrl: string;
-  playerIdentity: string;
-  playerHand: Card[] | [];
+  playerIdentity: IdentityCard;
+  playerHand: Card[];
 }
 
 export interface AllPlayers {
@@ -72,9 +72,10 @@ Rune.initLogic({
   },
   actions: {
     updatePlayers: ({ player }, { game }) => {
+      const idCard: IdentityCard = { name: "", image: "", description: "" };
       game.players[player.playerId] = {
         ...player,
-        playerIdentity: "",
+        playerIdentity: idCard,
         playerHand: [],
       };
     },

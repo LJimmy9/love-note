@@ -29,65 +29,70 @@ function App() {
 
   useEffect(() => {
     if (game && game.timer === 0) {
+      Rune.actions.distributeDeckAndIdCards();
       Rune.actions.startGame();
     }
   }, [game]);
 
-  const timerDisplay = (
-    <div>
-      {game && game.timer >= 0 && `Game starts in: ${game.timer} seconds`}
-    </div>
-  );
-
-  const configureGameStateUI =
-    game &&
-    (game.started ? (
-      <Game game={game} />
-    ) : (
-      <div>
-        {Object.keys(game.players).map((playerId, idx) => {
-          return (
-            <div key={playerId + idx}>
-              <div key={idx}>{game.players[playerId].displayName}</div>
-            </div>
-          );
-        })}
-        <div>
-          {game && game.readyToStart ? (
-            <p>{timerDisplay}</p>
-          ) : (
-            "Waiting for more players...."
-          )}
-        </div>
-      </div>
-    ));
+  // const timerDisplay = (
+  //   <div>
+  //     {game && game.timer >= 0 && `Game starts in: ${game.timer} seconds`}
+  //   </div>
+  // );
 
   // const configureGameStateUI =
-  //   game && game.readyToStart ? (
-  //     // show countdown
-  //     <div>{timerDisplay}</div>
-  //   ) : game?.started ? (
-  //     // show game
-  //     <Game />
+  //   game &&
+  //   (game.started ? (
+  //     <Game game={game} />
   //   ) : (
-  //     // else show lobby
   //     <div>
-  //       { game && Object.keys(game.players).map((playerId, idx) => {
+  //       {Object.keys(game.players).map((playerId, idx) => {
   //         return (
   //           <div key={playerId + idx}>
-  //             <div key={idx}>{game?.players[playerId].displayName}</div>
+  //             <div key={idx}>{game.players[playerId].displayName}</div>
   //           </div>
   //         );
   //       })}
-  //       <p>Waiting for more players....</p>
+  //       <div>
+  //         {game && game.readyToStart ? (
+  //           <p>{timerDisplay}</p>
+  //         ) : (
+  //           "Waiting for more players...."
+  //         )}
+  //       </div>
   //     </div>
-  //   );
+  //   ));
 
   if (!game) {
     return <div>Loading...</div>;
   }
 
-  return <>{configureGameStateUI}</>;
+  // return <>{configureGameStateUI}</>;
+  return (
+    // <div className={`${gf.gameContainer}`}>
+    <div
+      style={{
+        position: "relative",
+        border: "10px solid blue",
+        height: "90vh",
+        overflow: "hidden",
+      }}
+    >
+      <Game game={game} player={game.players[currPlayerId]} />
+      <div
+        style={{
+          position: "absolute",
+          color: "black",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          opacity: "1",
+        }}
+      >
+        this is the center
+      </div>
+    </div>
+  );
 }
 
 export default App;
