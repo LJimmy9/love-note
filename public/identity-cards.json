@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Lover Sun",
+    "image": "",
+    "description": "Your role is a lover. You must complete the love note with Lover Moon in order to win the game."
+  },
+  {
+    "name": "Lover Moon",
+    "image": "",
+    "description": "Your role is a lover. You must complete the love note with Lover Sun in order to win the game."
+  },
+  {
+    "name": "Tattle Thunder",
+    "image": "",
+    "description": "Your role is a tattle tale. You must tattle on at least one of the lovers in order to win the game. You only have one chance to tattle. You do not know who the other tattle is."
+  },
+  {
+    "name": "Tattle Tidal",
+    "image": "",
+    "description": "Your role is a tattle tale. You must tattle on at least one of the lovers in order to win the game. You only have one chance to tattle. You do not know who the other tattle is."
+  },
+  {
+    "name": "Pulsar",
+    "image": "",
+    "description": "Your role is a friend. You must help the lovers complete their notes before the tattles find out who the lovers are. ou do not know who the tattles or the lovers are"
+  },
+  {
+    "name": "Nebula",
+    "image": "",
+    "description": "Your role is a friend. You must help the lovers complete their notes before the tattles find out who the lovers are. You do not know who the tattles or the lovers are."
+  }
+]
