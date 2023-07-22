@@ -13,7 +13,9 @@ function App() {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
         setGame({ ...newGame });
-        if (Object.keys(newGame.players).length != Object.keys(players).length) {
+        if (
+          Object.keys(newGame.players).length != Object.keys(players).length
+        ) {
           setAllPlayers({ ...players });
         }
         if (yourPlayerId) setCurrPlayerID(yourPlayerId);
@@ -25,19 +27,23 @@ function App() {
     Rune.actions.updatePlayers({ player: allPlayers[currPlayerId] });
   }, [currPlayerId]);
 
-  if (!game) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (game && game.timer === 0) {
+      Rune.actions.startGame();
+    }
+  }, [game]);
+
+  const timerDisplay = (
+    <div>
+      {game && game.timer >= 0 && `Game starts in: ${game.timer} seconds`}
+    </div>
+  );
 
   const configureGameStateUI =
-    game && game.readyToStart ? (
-      // show countdown
-      <div></div>
-    ) : game.started ? (
-      // show game
+    game &&
+    (game.started ? (
       <Game />
     ) : (
-      // else show lobby
       <div>
         {Object.keys(game.players).map((playerId, idx) => {
           return (
@@ -46,9 +52,40 @@ function App() {
             </div>
           );
         })}
-        <p>Waiting for more players....</p>
+        <div>
+          {game && game.readyToStart ? (
+            <p>{timerDisplay}</p>
+          ) : (
+            "Waiting for more players...."
+          )}
+        </div>
       </div>
-    );
+    ));
+
+  // const configureGameStateUI =
+  //   game && game.readyToStart ? (
+  //     // show countdown
+  //     <div>{timerDisplay}</div>
+  //   ) : game?.started ? (
+  //     // show game
+  //     <Game />
+  //   ) : (
+  //     // else show lobby
+  //     <div>
+  //       { game && Object.keys(game.players).map((playerId, idx) => {
+  //         return (
+  //           <div key={playerId + idx}>
+  //             <div key={idx}>{game?.players[playerId].displayName}</div>
+  //           </div>
+  //         );
+  //       })}
+  //       <p>Waiting for more players....</p>
+  //     </div>
+  //   );
+
+  if (!game) {
+    return <div>Loading...</div>;
+  }
 
   return <>{configureGameStateUI}</>;
 }

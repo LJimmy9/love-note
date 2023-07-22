@@ -24,10 +24,12 @@ export interface GameState {
   readyToStart: boolean;
   started: boolean;
   players: AllPlayers;
+  timer: number;
 }
 
 type GameActions = {
   updatePlayers: (params: { player: Player }) => void;
+  startGame: () => void;
 };
 
 declare global {
@@ -38,10 +40,21 @@ Rune.initLogic({
   minPlayers: 1,
   maxPlayers: 6,
   setup: (): GameState => {
-    return { readyToStart: false, started: false, players: {} };
+    return {
+      readyToStart: false,
+      started: false,
+      players: {},
+      timer: 30,
+    };
   },
   update: ({ game }) => {
-    if (Object.keys(game.players).length >= 4) game.readyToStart = true;
+    if (Object.keys(game.players).length >= 4) {
+      game.readyToStart = true;
+    }
+
+    if (game.readyToStart && game.timer > 0) {
+      game.timer -= 1;
+    }
   },
   actions: {
     updatePlayers: ({ player }, { game }) => {
@@ -50,6 +63,9 @@ Rune.initLogic({
         playerIdentity: "",
         playerHand: [],
       };
+    },
+    startGame: (_, { game }) => {
+      game.started = true;
     },
   },
   events: {
