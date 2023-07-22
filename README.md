@@ -1,3 +1,4 @@
+```javascript
 
 Player = {
     playerId,
@@ -8,9 +9,9 @@ Player = {
     isAdmin,
 }
 
-Notes {
+Notes = {
     id,
-    description: give emoji options
+    description: "give emoji options"
     crossedOut: boolean
 }
 
@@ -48,6 +49,8 @@ identityCard = {
     description:
 
 }
+
+```
 
 4 players: 3 messages - 4 rounds
 5 - 6 players: 4 messages - 6 rounds

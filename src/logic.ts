@@ -24,6 +24,8 @@ export interface AllPlayers {
 export interface GameState {
   count: number;
   players: AllPlayers;
+  // TODO: set logic up later if admin leaves game
+  adminID: string;
 }
 
 type GameActions = {
@@ -56,10 +58,12 @@ export function addPlayer(game: GameState, playerId: string) {
 }
 
 Rune.initLogic({
+  // for some reason phone automatically adds 4 phones even though there are no players yet
+  // for now: we'll set minPlayers to 1 and create the conditional logic on frontend to allow players to start the game
   minPlayers: 1,
-  maxPlayers: 4,
+  maxPlayers: 6,
   setup: (): GameState => {
-    return { count: 0, players: {} };
+    return { count: 0, players: {}, adminID: "" };
   },
   actions: {
     increment: ({ amount }, { game }) => {
