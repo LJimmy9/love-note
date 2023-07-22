@@ -3,8 +3,9 @@ Player = {
     playerId,
     displayName,
     avatarUrl,
-    identity
-    hands
+    identity,
+    hands,
+    isAdmin,
 }
 
 Notes {
