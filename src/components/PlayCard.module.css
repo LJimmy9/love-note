@@ -1,13 +1,64 @@
 .playerCard {
   padding: 0 1rem;
+  border-radius: 1rem;
+  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: 500ms ease;
+  width: 8ch; 
+  height: 16ch;
+  background-color: orange;
+
+  border: 5px solid green;
+}
+
+.expand {  
+  /* width: 18ch; */
+  height: 20ch; 
+  scale: 1.80 2.00;
+  transition: 500ms ease;
+  position: relative;
+}
+
+.default {
+  scale: 1 1;
+  transition: 500ms ease;
 }
 
 .cardHeader {
+  clear: both;
+}
 
+.cardNum {
+  float: left;
+  font-weight: bolder;
+}
+
+.cardName {
+  font-size: 10px;
+  font-weight: bolder;
+}
+
+.cardImage {
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 .cardBody {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 6px;
 }
+
+.hideText{
+  opacity: 0;
+  translate: 0px 100px;
+  transition: opacity 500ms linear;
+}
+
+.showText {
+  opacity: 1;
+  transition: opacity 500ms linear;
+}
+
+

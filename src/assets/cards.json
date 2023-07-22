@@ -4,7 +4,7 @@
     "name": "Love Note",
     "image": "💌",
     "cardNum": 0,
-    "description": "A love note that gets passed around, lovers must write at least x amount of notes in the Love Note to win the game.",
+    "description": "A love note that gets passed around, lovers must write at least x amount of notes in the Love Note to win the game. If a Lover is holding this card, they can treat this card as any number.",
     "restrictionToRole": "Lover",
     "count": 1
   },
@@ -13,9 +13,9 @@
     "name": "Tattle",
     "image": "📣",
     "cardNum": 1,
-    "description": "Tattle on the lovers for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and Tattle Tale wins the game.",
+    "description": "Tattle on the lovers for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and Tattle Tale wins the game. If a Tattle Tale is holding this card, they can treat this card as any number.",
     "restrictionToRole": "Tattle Tale",
-    "count": 1
+    "count": 2
   },
   {
     "id": "",
@@ -28,18 +28,18 @@
   },  {
     "id": "",
     "name": "Pass Direction",
-    "image": "↔️",
+    "image": "🔛",
     "cardNum": 3,
-    "description": "Every student must pass their lowest card to the direction displayed. If 'Opposite Day' card has been played, the direction changes to the opposite direction.",
+    "description": "Every student must pass their lowest or highest card (depending on the priority) to the direction displayed. If 'Opposite Day' card has been played, the direction and priority are changed to its opposite.",
     "restrictionToRole": "",
     "count": 4
   },
   {
     "id": "",
     "name": "Trade Snacks",
-    "image": "🍿",
+    "image": "🍪",
     "cardNum": 4,
-    "description": "Pick a student to give you their lowest card, you may give them any card in your hand in exchange.",
+    "description": "Pick a student to give you their lowest or highest card (depending on the priority), you may give them any card in your hand in exchange.",
     "restrictionToRole": "",
     "count": 4
   },
@@ -54,29 +54,29 @@
   },
   {
     "id": "",
-    "name": "Cupid",
-    "image": "💘",
+    "name": "Meddle",
+    "image": "🖋️",
     "cardNum": 6,
-    "description": "Cupid has come from above! Everyone must select the lowest card in their hand and place it in the middle. Lovers can swap a card in their hand for any student's card. The lovers cannot see the card they choose.",
+    "description": "You tamper with the love note; Lovers can add a note to the love note without holding the love note, Tattle Tales can remove a note without holding the love note.",
     "restrictionToRole": "",
     "count": 1
   },
   {
     "id": "",
     "name": "Opposite Day",
-    "image": "",
+    "image": "♻️",
     "cardNum": 7,
-    "description": "It's opposite day! Once this card is played, the direction of the Pass Direction card is now opposite.",
+    "description": "It's opposite day! Once this card is played, the direction and priority of the Pass Direction card is now opposite.",
     "restrictionToRole": "",
     "count": 2
   },
   {
     "id": "",
-    "name": "Graffiti",
-    "image": "",
+    "name": "Cupid",
+    "image": "💘",
     "cardNum": 8,
-    "description": "Someone mischevious has scribbled out a note from the love note. The love note loses a note.",
+    "description": "Cupid has come from above! Everyone must select the lowest or highest card (depending on the priority) in their hand and place it in the middle. Lovers can swap a card in their hand for any student's card. The lovers cannot see the card they choose.",
     "restrictionToRole": "",
-    "count": 2
+    "count": 1
   }
 ]
