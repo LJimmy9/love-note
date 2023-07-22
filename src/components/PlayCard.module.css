@@ -1,0 +1,13 @@
+.playerCard {
+  padding: 0 1rem;
+}
+
+.cardHeader {
+
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -2,7 +2,7 @@
   {
     "id": "",
     "name": "Love Note",
-    "image": "",
+    "image": "💌",
     "cardNum": 0,
     "description": "A love note that gets passed around, lovers must write at least x amount of notes in the Love Note to win the game.",
     "restrictionToRole": "Lover",
@@ -11,7 +11,7 @@
   {
     "id": "",
     "name": "Tattle",
-    "image": "",
+    "image": "📣",
     "cardNum": 1,
     "description": "Tattle on the lovers for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and Tattle Tale wins the game.",
     "restrictionToRole": "Tattle Tale",
@@ -20,7 +20,7 @@
   {
     "id": "",
     "name": "Absent",
-    "image": "",
+    "image": "👻",
     "cardNum": 2,
     "description": "You weren't at school! The teacher doesn't believe the tattle tale. This card can be played by each student only once.",
     "restrictionToRole": "",
@@ -28,7 +28,7 @@
   },  {
     "id": "",
     "name": "Pass Direction",
-    "image": "",
+    "image": "↔️",
     "cardNum": 3,
     "description": "Every student must pass their lowest card to the direction displayed. If 'Opposite Day' card has been played, the direction changes to the opposite direction.",
     "restrictionToRole": "",
@@ -37,7 +37,7 @@
   {
     "id": "",
     "name": "Trade Snacks",
-    "image": "",
+    "image": "🍿",
     "cardNum": 4,
     "description": "Pick a student to give you their lowest card, you may give them any card in your hand in exchange.",
     "restrictionToRole": "",
@@ -46,7 +46,7 @@
   {
     "id": "",
     "name": "Nosy Glance",
-    "image": "",
+    "image": "👀",
     "cardNum": 5,
     "description": "A good day to be nosy, pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
@@ -55,7 +55,7 @@
   {
     "id": "",
     "name": "Cupid",
-    "image": "",
+    "image": "💘",
     "cardNum": 6,
     "description": "Cupid has come from above! Everyone must select the lowest card in their hand and place it in the middle. Lovers can swap a card in their hand for any student's card. The lovers cannot see the card they choose.",
     "restrictionToRole": "",
