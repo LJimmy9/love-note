@@ -1,11 +1,20 @@
 import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
+import { distributeCards, setupDeck, setupIdentityCards } from "./game-setup";
 
 export interface Card {
   id: string;
+  name: string;
   image: string;
   cardNum: number;
   description: string;
-  restrictionToPlayer: string;
+  restrictionToRole: string;
+  count: number;
+}
+
+export interface IdentityCard {
+  name: string;
+  image: string;
+  description: string;
 }
 
 export interface GamePlayer {
@@ -25,11 +34,14 @@ export interface GameState {
   started: boolean;
   players: AllPlayers;
   timer: number;
+  deck: Array<Card>;
+  identityCards: Array<IdentityCard>;
 }
 
 type GameActions = {
   updatePlayers: (params: { player: Player }) => void;
   startGame: () => void;
+  distributeDeckAndIdCards: () => void;
 };
 
 declare global {
@@ -45,6 +57,8 @@ Rune.initLogic({
       started: false,
       players: {},
       timer: 30,
+      deck: setupDeck(),
+      identityCards: setupIdentityCards(),
     };
   },
   update: ({ game }) => {
@@ -67,9 +81,16 @@ Rune.initLogic({
     startGame: (_, { game }) => {
       game.started = true;
     },
+    distributeDeckAndIdCards: (_, { game }) => {
+      distributeCards(game);
+    },
   },
   events: {
-    playerJoined: () => {},
-    playerLeft() {},
+    playerJoined: () => {
+      // handle player joined
+    },
+    playerLeft() {
+      // handle player left
+    },
   },
 });
