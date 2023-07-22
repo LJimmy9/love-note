@@ -42,7 +42,7 @@ function App() {
   const configureGameStateUI =
     game &&
     (game.started ? (
-      <Game />
+      <Game game={game} />
     ) : (
       <div>
         {Object.keys(game.players).map((playerId, idx) => {

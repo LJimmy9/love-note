@@ -56,7 +56,7 @@ Rune.initLogic({
       readyToStart: false,
       started: false,
       players: {},
-      timer: 30,
+      timer: 2,
       deck: setupDeck(),
       identityCards: setupIdentityCards(),
     };

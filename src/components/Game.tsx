@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "../logic";
+import { Card, GameState } from "../logic";
+import PlayCard from "./PlayCard";
 
-const Game = () => {
-  return <div>Game</div>;
+interface GameProps {
+  game: GameState;
+}
+
+const Game = ({ game }: GameProps) => {
+  const dummyCard: Card = game.deck[0];
+
+  return <PlayCard card={dummyCard} />;
 };
 
 export default Game;
