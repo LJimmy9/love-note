@@ -13,7 +13,7 @@ function App() {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
         setGame({ ...newGame });
-        if (Object.keys(newGame.players).length != Object.keys(players).length {
+        if (Object.keys(newGame.players).length != Object.keys(players).length) {
           setAllPlayers({ ...players });
         }
         if (yourPlayerId) setCurrPlayerID(yourPlayerId);
