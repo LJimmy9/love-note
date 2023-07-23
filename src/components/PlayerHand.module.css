@@ -1,25 +1,20 @@
 .playerHandContainer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* height: 15vh; */
-    height: 25vh;
-    border: 1px solid hotpink;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  height: 20vh;
 }
 
 .flexCenterPlayerHand {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.flexPlayerHand {
-    display: flex;
-}
-
-.expand {  
+.expand {
   /* width: 18ch; */
-  height: 20ch; 
-  scale: 1.80 2.00;
+  height: 20ch;
+  scale: 1.8 2;
   transition: 500ms ease;
   position: relative;
 }
@@ -28,4 +23,3 @@
   scale: 1 1;
   transition: 500ms ease;
 }
-

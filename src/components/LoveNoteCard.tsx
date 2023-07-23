@@ -28,7 +28,7 @@ function LoveNoteCard({ card, player }: LoveNoteCardProps) {
         // Rune.actions.updateLoveNote({ action: "remove" });
         break;
       default:
-        console.log("view only");
+      // console.log("view only");
     }
   }
 

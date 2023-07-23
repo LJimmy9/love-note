@@ -106,13 +106,13 @@ Rune.initLogic({
     updateLoveNote: ({ action }, { game }) => {
       switch (action) {
         case "add":
-          console.log("add");
+          // console.log("add");
           break;
         case "remove":
-          console.log("delete");
+          // console.log("delete");
           break;
         default:
-          console.log("no action");
+        // console.log("no action");
       }
     },
 

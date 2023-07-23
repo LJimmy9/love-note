@@ -9,6 +9,16 @@ interface GameProps {
   pinPos: number[];
 }
 
+type CardRotationConfig = {
+  [key: number]: string;
+};
+
+const cardRotationConfig: CardRotationConfig = {
+  0: "-5deg",
+  1: "5deg",
+  2: "5deg",
+};
+
 const Game = ({ game, player, pinPos }: GameProps) => {
   const dummyCard: Card = game.deck[0];
   const dummy2Card: Card = game.deck[1];
@@ -17,16 +27,26 @@ const Game = ({ game, player, pinPos }: GameProps) => {
   return (
     <div className={`${ph.playerHandContainer}`}>
       <div className={`${ph.flexCenterPlayerHand}`}>
-        <div className={`${ph.flexPlayerHand}`}>
+        <div
+          style={{
+            display: "grid",
+            gap: "0.5rem",
+            gridTemplateColumns: `${
+              player.playerHand.length === 2
+                ? "repeat(4, 25px)"
+                : "repeat(6, 25px)"
+            }`,
+          }}
+        >
           {player.playerHand.map((cardVal, idx) => {
             return (
               <PlayCard
                 key={`${cardVal}- ${idx}`}
                 card={cardVal}
                 player={player}
-                cardRotation={`${idx * 10 - 10}deg`}
-                left={`${5 - 5 * idx}px`}
-                top={`${idx == 1 ? -8 : 0}px`}
+                cardRotation={cardRotationConfig[idx]}
+                left={"0px"}
+                top={"0px"}
                 pinPos={pinPos}
               />
             );
