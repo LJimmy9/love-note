@@ -49,12 +49,14 @@ export interface GameState {
   currentTurn: string;
   loveNotes: Array<Note>;
   turnNum: number;
+  discardedCards: Array<Card>;
 }
 
 type GameActions = {
   updatePlayers: (params: { player: Player }) => void;
   startGame: () => void;
   distributeDeckAndIdCards: () => void;
+  drawCard: (params: { deckCard: Card; playerId: string }) => void;
   updateLoveNote: (params: { action: string }) => void;
   getLoveNotes: () => Array<Note>;
 };
@@ -65,7 +67,7 @@ declare global {
 
 Rune.initLogic({
   minPlayers: 1,
-  maxPlayers: 4,
+  maxPlayers: 2,
   setup: (): GameState => {
     return {
       readyToStart: false,
@@ -74,13 +76,14 @@ Rune.initLogic({
       timer: 2,
       deck: setupDeck(),
       identityCards: setupIdentityCards(),
+      discardedCards: [],
       currentTurn: "",
       loveNotes: [],
       turnNum: 0,
     };
   },
   update: ({ game }) => {
-    if (Object.keys(game.players).length >= 4) {
+    if (Object.keys(game.players).length >= 2) {
       game.readyToStart = true;
     }
 
@@ -125,6 +128,16 @@ Rune.initLogic({
     },
     distributeDeckAndIdCards: (_, { game }) => {
       distributeCards(game);
+    },
+    drawCard: ({ deckCard, playerId }, { game }) => {
+      if (
+        game.players[playerId].playerHand.length >= 3 ||
+        game.currentTurn != playerId
+      ) {
+        return;
+      }
+      game.players[playerId].playerHand.push(deckCard);
+      game.deck = game.deck.filter((card) => card.id !== deckCard.id);
     },
   },
   events: {
