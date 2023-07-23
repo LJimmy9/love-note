@@ -7,6 +7,13 @@ export interface CardProps {
   card: Card;
   player: GamePlayer;
   cardRotation: string;
+  zIndex: string;
+
+  //position: string;  --hard coded atm to be relative
+  left: string;
+  right: string;
+  top: string;
+  pinPos: number[];
 }
 
 export interface Position {
@@ -19,10 +26,20 @@ export interface Size {
   height: number;
 }
 
-function PlayCard({ card, player, cardRotation }: CardProps) {
+function PlayCard({
+  card,
+  player,
+  cardRotation,
+  zIndex,
+  left,
+  right,
+  top,
+  pinPos,
+}: CardProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
   const [windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
+  const [cardTrans, setCardTrans] = useState<Position>({ x: 0, y: 0 });
 
   const cardRef = useRef(null);
 
@@ -31,8 +48,9 @@ function PlayCard({ card, player, cardRotation }: CardProps) {
     updatePosCb: (pos: Position) => void,
     updateWindowSizeCb: (windowX: number, windowY: number) => void
   ) {
-    const x = el.offsetLeft;
-    const y = el.offsetTop;
+    const rect = el.getBoundingClientRect();
+    const x = rect.left;
+    const y = rect.top;
     updatePosCb({ x: x, y: y });
 
     const windowX = window.innerWidth;
@@ -66,23 +84,38 @@ function PlayCard({ card, player, cardRotation }: CardProps) {
     };
   }, [cardRef.current]);
 
-  useEffect(() => {
-    console.log("pc pos", pos);
+  const test = (
+    <div className="card">
+      <header>
+        <span className="card-title">Title Text</span>
+      </header>
+      <p className="card-text">some text</p>
+    </div>
+  );
 
-    console.log("window size", windowSize);
-  }, [pos, windowSize]);
+  function handleClick() {
+    setIsOpen(!isOpen);
+
+    const targetX = pinPos[0] - pos.x;
+    const targetY = pinPos[1] - pos.y;
+
+    setCardTrans({ x: targetX, y: targetY });
+  }
 
   return (
     <div
       ref={cardRef}
       className={`${s.playerCard} ${isOpen ? s.expand : s.default}`}
-      onClick={() => setIsOpen(!isOpen)}
-      style={{ rotate: !isOpen ? cardRotation : "" }}
-      // style={{
-      //   transform: `translate(${windowSize.width - pos.x}px, ${
-      //     windowSize.height - pos.y
-      //   }px)`,
-      // }}
+      onClick={() => handleClick()}
+      style={{
+        rotate: !isOpen ? cardRotation : "",
+        zIndex: zIndex,
+        position: "relative",
+        left: left,
+        right: right,
+        top: top,
+        transform: `translate(${cardTrans.x}px, ${cardTrans.y}px)`,
+      }}
     >
       {/* Header for the card has number and card name */}
       <div className={s.cardHeader}>

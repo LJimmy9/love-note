@@ -52,13 +52,23 @@ function CenterPlaceholder() {
     };
   }, [elRef.current]);
 
-  useEffect(() => {
-    console.log("pc pos", pos);
+  const translateLocation = `translate(-50%, -50%)`;
 
-    console.log("window size", windowSize);
-  }, [pos, windowSize]);
-
-  return <div ref={elRef}></div>;
+  return (
+    <div
+      ref={elRef}
+      style={{
+        position: "absolute",
+        color: "black",
+        top: "50%",
+        left: "50%",
+        transform: translateLocation,
+        opacity: "1",
+      }}
+    >
+      this is the center
+    </div>
+  );
 }
 
 export default CenterPlaceholder;

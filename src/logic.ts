@@ -1,5 +1,10 @@
 import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
-import { distributeCards, setupDeck, setupIdentityCards } from "./game-setup";
+import {
+  distributeCards,
+  setCurrentTurn,
+  setupDeck,
+  setupIdentityCards,
+} from "./game-setup";
 
 export interface Card {
   id: string;
@@ -29,6 +34,11 @@ export interface AllPlayers {
   [key: string]: GamePlayer;
 }
 
+export interface Note {
+  id: string;
+  text: string;
+}
+
 export interface GameState {
   readyToStart: boolean;
   started: boolean;
@@ -36,12 +46,16 @@ export interface GameState {
   timer: number;
   deck: Array<Card>;
   identityCards: Array<IdentityCard>;
+  currentTurn: string;
+  loveNotes: Array<Note>;
 }
 
 type GameActions = {
   updatePlayers: (params: { player: Player }) => void;
   startGame: () => void;
   distributeDeckAndIdCards: () => void;
+  updateLoveNote: (params: { action: string }) => void;
+  getLoveNotes: () => Array<Note>;
 };
 
 declare global {
@@ -59,6 +73,8 @@ Rune.initLogic({
       timer: 2,
       deck: setupDeck(),
       identityCards: setupIdentityCards(),
+      currentTurn: "",
+      loveNotes: [],
     };
   },
   update: ({ game }) => {
@@ -71,6 +87,12 @@ Rune.initLogic({
     }
   },
   actions: {
+    // gets
+    getLoveNotes: (_, { game }) => {
+      return game.loveNotes;
+    },
+
+    // updates
     updatePlayers: ({ player }, { game }) => {
       const idCard: IdentityCard = { name: "", image: "", description: "" };
       game.players[player.playerId] = {
@@ -79,11 +101,24 @@ Rune.initLogic({
         playerHand: [],
       };
     },
+    updateLoveNote: ({ action }, { game }) => {
+      switch (action) {
+        case "add":
+          break;
+        case "remove":
+          break;
+        default:
+          console.log("no action");
+      }
+    },
+
+    // actions
     startGame: (_, { game }) => {
       game.started = true;
     },
     distributeDeckAndIdCards: (_, { game }) => {
       distributeCards(game);
+      setCurrentTurn(game);
     },
   },
   events: {
