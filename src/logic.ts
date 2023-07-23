@@ -2,8 +2,10 @@ import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
 import {
   setupDeck,
   setupIdentityCards,
-  distributeCards,
-  setCurrentTurn,
+  getDistributedCards,
+  setInitialTurn,
+  updateCurrentTurn,
+  getReshuffledDeck,
 } from "./game-setup";
 
 export interface Card {
@@ -14,12 +16,14 @@ export interface Card {
   description: string;
   restrictionToRole: string;
   count: number;
+  canPlay: boolean;
 }
 
 export interface IdentityCard {
   name: string;
   image: string;
   description: string;
+  role: string;
 }
 
 export interface GamePlayer {
@@ -35,7 +39,7 @@ export interface AllPlayers {
 }
 
 export interface Note {
-  id: string;
+  id: number;
   text: string;
 }
 
@@ -53,12 +57,17 @@ export interface GameState {
 }
 
 type GameActions = {
-  updatePlayers: (params: { player: Player }) => void;
-  startGame: () => void;
-  distributeDeckAndIdCards: () => void;
-  drawCard: (params: { deckCard: Card; playerId: string }) => void;
-  updateLoveNote: (params: { action: string }) => void;
+  // gets
   getLoveNotes: () => Array<Note>;
+
+  // updates
+  updatePlayers: (params: { player: Player }) => void;
+  updateLoveNote: (params: { action: string; prompt: string }) => void;
+
+  // actions
+  startGame: () => void;
+  drawCard: (params: { deckCard: Card; playerId: string }) => void;
+  playCard: (params: { playCard: Card; playerId: string }) => void;
 };
 
 declare global {
@@ -87,13 +96,17 @@ Rune.initLogic({
       game.readyToStart = true;
     }
 
-    if (game.readyToStart && game.timer > 0) {
+    if (game.readyToStart && game.timer > 0 && !game.started) {
       game.timer -= 1;
     }
 
     if (game && game.timer === 0 && !game.started) {
-      distributeCards(game);
-      setCurrentTurn(game);
+      const distributedCards = getDistributedCards(game);
+      if (!distributedCards) return;
+
+      game.deck = distributedCards.deck;
+      game.players = distributedCards.players;
+      game.currentTurn = setInitialTurn(game);
       game.started = true;
     }
   },
@@ -105,16 +118,25 @@ Rune.initLogic({
 
     // updates
     updatePlayers: ({ player }, { game }) => {
-      const idCard: IdentityCard = { name: "", image: "", description: "" };
+      const idCard: IdentityCard = {
+        name: "",
+        image: "",
+        description: "",
+        role: "",
+      };
       game.players[player.playerId] = {
         ...player,
         playerIdentity: idCard,
         playerHand: [],
       };
     },
-    updateLoveNote: ({ action }) => {
+    updateLoveNote: ({ action, prompt }, { game }) => {
       switch (action) {
         case "add":
+          game.loveNotes.push({
+            id: game.loveNotes.length,
+            text: prompt,
+          });
           break;
         case "remove":
           break;
@@ -126,18 +148,34 @@ Rune.initLogic({
     startGame: (_, { game }) => {
       game.started = true;
     },
-    distributeDeckAndIdCards: (_, { game }) => {
-      distributeCards(game);
-    },
     drawCard: ({ deckCard, playerId }, { game }) => {
       if (
         game.players[playerId].playerHand.length >= 3 ||
-        game.currentTurn != playerId
+        game.currentTurn != playerId ||
+        !game.started
       ) {
         return;
       }
       game.players[playerId].playerHand.push(deckCard);
-      game.deck = game.deck.filter((card) => card.id !== deckCard.id);
+      const deckCopy = [...game.deck];
+      game.deck = deckCopy.filter((card) => card.id !== deckCard.id);
+    },
+    playCard: ({ playCard, playerId }, { game }) => {
+      const playerHand = game.players[playerId].playerHand;
+      if (playerHand.length < 3 || game.currentTurn != playerId) {
+        return;
+      }
+      game.discardedCards.push(playCard);
+      game.players[playerId].playerHand = playerHand.filter(
+        (card) => card.id !== playCard.id
+      );
+
+      // Reshuffle discard pile into the deck
+      if (game.deck.length <= 0) {
+        game.deck = getReshuffledDeck(game);
+        game.discardedCards = [];
+      }
+      updateCurrentTurn(game);
     },
   },
   events: {

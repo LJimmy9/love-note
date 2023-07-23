@@ -1,8 +1,10 @@
 import { useRef, useState, useEffect } from "react";
-import { Card, GamePlayer } from "../logic";
+import { Card, GamePlayer, GameState } from "../logic";
 import s from "./PlayCard.module.css";
+import LoveNoteCard from "./LoveNoteCard";
 
 export interface CardProps {
+  game: GameState;
   card: Card;
   player: GamePlayer;
   cardRotation: string;
@@ -27,8 +29,9 @@ interface CardStyles {
 }
 
 function PlayCard({
+  game,
   card,
-  // player,
+  player,
   cardRotation,
   left,
   top,
@@ -119,6 +122,13 @@ function PlayCard({
     }
   }
 
+  const description =
+    card.name === "Love Note" ? (
+      <LoveNoteCard card={card} player={player} loveNotes={game.loveNotes} />
+    ) : (
+      <>{card.description}</>
+    );
+
   return (
     <div
       ref={cardRef}
@@ -129,6 +139,19 @@ function PlayCard({
       {/* Header for the card has number and card name */}
       <div className={s.cardHeader}>
         <div className={s.cardNum}>{card.cardNum}</div>
+        {card.canPlay && isOpen && (
+          <div
+            className={s.playCardBtn}
+            onClick={() =>
+              Rune.actions.playCard({
+                playCard: card,
+                playerId: player.playerId,
+              })
+            }
+          >
+            ▶️
+          </div>
+        )}
       </div>
 
       {/* Body image */}
@@ -137,7 +160,7 @@ function PlayCard({
 
       {/* Footer description */}
       <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
-        {card.description}
+        {description}
         {/* <LoveNoteCard card={card} player={player} /> */}
       </div>
     </div>

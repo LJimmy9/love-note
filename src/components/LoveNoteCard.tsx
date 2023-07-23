@@ -1,46 +1,110 @@
 import { useState } from "react";
-import { Card, GamePlayer } from "../logic";
+import { Card, GamePlayer, Note } from "../logic";
 
 interface LoveNoteCardProps {
   card: Card;
   player: GamePlayer;
+  loveNotes: Array<Note>;
 }
 
-function LoveNoteCard({ card, player }: LoveNoteCardProps) {
+function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
   const [showNotes, setShowNotes] = useState<boolean>(false);
-  const idCardName = player.playerIdentity.name;
+  const idCardRole = player.playerIdentity.role;
+  const notePrompts = ["💝", "😚", "😉", "💕"];
   // Tattle Tales can remove notes, lovers can add notes, and friends can only view notes
   const actionTxt =
-    idCardName === "Lover"
+    idCardRole === "Lover"
       ? "Add Note"
-      : idCardName === "Tattle Tale"
+      : idCardRole === "Tattle Tale"
       ? "Remove Note"
       : "View Notes";
 
-  function performAction() {
-    setShowNotes(false);
-    switch (idCardName) {
+  function performAction(
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+    prompt: string
+  ) {
+    e.stopPropagation();
+
+    switch (idCardRole) {
       case "Lover":
-        // Rune.actions.updateLoveNote({ action: "add" });
+        Rune.actions.updateLoveNote({ action: "add", prompt: prompt });
         break;
       case "Tattle Tale":
-        // Rune.actions.updateLoveNote({ action: "remove" });
+        Rune.actions.updateLoveNote({ action: "remove", prompt: prompt });
         break;
       default:
       // console.log("view only");
     }
   }
 
-  // const notes = Rune.actions.getLoveNotes();
+  function viewNotes(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.stopPropagation();
+    setShowNotes(!showNotes);
+  }
+
+  const description = showNotes ? (
+    <div>
+      {loveNotes.map((note: Note) => {
+        return (
+          <div key={`note-${note.id}`} style={{ margin: "5px 0" }}>
+            {note.text}
+          </div>
+        );
+      })}
+    </div>
+  ) : (
+    <>{card.description}</>
+  );
+
+  const prompts =
+    actionTxt === "Add Note" && showNotes ? (
+      <>
+        <div style={{ marginBottom: "5px" }}>click on a note to add</div>
+        <div>
+          {notePrompts.map((prompt, idx) => {
+            return (
+              <span
+                key={`prompt-${idx}`}
+                style={{
+                  margin: "0 5px",
+                  padding: "2px",
+                  border: "1px solid #FDFD96",
+                  borderRadius: "1rem",
+                  backgroundColor: "#FDFD96",
+                }}
+                onClick={(e) => performAction(e, prompt)}
+              >
+                {prompt}
+              </span>
+            );
+          })}
+          <div
+            onClick={(e) => {
+              viewNotes(e);
+            }}
+            style={{ fontSize: "20px", marginTop: "15px" }}
+          >
+            🔙
+          </div>
+        </div>
+      </>
+    ) : null;
+
   return (
     <div>
-      <div>{card.description}</div>
-      <div onClick={() => performAction()}>{actionTxt}</div>
-      <div onClick={() => setShowNotes(!showNotes)}>Notes</div>
-      {/* {showNotes &&
-        notes.map((note: Note) => {
-          return <div>{note.text}</div>;
-        })} */}
+      <div>{description}</div>
+      <div
+        style={{ cursor: "pointer", marginTop: "15px" }}
+        onClick={(e) => viewNotes(e)}
+      >
+        {prompts}
+        {!showNotes && (
+          <>
+            {actionTxt}
+            <div>😍</div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
