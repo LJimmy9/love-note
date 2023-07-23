@@ -48,6 +48,7 @@ export interface GameState {
   identityCards: Array<IdentityCard>;
   currentTurn: string;
   loveNotes: Array<Note>;
+  turnNum: number;
 }
 
 type GameActions = {
@@ -75,6 +76,7 @@ Rune.initLogic({
       identityCards: setupIdentityCards(),
       currentTurn: "",
       loveNotes: [],
+      turnNum: 0,
     };
   },
   update: ({ game }) => {
@@ -104,8 +106,10 @@ Rune.initLogic({
     updateLoveNote: ({ action }, { game }) => {
       switch (action) {
         case "add":
+          console.log("add");
           break;
         case "remove":
+          console.log("delete");
           break;
         default:
           console.log("no action");
