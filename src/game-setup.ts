@@ -37,29 +37,23 @@ function shuffleCards(deck: Array<Card>, idCards: Array<IdentityCard>) {
 }
 
 export function distributeCards(game: GameState) {
-  const playersCopy = Object.assign({}, game.players);
-  const deckCopy: Array<Card> = [...game.deck];
-  const idCards: Array<IdentityCard> = [...game.identityCards];
-  shuffleCards(deckCopy, idCards);
+  shuffleCards(game.deck, game.identityCards);
 
   // Distribute cards from the deck to each hand
   const cardCount = 2;
-  Object.keys(playersCopy).forEach((key) => {
+  Object.keys(game.players).forEach((key, idx) => {
     // Distribute an identity card to each player
-    const idCard = idCards.pop();
+    const idCard = game.identityCards.pop();
     if (idCard) {
-      playersCopy[key].playerIdentity = idCard;
+      game.players[key].playerIdentity = game.identityCards[idx];
     }
-    const playerHand = playersCopy[key].playerHand;
+    const playerHand = game.players[key].playerHand;
     for (let i = 0; i < cardCount; i++) {
-      const card = deckCopy.pop();
+      const card = game.deck.pop();
       if (!card) return;
       playerHand.push(card);
     }
   });
-
-  game.deck = deckCopy;
-  game.players = playersCopy;
 }
 
 export function setCurrentTurn(game: GameState) {

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Card, GamePlayer } from "../logic";
 import { motion } from "framer-motion";
 import s from "./PlayCard.module.css";
+import LoveNoteCard from "./LoveNoteCard";
 
 export interface CardProps {
   card: Card;
@@ -148,6 +149,7 @@ function PlayCard({
       {/* Footer description */}
       <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
         {card.description}
+        {/* <LoveNoteCard card={card} player={player} /> */}
       </div>
     </div>
   );
