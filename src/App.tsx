@@ -36,10 +36,9 @@ function App() {
       <div
         style={{
           position: "relative",
-          border: "5px solid blue",
           height: "100vh",
           overflow: "hidden",
-          backgroundColor: "#89CFF0",
+          backgroundColor: "#fbd9bb",
         }}
       >
         <Game game={game} player={game.players[currPlayerId]} pinPos={pinPos} />
