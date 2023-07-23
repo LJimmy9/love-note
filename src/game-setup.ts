@@ -61,3 +61,18 @@ export function distributeCards(game: GameState) {
   game.deck = deckCopy;
   game.players = playersCopy;
 }
+
+export function setCurrentTurn(game: GameState) {
+  // game.players = {'player1': {playerHand: [], ...}}
+  // const;
+  // ['player1', 'player2', 'player3']
+  const allPlayers = Object.keys(game.players);
+
+  /*const TempArr=[];
+    for(let i = allPlayers.length; i<0; i--){
+    const randidx = Math.floor(Math.random()*i)
+    const tempholder= allPlayers[i]
+    TempArr.push(allPlayers[randidx])
+    
+  }*/
+}

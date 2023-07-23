@@ -3,11 +3,14 @@ import "./App.css";
 import { GameState } from "./logic.ts";
 import { Players } from "rune-games-sdk/multiplayer";
 import Game from "./components/Game";
+import LocationPin from "./components/LocationPin.tsx";
 
 function App() {
   const [game, setGame] = useState<GameState>();
   const [allPlayers, setAllPlayers] = useState<Players>({});
   const [currPlayerId, setCurrPlayerID] = useState("");
+
+  const [pinPos, setPinPos] = useState<number[]>([]);
 
   useEffect(() => {
     Rune.initClient({
@@ -73,24 +76,15 @@ function App() {
     <div
       style={{
         position: "relative",
-        border: "10px solid blue",
-        height: "90vh",
+        border: "5px solid blue",
+        height: "100vh",
         overflow: "hidden",
+        // backgroundColor: "#89CFF0",
+        backgroundColor: "#89CFF0",
       }}
     >
-      <Game game={game} player={game.players[currPlayerId]} />
-      <div
-        style={{
-          position: "absolute",
-          color: "black",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          opacity: "1",
-        }}
-      >
-        this is the center
-      </div>
+      <Game game={game} player={game.players[currPlayerId]} pinPos={pinPos} />
+      <LocationPin location={"center"} handlePos={(pos) => setPinPos(pos)} />
     </div>
   );
 }

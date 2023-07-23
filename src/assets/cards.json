@@ -13,7 +13,7 @@
     "name": "Tattle",
     "image": "📣",
     "cardNum": 1,
-    "description": "Tattle on the lovers for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and Tattle Tale wins the game. If a Tattle Tale is holding this card, they can treat this card as any number.",
+    "description": "Tattle on a lover for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and the Tattle Tales win the game. If a Tattle Tale is holding this card, they can treat this card as any number.",
     "restrictionToRole": "Tattle Tale",
     "count": 2
   },
