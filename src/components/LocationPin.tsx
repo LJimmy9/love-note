@@ -29,8 +29,8 @@ interface LocationPinProps {
 function LocationPin({ location, handlePos }: LocationPinProps) {
   const elRef = useRef<HTMLDivElement>(null);
 
-  const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
-  const [windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
+  const [_pos, setPos] = useState<Position>({ x: 0, y: 0 });
+  const [_windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
 
   useEffect(() => {
     if (!elRef.current) return;

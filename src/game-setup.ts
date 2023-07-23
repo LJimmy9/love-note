@@ -1,59 +1,70 @@
-import { v4 as uuidv4 } from "uuid";
 import { Card, GameState, IdentityCard } from "./logic";
-
 import cards from "./assets/cards.json";
 import identityCards from "./assets/identity-cards.json";
 
-export function setupDeck() {
-  const deckCards = cards as Array<Card>;
-  const prepareDeck: Array<Card> = [];
-
-  deckCards.forEach((card) => {
-    for (let i = 0; i < card.count; i++) {
-      const cardId = uuidv4();
-      const newCard = Object.assign({}, card);
-      newCard.id = cardId;
-      prepareDeck.push(newCard);
-    }
-  });
-
-  return prepareDeck;
-}
-
 export function setupIdentityCards() {
-  return identityCards as Array<IdentityCard>;
+  const idCards = [...identityCards];
+  return idCards as Array<IdentityCard>;
 }
 
-function shuffleCards(deck: Array<Card>, idCards: Array<IdentityCard>) {
-  for (let i = deck.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
+export function setupDeck() {
+  let cardCounter = 0;
+  const staticDeck = [...cards] as Array<Card>;
+  const startingDeck: Array<Card> = [];
+
+  for (const card of staticDeck) {
+    for (let j = 0; j < card.count; j++) {
+      cardCounter++;
+      const newCard = Object.assign({}, card);
+      newCard.id = cardCounter.toString();
+      startingDeck.push(newCard);
+    }
   }
 
-  for (let i = idCards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [idCards[i], idCards[j]] = [idCards[j], idCards[i]];
-  }
+  return startingDeck;
 }
 
 export function distributeCards(game: GameState) {
-  shuffleCards(game.deck, game.identityCards);
+  const playersCopy = { ...game.players };
+  const deckCopy = [...game.deck];
+  const identityCardsCopy = [...game.identityCards];
+
+  for (let i = deckCopy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deckCopy[i], deckCopy[j]] = [deckCopy[j], deckCopy[i]];
+  }
+
+  for (let i = identityCardsCopy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [identityCardsCopy[i], identityCardsCopy[j]] = [
+      identityCardsCopy[j],
+      identityCardsCopy[i],
+    ];
+  }
 
   // Distribute cards from the deck to each hand
   const cardCount = 2;
-  Object.keys(game.players).forEach((key, idx) => {
-    // Distribute an identity card to each player
-    const idCard = game.identityCards.pop();
+
+  const allPlayerIds = Object.keys(playersCopy);
+  for (let i = 0; i < allPlayerIds.length; i++) {
+    const playerId = allPlayerIds[i];
+    // assign identity card
+    const idCard = identityCardsCopy.pop();
     if (idCard) {
-      game.players[key].playerIdentity = game.identityCards[idx];
+      playersCopy[playerId].playerIdentity = identityCardsCopy[i];
     }
-    const playerHand = game.players[key].playerHand;
-    for (let i = 0; i < cardCount; i++) {
-      const card = game.deck.pop();
-      if (!card) return;
-      playerHand.push(card);
+
+    // assign cards from the deck to the hand
+    const playerHand = playersCopy[playerId].playerHand;
+    for (let j = 0; j < cardCount; j++) {
+      const cardFromDeck = deckCopy.pop();
+      if (!cardFromDeck) return;
+      playerHand.push(cardFromDeck);
     }
-  });
+  }
+
+  game.deck = deckCopy;
+  game.players = playersCopy;
 }
 
 export function setCurrentTurn(game: GameState) {

@@ -1,5 +1,10 @@
 import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
-import { distributeCards, setupDeck, setupIdentityCards } from "./game-setup";
+import {
+  setupDeck,
+  setupIdentityCards,
+  distributeCards,
+  setCurrentTurn,
+} from "./game-setup";
 
 export interface Card {
   id: string;
@@ -60,7 +65,7 @@ declare global {
 
 Rune.initLogic({
   minPlayers: 1,
-  maxPlayers: 6,
+  maxPlayers: 4,
   setup: (): GameState => {
     return {
       readyToStart: false,
@@ -85,6 +90,7 @@ Rune.initLogic({
 
     if (game && game.timer === 0 && !game.started) {
       distributeCards(game);
+      setCurrentTurn(game);
       game.started = true;
     }
   },
@@ -103,16 +109,13 @@ Rune.initLogic({
         playerHand: [],
       };
     },
-    updateLoveNote: ({ action }, { game }) => {
+    updateLoveNote: ({ action }) => {
       switch (action) {
         case "add":
-          // console.log("add");
           break;
         case "remove":
-          // console.log("delete");
           break;
         default:
-        // console.log("no action");
       }
     },
 
@@ -122,7 +125,6 @@ Rune.initLogic({
     },
     distributeDeckAndIdCards: (_, { game }) => {
       distributeCards(game);
-      // setCurrentTurn(game);
     },
   },
   events: {
