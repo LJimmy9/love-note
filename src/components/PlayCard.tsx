@@ -1,8 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Card, GamePlayer } from "../logic";
-import { motion } from "framer-motion";
 import s from "./PlayCard.module.css";
-import LoveNoteCard from "./LoveNoteCard";
 
 export interface CardProps {
   card: Card;
@@ -30,7 +28,7 @@ interface CardStyles {
 
 function PlayCard({
   card,
-  player,
+  // player,
   cardRotation,
   left,
   top,
@@ -45,7 +43,7 @@ function PlayCard({
   };
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
-  const [windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
+  const [_windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [cardStyles, setCardStyles] = useState<CardStyles>(defaultStyle);
 
   const cardRef = useRef(null);
@@ -99,15 +97,6 @@ function PlayCard({
       });
     };
   }, [cardRef.current]);
-
-  const test = (
-    <div className="card">
-      <header>
-        <span className="card-title">Title Text</span>
-      </header>
-      <p className="card-text">some text</p>
-    </div>
-  );
 
   function handleClick() {
     setIsOpen(!isOpen);

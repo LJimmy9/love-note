@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, GamePlayer, Note } from "../logic";
+import { Card, GamePlayer } from "../logic";
 
 interface LoveNoteCardProps {
   card: Card;
@@ -8,7 +8,6 @@ interface LoveNoteCardProps {
 
 function LoveNoteCard({ card, player }: LoveNoteCardProps) {
   const [showNotes, setShowNotes] = useState<boolean>(false);
-  const prompts = [];
   const idCardName = player.playerIdentity.name;
   // Tattle Tales can remove notes, lovers can add notes, and friends can only view notes
   const actionTxt =

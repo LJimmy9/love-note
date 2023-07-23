@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Card, GamePlayer, GameState } from "../logic";
+import { GamePlayer, GameState } from "../logic";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 
@@ -19,11 +18,7 @@ const cardRotationConfig: CardRotationConfig = {
   2: "5deg",
 };
 
-const Game = ({ game, player, pinPos }: GameProps) => {
-  const dummyCard: Card = game.deck[0];
-  const dummy2Card: Card = game.deck[1];
-  const dummy3Card: Card = game.deck[2];
-
+const Game = ({ player, pinPos }: GameProps) => {
   return (
     <div className={`${ph.playerHandContainer}`}>
       <div className={`${ph.flexCenterPlayerHand}`}>

@@ -12,11 +12,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^10.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rune-games-sdk": "^4.9.6",
-    "uuid": "^9.0.0",
     "uuid4": "^2.0.3"
   },
   "devDependencies": {
