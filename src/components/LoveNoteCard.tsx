@@ -4,6 +4,7 @@ import { Note } from "../logic";
 
 function LoveNoteCard({ card, player }: CardProps) {
   const [showNotes, setShowNotes] = useState<boolean>(false);
+  const prompts = [];
   const idCardName = player.playerIdentity.name;
   // Tattle Tales can remove notes, lovers can add notes, and friends can only view notes
   const actionTxt =

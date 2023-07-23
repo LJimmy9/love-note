@@ -68,7 +68,7 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
     return {
       left: `${x}%`,
       top: `${y}%`,
-      transform: `translate(-${x}%, -${y}%)`,
+      transform: `translate(-${x + 20}%, -${y + 25}%)`,
     };
   }
 
@@ -125,7 +125,15 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
   return (
     <div
       ref={elRef}
-      style={{ ...target, position: "absolute", color: "black", opacity: "1" }}
+      style={{
+        ...target,
+        width: "8ch",
+        height: "16ch",
+        position: "absolute",
+        color: "black",
+        opacity: "0",
+        border: "1px solid black",
+      }}
     >
       pin is here
     </div>

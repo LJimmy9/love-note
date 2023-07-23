@@ -1,7 +1,7 @@
 .playerCard {
   padding: 0 1rem;
   border-radius: 1rem;
-  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5); */
   overflow: hidden;
   transition: 500ms ease;
   width: 8ch; 
@@ -12,8 +12,8 @@
 
 .expand {  
   /* width: 18ch; */
-  height: 20ch; 
-  scale: 1.80 2.00;
+  /* height: 20ch;  */
+  /* scale: 1.80 2.00; */
   transition: 500ms ease;
   position: relative;
 }
