@@ -39,7 +39,6 @@ function App() {
           border: "5px solid blue",
           height: "100vh",
           overflow: "hidden",
-          // backgroundColor: "#89CFF0",
           backgroundColor: "#89CFF0",
         }}
       >
