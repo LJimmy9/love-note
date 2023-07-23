@@ -21,14 +21,14 @@ function App() {
         ) {
           setAllPlayers({ ...players });
         }
-        if (yourPlayerId) setCurrPlayerID(yourPlayerId);
+        if (yourPlayerId && !currPlayerId) setCurrPlayerID(yourPlayerId);
       },
     });
   }, []);
 
   useEffect(() => {
     Rune.actions.updatePlayers({ player: allPlayers[currPlayerId] });
-  }, [currPlayerId]);
+  }, [allPlayers, currPlayerId]);
 
   const configureGameStateUI =
     game &&

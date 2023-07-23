@@ -2,6 +2,8 @@ import { GamePlayer, GameState } from "../logic";
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
+import gf from "./GameField.module.css";
+import DiscardCard from "./DiscardCard";
 
 interface GameProps {
   game: GameState;
@@ -19,6 +21,8 @@ const cardRotationConfig: CardRotationConfig = {
   2: "5deg",
 };
 
+
+
 const Game = ({ game, player, pinPos }: GameProps) => {
   return (
     <div>
@@ -27,12 +31,29 @@ const Game = ({ game, player, pinPos }: GameProps) => {
           return (
             <DeckCard
               key={`deck-card-${deckCard.id}`}
-              deckCard={deckCard}
+              card={deckCard}
               player={player}
             />
           );
         })}
       </div>
+      <div className={ph.discard}>
+        {game.discardedCards.map((discardedCard) => {
+          return (
+            <DiscardCard
+              key={`discard-card-${discardedCard.id}`}
+              card={discardedCard}
+            />
+          );
+        })}
+      </div>
+      <div>
+        <p className={gf.gameTurn}>Turn: {game.turnNum}</p>
+        <p className={gf.playerTurn}>
+          Player Turn: {game.players[game.currentTurn].displayName}
+        </p>
+      </div>
+      <button className={gf.infoBtn}>info</button>
       <div className={`${ph.playerHandContainer}`}>
         <div className={`${ph.flexCenterPlayerHand}`}>
           <div
@@ -50,6 +71,7 @@ const Game = ({ game, player, pinPos }: GameProps) => {
               return (
                 <PlayCard
                   key={`${cardVal}- ${idx}`}
+                  game={game}
                   card={cardVal}
                   player={player}
                   cardRotation={cardRotationConfig[idx]}

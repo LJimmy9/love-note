@@ -6,6 +6,8 @@
   transition: 500ms ease;
   width: 8ch;
   height: 16ch;
+  top:-170px;
+  left: -42px;
   background-color: #ffb7c5;
   border: 5px solid #C8A2C8;
 }

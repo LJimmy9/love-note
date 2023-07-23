@@ -4,19 +4,21 @@ import d from "./DeckCard.module.css";
 import { Player } from "rune-games-sdk/multiplayer";
 
 interface DeckCardProps {
-  deckCard: Card;
+  card: Card;
   player: Player;
 }
 
-function DeckCard({ deckCard, player }: DeckCardProps) {
+function DeckCard({ card, player }: DeckCardProps) {
   const cardRef = useRef(null);
 
-  function drawCard() {
-    Rune.actions.drawCard({ deckCard: deckCard, playerId: player.playerId });
-  }
-
   return (
-    <div className={d.deckCard} ref={cardRef} onClick={() => drawCard()}>
+    <div
+      className={d.deckCard}
+      ref={cardRef}
+      onClick={() =>
+        Rune.actions.drawCard({ deckCard: card, playerId: player.playerId })
+      }
+    >
       <div className={d.backImg}>💟</div>
     </div>
   );
