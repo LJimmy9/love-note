@@ -1,10 +1,5 @@
 import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
-import {
-  distributeCards,
-  setCurrentTurn,
-  setupDeck,
-  setupIdentityCards,
-} from "./game-setup";
+import { distributeCards, setupDeck, setupIdentityCards } from "./game-setup";
 
 export interface Card {
   id: string;
@@ -87,6 +82,11 @@ Rune.initLogic({
     if (game.readyToStart && game.timer > 0) {
       game.timer -= 1;
     }
+
+    if (game && game.timer === 0 && !game.started) {
+      distributeCards(game);
+      game.started = true;
+    }
   },
   actions: {
     // gets
@@ -122,7 +122,7 @@ Rune.initLogic({
     },
     distributeDeckAndIdCards: (_, { game }) => {
       distributeCards(game);
-      setCurrentTurn(game);
+      // setCurrentTurn(game);
     },
   },
   events: {

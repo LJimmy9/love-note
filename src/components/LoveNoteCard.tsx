@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { CardProps } from "./PlayCard";
-import { Note } from "../logic";
+import { Card, GamePlayer, Note } from "../logic";
 
-function LoveNoteCard({ card, player }: CardProps) {
+interface LoveNoteCardProps {
+  card: Card;
+  player: GamePlayer;
+}
+
+function LoveNoteCard({ card, player }: LoveNoteCardProps) {
   const [showNotes, setShowNotes] = useState<boolean>(false);
   const prompts = [];
   const idCardName = player.playerIdentity.name;
@@ -18,26 +22,26 @@ function LoveNoteCard({ card, player }: CardProps) {
     setShowNotes(false);
     switch (idCardName) {
       case "Lover":
-        Rune.actions.updateLoveNote({ action: "add" });
+        // Rune.actions.updateLoveNote({ action: "add" });
         break;
       case "Tattle Tale":
-        Rune.actions.updateLoveNote({ action: "remove" });
+        // Rune.actions.updateLoveNote({ action: "remove" });
         break;
       default:
         console.log("view only");
     }
   }
 
-  const notes = Rune.actions.getLoveNotes();
+  // const notes = Rune.actions.getLoveNotes();
   return (
     <div>
       <div>{card.description}</div>
       <div onClick={() => performAction()}>{actionTxt}</div>
       <div onClick={() => setShowNotes(!showNotes)}>Notes</div>
-      {showNotes &&
+      {/* {showNotes &&
         notes.map((note: Note) => {
           return <div>{note.text}</div>;
-        })}
+        })} */}
     </div>
   );
 }

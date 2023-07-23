@@ -10,7 +10,6 @@ interface GameProps {
 }
 
 const Game = ({ game, player, pinPos }: GameProps) => {
-  console.log("player", player);
   const dummyCard: Card = game.deck[0];
   const dummy2Card: Card = game.deck[1];
   const dummy3Card: Card = game.deck[2];
@@ -19,10 +18,11 @@ const Game = ({ game, player, pinPos }: GameProps) => {
     <div className={`${ph.playerHandContainer}`}>
       <div className={`${ph.flexCenterPlayerHand}`}>
         <div className={`${ph.flexPlayerHand}`}>
-          {[0, 1, 2].map((cardVal, idx) => {
+          {player.playerHand.map((cardVal, idx) => {
             return (
               <PlayCard
-                card={dummyCard}
+                key={`${cardVal}- ${idx}`}
+                card={cardVal}
                 player={player}
                 cardRotation={`${idx * 10 - 10}deg`}
                 left={`${5 - 5 * idx}px`}
