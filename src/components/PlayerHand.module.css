@@ -1,11 +1,3 @@
-.playerHandContainer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-
-  height: 20vh;
-}
-
 .flexCenterPlayerHand {
   display: flex;
   justify-content: center;
@@ -22,12 +14,4 @@
 .default {
   scale: 1 1;
   transition: 500ms ease;
-}
-
-/* deck */
-.deck {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%)
 }

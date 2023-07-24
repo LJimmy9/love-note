@@ -1,19 +1,43 @@
 .deckCard {
   position: absolute;
-  padding: 0 1rem;
-  border-radius: 1rem;
-  overflow: hidden;
-  transition: 500ms ease;
-  width: 8ch;
-  height: 16ch;
-  top:-170px;
-  left: -42px;
+  width: 100%;
+  height: 100%;
+}
+
+.theCard {
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.frontImageContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background-color: #add8e6;
+}
+
+.frontImage {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.backImageContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   background-color: #ffb7c5;
-  border: 5px solid #C8A2C8;
 }
 
 .backImg {
-  position: absolute;
+  position: relative;
   margin: 10 auto;
   font-size: 60px;
   top: 2px;

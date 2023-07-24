@@ -48,7 +48,10 @@ function App() {
         {Object.keys(game.players).map((playerId, idx) => {
           return (
             <div key={playerId + idx}>
-              <div key={idx}>{game.players[playerId].displayName}</div>
+              <div key={idx}>
+                {game.players[playerId].displayName}{" "}
+                {currPlayerId === playerId && "(You)"}
+              </div>
             </div>
           );
         })}
