@@ -1,18 +1,19 @@
 .container {
-    position: relative;
-  } 
-  .names {
-    position: absolute;
-    bottom: 10px;
-    Left: 30px;
-    font-size: 15px;
-    background-color: "#89CFF0";
-  }
+  position: relative;
+} 
 
-  .avatars {
-    position: fixed;
-    bottom: 5px;
-    Right: 15px;
-    font-size: 15px;
-    background-color: "#89CFF0";
-  }
+.names {
+  position: absolute;
+  bottom: 10px;
+  Left: 30px;
+  font-size: 15px;
+  background-color: "#89CFF0";
+}
+
+.avatars {
+  position: fixed;
+  bottom: 5px;
+  Right: 15px;
+  font-size: 15px;
+  background-color: "#89CFF0";
+}
