@@ -8,27 +8,26 @@ import LocationPin from "./components/LocationPin.tsx";
 function App() {
   const [game, setGame] = useState<GameState>();
   const [allPlayers, setAllPlayers] = useState<Players>({});
-  const [currPlayerId, setCurrPlayerID] = useState("");
+  const [currPlayerId, setCurrPlayerId] = useState("");
 
   const [pinPos, setPinPos] = useState<number[]>([]);
 
   useEffect(() => {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
-        setGame({ ...newGame });
-        if (
-          Object.keys(newGame.players).length != Object.keys(players).length
-        ) {
-          setAllPlayers({ ...players });
+        setAllPlayers(players);
+        if (yourPlayerId && !currPlayerId) {
+          setCurrPlayerId(yourPlayerId);
         }
-        if (yourPlayerId && !currPlayerId) setCurrPlayerID(yourPlayerId);
+        setGame({ ...newGame });
       },
     });
   }, []);
 
   useEffect(() => {
-    Rune.actions.updatePlayers({ player: allPlayers[currPlayerId] });
-  }, [allPlayers, currPlayerId]);
+    if (!game || Object.keys(game.players).includes(currPlayerId)) return;
+    Rune.actions.login({ displayName: allPlayers[currPlayerId].displayName });
+  }, [allPlayers, game, currPlayerId]);
 
   const configureGameStateUI =
     game &&
