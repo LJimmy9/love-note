@@ -2,8 +2,8 @@ import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
 import {
   setupDeck,
   setupIdentityCards,
-  getDistributedCards,
-  setInitialTurn,
+  // getDistributedCards,
+  // setInitialTurn,
   updateCurrentTurn,
   getReshuffledDeck,
 } from "./game-setup";
@@ -65,6 +65,7 @@ type GameActions = {
   updateLoveNote: (params: { action: string; prompt: string }) => void;
 
   // actions
+  login: (params: { displayName: string }) => void;
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerId: string }) => void;
   playCard: (params: { playCard: Card; playerId: string }) => void;
@@ -101,12 +102,10 @@ Rune.initLogic({
     }
 
     if (game && game.timer === 0 && !game.started) {
-      const distributedCards = getDistributedCards(game);
-      if (!distributedCards) return;
-
-      game.deck = distributedCards.deck;
-      game.players = distributedCards.players;
-      game.currentTurn = setInitialTurn(game);
+      const allPlayers = Object.keys(game.players);
+      const tempNum = Math.floor(Math.random() * allPlayers.length);
+      const randidx = (tempNum + game.turnNum) % allPlayers.length;
+      game.currentTurn = allPlayers[randidx];
       game.started = true;
     }
   },
@@ -145,6 +144,34 @@ Rune.initLogic({
     },
 
     // actions
+    login: ({ displayName }, { game, playerId }) => {
+      const idCards = [...game.identityCards];
+      const idCard = idCards.pop();
+
+      const playerHand: Array<Card> = [];
+      const deckCopy = [...game.deck];
+      for (let i = 0; i < 2; i++) {
+        const cardToAdd = deckCopy.pop();
+        if (cardToAdd) {
+          playerHand.push(cardToAdd);
+        }
+      }
+
+      const defaultPlayerHand: Array<Card> = [];
+      const player: GamePlayer = {
+        playerId: playerId,
+        displayName: displayName,
+        avatarUrl: "",
+        playerIdentity: idCard
+          ? idCard
+          : { name: "", image: "", description: "", role: "" },
+        playerHand: playerHand.length ? playerHand : defaultPlayerHand,
+      };
+
+      game.deck = deckCopy;
+      game.identityCards = idCards;
+      game.players[playerId] = player;
+    },
     startGame: (_, { game }) => {
       game.started = true;
     },
@@ -156,20 +183,34 @@ Rune.initLogic({
       ) {
         return;
       }
-      game.players[playerId].playerHand.push(deckCard);
+      const playerHandCopy = [...game.players[playerId].playerHand];
+      playerHandCopy.push(deckCard);
+      game.players[playerId].playerHand = playerHandCopy;
       const deckCopy = [...game.deck];
-      game.deck = deckCopy.filter((card) => card.id !== deckCard.id);
+
+      const newDeck: Array<Card> = [];
+      for (let i = 0; i < deckCopy.length; i++) {
+        if (deckCopy[i].id !== deckCard.id) {
+          newDeck.push(deckCopy[i]);
+        }
+      }
+      game.deck = newDeck;
     },
     playCard: ({ playCard, playerId }, { game }) => {
-      const playerHand = game.players[playerId].playerHand;
+      const playerHand = [...game.players[playerId].playerHand];
       if (playerHand.length < 3 || game.currentTurn != playerId) {
         return;
       }
       game.discardedCards.push(playCard);
-      game.players[playerId].playerHand = playerHand.filter(
-        (card) => card.id !== playCard.id
-      );
 
+      const newPlayerHand: Array<Card> = [];
+      for (let i = 0; i < playerHand.length; i++) {
+        if (playerHand[i].id !== playCard.id) {
+          newPlayerHand.push(playerHand[i]);
+        }
+      }
+
+      game.players[playerId].playerHand = newPlayerHand;
       // Reshuffle discard pile into the deck
       if (game.deck.length <= 0) {
         game.deck = getReshuffledDeck(game);

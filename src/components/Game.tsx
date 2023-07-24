@@ -4,6 +4,7 @@ import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
+import { useState } from "react";
 
 interface GameProps {
   game: GameState;
@@ -18,12 +19,12 @@ type CardRotationConfig = {
 const cardRotationConfig: CardRotationConfig = {
   0: "-5deg",
   1: "5deg",
-  2: "5deg",
+  2: "8deg",
 };
 
-
-
 const Game = ({ game, player, pinPos }: GameProps) => {
+  const [showInfo, setShowInfo] = useState<boolean>(false);
+
   return (
     <div>
       <div className={ph.deck}>
@@ -53,7 +54,18 @@ const Game = ({ game, player, pinPos }: GameProps) => {
           Player Turn: {game.players[game.currentTurn].displayName}
         </p>
       </div>
-      <button className={gf.infoBtn}>info</button>
+      <button onClick={() => setShowInfo(!showInfo)} className={gf.infoBtn}>
+        info
+      </button>
+      {showInfo && (
+        <div className={gf.infoCard}>
+          <div className={gf.infoHeader}>
+            Love Note
+            <button onClick={() => setShowInfo(false)}>&times;</button>
+          </div>
+          <div>body</div>
+        </div>
+      )}
       <div className={`${ph.playerHandContainer}`}>
         <div className={`${ph.flexCenterPlayerHand}`}>
           <div
