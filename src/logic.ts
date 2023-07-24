@@ -2,8 +2,6 @@ import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
 import {
   setupDeck,
   setupIdentityCards,
-  // getDistributedCards,
-  // setInitialTurn,
   updateCurrentTurn,
   getReshuffledDeck,
 } from "./game-setup";
@@ -181,7 +179,7 @@ Rune.initLogic({
         game.currentTurn != playerId ||
         !game.started
       ) {
-        return;
+        throw Rune.invalidAction();
       }
       const playerHandCopy = [...game.players[playerId].playerHand];
       playerHandCopy.push(deckCard);
@@ -199,10 +197,10 @@ Rune.initLogic({
     playCard: ({ playCard, playerId }, { game }) => {
       const playerHand = [...game.players[playerId].playerHand];
       if (playerHand.length < 3 || game.currentTurn != playerId) {
-        return;
+        throw Rune.invalidAction();
       }
-      game.discardedCards.push(playCard);
 
+      game.discardedCards.push(playCard);
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i].id !== playCard.id) {
