@@ -35,10 +35,7 @@ const Game = ({ game, player, pinPos }: GameProps) => {
 
   return (
     <div className={gf.gameContainer}>
-      <div
-        // style={{ border: "2px solid hotpink" }}
-        className={gf.currentGameDetail}
-      >
+      <div className={gf.currentGameDetail}>
         <div className={gf.turnContainer}>
           <p className={gf.gameTurn}>Turn: {game.turnNum}</p>
           <p className={gf.playerTurn}>
@@ -50,33 +47,38 @@ const Game = ({ game, player, pinPos }: GameProps) => {
             }`}
           </p>
         </div>
-        <div className={gf.discardContainer}>
-          {game.discardedCards.map((discardedCard) => {
-            return (
-              <DiscardCard
-                key={`discard-card-${discardedCard.id}`}
-                card={discardedCard}
-              />
-            );
-          })}
-        </div>
+
         <div className={gf.infoButtonContainer}>
           <button onClick={() => setShowInfo(!showInfo)} className={gf.infoBtn}>
             info
           </button>
         </div>
       </div>
-      <div className={gf.deckContainer}>
-        <div className={gf.deck}>
-          {game.deck.map((deckCard) => {
-            return (
-              <DeckCard
-                key={`deck-card-${deckCard.id}`}
-                card={deckCard}
-                player={player}
-              />
-            );
-          })}
+      <div className={gf.gameActionFieldContainer}>
+        <div className={gf.gameActionField}>
+          <div className={gf.deckContainer}>
+            <div className={gf.deck}>
+              {game.deck.map((deckCard) => {
+                return (
+                  <DeckCard
+                    key={`deck-card-${deckCard.id}`}
+                    card={deckCard}
+                    player={player}
+                  />
+                );
+              })}
+            </div>
+          </div>
+          <div className={gf.discardContainer}>
+            {game.discardedCards.map((discardedCard) => {
+              return (
+                <DiscardCard
+                  key={`discard-card-${discardedCard.id}`}
+                  card={discardedCard}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
       {showInfo && (

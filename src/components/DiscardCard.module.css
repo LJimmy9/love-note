@@ -6,11 +6,11 @@
   transition: 500ms ease;
   width: 8ch;
   height: 16ch;
-  top: 40%;
-  left: 34%;
-  background-color: #ADD8E6;
-  border: 5px solid #C8A2C8;
-  color: black;
+  top: 50%;
+  left: 37%;
+  background-color: #add8e6;
+  border: 5px solid #c8a2c8;
+  /* color: black;
   font-weight: bolder;
-  font-family: "Andale Mono", monospace;
+  font-family: "Andale Mono", monospace; */
 }

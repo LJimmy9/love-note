@@ -20,7 +20,9 @@ function DeckCard({ card, player }: DeckCardProps) {
         console.log("draw");
       }}
     >
+      {/* <div className={d.theCard}> */}
       <div className={d.backImg}>💟</div>
+      {/* </div> */}
     </div>
   );
 }
