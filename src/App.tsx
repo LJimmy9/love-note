@@ -27,7 +27,10 @@ function App() {
 
   useEffect(() => {
     if (!game || Object.keys(game.players).includes(currPlayerId)) return;
-    Rune.actions.login({ displayName: allPlayers[currPlayerId].displayName });
+    Rune.actions.login({
+      displayName: allPlayers[currPlayerId].displayName,
+      avatarUrl: allPlayers[currPlayerId].avatarUrl,
+    });
   }, [allPlayers, game, currPlayerId]);
 
   const configureGameStateUI =

@@ -63,7 +63,7 @@ type GameActions = {
   updateLoveNote: (params: { action: string; prompt: string }) => void;
 
   // actions
-  login: (params: { displayName: string }) => void;
+  login: (params: { displayName: string; avatarUrl: string }) => void;
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerId: string }) => void;
   playCard: (params: { playCard: Card; playerId: string }) => void;
@@ -100,10 +100,6 @@ Rune.initLogic({
     }
 
     if (game && game.timer === 0 && !game.started) {
-      const allPlayers = Object.keys(game.players);
-      const tempNum = Math.floor(Math.random() * allPlayers.length);
-      const randidx = (tempNum + game.turnNum) % allPlayers.length;
-      game.currentTurn = allPlayers[randidx];
       game.started = true;
     }
   },
@@ -142,7 +138,7 @@ Rune.initLogic({
     },
 
     // actions
-    login: ({ displayName }, { game, playerId }) => {
+    login: ({ displayName, avatarUrl }, { game, playerId }) => {
       const idCards = [...game.identityCards];
       const idCard = idCards.pop();
 
@@ -159,7 +155,7 @@ Rune.initLogic({
       const player: GamePlayer = {
         playerId: playerId,
         displayName: displayName,
-        avatarUrl: "",
+        avatarUrl: avatarUrl,
         playerIdentity: idCard
           ? idCard
           : { name: "", image: "", description: "", role: "" },
@@ -169,6 +165,7 @@ Rune.initLogic({
       game.deck = deckCopy;
       game.identityCards = idCards;
       game.players[playerId] = player;
+      game.currentTurn = !game.currentTurn ? playerId : game.currentTurn;
     },
     startGame: (_, { game }) => {
       game.started = true;
@@ -176,8 +173,7 @@ Rune.initLogic({
     drawCard: ({ deckCard, playerId }, { game }) => {
       if (
         game.players[playerId].playerHand.length >= 3 ||
-        game.currentTurn != playerId ||
-        !game.started
+        game.currentTurn != playerId
       ) {
         throw Rune.invalidAction();
       }
@@ -196,7 +192,7 @@ Rune.initLogic({
     },
     playCard: ({ playCard, playerId }, { game }) => {
       const playerHand = [...game.players[playerId].playerHand];
-      if (playerHand.length < 3 || game.currentTurn != playerId) {
+      if (playerHand.length != 3 || game.currentTurn != playerId) {
         throw Rune.invalidAction();
       }
 
