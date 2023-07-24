@@ -1,11 +1,11 @@
-.discardCard {
+.discardContainer {
   position: absolute;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   border-radius: 1rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: 500ms ease;
-  width: 8ch;
-  height: 16ch;
+  width: 7.5em;
+  height: 10em;
   top: 50%;
   left: 37%;
   background-color: #add8e6;
@@ -13,4 +13,10 @@
   /* color: black;
   font-weight: bolder;
   font-family: "Andale Mono", monospace; */
+}
+
+.discardPile {
+  /* border: 2px solid red; */
+  width: 100%;
+  height: 100%;
 }

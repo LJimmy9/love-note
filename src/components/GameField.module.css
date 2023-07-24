@@ -10,7 +10,7 @@
 
 .currentGameDetail {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(2, auto);
   gap: 5px;
   padding: 2vw;
 
@@ -74,6 +74,23 @@
   position: relative;
   top: 60%;
   left: 50%;
+}
+
+.deck {
+  position: absolute;
+  top: -170px;
+  left: -42px;
+  /* background-color: #ffb7c5; */
+  border: 5px solid #c8a2c8;
+
+  width: 12ch;
+  height: 16ch;
+  /* width: 150px; */
+  /* height: 150px; */
+
+  /* padding: 0 1rem; */
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .playerHandContainer {

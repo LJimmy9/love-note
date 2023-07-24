@@ -4,7 +4,7 @@ import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface GameProps {
   game: GameState;
@@ -24,14 +24,6 @@ const cardRotationConfig: CardRotationConfig = {
 
 const Game = ({ game, player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log("game", game);
-  }, [game]);
-
-  useEffect(() => {
-    console.log("player", player);
-  }, [player]);
 
   return (
     <div className={gf.gameContainer}>
