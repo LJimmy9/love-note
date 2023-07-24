@@ -4,7 +4,7 @@ import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface GameProps {
   game: GameState;
@@ -18,45 +18,67 @@ type CardRotationConfig = {
 
 const cardRotationConfig: CardRotationConfig = {
   0: "-5deg",
-  1: "5deg",
+  1: "3deg",
   2: "8deg",
 };
 
 const Game = ({ game, player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
 
+  useEffect(() => {
+    console.log("game", game);
+  }, [game]);
+
+  useEffect(() => {
+    console.log("player", player);
+  }, [player]);
+
   return (
-    <div>
-      <div className={ph.deck}>
-        {game.deck.map((deckCard) => {
-          return (
-            <DeckCard
-              key={`deck-card-${deckCard.id}`}
-              card={deckCard}
-              player={player}
-            />
-          );
-        })}
+    <div className={gf.gameContainer}>
+      <div
+        // style={{ border: "2px solid hotpink" }}
+        className={gf.currentGameDetail}
+      >
+        <div className={gf.turnContainer}>
+          <p className={gf.gameTurn}>Turn: {game.turnNum}</p>
+          <p className={gf.playerTurn}>
+            Player Turn:{" "}
+            {`${
+              player.playerId === game.currentTurn
+                ? "Your turn"
+                : game.players[game.currentTurn].displayName
+            }`}
+          </p>
+        </div>
+        <div className={gf.discardContainer}>
+          {game.discardedCards.map((discardedCard) => {
+            return (
+              <DiscardCard
+                key={`discard-card-${discardedCard.id}`}
+                card={discardedCard}
+              />
+            );
+          })}
+        </div>
+        <div className={gf.infoButtonContainer}>
+          <button onClick={() => setShowInfo(!showInfo)} className={gf.infoBtn}>
+            info
+          </button>
+        </div>
       </div>
-      <div className={ph.discard}>
-        {game.discardedCards.map((discardedCard) => {
-          return (
-            <DiscardCard
-              key={`discard-card-${discardedCard.id}`}
-              card={discardedCard}
-            />
-          );
-        })}
+      <div className={gf.deckContainer}>
+        <div className={gf.deck}>
+          {game.deck.map((deckCard) => {
+            return (
+              <DeckCard
+                key={`deck-card-${deckCard.id}`}
+                card={deckCard}
+                player={player}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div>
-        <p className={gf.gameTurn}>Turn: {game.turnNum}</p>
-        <p className={gf.playerTurn}>
-          Player Turn: {game.players[game.currentTurn].displayName}
-        </p>
-      </div>
-      <button onClick={() => setShowInfo(!showInfo)} className={gf.infoBtn}>
-        info
-      </button>
       {showInfo && (
         <div className={gf.infoCard}>
           <div className={gf.infoHeader}>
@@ -66,16 +88,16 @@ const Game = ({ game, player, pinPos }: GameProps) => {
           <div>body</div>
         </div>
       )}
-      <div className={`${ph.playerHandContainer}`}>
+      <div className={`${gf.playerHandContainer}`}>
         <div className={`${ph.flexCenterPlayerHand}`}>
           <div
             style={{
               display: "grid",
               gap: "0.5rem",
               gridTemplateColumns: `${
-                player.playerHand.length === 2
-                  ? "repeat(4, 25px)"
-                  : "repeat(6, 25px)"
+                player.playerHand.length === 3
+                  ? "repeat(5, 25px)"
+                  : "repeat(4, 25px)"
               }`,
             }}
           >
@@ -88,7 +110,7 @@ const Game = ({ game, player, pinPos }: GameProps) => {
                   player={player}
                   cardRotation={cardRotationConfig[idx]}
                   left={"0px"}
-                  top={"0px"}
+                  top={idx === 2 ? "8px" : "0px"}
                   pinPos={pinPos}
                 />
               );

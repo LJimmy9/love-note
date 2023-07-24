@@ -15,9 +15,10 @@ function DeckCard({ card, player }: DeckCardProps) {
     <div
       className={d.deckCard}
       ref={cardRef}
-      onClick={() =>
-        Rune.actions.drawCard({ deckCard: card, playerId: player.playerId })
-      }
+      onClick={() => {
+        Rune.actions.drawCard({ deckCard: card, playerId: player.playerId });
+        console.log("draw");
+      }}
     >
       <div className={d.backImg}>💟</div>
     </div>
