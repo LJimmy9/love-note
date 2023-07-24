@@ -105,7 +105,7 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
         y = 0;
         break;
       case "top_left":
-        x = 0;
+      x = 0;
         y = 10;
         break;
       case "top_right":

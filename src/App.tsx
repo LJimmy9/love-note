@@ -9,38 +9,36 @@ import Overlay from "./components/Overlay.tsx";
 function App() {
   const [game, setGame] = useState<GameState>();
   const [allPlayers, setAllPlayers] = useState<Players>({});
-  const [currPlayerId, setCurrPlayerID] = useState("");
+  const [currPlayerId, setCurrPlayerId] = useState("");
 
   const [pinPos, setPinPos] = useState<number[]>([]);
 
   useEffect(() => {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
-        setGame({ ...newGame });
-        if (
-          Object.keys(newGame.players).length != Object.keys(players).length
-        ) {
-          setAllPlayers({ ...players });
+        setAllPlayers(players);
+        if (yourPlayerId && !currPlayerId) {
+          setCurrPlayerId(yourPlayerId);
         }
-        if (yourPlayerId) setCurrPlayerID(yourPlayerId);
+        setGame({ ...newGame });
       },
     });
   }, []);
 
   useEffect(() => {
-    Rune.actions.updatePlayers({ player: allPlayers[currPlayerId] });
-  }, [currPlayerId]);
-  const [showOverlay] = useState(true);
+    if (!game || Object.keys(game.players).includes(currPlayerId)) return;
+    Rune.actions.login({ displayName: allPlayers[currPlayerId].displayName });
+  }, [allPlayers, game, currPlayerId]);
+
   const configureGameStateUI =
     game &&
     (game.started ? (
       <div
         style={{
           position: "relative",
-          border: "5px solid blue",
           height: "100vh",
           overflow: "hidden",
-          backgroundColor: "#89CFF0",
+          backgroundColor: "#fbd9bb",
         }}
       >
         <Game game={game} player={game.players[currPlayerId]} pinPos={pinPos} />
