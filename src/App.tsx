@@ -4,6 +4,7 @@ import { GameState } from "./logic.ts";
 import { Players } from "rune-games-sdk/multiplayer";
 import Game from "./components/Game";
 import LocationPin from "./components/LocationPin.tsx";
+import Overlay from "./components/Overlay.tsx";
 
 function App() {
   const [game, setGame] = useState<GameState>();
@@ -42,6 +43,8 @@ function App() {
       >
         <Game game={game} player={game.players[currPlayerId]} pinPos={pinPos} />
         <LocationPin location={"center"} handlePos={(pos) => setPinPos(pos)} />
+        {/* Conditionally render the overlay based on showOverlay state */}
+        <Overlay Name={game.players[currPlayerId].displayName} Avatar={game.players[currPlayerId].avatarUrl} />
       </div>
     ) : (
       <div>
