@@ -56,6 +56,7 @@ const Game = ({ game, player, pinPos }: GameProps) => {
                     key={`deck-card-${deckCard.id}`}
                     card={deckCard}
                     player={player}
+                    currentTurn={game.currentTurn}
                   />
                 );
               })}
