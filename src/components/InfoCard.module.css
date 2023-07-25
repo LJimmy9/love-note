@@ -1,0 +1,10 @@
+.infoCard {
+  font-weight: bolder;
+  font-family: "Andale Mono", monospace;
+}
+
+.infoList {
+  border: 1px solid;
+  font-weight: bolder;
+  font-family: "Andale Mono", monospace;
+}

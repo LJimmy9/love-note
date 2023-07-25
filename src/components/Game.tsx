@@ -1,15 +1,17 @@
-import { GamePlayer, GameState } from "../logic";
+import { GamePlayer, GameState, Card } from "../logic";
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
 import { useState } from "react";
+import {CardInfoDisplay, IdCardInfoDisplay}  from "./InfoCard";
 
 interface GameProps {
   game: GameState;
   player: GamePlayer;
   pinPos: number[];
+  card: Card;
 }
 
 type CardRotationConfig = {
@@ -22,7 +24,7 @@ const cardRotationConfig: CardRotationConfig = {
   2: "8deg",
 };
 
-const Game = ({ game, player, pinPos }: GameProps) => {
+const Game = ({ game, player, pinPos}: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
 
   return (
@@ -80,7 +82,10 @@ const Game = ({ game, player, pinPos }: GameProps) => {
             Love Note
             <button onClick={() => setShowInfo(false)}>&times;</button>
           </div>
-          <div>body</div>
+          <div>  
+          <CardInfoDisplay />
+          <IdCardInfoDisplay />
+          </div>
         </div>
       )}
       <div className={`${gf.playerHandContainer}`}>
