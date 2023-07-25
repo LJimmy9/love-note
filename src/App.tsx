@@ -29,7 +29,10 @@ function App() {
 
   useEffect(() => {
     if (!game || Object.keys(game.players).includes(currPlayerId)) return;
-    Rune.actions.login({ displayName: allPlayers[currPlayerId].displayName, avatarUrl:allPlayers[currPlayerId].avatarUrl});
+    Rune.actions.login({
+      displayName: allPlayers[currPlayerId].displayName,
+      avatarUrl: allPlayers[currPlayerId].avatarUrl,
+    });
   }, [allPlayers, game, currPlayerId]);
 
   const configureGameStateUI =
@@ -46,14 +49,20 @@ function App() {
         <Game game={game} player={game.players[currPlayerId]} pinPos={pinPos} />
         <LocationPin location={"center"} handlePos={(pos) => setPinPos(pos)} />
         {/* Conditionally render the overlay based on showOverlay state */}
-        <Overlay Name={game.players[currPlayerId].displayName} Avatar={game.players[currPlayerId].avatarUrl} />
+        <Overlay
+          Name={game.players[currPlayerId].displayName}
+          Avatar={game.players[currPlayerId].avatarUrl}
+        />
       </div>
     ) : (
       <div>
         {Object.keys(game.players).map((playerId, idx) => {
           return (
             <div key={playerId + idx}>
-              <div key={idx}>{game.players[playerId].displayName}</div>
+              <div key={idx}>
+                {game.players[playerId].displayName}{" "}
+                {currPlayerId === playerId && "(You)"}
+              </div>
             </div>
           );
         })}
