@@ -149,7 +149,7 @@ function PlayCard({
             onClick={() =>
               Rune.actions.playCard({
                 playCard: card,
-                playerId: currPlayer.playerId,
+                playerIdToUpdate: currPlayer.playerId,
               })
             }
           >
