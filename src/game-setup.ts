@@ -45,6 +45,13 @@ function shuffleDeck(deck: Array<Card>) {
 
 export function updateCurrentTurn(game: GameState) {
   // update curr turn
+  const allPlayers = Object.keys(game.players);
+  const currTurnIdx = allPlayers.indexOf(game.currentTurn);
+  let nextTurnIdx = currTurnIdx + 1;
+  if (nextTurnIdx >= allPlayers.length) {
+    nextTurnIdx = 0;
+  }
+  game.currentTurn = allPlayers[nextTurnIdx];
   game.turnNum += 1;
 }
 

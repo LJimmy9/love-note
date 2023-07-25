@@ -63,8 +63,8 @@ type GameActions = {
   updateLoveNote: (params: { action: string; prompt: string }) => void;
   // actions
   startGame: () => void;
-  drawCard: (params: { deckCard: Card; playerId: string }) => void;
-  playCard: (params: { playCard: Card; playerId: string }) => void;
+  drawCard: (params: { deckCard: Card; playerIdToUpdate: string }) => void;
+  playCard: (params: { playCard: Card; playerIdToUpdate: string }) => void;
 };
 
 declare global {
@@ -132,16 +132,16 @@ Rune.initLogic({
     startGame: (_, { game }) => {
       game.started = true;
     },
-    drawCard: ({ deckCard, playerId }, { game }) => {
+    drawCard: ({ deckCard, playerIdToUpdate }, { game }) => {
       if (
-        game.players[playerId].playerHand.length >= 3 ||
-        game.currentTurn != playerId
+        game.players[playerIdToUpdate].playerHand.length >= 3 ||
+        game.currentTurn != playerIdToUpdate
       ) {
         throw Rune.invalidAction();
       }
-      const playerHandCopy = [...game.players[playerId].playerHand];
+      const playerHandCopy = [...game.players[playerIdToUpdate].playerHand];
       playerHandCopy.push(deckCard);
-      game.players[playerId].playerHand = playerHandCopy;
+      game.players[playerIdToUpdate].playerHand = playerHandCopy;
       const deckCopy = [...game.deck];
 
       const newDeck: Array<Card> = [];
@@ -153,9 +153,9 @@ Rune.initLogic({
       game.deck = newDeck;
       game.gamePhase = "Play";
     },
-    playCard: ({ playCard, playerId }, { game }) => {
-      const playerHand = [...game.players[playerId].playerHand];
-      if (playerHand.length != 3 || game.currentTurn != playerId) {
+    playCard: ({ playCard, playerIdToUpdate }, { game }) => {
+      const playerHand = [...game.players[playerIdToUpdate].playerHand];
+      if (playerHand.length != 3 || game.currentTurn != playerIdToUpdate) {
         throw Rune.invalidAction();
       }
 
@@ -167,7 +167,7 @@ Rune.initLogic({
         }
       }
 
-      game.players[playerId].playerHand = newPlayerHand;
+      game.players[playerIdToUpdate].playerHand = newPlayerHand;
       // Reshuffle discard pile into the deck
       if (game.deck.length <= 0) {
         game.deck = getReshuffledDeck(game);

@@ -28,7 +28,10 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
         className={`${d.theCard} ${drawCard && d.deckCardAnim}`}
         ref={cardRef}
         onAnimationEnd={() =>
-          Rune.actions.drawCard({ deckCard: card, playerId: player.playerId })
+          Rune.actions.drawCard({
+            deckCard: card,
+            playerIdToUpdate: player.playerId,
+          })
         }
         // onClick={handleDrawCard}
         {...(currentTurn === player.playerId &&

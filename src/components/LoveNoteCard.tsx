@@ -42,6 +42,47 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
     setShowNotes(!showNotes);
   }
 
+  function getNotesDisplay() {
+    switch (idCardRole) {
+      case "Lover":
+        return (
+          <>
+            <div style={{ marginBottom: "5px" }}>click on a note to add</div>
+            <div>
+              {notePrompts.map((prompt, idx) => {
+                return (
+                  <span
+                    key={`prompt-${idx}`}
+                    style={{
+                      margin: "0 5px",
+                      padding: "2px",
+                      border: "1px solid #FDFD96",
+                      borderRadius: "1rem",
+                      backgroundColor: "#FDFD96",
+                    }}
+                    onClick={(e) => performAction(e, prompt)}
+                  >
+                    {prompt}
+                  </span>
+                );
+              })}
+            </div>
+          </>
+        );
+      case "Tattle Tale":
+        return (
+          <>
+            <div style={{ marginBottom: "5px" }}>click on a note to remove</div>
+          </>
+        );
+        break;
+      default:
+        return <></>;
+    }
+  }
+
+  const loveNotesDisplay = showNotes ? getNotesDisplay() : null;
+
   const description = showNotes ? (
     <div>
       {loveNotes.map((note: Note) => {
@@ -56,39 +97,16 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
     <>{card.description}</>
   );
 
-  const prompts =
-    actionTxt === "Add Note" && showNotes ? (
-      <>
-        <div style={{ marginBottom: "5px" }}>click on a note to add</div>
-        <div>
-          {notePrompts.map((prompt, idx) => {
-            return (
-              <span
-                key={`prompt-${idx}`}
-                style={{
-                  margin: "0 5px",
-                  padding: "2px",
-                  border: "1px solid #FDFD96",
-                  borderRadius: "1rem",
-                  backgroundColor: "#FDFD96",
-                }}
-                onClick={(e) => performAction(e, prompt)}
-              >
-                {prompt}
-              </span>
-            );
-          })}
-          <div
-            onClick={(e) => {
-              viewNotes(e);
-            }}
-            style={{ fontSize: "20px", marginTop: "15px" }}
-          >
-            🔙
-          </div>
-        </div>
-      </>
-    ) : null;
+  const closeBtn = showNotes ? (
+    <div
+      onClick={(e) => {
+        viewNotes(e);
+      }}
+      style={{ fontSize: "20px", marginTop: "15px" }}
+    >
+      🔙
+    </div>
+  ) : null;
 
   return (
     <div>
@@ -97,7 +115,8 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
         style={{ cursor: "pointer", marginTop: "15px" }}
         onClick={(e) => viewNotes(e)}
       >
-        {prompts}
+        {loveNotesDisplay}
+        {closeBtn}
         {!showNotes && (
           <>
             {actionTxt}
