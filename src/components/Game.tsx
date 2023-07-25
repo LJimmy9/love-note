@@ -1,4 +1,4 @@
-import { GamePlayer, GameState, Card } from "../logic";
+import { GamePlayer, GameState} from "../logic";
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
