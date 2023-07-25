@@ -10,6 +10,7 @@ function App() {
   const [game, setGame] = useState<GameState>();
   const [allPlayers, setAllPlayers] = useState<Players>({});
   const [currPlayerId, setCurrPlayerId] = useState("");
+  const [currPlayerAvatarUrl, setCurrPlayerAvatarUrl] = useState<string>("");
 
   const [pinPos, setPinPos] = useState<number[]>([]);
 
@@ -19,6 +20,7 @@ function App() {
         setAllPlayers(players);
         if (yourPlayerId && !currPlayerId) {
           setCurrPlayerId(yourPlayerId);
+          setCurrPlayerAvatarUrl(players[yourPlayerId].avatarUrl); // Set the current player's avatarUrl
         }
         setGame({ ...newGame });
       },
@@ -72,7 +74,10 @@ function App() {
                 `Game starts in: ${game.timer} seconds`}
             </p>
           ) : (
-            "Waiting for more players...."
+            <>
+              <p>Waiting for more players....</p>
+              {currPlayerAvatarUrl && <img src={currPlayerAvatarUrl} alt="Player Avatar" />}
+            </>
           )}
         </div>
       </div>
