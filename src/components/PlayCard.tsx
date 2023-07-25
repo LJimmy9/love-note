@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { Card, GamePlayer, GameState } from "../logic";
 import s from "./PlayCard.module.css";
 import LoveNoteCard from "./LoveNoteCard";
+import { $runePlayer } from "../state/game";
+import { useAtomValue } from "jotai";
 
 export interface CardProps {
   game: GameState;
@@ -48,6 +50,8 @@ function PlayCard({
   const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
   const [_windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [cardStyles, setCardStyles] = useState<CardStyles>(defaultStyle);
+
+  const currPlayer = useAtomValue($runePlayer);
 
   const cardRef = useRef(null);
 
@@ -145,7 +149,7 @@ function PlayCard({
             onClick={() =>
               Rune.actions.playCard({
                 playCard: card,
-                playerId: player.playerId,
+                playerId: currPlayer.playerId,
               })
             }
           >

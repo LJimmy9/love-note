@@ -1,4 +1,4 @@
-import { AllPlayers, Card, GameState, IdentityCard } from "./logic";
+import { AllPlayers, Card, GamePlayer, GameState, IdentityCard } from "./logic";
 import cards from "./assets/cards.json";
 import identityCards from "./assets/identity-cards.json";
 
@@ -53,4 +53,24 @@ export function getReshuffledDeck(game: GameState) {
   shuffleDeck(shuffledDeck);
 
   return shuffledDeck;
+}
+
+export function createPlayer(idCards: IdentityCard[], deck: Card[]) {
+  const idCard = idCards.pop();
+  const playerHand: Array<Card> = [];
+  for (let i = 0; i < 2; i++) {
+    const cardToAdd = deck.pop();
+    if (cardToAdd) {
+      playerHand.push(cardToAdd);
+    }
+  }
+  const defaultPlayerHand: Array<Card> = [];
+  const player: GamePlayer = {
+    playerIdentity: idCard
+      ? idCard
+      : { name: "", image: "", description: "", role: "" },
+    playerHand: playerHand.length ? playerHand : defaultPlayerHand,
+    connected: true,
+  };
+  return player;
 }

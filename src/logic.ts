@@ -1,9 +1,10 @@
-import type { RuneClient, Player } from "rune-games-sdk/multiplayer";
+import type { RuneClient } from "rune-games-sdk/multiplayer";
 import {
   setupDeck,
   setupIdentityCards,
   updateCurrentTurn,
   getReshuffledDeck,
+  createPlayer,
 } from "./game-setup";
 
 export interface Card {
@@ -25,11 +26,9 @@ export interface IdentityCard {
 }
 
 export interface GamePlayer {
-  playerId: string;
-  displayName: string;
-  avatarUrl: string;
   playerIdentity: IdentityCard;
   playerHand: Card[];
+  connected: boolean;
 }
 
 export interface AllPlayers {
@@ -40,6 +39,8 @@ export interface Note {
   id: number;
   text: string;
 }
+
+export type Phase = "Draw" | "Play" | "Resolve" | "Default";
 
 export interface GameState {
   readyToStart: boolean;
@@ -52,18 +53,15 @@ export interface GameState {
   loveNotes: Array<Note>;
   turnNum: number;
   discardedCards: Array<Card>;
+  gamePhase: Phase;
 }
 
 type GameActions = {
   // gets
   getLoveNotes: () => Array<Note>;
-
   // updates
-  updatePlayers: (params: { player: Player }) => void;
   updateLoveNote: (params: { action: string; prompt: string }) => void;
-
   // actions
-  login: (params: { displayName: string }) => void;
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerId: string }) => void;
   playCard: (params: { playCard: Card; playerId: string }) => void;
@@ -76,18 +74,27 @@ declare global {
 Rune.initLogic({
   minPlayers: 1,
   maxPlayers: 2,
-  setup: (): GameState => {
+  setup: (allPlayerIds): GameState => {
+    const deck = setupDeck();
+    const identityCards = setupIdentityCards();
+    const players: AllPlayers = {};
+
+    for (let i = 0; i < allPlayerIds.length; i++) {
+      players[allPlayerIds[i]] = createPlayer(identityCards, deck);
+    }
+
     return {
       readyToStart: false,
       started: false,
-      players: {},
+      players: players,
       timer: 2,
-      deck: setupDeck(),
-      identityCards: setupIdentityCards(),
+      deck: deck,
+      identityCards: identityCards,
       discardedCards: [],
-      currentTurn: "",
+      currentTurn: allPlayerIds[0],
       loveNotes: [],
       turnNum: 0,
+      gamePhase: "Draw",
     };
   },
   update: ({ game }) => {
@@ -100,10 +107,6 @@ Rune.initLogic({
     }
 
     if (game && game.timer === 0 && !game.started) {
-      const allPlayers = Object.keys(game.players);
-      const tempNum = Math.floor(Math.random() * allPlayers.length);
-      const randidx = (tempNum + game.turnNum) % allPlayers.length;
-      game.currentTurn = allPlayers[randidx];
       game.started = true;
     }
   },
@@ -113,20 +116,6 @@ Rune.initLogic({
       return game.loveNotes;
     },
 
-    // updates
-    updatePlayers: ({ player }, { game }) => {
-      const idCard: IdentityCard = {
-        name: "",
-        image: "",
-        description: "",
-        role: "",
-      };
-      game.players[player.playerId] = {
-        ...player,
-        playerIdentity: idCard,
-        playerHand: [],
-      };
-    },
     updateLoveNote: ({ action, prompt }, { game }) => {
       switch (action) {
         case "add":
@@ -140,44 +129,13 @@ Rune.initLogic({
         default:
       }
     },
-
-    // actions
-    login: ({ displayName }, { game, playerId }) => {
-      const idCards = [...game.identityCards];
-      const idCard = idCards.pop();
-
-      const playerHand: Array<Card> = [];
-      const deckCopy = [...game.deck];
-      for (let i = 0; i < 2; i++) {
-        const cardToAdd = deckCopy.pop();
-        if (cardToAdd) {
-          playerHand.push(cardToAdd);
-        }
-      }
-
-      const defaultPlayerHand: Array<Card> = [];
-      const player: GamePlayer = {
-        playerId: playerId,
-        displayName: displayName,
-        avatarUrl: "",
-        playerIdentity: idCard
-          ? idCard
-          : { name: "", image: "", description: "", role: "" },
-        playerHand: playerHand.length ? playerHand : defaultPlayerHand,
-      };
-
-      game.deck = deckCopy;
-      game.identityCards = idCards;
-      game.players[playerId] = player;
-    },
     startGame: (_, { game }) => {
       game.started = true;
     },
     drawCard: ({ deckCard, playerId }, { game }) => {
       if (
         game.players[playerId].playerHand.length >= 3 ||
-        game.currentTurn != playerId ||
-        !game.started
+        game.currentTurn != playerId
       ) {
         throw Rune.invalidAction();
       }
@@ -193,10 +151,11 @@ Rune.initLogic({
         }
       }
       game.deck = newDeck;
+      game.gamePhase = "Play";
     },
     playCard: ({ playCard, playerId }, { game }) => {
       const playerHand = [...game.players[playerId].playerHand];
-      if (playerHand.length < 3 || game.currentTurn != playerId) {
+      if (playerHand.length != 3 || game.currentTurn != playerId) {
         throw Rune.invalidAction();
       }
 
@@ -218,11 +177,15 @@ Rune.initLogic({
     },
   },
   events: {
-    playerJoined: () => {
-      // handle player joined
+    playerJoined: (playerId, { game }) => {
+      if (Object.keys(game.players).includes(playerId)) {
+        game.players[playerId].connected = true;
+        return;
+      }
+      game.players[playerId] = createPlayer(game.identityCards, game.deck);
     },
-    playerLeft() {
-      // handle player left
+    playerLeft(playerId, { game }) {
+      game.players[playerId].connected = false;
     },
   },
 });
