@@ -20,7 +20,6 @@ function App() {
           yourPlayerId: yourPlayerId ? yourPlayerId : "",
         });
         console.log("onchange check", newGame);
-
       },
     });
   }, []);
@@ -71,7 +70,13 @@ function App() {
           ) : (
             <>
               <p>Waiting for more players....</p>
-              {currPlayerAvatarUrl && <img src={currPlayerAvatarUrl} alt="Player Avatar" />}
+              {game.players[game.yourPlayerId].avatarUrl && (
+                <img
+                  src={game.players[game.yourPlayerId].avatarUrl}
+                  alt="Player Avatar"
+                  hidden
+                />
+              )}
             </>
           )}
         </div>
