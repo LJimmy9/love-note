@@ -1,10 +1,13 @@
-import { GamePlayer } from "../logic";
+import { GamePlayer, GameState} from "../logic";
+
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
 import { useState } from "react";
+import {CardInfoDisplay, IdCardInfoDisplay}  from "./InfoCard";
+
 import { $game, $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
 
@@ -22,6 +25,7 @@ const cardRotationConfig: CardRotationConfig = {
   1: "3deg",
   2: "8deg",
 };
+
 
 const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
@@ -88,6 +92,11 @@ const Game = ({ player, pinPos }: GameProps) => {
               <button onClick={() => setShowInfo(false)}>&times;</button>
             </div>
             <div>body</div>
+          </div>
+
+                      <div>  
+          <CardInfoDisplay />
+          <IdCardInfoDisplay />
           </div>
         )}
         <div className={`${gf.playerHandContainer}`}>
