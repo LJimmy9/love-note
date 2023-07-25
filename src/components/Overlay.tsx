@@ -11,7 +11,7 @@ function Overlay({ Name, Avatar }: OverlayProps) {
       {Name}
       <div className={overlay.avatars}>
         <svg width="50" height="50">
-          <image xlinkHref={Avatar} width="50" height="50" />
+          <image href={Avatar} width="50" height="50" />
         </svg>
       </div>
     </div>

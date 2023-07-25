@@ -1,41 +1,34 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { GameState } from "./logic.ts";
-import { Players } from "rune-games-sdk/multiplayer";
 import Game from "./components/Game";
 import LocationPin from "./components/LocationPin.tsx";
 import Overlay from "./components/Overlay.tsx";
+import { useAtom } from "jotai";
+import { $game } from "./state/game.ts";
 
 function App() {
-  const [game, setGame] = useState<GameState>();
-  const [allPlayers, setAllPlayers] = useState<Players>({});
-  const [currPlayerId, setCurrPlayerId] = useState("");
-
+  const [game, setGame] = useAtom($game);
   const [pinPos, setPinPos] = useState<number[]>([]);
 
   useEffect(() => {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
-        setAllPlayers(players);
-        if (yourPlayerId && !currPlayerId) {
-          setCurrPlayerId(yourPlayerId);
-        }
-        setGame({ ...newGame });
+        setGame({
+          gameState: newGame,
+          players: players,
+          yourPlayerId: yourPlayerId ? yourPlayerId : "",
+        });
+        console.log("onchange check", newGame);
       },
     });
   }, []);
 
-  useEffect(() => {
-    if (!game || Object.keys(game.players).includes(currPlayerId)) return;
-    Rune.actions.login({
-      displayName: allPlayers[currPlayerId].displayName,
-      avatarUrl: allPlayers[currPlayerId].avatarUrl,
-    });
-  }, [allPlayers, game, currPlayerId]);
+  if (!game || !game.gameState) {
+    return <div>Loading...</div>;
+  }
 
   const configureGameStateUI =
-    game &&
-    (game.started ? (
+    game.gameState.started && game.yourPlayerId ? (
       <div
         style={{
           position: "relative",
@@ -44,12 +37,15 @@ function App() {
           backgroundColor: "#fbd9bb",
         }}
       >
-        <Game game={game} player={game.players[currPlayerId]} pinPos={pinPos} />
+        <Game
+          player={game.gameState.players[game.yourPlayerId]}
+          pinPos={pinPos}
+        />
         <LocationPin location={"center"} handlePos={(pos) => setPinPos(pos)} />
         {/* Conditionally render the overlay based on showOverlay state */}
         <Overlay
-          Name={game.players[currPlayerId].displayName}
-          Avatar={game.players[currPlayerId].avatarUrl}
+          Name={game.players[game.yourPlayerId].displayName}
+          Avatar={game.players[game.yourPlayerId].avatarUrl}
         />
       </div>
     ) : (
@@ -59,28 +55,23 @@ function App() {
             <div key={playerId + idx}>
               <div key={idx}>
                 {game.players[playerId].displayName}{" "}
-                {currPlayerId === playerId && "(You)"}
+                {game.yourPlayerId === playerId && "(You)"}
               </div>
             </div>
           );
         })}
         <div>
-          {game && game.readyToStart ? (
+          {game.gameState.readyToStart ? (
             <p>
-              {game &&
-                game.timer >= 0 &&
-                `Game starts in: ${game.timer} seconds`}
+              {game.gameState.timer >= 0 &&
+                `Game starts in: ${game.gameState.timer} seconds`}
             </p>
           ) : (
             "Waiting for more players...."
           )}
         </div>
       </div>
-    ));
-
-  if (!game) {
-    return <div>Loading...</div>;
-  }
+    );
 
   return <>{configureGameStateUI}</>;
 }
