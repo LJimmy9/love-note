@@ -11,7 +11,6 @@ interface GameProps {
   game: GameState;
   player: GamePlayer;
   pinPos: number[];
-  card: Card;
 }
 
 type CardRotationConfig = {
