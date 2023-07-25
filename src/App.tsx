@@ -8,6 +8,7 @@ import { $game } from "./state/game.ts";
 
 function App() {
   const [game, setGame] = useAtom($game);
+
   const [pinPos, setPinPos] = useState<number[]>([]);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
           yourPlayerId: yourPlayerId ? yourPlayerId : "",
         });
         console.log("onchange check", newGame);
+
       },
     });
   }, []);
@@ -67,7 +69,10 @@ function App() {
                 `Game starts in: ${game.gameState.timer} seconds`}
             </p>
           ) : (
-            "Waiting for more players...."
+            <>
+              <p>Waiting for more players....</p>
+              {currPlayerAvatarUrl && <img src={currPlayerAvatarUrl} alt="Player Avatar" />}
+            </>
           )}
         </div>
       </div>
