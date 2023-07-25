@@ -25,7 +25,7 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
   return (
     <div className={d.deckCard}>
       <div
-        className={`${d.theCard} ${drawCard && d.deckCardAnim}`}
+        className={`${d.theCard}  ${drawCard && d.drawCardAnim}`}
         ref={cardRef}
         onAnimationEnd={() =>
           Rune.actions.drawCard({
