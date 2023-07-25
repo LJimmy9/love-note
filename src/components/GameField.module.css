@@ -64,7 +64,7 @@
   flex: 1;
   border: 10px solid yellow;
 
-  z-index: 2;
+  /* z-index: 2; */
 }
 
 .gameActionField {

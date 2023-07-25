@@ -16,17 +16,22 @@ function ResolveCard({ game }: ResolveCardProps) {
       game.discardedCards[game.discardedCards.length - 1];
 
     const uiMap: UiMapProps = {
-      4: <div>select a player to exchange cards with</div>,
+      3: (
+        <>
+          <div>select a player to exchange cards with</div>
+        </>
+      ),
+      4: <div>select a player to peek at their cards</div>,
     };
 
     return uiMap[cardPlayed.cardNum as number];
   }
 
-  const cardActions = getCardAction();
+  const cardAction = getCardAction();
   return (
     <>
       <div className={rc.resolveCard}>
-        {cardActions}
+        {cardAction}
         <div
           className={rc.doneBtn}
           onClick={() => Rune.actions.updateCurrentTurn()}

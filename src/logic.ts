@@ -83,6 +83,7 @@ function handleCard(playCard: Card, game: GameState) {
     case 2:
       break;
     case 3:
+      game.gamePhase = "Resolve";
       break;
     case 4:
       game.gamePhase = "Resolve";
