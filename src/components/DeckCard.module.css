@@ -11,6 +11,7 @@
   border: 5px solid #c8a2c8;
   border-radius: 1rem;
 
+  z-index: 10;
   transform-style: preserve-3d;
   transition: all 0.5s ease;
 }
@@ -51,7 +52,7 @@
 
 .drawCardAnim {
   animation-name: drawCard;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
 }
@@ -60,17 +61,8 @@
   0% {
     transform: translateY(0) rotateY(0deg);
   }
-  50% {
+  30% {
     transform: translateY(20vh) rotateY(180deg);
-  }
-  100% {
-    transform: translateY(20vh) rotateY(180deg);
-  }
-}
-
-/* @keyframes drawCard {
-  0% {
-    transform: translateY(0) rotateY(0deg);
   }
   45% {
     transform: translateY(20vh) rotateY(180deg);
@@ -78,4 +70,4 @@
   100% {
     transform: translateY(55vh) rotateY(180deg);
   }
-} */
+}

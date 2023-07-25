@@ -2,7 +2,7 @@
   font-family: "Andale Mono", monospace;
   font-size: 10px;
 
-  /* position: relative; */
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -58,14 +58,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: fixed;
-  top: 0; */
 }
 
 .gameActionFieldContainer {
   flex: 1;
   border: 10px solid yellow;
-  /* height: 80vh; */
+
+  z-index: 2;
 }
 
 .gameActionField {
@@ -78,6 +77,8 @@
   position: relative;
   top: 60%;
   left: 50%;
+
+  overflow: visible;
 }
 
 .deck {
