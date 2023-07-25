@@ -52,20 +52,19 @@
   height: 70%;
   font-weight: bolder;
   overflow: auto;
-  
 }
 
 .infoHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* position: fixed;
-  top: 0; */
 }
 
 .gameActionFieldContainer {
   flex: 1;
   border: 10px solid yellow;
+
+  z-index: 2;
 }
 
 .gameActionField {
@@ -78,6 +77,8 @@
   position: relative;
   top: 60%;
   left: 50%;
+
+  overflow: visible;
 }
 
 .deck {
@@ -88,13 +89,12 @@
   width: 12ch;
   height: 16ch;
   border-radius: 1rem;
-  overflow: hidden;
 }
 
 .playerHandContainer {
   position: relative;
   bottom: 0;
-  border: 3px solid blue;
+  border: 3px solid green;
   width: 100%;
   height: 14vh;
 }
