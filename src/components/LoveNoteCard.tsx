@@ -47,7 +47,7 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
       case "Lover":
         return (
           <>
-            <div style={{ marginBottom: "5px" }}>click on a note to add</div>
+            <div style={{ marginBottom: "5px" }}>click to add</div>
             <div>
               {notePrompts.map((prompt, idx) => {
                 return (
@@ -72,7 +72,7 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
       case "Tattle Tale":
         return (
           <>
-            <div style={{ marginBottom: "5px" }}>click on a note to remove</div>
+            <div style={{ marginBottom: "5px" }}>click to remove</div>
           </>
         );
         break;
@@ -87,7 +87,11 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
     <div>
       {loveNotes.map((note: Note) => {
         return (
-          <div key={`note-${note.id}`} style={{ margin: "5px 0" }}>
+          <div
+            key={`note-${note.id}`}
+            style={{ margin: "5px 0" }}
+            onClick={(e) => performAction(e, note.text)}
+          >
             {note.text}
           </div>
         );

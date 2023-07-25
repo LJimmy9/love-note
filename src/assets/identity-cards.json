@@ -1,36 +1,36 @@
 [
   {
-    "name": "Lover Sun",
+    "name": "Lover Sun (Lover)",
     "image": "",
     "description": "Your role is a lover. You must complete the love note with Lover Moon in order to win the game. You will know who Lover Moon is.",
     "role": "Lover"
   },
   {
-    "name": "Lover Moon",
+    "name": "Lover Moon (Lover)",
     "image": "",
     "description": "Your role is a lover. You must complete the love note with Lover Sun in order to win the game. You will know who Lover Sun is.",
     "role": "Lover"
   },
   {
-    "name": "Tattle Thunder",
+    "name": "Tattle Thunder (Tattle Tale)",
     "image": "",
     "description": "Your role is a tattle tale. You must tattle on at least one of the lovers in order to win the game. You only have one chance to tattle. You do not know who the other tattle is.",
     "role": "Tattle Tale"
   },
   {
-    "name": "Tattle Tidal",
+    "name": "Tattle Tidal (Tattle Tale)",
     "image": "",
     "description": "Your role is a tattle tale. You must tattle on at least one of the lovers in order to win the game. You only have one chance to tattle. You do not know who the other tattle is.",
     "role": "Tattle Tale"
   },
   {
-    "name": "Pulsar",
+    "name": "Pulsar (Friend)",
     "image": "",
     "description": "Your role is a friend. You must help the lovers complete their notes before the tattles find out who the lovers are. You do not know who the tattles or the lovers are",
     "role": "Friend"
   },
   {
-    "name": "Nebula",
+    "name": "Nebula (Friend)",
     "image": "",
     "description": "Your role is a friend. You must help the lovers complete their notes before the tattles find out who the lovers are. You do not know who the tattles or the lovers are.",
     "role": "Friend"

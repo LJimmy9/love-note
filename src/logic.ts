@@ -54,6 +54,7 @@ export interface GameState {
   turnNum: number;
   discardedCards: Array<Card>;
   gamePhase: Phase;
+  direction: string;
 }
 
 type GameActions = {
@@ -61,6 +62,7 @@ type GameActions = {
   getLoveNotes: () => Array<Note>;
   // updates
   updateLoveNote: (params: { action: string; prompt: string }) => void;
+  updateCurrentTurn: () => void;
   // actions
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerIdToUpdate: string }) => void;
@@ -71,8 +73,33 @@ declare global {
   const Rune: RuneClient<GameState, GameActions>;
 }
 
+function handleCard(playCard: Card, game: GameState) {
+  // handle card logic for each card
+  switch (playCard.cardNum) {
+    case 0:
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      game.gamePhase = "Resolve";
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+  }
+}
+
 Rune.initLogic({
-  minPlayers: 1,
+  minPlayers: 2,
   maxPlayers: 2,
   setup: (allPlayerIds): GameState => {
     const deck = setupDeck();
@@ -95,6 +122,7 @@ Rune.initLogic({
       loveNotes: [],
       turnNum: 0,
       gamePhase: "Draw",
+      direction: "right",
     };
   },
   update: ({ game }) => {
@@ -125,8 +153,10 @@ Rune.initLogic({
           });
           break;
         case "remove":
+          game.loveNotes = game.loveNotes.filter((note) => note.text != prompt);
           break;
         default:
+          break;
       }
     },
     startGame: (_, { game }) => {
@@ -168,12 +198,17 @@ Rune.initLogic({
       }
 
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
-      // Reshuffle discard pile into the deck
+      // Reshuffle discard pile into the deck if deck has been exhausted
       if (game.deck.length <= 0) {
         game.deck = getReshuffledDeck(game);
         game.discardedCards = [];
       }
+
+      handleCard(playCard, game);
+    },
+    updateCurrentTurn: (_, { game }) => {
       updateCurrentTurn(game);
+      game.gamePhase = "Draw";
     },
   },
   events: {
