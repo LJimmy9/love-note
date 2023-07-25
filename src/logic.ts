@@ -63,7 +63,7 @@ type GameActions = {
   updateLoveNote: (params: { action: string; prompt: string }) => void;
 
   // actions
-  login: (params: { displayName: string }) => void;
+  login: (params: { displayName: string, avatarUrl: string }) => void;
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerId: string }) => void;
   playCard: (params: { playCard: Card; playerId: string }) => void;
@@ -142,7 +142,7 @@ Rune.initLogic({
     },
 
     // actions
-    login: ({ displayName }, { game, playerId }) => {
+    login: ({ displayName, avatarUrl }, { game, playerId }) => {
       const idCards = [...game.identityCards];
       const idCard = idCards.pop();
 
@@ -159,7 +159,7 @@ Rune.initLogic({
       const player: GamePlayer = {
         playerId: playerId,
         displayName: displayName,
-        avatarUrl: "",
+        avatarUrl: avatarUrl,
         playerIdentity: idCard
           ? idCard
           : { name: "", image: "", description: "", role: "" },

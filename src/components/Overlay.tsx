@@ -20,5 +20,3 @@ function Overlay({Name, Avatar}: OverlayProps) {
 
 export default Overlay
 
-// <div className = {overlay.avatars}>vvvv
-//         {Avatar}</div>
