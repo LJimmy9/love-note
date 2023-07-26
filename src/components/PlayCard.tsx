@@ -9,10 +9,8 @@ export interface CardProps {
   game: GameState;
   card: Card;
   player: GamePlayer;
-  cardRotation: string;
   //position: string;  --hard coded atm to be relative
-  left: string;
-  top: string;
+  cardRotation: string;
   pinPos: number[];
 }
 
@@ -30,30 +28,22 @@ interface CardStyles {
   [key: string]: string;
 }
 
-function PlayCard({
-  game,
-  card,
-  player,
-  cardRotation,
-  left,
-  top,
-  pinPos,
-}: CardProps) {
+function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
   const defaultStyle = {
     position: "relative",
-    rotate: cardRotation,
-    left: left,
-    top: top,
-    transform: `translate(${0}px, ${0}px)`,
+    rotation: cardRotation,
   };
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
   const [_windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [cardStyles, setCardStyles] = useState<CardStyles>(defaultStyle);
+  const [target, setTarget] = useState<number[]>([]);
+  const [dealt, setDealt] = useState<boolean>(false);
+  const [action, setAction] = useState<string>("pass_left");
 
   const currPlayer = useAtomValue($runePlayer);
 
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   function handleResize(
     el: HTMLDivElement,
@@ -73,31 +63,28 @@ function PlayCard({
 
   useEffect(() => {
     if (!cardRef.current) return;
+    const el = cardRef.current;
     handleResize(
       cardRef.current,
       (pos: Position) => setPos(pos),
       (x, y) => setWindowSize({ width: x, height: y })
     );
-    window.addEventListener("resize", () =>
+    window.addEventListener("resize", () => {
       handleResize(
-        cardRef.current!,
+        el,
         (pos: Position) => setPos(pos),
         (x, y) => setWindowSize({ width: x, height: y })
-      )
-    );
+      );
+    });
 
     setCardStyles({
       ...cardStyles,
-      rotate: cardRotation,
-      left: left,
-      top: top,
-      transform: `translate(${0}px, ${0}px)`,
     });
 
     return () => {
       window.removeEventListener("resize", () => {
         handleResize(
-          cardRef.current!,
+          el,
           (pos: Position) => setPos(pos),
           (x, y) => setWindowSize({ width: x, height: y })
         );
@@ -106,25 +93,23 @@ function PlayCard({
   }, [cardRef.current]);
 
   function handleClick() {
+    console.log("handling click");
     setIsOpen(!isOpen);
 
     if (isOpen) {
       setCardStyles({ ...defaultStyle });
+      console.log("isOpen");
     } else {
       const targetX = pinPos[0] - pos.x;
       const targetY = pinPos[1] - pos.y;
-      setCardStyles({
-        rotate: "",
-        position: "relative",
-        left: "-1",
-        top: "8",
-        width: "20ch",
-        height: "40ch",
-        transformOrigin: "bottom right",
-        transform: `translate(${targetX}px, ${targetY}px)`,
-      });
+      setTarget([Math.floor(targetX), Math.floor(targetY)]);
+      console.log("dist", targetX, targetY);
     }
   }
+
+  useEffect(() => {
+    console.log("target", target);
+  }, [target]);
 
   const description =
     card.name === "Love Note" ? (
@@ -133,39 +118,74 @@ function PlayCard({
       <>{card.description}</>
     );
 
+  function parseAction(action: string) {
+    let animName = "";
+    switch (action) {
+      case "pass_left":
+        animName = s.passCardLeftAnim;
+        break;
+
+      default:
+        animName = "";
+    }
+    console.log("animanme", animName, action);
+    return animName;
+  }
+
   return (
     <div
-      ref={cardRef}
-      className={`${s.playerCard} ${isOpen ? s.expand : s.default}`}
+      className={`${s.playerCardContainer} ${!dealt && s.drawCardAnim} ${
+        isOpen ? s.expand : s.default
+      }`}
+      style={{
+        rotate: `${isOpen ? "0deg" : dealt && cardRotation}`,
+        // transform: `translate(-50px, -50px)`,
+      }}
+      onAnimationEnd={() => setDealt(true)}
       onClick={() => handleClick()}
-      style={{ ...cardStyles }}
+      ref={cardRef}
     >
-      {/* Header for the card has number and card name */}
-      <div className={s.cardHeader}>
-        <div className={s.cardNum}>{card.cardNum}</div>
-        {card.canPlay && isOpen && (
-          <div
-            className={s.playCardBtn}
-            onClick={() =>
-              Rune.actions.playCard({
-                playCard: card,
-                playerIdToUpdate: currPlayer.playerId,
-              })
-            }
-          >
-            ▶️
+      <div className={`${s.playerCardFront}`}>
+        <div
+          className={`${s.playerCard}`}
+          style={{
+            width: `${isOpen ? "25ch" : "8ch"}`,
+            height: `${isOpen ? "30ch" : "16ch"}`,
+            transform: `translate(${isOpen ? "-20%" : "0"}, ${
+              isOpen ? "-130" : "0"
+            }%)`,
+          }}
+        >
+          {/* Header for the card has number and card name */}
+          <div className={s.cardHeader}>
+            <div className={s.cardNum}>{card.cardNum}</div>
+            {card.canPlay && isOpen && (
+              <div
+                className={s.playCardBtn}
+                onClick={() => {
+                  Rune.actions.playCard({
+                    playCard: card,
+                    playerIdToUpdate: currPlayer.playerId,
+                  });
+                }}
+              >
+                ▶️
+              </div>
+            )}
           </div>
-        )}
+          {/* Body image */}
+          <div className={s.cardImage}>{card.image}</div>
+          <div className={s.cardName}>{card.name}</div>
+          {/* Footer description */}
+          <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
+            {description}
+            {/* <LoveNoteCard card={card} player={player} /> */}
+          </div>
+        </div>
       </div>
 
-      {/* Body image */}
-      <div className={s.cardImage}>{card.image}</div>
-      <div className={s.cardName}>{card.name}</div>
-
-      {/* Footer description */}
-      <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
-        {description}
-        {/* <LoveNoteCard card={card} player={player} /> */}
+      <div className={`${s.playerCardBack}`}>
+        <div className={`${s.backContent} `}></div>
       </div>
     </div>
   );

@@ -11,18 +11,93 @@
   color: black;
   font-weight: bolder;
   font-family: "Andale Mono", monospace;
+  position: relative;
+}
+
+.playerCardContainer {
+  transform-style: preserve-3d;
+}
+
+.playerCardBack {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  rotate: y 180deg;
+}
+
+.backContent {
+  padding: 0 1rem;
+  border-radius: 1rem;
+  /* box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5); */
+  overflow: hidden;
+  transition: 500ms ease;
+  width: 8ch;
+  height: 16ch;
+  background-color: #ffb7c5;
+  border: 5px solid #c8a2c8;
+  color: black;
+  font-weight: bolder;
+  font-family: "Andale Mono", monospace;
+  position: relative;
+}
+
+.playerCardFront {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* rotate: y 180deg; */
+}
+
+.drawCardAnim {
+  animation-name: drawCard;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes drawCard {
+  0% {
+    translate: -5vw -55vh;
+    rotate: y 180deg;
+  }
+  30% {
+    translatey: -20vh;
+  }
+  45% {
+    translatey: -20vh;
+  }
+  100% {
+    /* transform: translateY(0) rotateY(0deg) rotateX(0deg); */
+    translate: 0 0;
+    rotate: 0deg 0deg;
+  }
+}
+
+.passCardLeftAnim {
+  animation-name: passCardLeft;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes passCardLeft {
+  from {
+    transform: translate(0%, 0%);
+  }
+  to {
+    transform: translate(-140%, -140%);
+  }
 }
 
 .expand {
   /* width: 18ch; */
   /* height: 20ch;  */
-  /* scale: 1.80 2.00; */
+  /* scale: 1.4 1.5; */
   transition: 500ms ease;
   position: relative;
 }
 
 .default {
-  scale: 1 1;
+  scale: 1;
   transition: 500ms ease;
 }
 
