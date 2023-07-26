@@ -36,7 +36,7 @@ function ResolveCard({ players }: ResolveCardProps) {
         </>
       ),
       4: (
-        <div className={ng.gameActionField}>
+        <div className={ng.resolveGameActionField}>
           <div style={{ fontSize: "12px" }}>
             Select a player to peek at their cards
           </div>
@@ -93,12 +93,12 @@ function ResolveCard({ players }: ResolveCardProps) {
   const cardAction = getCardAction();
   const sideEffect = getSideEffect();
   return (
-    <>
+    <div className={rc.resolveActionFieldContainer}>
       {gameState.currentTurn === currPlayer.playerId && !sideEffect && (
-        <div className={rc.resolveCard}>{cardAction}</div>
+        <div className={rc.resolveActionField}>{cardAction}</div>
       )}
-      {sideEffect && <div className={rc.resolveCard}>{sideEffect}</div>}
-    </>
+      {sideEffect && <div className={rc.resolveActionField}>{sideEffect}</div>}
+    </div>
   );
 }
 

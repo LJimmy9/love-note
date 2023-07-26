@@ -1,12 +1,12 @@
-.gameActionField {
-  /* border: 1px solid blue; */
-
+.resolveGameActionField {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  padding: 20px 10px;
 }
 
-.playerHandContainer {
+.playerCardsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,9 +25,9 @@
 .actionContainer {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  gap: 20px;
+  gap: 5px;
   row-gap: 15px;
-  /* border: 1px solid green; */
+  /* border: 1px solid red; */
 }
 
 .cardContainer {
@@ -36,7 +36,7 @@
 
 .cardNum {
   text-align: left;
-  padding-left: 5px;
+  /* padding-left: 5px; */
 }
 
 .cardDetail {
@@ -47,9 +47,10 @@
 
 .card {
   position: relative;
-  width: 8ch;
+  width: 6ch;
   height: 10ch;
   padding: 8px 5px;
+  overflow: hidden;
 
   border: 5px solid #c8a2c8;
   border-radius: 10px;
@@ -96,11 +97,11 @@
   }
 }
 
-.doneBtn {
+/* .doneBtn {
   cursor: pointer;
   position: absolute;
   top: 85%;
   left: 50%;
   transform: translate(-50%, 50%);
   font-size: 25px;
-}
+} */
