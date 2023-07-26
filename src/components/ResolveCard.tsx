@@ -1,7 +1,7 @@
 import { ReactElement, useState } from "react";
 import rc from "./ResolveCard.module.css";
 import NosyGlance from "./CardAction/NosyGlance";
-import ng from "../components/CardAction/NosyGlance.module.css";
+// import ng from "../components/CardAction/NosyGlance.module.css";
 import { Card } from "../logic";
 import { $gameState, $runePlayer, AtomPlayer } from "../state/game";
 import s from "./PlayCard.module.css";
@@ -36,8 +36,8 @@ function ResolveCard({ players }: ResolveCardProps) {
         </>
       ),
       4: (
-        <div className={ng.resolveGameActionField}>
-          <div style={{ fontSize: "12px" }}>
+        <div className={rc.resolveGameActionField}>
+          <div style={{ fontSize: "5vw" }}>
             Select a player to peek at their cards
           </div>
           <NosyGlance
