@@ -2,7 +2,7 @@
 
 .gameContainer {
   font-family: "Andale Mono", monospace;
-  font-size: 3.5vw;
+  font-size: 8px;
 
   position: relative;
   display: flex;
@@ -42,16 +42,20 @@
 /* deck */
 .deckContainer {
   position: relative;
-  top: 60%;
-  left: 50%;
+  /* top: 60%; */
+  /* left: 50%; */
 
   overflow: visible;
+  border: 1px solid red;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
 }
 
 .deck {
-  position: absolute;
-  top: -170px;
-  left: -42px;
+  position: relative;
+  top: 10%;
   border: 5px solid #c8a2c8;
   width: 12ch;
   height: 16ch;
