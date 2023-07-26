@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAtomValue } from "jotai";
 import { $game, $runePlayer } from "../../state/game";
 import ng from "./NosyGlance.module.css";
+import rc from "../ResolveCard.module.css";
 
 interface NosyGlanceProps {
   glancePlayer: string;
@@ -87,6 +88,15 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
             </div>
           );
         })}
+      <div
+        className={rc.doneBtnContainer}
+        onClick={() => {
+          setGlancePlayer("");
+          Rune.actions.updateCurrentTurn();
+        }}
+      >
+        <div className={ng.doneBtn}>👌</div>
+      </div>
     </div>
   );
 

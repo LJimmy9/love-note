@@ -4,7 +4,6 @@
   left: 50%;
   /* border: 10px solid red; */
   transform: translate(-50%, -50%);
-
   z-index: 5;
   padding: 20px 5px;
   border-radius: 1rem;
@@ -32,4 +31,13 @@
   justify-content: center;
   align-items: center;
   font-weight: bolder;
+}
+
+.doneBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  font-size: 60px;
 }
