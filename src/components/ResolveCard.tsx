@@ -37,7 +37,7 @@ function ResolveCard({ players }: ResolveCardProps) {
       ),
       4: (
         <div className={rc.resolveGameActionField}>
-          <div style={{ fontSize: "5vw" }}>
+          <div style={{ fontSize: "10px", lineHeight: "15px" }}>
             Select a player to peek at their cards
           </div>
           <NosyGlance

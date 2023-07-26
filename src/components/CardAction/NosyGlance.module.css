@@ -6,26 +6,26 @@
   position: relative;
 }
 
-.confirmActionContainer {
+/* .confirmActionContainer {
   position: absolute;
   border: 1px solid red;
-}
+} */
 
 .playerDetails {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
 }
 
-.playerName {
+/* .playerName {
   font-size: 13px;
-}
+} */
 
 .actionContainer {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10vw;
-  row-gap: 10vh;
+  row-gap: 5vh;
   /* border: 1px solid red; */
 }
 
@@ -100,11 +100,6 @@
   }
 }
 
-/* .doneBtn {
-  cursor: pointer;
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  font-size: 25px;
-} */
+.doneBtn {
+  font-size: 48px;
+}
