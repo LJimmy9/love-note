@@ -20,45 +20,25 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
       (playerId) => playerId !== currPlayer.playerId
     );
 
-  //   const [glancePlayer, setGlancePlayer] = useState<string>("");
-
-  useEffect(() => {
-    console.log("game in Nosy glance", game);
-  }, [game]);
-
-  useEffect(() => {
-    console.log("currplayer in Nosy glance", currPlayer);
-  }, [currPlayer]);
-
   function glancePlayerAction(
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
     playerId: string
   ) {
-    e.preventDefault();
     if (glancePlayer === "") setGlancePlayer(playerId);
-    console.log("playerId", playerId);
-
-    // if confirmAction === True; setGlancePlayer(playerId);
-    console.log("glance", glancePlayer);
   }
-
-  //   function confirmGlanceAction(playerId: string) {} => returns a boolean
 
   const displayPlayerHands = (
     <div className={ng.actionContainer}>
       {otherPlayers &&
         otherPlayers.map((playerId, idx) => {
           return (
-            <div className={ng.playerDetails}>
-              <div
-                className={ng.playerName}
-                // {...(glancePlayer === "" && {
-                //   onClick: (e) => glancePlayerAction(e, playerId),
-                // })}
-                onClick={(e) => {
-                  glancePlayerAction(e, playerId);
-                }}
-              >
+            <div
+              className={ng.playerDetails}
+              onClick={(e) => {
+                glancePlayerAction(e, playerId);
+              }}
+            >
+              <div className={ng.playerName}>
                 {game.players[playerId].displayName}
               </div>
               <div key={idx} className={ng.cardContainer}>
@@ -90,25 +70,21 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
             </div>
           );
         })}
-      <div
-        className={rc.doneBtnContainer}
-        onClick={() => {
-          setGlancePlayer("");
-          Rune.actions.updateCurrentTurn();
-        }}
-      >
-        <div className={ng.doneBtn}>👌</div>
+      <div className={rc.doneBtnContainer}>
+        <div
+          className={ng.doneBtn}
+          onClick={() => {
+            setGlancePlayer("");
+            Rune.actions.updateCurrentTurn();
+          }}
+        >
+          👌
+        </div>
       </div>
     </div>
   );
 
-  return (
-    <div className={ng.playerCardsContainer}>
-      <div className={ng.confirmActionContainer}>confirmactioncontainer</div>
-
-      {displayPlayerHands}
-    </div>
-  );
+  return <div className={ng.playerCardsContainer}>{displayPlayerHands}</div>;
 };
 
 export default NosyGlance;
