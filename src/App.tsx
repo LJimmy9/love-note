@@ -11,6 +11,8 @@ function App() {
 
   const [pinPos, setPinPos] = useState<number[]>([]);
 
+  const [movement, setMovement] = useState<string>("");
+
   useEffect(() => {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
@@ -41,7 +43,7 @@ function App() {
           player={game.gameState.players[game.yourPlayerId]}
           pinPos={pinPos}
         />
-        <LocationPin location={"center"} handlePos={(pos) => setPinPos(pos)} />
+        <LocationPin location={movement} handlePos={(pos) => setPinPos(pos)} />
         {/* Conditionally render the overlay based on showOverlay state */}
         <Overlay
           Name={game.players[game.yourPlayerId].displayName}

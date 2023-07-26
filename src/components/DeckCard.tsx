@@ -35,7 +35,7 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
         !clicked && { onClick: handleDrawCard })}
     >
       <div className={d.backImageContainer}>
-        <div className={d.backImg}>💟</div>
+        <div className={d.backImg}></div>
       </div>
     </div>
   );

@@ -39,6 +39,7 @@ function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
   const [cardStyles, setCardStyles] = useState<CardStyles>(defaultStyle);
   const [target, setTarget] = useState<number[]>([]);
   const [dealt, setDealt] = useState<boolean>(false);
+  const [action, setAction] = useState<string>("pass_left");
 
   const currPlayer = useAtomValue($runePlayer);
 
@@ -117,12 +118,19 @@ function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
       <>{card.description}</>
     );
 
-  const center = {
-    position: "absolute",
-    top: "-50%",
-    left: "-50%",
-    transform: "translate(-50%, -50%",
-  };
+  function parseAction(action: string) {
+    let animName = "";
+    switch (action) {
+      case "pass_left":
+        animName = s.passCardLeftAnim;
+        break;
+
+      default:
+        animName = "";
+    }
+    console.log("animanme", animName, action);
+    return animName;
+  }
 
   return (
     <div
@@ -131,28 +139,35 @@ function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
       }`}
       style={{
         rotate: `${isOpen ? "0deg" : dealt && cardRotation}`,
-        transform: `translate(${isOpen ? target[0] : 0}px, ${
-          isOpen ? -150 : 0
-        }px) ${isOpen ? "scale(1.4)" : ""}`,
+        // transform: `translate(-50px, -50px)`,
       }}
       onAnimationEnd={() => setDealt(true)}
       onClick={() => handleClick()}
       ref={cardRef}
     >
       <div className={`${s.playerCardFront}`}>
-        <div className={`${s.playerCard} ${isOpen ? s.expand : s.default}`}>
+        <div
+          className={`${s.playerCard}`}
+          style={{
+            width: `${isOpen ? "25ch" : "8ch"}`,
+            height: `${isOpen ? "30ch" : "16ch"}`,
+            transform: `translate(${isOpen ? "-20%" : "0"}, ${
+              isOpen ? "-130" : "0"
+            }%)`,
+          }}
+        >
           {/* Header for the card has number and card name */}
           <div className={s.cardHeader}>
             <div className={s.cardNum}>{card.cardNum}</div>
             {card.canPlay && isOpen && (
               <div
                 className={s.playCardBtn}
-                onClick={() =>
+                onClick={() => {
                   Rune.actions.playCard({
                     playCard: card,
                     playerIdToUpdate: currPlayer.playerId,
-                  })
-                }
+                  });
+                }}
               >
                 ▶️
               </div>
@@ -169,9 +184,8 @@ function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
         </div>
       </div>
 
-      {/* back side */}
       <div className={`${s.playerCardBack}`}>
-        <div ref={cardRef} className={`${s.playerCard} `}></div>
+        <div className={`${s.backContent} `}></div>
       </div>
     </div>
   );

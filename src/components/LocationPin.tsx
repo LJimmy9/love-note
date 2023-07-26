@@ -34,14 +34,15 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
 
   useEffect(() => {
     if (!elRef.current) return;
+    const el = elRef.current;
     handleResize(
-      elRef.current,
+      el,
       (pos: Position) => setPos(pos),
       (x, y) => setWindowSize({ width: x, height: y })
     );
     window.addEventListener("resize", () =>
       handleResize(
-        elRef.current!,
+        el,
         (pos: Position) => setPos(pos),
         (x, y) => setWindowSize({ width: x, height: y })
       )
@@ -56,7 +57,7 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
     return () => {
       window.removeEventListener("resize", () => {
         handleResize(
-          elRef.current!,
+          el,
           (pos: Position) => setPos(pos),
           (x, y) => setWindowSize({ width: x, height: y })
         );
@@ -105,7 +106,7 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
         y = 0;
         break;
       case "top_left":
-      x = 0;
+        x = 0;
         y = 10;
         break;
       case "top_right":
@@ -127,13 +128,16 @@ function LocationPin({ location, handlePos }: LocationPinProps) {
       ref={elRef}
       style={{
         ...target,
-        width: "8ch",
+        width: "10ch",
         height: "16ch",
-        position: "absolute",
+        borderRadius: "1rem",
+        backgroundColor: "#ffb7c5",
+        border: "5px solid #c8a2c8",
         color: "black",
-        opacity: "0",
-        border: "1px solid black",
+        position: "absolute",
+        transition: "2s ease-in-out",
       }}
+      hidden={!location}
     >
       pin is here
     </div>
