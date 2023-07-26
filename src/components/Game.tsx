@@ -1,4 +1,4 @@
-import { GamePlayer } from "../logic";
+import { GamePlayer} from "../logic";
 
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
@@ -90,12 +90,32 @@ const Game = ({ player, pinPos }: GameProps) => {
         {showInfo && (
           <div className={gf.infoCard}>
             <div className={gf.infoHeader}>
-              Love Note
+              <p className={gf.infoTitle}>❤️ Love Note ❤️</p>
               <button onClick={() => setShowInfo(false)}>&times;</button>
             </div>
-            <div>body</div>
-            <CardInfoDisplay />
-            <IdCardInfoDisplay />
+            <div>
+              <p className={gf.infoTitle}> Overview </p>
+              <p className={gf.infoContent}>You are in school where love and rumors are running rampant. Lovers are secretly filling out Love Notes, hoping to win a prize. Tattle Tales are on the prowl, looking for any sign of love so they can tattle on the Lovers and win a prize of their own.</p>
+              <p className={gf.infoContent}><span className={gf.infoBullet}>To Win:</span> 
+                <ul>
+                  <li>Lovers need to fill out a Love Note to win.</li>
+                  <li>Tattle Tales need to find the Lovers and tattle on them to win.</li>
+                  <li>Friends need to help out the lovers.</li>
+                </ul>
+               </p>
+               <p className={gf.infoContent}><span className={gf.infoBullet}>To Play:</span>
+                <ul>
+                  <li>To draw tap on the deck.</li>
+                  <li>To play a card tap on a card and press the button in the top right. Tap the card again to cancel.</li>
+                </ul>
+               </p>
+            </div>
+            <div>
+              <p className={gf.infoTitle}> Cards </p>
+              <CardInfoDisplay />
+              <p className={gf.infoTitle}> Identity Cards </p>
+              <IdCardInfoDisplay />
+            </div>
           </div>
         )}
         <div className={`${gf.playerHandContainer}`}>

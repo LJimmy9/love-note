@@ -32,7 +32,7 @@
 }
 
 .infoBtn {
-  background-color: #759df3;
+  background-color: #658bdd;
   height: 20px;
   width: fit-content;
 
@@ -56,8 +56,60 @@
 
 .infoHeader {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: azure;
+  border-bottom: 1px solid black;
+  height: 5.1%;
+}
+
+.infoHeader > button {
+  position: relative;
+  right: 0;
+  width: 7%;
+  height: 90%;
+  text-align: center;
+  display: inline-flex;
+  /* border: 1px solid red; */
+}
+
+.infoHeader > p {
+  margin: 0 auto;
+}
+
+.infoContent {
+  margin-left: 2px;
+  text-align: left;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 3%;
+}
+
+.infoContent > ul {
+  padding-left: 6%
+}
+
+.infoContent > ul > li {
+  padding-bottom: 2px;
+}
+
+.infoContent > ul > li:before {
+  content: "❤️ ";
+  font-size: 6px;
+  vertical-align: middle;
+}
+
+.infoTitle {
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 3%;
+}
+
+.infoBullet {
+  font-weight: bolder;
+  font-size: 13px;
 }
 
 .gameActionFieldContainer {

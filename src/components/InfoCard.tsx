@@ -7,7 +7,7 @@ export const CardInfoDisplay = () => {
     <p>
       {cardData.map((item) => (
         <p className={ic.infoList}>
-          {item.cardNum} {item.image} {item.description}
+          <span className={ic.infoCardName}>{item.cardNum} {item.image}</span> {item.description}
         </p>
       ))}
     </p>
@@ -19,7 +19,7 @@ export const IdCardInfoDisplay = () => {
     <p>
       {idCardData.map((item) => (
         <p className={ic.infoList}>
-          {item.name} {item.description} {item.role}{" "}
+          <span className={ic.infoIDName}>{item.name} {item.image}</span> {item.description} {" "}
         </p>
       ))}
     </p>
