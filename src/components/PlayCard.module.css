@@ -56,7 +56,7 @@
 
 @keyframes drawCard {
   0% {
-    translate: 12vw -55vh;
+    translate: -5vw -55vh;
     rotate: y 180deg;
   }
   30% {
