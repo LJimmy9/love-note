@@ -1,0 +1,55 @@
+.gameActionField {
+  /* border: 1px solid blue; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.playerHandContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.playerName {
+  font-size: 13px;
+}
+
+.actionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 20px;
+  row-gap: 15px;
+  /* border: 1px solid green; */
+}
+
+.cardContainer {
+  display: flex;
+}
+
+.cardNum {
+  text-align: left;
+  padding-left: 5px;
+}
+
+.cardDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.card {
+  width: 8ch;
+  height: 10ch;
+  padding: 8px 5px;
+  background-color: #add8e6;
+  border: 5px solid #c8a2c8;
+  border-radius: 10px;
+}

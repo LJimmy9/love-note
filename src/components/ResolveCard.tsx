@@ -1,6 +1,8 @@
 import { ReactElement } from "react";
 import { Card, GameState } from "../logic";
 import rc from "./ResolveCard.module.css";
+import NosyGlance from "./CardAction/NosyGlance";
+import ng from "../components/CardAction/NosyGlance.module.css";
 
 interface ResolveCardProps {
   game: GameState;
@@ -18,25 +20,31 @@ function ResolveCard({ game }: ResolveCardProps) {
     const uiMap: UiMapProps = {
       3: (
         <>
-          <div>select a player to exchange cards with</div>
+          <div>Select a player to exchange cards with</div>
         </>
       ),
-      4: <div>select a player to peek at their cards</div>,
+      4: (
+        <div className={ng.gameActionField}>
+          <div style={{ fontSize: "12px" }}>
+            Select a player to peek at their cards
+          </div>
+          <NosyGlance />
+        </div>
+      ),
     };
 
     return uiMap[cardPlayed.cardNum as number];
   }
-
   const cardAction = getCardAction();
   return (
     <>
       <div className={rc.resolveCard}>
         {cardAction}
         <div
-          className={rc.doneBtn}
+          className={rc.doneBtnContainer}
           onClick={() => Rune.actions.updateCurrentTurn()}
         >
-          done
+          <div className={rc.doneBtn}>Done</div>
         </div>
       </div>
     </>

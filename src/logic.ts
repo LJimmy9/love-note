@@ -100,8 +100,8 @@ function handleCard(playCard: Card, game: GameState) {
 }
 
 Rune.initLogic({
-  minPlayers: 2,
-  maxPlayers: 2,
+  minPlayers: 4,
+  maxPlayers: 4,
   setup: (allPlayerIds): GameState => {
     const deck = setupDeck();
     const identityCards = setupIdentityCards();
