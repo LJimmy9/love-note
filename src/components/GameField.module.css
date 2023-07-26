@@ -31,7 +31,7 @@
 .gameActionFieldContainer {
   position: relative;
   flex: 1;
-  /* border: 1px solid yellow; */
+  /* border: 1px solid red; */
 }
 
 .gameActionField {
@@ -48,7 +48,7 @@
   overflow: visible;
 }
 
-/* .deck {
+.deck {
   position: absolute;
   top: -170px;
   left: -42px;
@@ -56,4 +56,4 @@
   width: 12ch;
   height: 16ch;
   border-radius: 1rem;
-} */
+}

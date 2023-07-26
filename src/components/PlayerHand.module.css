@@ -1,16 +1,15 @@
 .playerHandContainer {
   position: relative;
-  bottom: 0;
-  /* border: 3px solid blue; */
+  top: 8%;
+
   width: 100%;
-  height: 14vh;
+  /* height: 14vh; */
 }
 
 .flexCenterPlayerHand {
-  display: flex;
-  justify-content: center;
   display: grid;
-  gap: 0.5rem;
+  justify-content: center;
+
   grid-template-columns: repeat(5, 25px);
 }
 
