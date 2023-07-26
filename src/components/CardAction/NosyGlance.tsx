@@ -4,11 +4,12 @@ import { useAtomValue } from "jotai";
 import { $game, $runePlayer } from "../../state/game";
 import ng from "./NosyGlance.module.css";
 
-// interface NosyGlanceProps {
-//   game: GameState;
-// }
+interface NosyGlanceProps {
+  glancePlayer: string;
+  setGlancePlayer: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const NosyGlance = () => {
+const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
   const game = useAtomValue($game);
   const currPlayer = useAtomValue($runePlayer);
 
@@ -18,7 +19,7 @@ const NosyGlance = () => {
       (playerId) => playerId !== currPlayer.playerId
     );
 
-  console.log("otherPlayers", otherPlayers);
+  //   const [glancePlayer, setGlancePlayer] = useState<string>("");
 
   useEffect(() => {
     console.log("game in Nosy glance", game);
@@ -28,24 +29,55 @@ const NosyGlance = () => {
     console.log("currplayer in Nosy glance", currPlayer);
   }, [currPlayer]);
 
+  function glancePlayerAction(
+    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+    playerId: string
+  ) {
+    e.preventDefault();
+    setGlancePlayer(playerId);
+    console.log("playerId", playerId);
+
+    // if confirmAction === True; setGlancePlayer(playerId);
+    console.log("glance", glancePlayer);
+  }
+
+  //   function confirmGlanceAction(playerId: string) {} => returns a boolean
+
   const displayPlayerHands = (
     <div className={ng.actionContainer}>
       {otherPlayers &&
         otherPlayers.map((playerId, idx) => {
           return (
             <div className={ng.playerDetails}>
-              <div className={ng.playerName}>
+              <div
+                className={ng.playerName}
+                // {...(glancePlayer === "" && {
+                //   onClick: (e) => glancePlayerAction(e, playerId),
+                // })}
+                onClick={(e) => glancePlayerAction(e, playerId)}
+              >
                 {game.players[playerId].displayName}
               </div>
               <div key={idx} className={ng.cardContainer}>
                 {game.gameState.players[playerId].playerHand.map(
                   (card, idx) => {
                     return (
-                      <div key={idx} className={ng.card}>
-                        <div className={ng.cardDetail}>
-                          <p className={ng.cardNum}>{card.cardNum}</p>
-                          <p>{card.image}</p>
-                          <p>{card.name}</p>
+                      <div
+                        key={idx}
+                        className={`${ng.card} ${
+                          glancePlayer === playerId && ng.glanceCardAnim
+                        }`}
+                      >
+                        <div className={ng.frontImageContainer}>
+                          <div className={ng.cardDetail}>
+                            <p className={ng.cardNum}>{card.cardNum}</p>
+                            <p>{card.image}</p>
+                            <p>{card.name}</p>
+                          </div>
+                        </div>
+
+                        <div className={ng.backImageContainer}>
+                          <div className={ng.backImg}>💟</div>
                         </div>
                       </div>
                     );

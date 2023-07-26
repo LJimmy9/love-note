@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { Card, GameState } from "../logic";
 import rc from "./ResolveCard.module.css";
 import NosyGlance from "./CardAction/NosyGlance";
@@ -13,6 +13,8 @@ interface UiMapProps {
 }
 
 function ResolveCard({ game }: ResolveCardProps) {
+  const [glancePlayer, setGlancePlayer] = useState<string>("");
+
   function getCardAction() {
     const cardPlayed: Card =
       game.discardedCards[game.discardedCards.length - 1];
@@ -28,7 +30,10 @@ function ResolveCard({ game }: ResolveCardProps) {
           <div style={{ fontSize: "12px" }}>
             Select a player to peek at their cards
           </div>
-          <NosyGlance />
+          <NosyGlance
+            glancePlayer={glancePlayer}
+            setGlancePlayer={setGlancePlayer}
+          />
         </div>
       ),
     };
@@ -36,13 +41,21 @@ function ResolveCard({ game }: ResolveCardProps) {
     return uiMap[cardPlayed.cardNum as number];
   }
   const cardAction = getCardAction();
+  console.log(
+    "cardPlayed",
+    game.discardedCards[game.discardedCards.length - 1]
+  );
   return (
     <>
       <div className={rc.resolveCard}>
         {cardAction}
         <div
           className={rc.doneBtnContainer}
-          onClick={() => Rune.actions.updateCurrentTurn()}
+          onClick={() => {
+            if (game.discardedCards[game.discardedCards.length - 1].count === 4)
+              setGlancePlayer("");
+            Rune.actions.updateCurrentTurn();
+          }}
         >
           <div className={rc.doneBtn}>Done</div>
         </div>
