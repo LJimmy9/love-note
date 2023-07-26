@@ -6,10 +6,10 @@ import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
 import { useState } from "react";
-import {CardInfoDisplay, IdCardInfoDisplay}  from "./InfoCard";
-
+import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 import { $game, $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
+import ResolveCard from "./ResolveCard";
 
 interface GameProps {
   player: GamePlayer;
@@ -26,7 +26,6 @@ const cardRotationConfig: CardRotationConfig = {
   2: "8deg",
 };
 
-
 const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
@@ -37,7 +36,10 @@ const Game = ({ player, pinPos }: GameProps) => {
       <div className={gf.gameContainer}>
         <div className={gf.currentGameDetail}>
           <div className={gf.turnContainer}>
-            <p className={gf.gameTurn}>Turn: {game.gameState.turnNum}</p>
+            <p className={gf.gameTurn}>
+              Identity:{" "}
+              {game.gameState.players[currPlayer.playerId].playerIdentity.name}
+            </p>
             <p className={gf.playerTurn}>
               Player Turn:{" "}
               {`${
@@ -146,6 +148,14 @@ const Game = ({ player, pinPos }: GameProps) => {
             </div>
           </div>
         </div>
+
+        {/* Resolve Card */}
+        {game.gameState.gamePhase == "Resolve" &&
+          game.gameState.currentTurn === currPlayer.playerId && (
+            <div>
+              <ResolveCard game={game.gameState} />
+            </div>
+          )}
       </div>
     )
   );
