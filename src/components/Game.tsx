@@ -21,9 +21,9 @@ type CardRotationConfig = {
 };
 
 const cardRotationConfig: CardRotationConfig = {
-  0: "-5deg",
-  1: "3deg",
-  2: "8deg",
+  0: "-3deg",
+  1: "5deg",
+  2: "10deg",
 };
 
 const Game = ({ player, pinPos }: GameProps) => {
@@ -120,32 +120,18 @@ const Game = ({ player, pinPos }: GameProps) => {
         )}
         <div className={`${gf.playerHandContainer}`}>
           <div className={`${ph.flexCenterPlayerHand}`}>
-            <div
-              style={{
-                display: "grid",
-                gap: "0.5rem",
-                gridTemplateColumns: `${
-                  player.playerHand.length === 3
-                    ? "repeat(5, 25px)"
-                    : "repeat(4, 25px)"
-                }`,
-              }}
-            >
-              {player.playerHand.map((cardVal, idx) => {
-                return (
-                  <PlayCard
-                    key={`${cardVal}- ${idx}`}
-                    game={game.gameState}
-                    card={cardVal}
-                    player={player}
-                    cardRotation={cardRotationConfig[idx]}
-                    left={"0px"}
-                    top={idx === 2 ? "8px" : "0px"}
-                    pinPos={pinPos}
-                  />
-                );
-              })}
-            </div>
+            {player.playerHand.map((cardVal, idx) => {
+              return (
+                <PlayCard
+                  key={`${cardVal}- ${idx}`}
+                  game={game.gameState}
+                  card={cardVal}
+                  player={player}
+                  pinPos={pinPos}
+                  cardRotation={cardRotationConfig[idx]}
+                />
+              );
+            })}
           </div>
         </div>
         {/* Resolve Card */}
