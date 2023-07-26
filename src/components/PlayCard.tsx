@@ -53,7 +53,7 @@ function PlayCard({
 
   const currPlayer = useAtomValue($runePlayer);
 
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   function handleResize(
     el: HTMLDivElement,
@@ -80,7 +80,7 @@ function PlayCard({
     );
     window.addEventListener("resize", () =>
       handleResize(
-        cardRef.current!,
+        cardRef.current,
         (pos: Position) => setPos(pos),
         (x, y) => setWindowSize({ width: x, height: y })
       )
@@ -134,38 +134,45 @@ function PlayCard({
     );
 
   return (
-    <div
-      ref={cardRef}
-      className={`${s.playerCard} ${isOpen ? s.expand : s.default}`}
-      onClick={() => handleClick()}
-      style={{ ...cardStyles }}
-    >
-      {/* Header for the card has number and card name */}
-      <div className={s.cardHeader}>
-        <div className={s.cardNum}>{card.cardNum}</div>
-        {card.canPlay && isOpen && (
-          <div
-            className={s.playCardBtn}
-            onClick={() =>
-              Rune.actions.playCard({
-                playCard: card,
-                playerIdToUpdate: currPlayer.playerId,
-              })
-            }
-          >
-            ▶️
+    <div className={`${s.playerCardContainer} ${s.drawCardAnim}`}>
+      <div className={`${s.playerCardFront}`}>
+        <div
+          ref={cardRef}
+          className={`${s.playerCard} ${isOpen ? s.expand : s.default}`}
+          onClick={() => handleClick()}
+          style={{ ...cardStyles }}
+        >
+          {/* Header for the card has number and card name */}
+          <div className={s.cardHeader}>
+            <div className={s.cardNum}>{card.cardNum}</div>
+            {card.canPlay && isOpen && (
+              <div
+                className={s.playCardBtn}
+                onClick={() =>
+                  Rune.actions.playCard({
+                    playCard: card,
+                    playerIdToUpdate: currPlayer.playerId,
+                  })
+                }
+              >
+                ▶️
+              </div>
+            )}
           </div>
-        )}
+          {/* Body image */}
+          <div className={s.cardImage}>{card.image}</div>
+          <div className={s.cardName}>{card.name}</div>
+          {/* Footer description */}
+          <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
+            {description}
+            {/* <LoveNoteCard card={card} player={player} /> */}
+          </div>
+        </div>
       </div>
 
-      {/* Body image */}
-      <div className={s.cardImage}>{card.image}</div>
-      <div className={s.cardName}>{card.name}</div>
-
-      {/* Footer description */}
-      <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
-        {description}
-        {/* <LoveNoteCard card={card} player={player} /> */}
+      {/* back side */}
+      <div className={`${s.playerCardBack}`}>
+        <div ref={cardRef} className={`${s.playerCard} `}></div>
       </div>
     </div>
   );

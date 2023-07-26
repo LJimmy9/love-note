@@ -88,7 +88,7 @@
 }
 
 .infoContent > ul {
-  padding-left: 6%
+  padding-left: 6%;
 }
 
 .infoContent > ul > li {
@@ -115,8 +115,6 @@
 .gameActionFieldContainer {
   flex: 1;
   border: 10px solid yellow;
-
-  /* z-index: 2; */
 }
 
 .gameActionField {

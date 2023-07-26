@@ -13,6 +13,45 @@
   font-family: "Andale Mono", monospace;
 }
 
+.playerCardContainer {
+  transform-style: preserve-3d;
+}
+
+.playerCardBack {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  rotate: y 180deg;
+}
+.playerCardFront {
+  position: absolute;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* rotate: y 180deg; */
+}
+
+.drawCardAnim {
+  animation-name: drawCard;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes drawCard {
+  0% {
+    transform: translate(8vw, -45vh) rotateY(180deg);
+  }
+  30% {
+    transform: translateY(-20vh);
+  }
+  45% {
+    transform: translateY(-20vh);
+  }
+  100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+}
+
 .expand {
   /* width: 18ch; */
   /* height: 20ch;  */

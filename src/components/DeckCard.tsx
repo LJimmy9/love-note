@@ -20,37 +20,22 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
   const handleDrawCard = () => {
     setDrawCard(true);
     setClicked(true);
+    Rune.actions.drawCard({
+      deckCard: card,
+      playerIdToUpdate: player.playerId,
+    });
   };
 
   return (
-    <div className={d.deckCard}>
-      <div
-        className={`${d.theCard}  ${drawCard && d.drawCardAnim}`}
-        ref={cardRef}
-        onAnimationEnd={() =>
-          Rune.actions.drawCard({
-            deckCard: card,
-            playerIdToUpdate: player.playerId,
-          })
-        }
-        // onClick={handleDrawCard}
-        {...(currentTurn === player.playerId &&
-          gamePhase === "Draw" &&
-          !clicked && { onClick: handleDrawCard })}
-      >
-        {drawCard && (
-          <div className={d.frontImageContainer}>
-            <div className={d.frontImage}>
-              <div>
-                {card.cardNum} {card.image}
-              </div>
-              <div>{card.name}</div>
-            </div>
-          </div>
-        )}
-        <div className={d.backImageContainer}>
-          <div className={d.backImg}>💟</div>
-        </div>
+    <div
+      ref={cardRef}
+      // onClick={handleDrawCard}
+      {...(currentTurn === player.playerId &&
+        gamePhase === "Draw" &&
+        !clicked && { onClick: handleDrawCard })}
+    >
+      <div className={d.backImageContainer}>
+        <div className={d.backImg}>💟</div>
       </div>
     </div>
   );
