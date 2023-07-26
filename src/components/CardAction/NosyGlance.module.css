@@ -95,3 +95,12 @@
     transform: rotateY(180deg);
   }
 }
+
+.doneBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  font-size: 25px;
+}

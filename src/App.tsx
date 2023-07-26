@@ -19,7 +19,6 @@ function App() {
           players: players,
           yourPlayerId: yourPlayerId ? yourPlayerId : "",
         });
-        console.log("onchange check", newGame);
       },
     });
   }, []);

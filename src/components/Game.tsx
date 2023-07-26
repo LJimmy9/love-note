@@ -45,7 +45,7 @@ const Game = ({ player, pinPos }: GameProps) => {
               {`${
                 game.yourPlayerId === game.gameState.currentTurn
                   ? "Your turn"
-                  : currPlayer.displayName
+                  : game.players[game.gameState.currentTurn].displayName
               }`}
             </p>
             <p>{`Current game phase: ${game.gameState.gamePhase}`}</p>
@@ -148,14 +148,12 @@ const Game = ({ player, pinPos }: GameProps) => {
             </div>
           </div>
         </div>
-
         {/* Resolve Card */}
-        {game.gameState.gamePhase == "Resolve" &&
-          game.gameState.currentTurn === currPlayer.playerId && (
-            <div>
-              <ResolveCard game={game.gameState} />
-            </div>
-          )}
+        {game.gameState.gamePhase == "Resolve" && (
+          <div>
+            <ResolveCard players={game.players} />
+          </div>
+        )}
       </div>
     )
   );

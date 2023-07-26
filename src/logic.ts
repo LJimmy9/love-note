@@ -1,4 +1,4 @@
-import type { RuneClient } from "rune-games-sdk/multiplayer";
+import type { Player, PlayerId, RuneClient } from "rune-games-sdk/multiplayer";
 import {
   setupDeck,
   setupIdentityCards,
@@ -25,10 +25,16 @@ export interface IdentityCard {
   role: string;
 }
 
+export interface SideEffect {
+  active: boolean;
+  cardNum: number;
+}
+
 export interface GamePlayer {
   playerIdentity: IdentityCard;
   playerHand: Card[];
   connected: boolean;
+  sideEffect: SideEffect;
 }
 
 export interface AllPlayers {
@@ -67,15 +73,24 @@ type GameActions = {
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerIdToUpdate: string }) => void;
   playCard: (params: { playCard: Card; playerIdToUpdate: string }) => void;
+  handleCard: (params: {
+    cardNum: number;
+    playersInvolved: Array<PlayerId>;
+  }) => void;
+  resolveCard: () => void;
 };
 
 declare global {
   const Rune: RuneClient<GameState, GameActions>;
 }
 
-function handleCard(playCard: Card, game: GameState) {
+function handleCard(
+  cardNum: number,
+  playersInvolved: Array<PlayerId>,
+  game: GameState
+) {
   // handle card logic for each card
-  switch (playCard.cardNum) {
+  switch (cardNum) {
     case 0:
       break;
     case 1:
@@ -83,10 +98,14 @@ function handleCard(playCard: Card, game: GameState) {
     case 2:
       break;
     case 3:
-      game.gamePhase = "Resolve";
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        console.log("playerId", playerId);
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 3;
+      }
       break;
     case 4:
-      game.gamePhase = "Resolve";
       break;
     case 5:
       break;
@@ -127,7 +146,7 @@ Rune.initLogic({
     };
   },
   update: ({ game }) => {
-    if (Object.keys(game.players).length >= 2) {
+    if (Object.keys(game.players).length >= 4) {
       game.readyToStart = true;
     }
 
@@ -205,10 +224,16 @@ Rune.initLogic({
         game.discardedCards = [];
       }
 
-      handleCard(playCard, game);
+      game.gamePhase = "Resolve";
     },
     updateCurrentTurn: (_, { game }) => {
       updateCurrentTurn(game);
+      game.gamePhase = "Draw";
+    },
+    handleCard: ({ cardNum, playersInvolved }, { game }) => {
+      handleCard(cardNum, playersInvolved, game);
+    },
+    resolveCard: (_, { game }) => {
       game.gamePhase = "Draw";
     },
   },
