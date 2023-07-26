@@ -1,4 +1,4 @@
-import { GamePlayer} from "../logic";
+import { GamePlayer } from "../logic";
 
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
@@ -10,6 +10,7 @@ import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 import { $game, $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
 import ResolveCard from "./ResolveCard";
+import gi from "./GameInfo.module.css";
 
 interface GameProps {
   player: GamePlayer;
@@ -51,10 +52,10 @@ const Game = ({ player, pinPos }: GameProps) => {
             <p>{`Current game phase: ${game.gameState.gamePhase}`}</p>
           </div>
 
-          <div className={gf.infoButtonContainer}>
+          <div className={gi.infoButtonContainer}>
             <button
               onClick={() => setShowInfo(!showInfo)}
-              className={gf.infoBtn}
+              className={gi.infoBtn}
             >
               info
             </button>
@@ -86,39 +87,59 @@ const Game = ({ player, pinPos }: GameProps) => {
               })}
             </div>
           </div>
+          {/* Resolve Card */}
+          {game.gameState.gamePhase == "Resolve" && (
+            <div>
+              <ResolveCard players={game.players} />
+            </div>
+          )}
         </div>
         {showInfo && (
-          <div className={gf.infoCard}>
-            <div className={gf.infoHeader}>
-              <p className={gf.infoTitle}>❤️ Love Note ❤️</p>
+          <div className={gi.infoCard}>
+            <div className={gi.infoHeader}>
+              <p className={gi.infoTitle}>❤️ Love Note ❤️</p>
               <button onClick={() => setShowInfo(false)}>&times;</button>
             </div>
             <div>
-              <p className={gf.infoTitle}> Overview </p>
-              <p className={gf.infoContent}>You are in school where love and rumors are running rampant. Lovers are secretly filling out Love Notes, hoping to win a prize. Tattle Tales are on the prowl, looking for any sign of love so they can tattle on the Lovers and win a prize of their own.</p>
-              <p className={gf.infoContent}><span className={gf.infoBullet}>To Win:</span> 
+              <p className={gi.infoTitle}> Overview </p>
+              <p className={gi.infoContent}>
+                You are in school where love and rumors are running rampant.
+                Lovers are secretly filling out Love Notes, hoping to win a
+                prize. Tattle Tales are on the prowl, looking for any sign of
+                love so they can tattle on the Lovers and win a prize of their
+                own.
+              </p>
+              <p className={gi.infoContent}>
+                <span className={gi.infoBullet}>To Win:</span>
                 <ul>
                   <li>Lovers need to fill out a Love Note to win.</li>
-                  <li>Tattle Tales need to find the Lovers and tattle on them to win.</li>
+                  <li>
+                    Tattle Tales need to find the Lovers and tattle on them to
+                    win.
+                  </li>
                   <li>Friends need to help out the lovers.</li>
                 </ul>
-               </p>
-               <p className={gf.infoContent}><span className={gf.infoBullet}>To Play:</span>
+              </p>
+              <p className={gi.infoContent}>
+                <span className={gi.infoBullet}>To Play:</span>
                 <ul>
                   <li>To draw tap on the deck.</li>
-                  <li>To play a card tap on a card and press the button in the top right. Tap the card again to cancel.</li>
+                  <li>
+                    To play a card tap on a card and press the button in the top
+                    right. Tap the card again to cancel.
+                  </li>
                 </ul>
-               </p>
+              </p>
             </div>
             <div>
-              <p className={gf.infoTitle}> Cards </p>
+              <p className={gi.infoTitle}> Cards </p>
               <CardInfoDisplay />
-              <p className={gf.infoTitle}> Identity Cards </p>
+              <p className={gi.infoTitle}> Identity Cards </p>
               <IdCardInfoDisplay />
             </div>
           </div>
         )}
-        <div className={`${gf.playerHandContainer}`}>
+        <div className={`${ph.playerHandContainer}`}>
           <div className={`${ph.flexCenterPlayerHand}`}>
             {player.playerHand.map((cardVal, idx) => {
               return (
@@ -134,12 +155,12 @@ const Game = ({ player, pinPos }: GameProps) => {
             })}
           </div>
         </div>
-        {/* Resolve Card */}
+        {/* Resolve Card
         {game.gameState.gamePhase == "Resolve" && (
           <div>
             <ResolveCard players={game.players} />
           </div>
-        )}
+        )} */}
       </div>
     )
   );

@@ -100,7 +100,7 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
     </div>
   );
 
-  return <div className={ng.playerHandContainer}>{displayPlayerHands}</div>;
+  return <div className={ng.playerCardsContainer}>{displayPlayerHands}</div>;
 };
 
 export default NosyGlance;
