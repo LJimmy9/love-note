@@ -35,7 +35,7 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
     playerId: string
   ) {
     e.preventDefault();
-    setGlancePlayer(playerId);
+    if (glancePlayer === "") setGlancePlayer(playerId);
     console.log("playerId", playerId);
 
     // if confirmAction === True; setGlancePlayer(playerId);
@@ -55,7 +55,9 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
                 // {...(glancePlayer === "" && {
                 //   onClick: (e) => glancePlayerAction(e, playerId),
                 // })}
-                onClick={(e) => glancePlayerAction(e, playerId)}
+                onClick={(e) => {
+                  glancePlayerAction(e, playerId);
+                }}
               >
                 {game.players[playerId].displayName}
               </div>
@@ -100,7 +102,13 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
     </div>
   );
 
-  return <div className={ng.playerCardsContainer}>{displayPlayerHands}</div>;
+  return (
+    <div className={ng.playerCardsContainer}>
+      <div className={ng.confirmActionContainer}>confirmactioncontainer</div>
+
+      {displayPlayerHands}
+    </div>
+  );
 };
 
 export default NosyGlance;
