@@ -1,5 +1,4 @@
 import { GamePlayer } from "../logic";
-
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
@@ -33,11 +32,11 @@ type classMapConfig = {
 
 const classMap: classMapConfig = {
   1: `${gf.otherplayerLeftBottom}`,
-  2: `${gf.otherplayerLeftMiddle}`,
-  //3: `${gf.otherplayerLeftTop}`,
-  //4: `${gf.otherplayerRightTop}`,
-  3: `${gf.otherplayerRightBottom}`,
-  4: `${gf.otherplayerRightMiddle}`
+  2: `${gf.otherplayerRightBottom}`,
+  3: `${gf.otherplayerLeftMiddle}`,
+  4: `${gf.otherplayerRightMiddle}`,
+   //5: `${gf.otherplayerLeftTop}`,
+  //6: `${gf.otherplayerRightTop}`
 }
 
 const Game = ({ player, pinPos }: GameProps) => {
