@@ -155,6 +155,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             })}
           </div>
         </div>
+
         {/* Resolve Card
         {game.gameState.gamePhase == "Resolve" && (
           <div>
