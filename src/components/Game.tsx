@@ -143,18 +143,20 @@ const Game = ({ player, pinPos }: GameProps) => {
           <div className={`${ph.flexCenterPlayerHand}`}>
             {player.playerHand.map((cardVal, idx) => {
               return (
-                <PlayCard
-                  key={`${cardVal}- ${idx}`}
-                  game={game.gameState}
-                  card={cardVal}
-                  player={player}
-                  pinPos={pinPos}
-                  cardRotation={cardRotationConfig[idx]}
-                />
+                <div key={`${cardVal}-${idx}`}>
+                  <PlayCard
+                    game={game.gameState}
+                    card={cardVal}
+                    player={player}
+                    pinPos={pinPos}
+                    cardRotation={cardRotationConfig[idx]}
+                  />
+                </div>
               );
             })}
           </div>
         </div>
+
         {/* Resolve Card
         {game.gameState.gamePhase == "Resolve" && (
           <div>
