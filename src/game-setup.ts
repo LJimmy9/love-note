@@ -77,7 +77,11 @@ export function createPlayer(idCards: IdentityCard[], deck: Card[]) {
       : { name: "", image: "", description: "", role: "" },
     playerHand: playerHand.length ? playerHand : defaultPlayerHand,
     connected: true,
-    sideEffect: { active: false, cardNum: -1 },
+    sideEffect: {
+      active: false,
+      cardNum: -1,
+      selectedCard: null,
+    },
   };
   return player;
 }

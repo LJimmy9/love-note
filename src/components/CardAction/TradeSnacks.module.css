@@ -1,0 +1,49 @@
+.instruction {
+  font-size: 12px;
+  padding: 15px 5px 10px 5px;
+}
+
+.playerSelectionContainer {
+  margin-top: 30px;
+
+  .playerSelection {
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+
+.doneBtn {
+  cursor: pointer;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  font-size: 60px;
+}
+
+.playerCard {
+  padding: 0 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  margin: "0 auto";
+  transition: 500ms ease;
+  width: 8ch;
+  height: 16ch;
+  background-color: #add8e6;
+  border: 5px solid #c8a2c8;
+  color: black;
+  font-weight: bolder;
+  font-family: "Andale Mono", monospace;
+  position: relative;
+}
+
+.cardNum {
+  margin: 5px 0;
+}
+
+.cardImage {
+  font-size: 20px;
+  margin-top: 8px;
+}

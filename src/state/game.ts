@@ -33,6 +33,7 @@ export const $gameState = atom<GameState>((get) => {
       turnNum: 0,
       gamePhase: "Draw",
       direction: "right",
+      cardSwapSetup: {},
     };
     return gameState;
   } else {

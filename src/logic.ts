@@ -28,6 +28,8 @@ export interface IdentityCard {
 export interface SideEffect {
   active: boolean;
   cardNum: number;
+  selectedCard: Card | null;
+  receiveFrom: string;
 }
 
 export interface GamePlayer {
@@ -48,6 +50,10 @@ export interface Note {
 
 export type Phase = "Draw" | "Play" | "Resolve" | "Default";
 
+export interface CardSwapSetupProps {
+  [key: string]: Card;
+}
+
 export interface GameState {
   readyToStart: boolean;
   started: boolean;
@@ -61,6 +67,7 @@ export interface GameState {
   discardedCards: Array<Card>;
   gamePhase: Phase;
   direction: string;
+  cardSwapSetup: CardSwapSetupProps;
 }
 
 type GameActions = {
@@ -78,6 +85,7 @@ type GameActions = {
     playersInvolved: Array<PlayerId>;
   }) => void;
   resolveCard: () => void;
+  selectCard: (params: { cardNumInPlay: number; selectedCard: Card }) => void;
 };
 
 declare global {
@@ -100,10 +108,14 @@ function handleCard(
     case 3:
       for (let i = 0; i < playersInvolved.length; i++) {
         const playerId = playersInvolved[i];
-        console.log("playerId", playerId);
         game.players[playerId].sideEffect.active = true;
         game.players[playerId].sideEffect.cardNum = 3;
       }
+      // index 0 is the selected player, index 1 is the current player
+      game.players[playersInvolved[0]].sideEffect.receiveFrom =
+        playersInvolved[1];
+      game.players[playersInvolved[1]].sideEffect.receiveFrom =
+        playersInvolved[0];
       break;
     case 4:
       break;
@@ -116,6 +128,42 @@ function handleCard(
     case 8:
       break;
   }
+}
+
+function resolveSideEffect(game: GameState) {
+  const playerIds = Object.keys(game.players);
+  const playersWithActiveSideEffect: Array<PlayerId> = playerIds
+    .filter((playerId) => {
+      const player = game.players[playerId];
+      return player.sideEffect && player.sideEffect.active === true;
+    })
+    .map((playerId) => playerId);
+
+  if (
+    Object.keys(game.cardSwapSetup).length !==
+    playersWithActiveSideEffect.length
+  )
+    return;
+
+  for (let i = 0; i < playersWithActiveSideEffect.length; i++) {
+    const playerId = playersWithActiveSideEffect[i];
+    game.players[playerId].playerHand.push(
+      game.cardSwapSetup[game.players[playerId].sideEffect.receiveFrom]
+    );
+  }
+
+  for (let i = 0; i < playersWithActiveSideEffect.length; i++) {
+    const playerId = playersWithActiveSideEffect[i];
+    game.players[playerId].playerHand = game.players[
+      playerId
+    ].playerHand.filter((card) => card.id != game.cardSwapSetup[playerId].id);
+    game.players[playerId].sideEffect.active = false;
+    game.players[playerId].sideEffect.selectedCard = null;
+  }
+
+  updateCurrentTurn(game);
+  game.gamePhase = "Draw";
+  game.cardSwapSetup = {};
 }
 
 Rune.initLogic({
@@ -143,6 +191,7 @@ Rune.initLogic({
       turnNum: 0,
       gamePhase: "Draw",
       direction: "right",
+      cardSwapSetup: {},
     };
   },
   update: ({ game }) => {
@@ -179,6 +228,11 @@ Rune.initLogic({
           break;
       }
     },
+    updateCurrentTurn: (_, { game }) => {
+      updateCurrentTurn(game);
+      game.gamePhase = "Draw";
+    },
+
     startGame: (_, { game }) => {
       game.started = true;
     },
@@ -226,15 +280,23 @@ Rune.initLogic({
 
       game.gamePhase = "Resolve";
     },
-    updateCurrentTurn: (_, { game }) => {
-      updateCurrentTurn(game);
-      game.gamePhase = "Draw";
-    },
     handleCard: ({ cardNum, playersInvolved }, { game }) => {
       handleCard(cardNum, playersInvolved, game);
     },
     resolveCard: (_, { game }) => {
       game.gamePhase = "Draw";
+    },
+    selectCard: ({ cardNumInPlay, selectedCard }, { game, playerId }) => {
+      switch (cardNumInPlay) {
+        case 3:
+          game.cardSwapSetup[playerId] = selectedCard;
+
+          // will resolve side effect and move onto next turn if possible
+          resolveSideEffect(game);
+          break;
+        default:
+          break;
+      }
     },
   },
   events: {
