@@ -37,7 +37,7 @@
     "description": "Pick a student to give you their lowest or highest card (depending on the priority), you may give them any card in your hand in exchange.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 50
+    "count": 4
   },
   {
     "id": "",
