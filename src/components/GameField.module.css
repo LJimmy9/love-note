@@ -61,3 +61,43 @@
   height: 16ch;
   border-radius: 1rem;
 }
+
+.otherplayerLeftTop 
+{
+  position: fixed;
+  top: 16.5%;
+  left: -11.3%;
+  transform: rotate(90deg);  
+}
+
+.otherplayerLeftMiddle 
+{
+  position: fixed;
+  bottom: 50%;
+  left: -11.3%;
+  transform: rotate(90deg);
+}
+
+.otherplayerLeftBottom 
+{
+  position: fixed;
+  bottom: 25%;
+  left: -11.3%;
+  transform: rotate(90deg);
+}
+
+.otherplayerRightTop 
+{
+  position: fixed;
+  top: 16.5%;
+  transform: rotate(270deg);
+  right: -11.3%;
+}
+
+.otherplayerRightBottom 
+{
+  position: fixed;
+  bottom: 25%;
+  transform: rotate(270deg);
+  right: -11.3%;
+}

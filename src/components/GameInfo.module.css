@@ -26,6 +26,7 @@
   height: 70%;
   font-weight: bolder;
   overflow: auto;
+  z-index: 1;
 }
 
 .infoHeader {

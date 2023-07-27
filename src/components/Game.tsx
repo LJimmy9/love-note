@@ -27,10 +27,23 @@ const cardRotationConfig: CardRotationConfig = {
   2: "10deg",
 };
 
+type classMapConfig = {
+  [key: number]: string;
+};
+
+const classMap: classMapConfig = {
+  1: `${gf.otherplayerLeftBottom}`,
+  2: `${gf.otherplayerLeftMiddle}`,
+  3: `${gf.otherplayerLeftTop}`,
+  4: `${gf.otherplayerRightTop}`,
+  5: `${gf.otherplayerRightBottom}`
+}
+
 const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
+  let count = 0;
 
   return (
     game && (
@@ -139,22 +152,56 @@ const Game = ({ player, pinPos }: GameProps) => {
             </div>
           </div>
         )}
-        <div className={`${ph.playerHandContainer}`}>
-          <div className={`${ph.flexCenterPlayerHand}`}>
-            {player.playerHand.map((cardVal, idx) => {
-              return (
-                <PlayCard
-                  key={`${cardVal}- ${idx}`}
-                  game={game.gameState}
-                  card={cardVal}
-                  player={player}
-                  pinPos={pinPos}
-                  cardRotation={cardRotationConfig[idx]}
-                />
-              );
-            })}
-          </div>
-        </div>
+        {Object.keys(game.gameState.players).map(playerID => 
+        {
+          const p = game.gameState.players[playerID];
+          if (playerID === game.yourPlayerId) 
+          {
+            return (
+              <div className={`${ph.playerHandContainer}`}>
+                <div className={`${ph.flexCenterPlayerHand}`}>
+                  {player.playerHand.map((cardVal, idx) => {
+                    return (
+                      <PlayCard
+                        key={`${cardVal}- ${idx}`}
+                        game={game.gameState}
+                        card={cardVal}
+                        player={player}
+                        pinPos={pinPos}
+                        cardRotation={cardRotationConfig[idx]}
+                        clickable={true}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )
+          }
+          else 
+          {
+            count++;
+            return (
+              <div className={classMap[count]}>
+                <div style={{height:'40px'}}>
+                <div className={`${ph.flexCenterPlayerHand}`}>
+                  {p.playerHand.map((cardVal, idx) => {
+                    return (
+                    <PlayCard
+                    key={`${cardVal}- ${idx}- ${p.playerIdentity.name}`}
+                    game={game.gameState}
+                    card={cardVal}
+                    player={p}
+                    cardRotation={"0"}
+                    pinPos={pinPos}
+                    clickable={false}/>
+                    );
+                    })}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        })}
         {/* Resolve Card
         {game.gameState.gamePhase == "Resolve" && (
           <div>
