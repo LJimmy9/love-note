@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { $game } from "../../state/game";
+import React, { useEffect, useState } from "react";
+import { $game, $runePlayer } from "../../state/game";
 import { useAtomValue } from "jotai";
 import { Note } from "../../logic";
 import ln from "./LoveNote.module.css";
@@ -10,26 +10,50 @@ interface RainyDayProps {
 
 const RainyDay = ({ loveNotes }: RainyDayProps) => {
   const game = useAtomValue($game);
-  //   const loveNotes = game?.gameState.loveNotes;
-
-  useEffect(() => {
-    console.log("rainy day loveNotes", loveNotes);
-  }, [loveNotes]);
+  const player = useAtomValue($runePlayer);
+  // const [showLetter, setShowLetter] = useState<boolean>(false);
+  const [fadeOutLetter, setFadeOutLetter] = useState<boolean>(false);
+  const [showActionText, setShowActionText] = useState<boolean>(false);
 
   return (
-    <div className={ln.loveNoteContainer}>
-      <div>{"💌"}</div>
-      <div>Love Note</div>
-      <div>
-        {loveNotes.map((note) => {
-          return (
-            <div key={`note-${note.id}`} style={{ margin: "5px 0" }}>
-              {note.text}
-            </div>
-          );
-        })}
+    <div className={ln.loveNoteActionContainer}>
+      <div
+        className={`${ln.loveNoteContainer}`}
+        onAnimationEnd={() => setFadeOutLetter(true)}
+      >
+        <div className={ln.loveNoteContent}>
+          <div>{"💌"}</div>
+          <div>Love Note</div>
+          <div>
+            {loveNotes.map((note, idx) => {
+              return (
+                <div
+                  key={`note-${note.id}`}
+                  style={{ margin: "5px 0" }}
+                  className={`${
+                    idx === loveNotes.length - 1 &&
+                    fadeOutLetter &&
+                    ln.fadeOutAnimation
+                  }`}
+                  onAnimationEnd={() => setShowActionText(true)}
+                >
+                  <p>{note.text}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-      <div className={ln.doneBtnContainer}>
+      <div style={{ fontSize: "10px", lineHeight: "15px" }}>
+        {showActionText && (
+          <p>
+            {game?.gameState.players[player.playerId].playerIdentity.role
+              ? "Oh no! The rain washed off some parts of the note! :( "
+              : "Yes! The rain washed off some parts of the note! >:) "}
+          </p>
+        )}
+      </div>
+      {/* <div className={ln.doneBtnContainer}>
         <div
           className={ln.doneBtn}
           onClick={() => {
@@ -38,7 +62,7 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
         >
           👌
         </div>
-      </div>
+      </div> */}
     </div>
   );
 

@@ -157,7 +157,10 @@ Rune.initLogic({
       specialDiscardedCards: [],
       currentTurn: allPlayerIds[0],
       // loveNotes: [],
-      loveNotes: [{ id: 0, text: "💕" }],
+      loveNotes: [
+        { id: 0, text: "💕" },
+        { id: 1, text: "💝" },
+      ],
       turnNum: 0,
       gamePhase: "Draw",
       direction: "right",

@@ -51,9 +51,6 @@ function ResolveCard({ players }: ResolveCardProps) {
       ),
       7: (
         <div className={rc.resolveGameActionField}>
-          <div style={{ fontSize: "10px", lineHeight: "15px" }}>
-            Oh no! The rain washed off some parts of the note {":("}
-          </div>
           <RainyDay loveNotes={gameState.loveNotes} />
         </div>
       ),
