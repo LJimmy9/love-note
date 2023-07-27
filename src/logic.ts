@@ -66,6 +66,7 @@ export interface GameState {
   loveNotes: Array<Note>;
   turnNum: number;
   discardedCards: Array<Card>;
+  specialDiscardedCards: Array<Card>;
   gamePhase: Phase;
   direction: string;
   cardSwapSetup: CardSwapSetupProps;
@@ -153,6 +154,7 @@ Rune.initLogic({
       deck: deck,
       identityCards: identityCards,
       discardedCards: [],
+      specialDiscardedCards: [],
       currentTurn: allPlayerIds[0],
       loveNotes: [],
       turnNum: 0,
@@ -239,6 +241,8 @@ Rune.initLogic({
       }
 
       game.discardedCards.push(playCard);
+      console.log("game.discardedCards", game.discardedCards);
+      console.log("find love note in game", game.loveNotes);
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i].id !== playCard.id) {

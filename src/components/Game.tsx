@@ -4,7 +4,7 @@ import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 import { $game, $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
