@@ -1,16 +1,17 @@
 import { PlayerId } from "rune-games-sdk/multiplayer";
-import { $runePlayer, AtomPlayer } from "../state/game";
-import { AtomPlayerObj } from "./ResolveCard";
+import { $gameState, $runePlayer, AtomPlayer } from "../../state/game";
+import { AtomPlayerObj } from "../ResolveCard";
 import ts from "./TradeSnacks.module.css";
 import { useState } from "react";
 import { useAtomValue } from "jotai";
 
-interface TradeSnacksProps {
+export interface TradeSnacksProps {
   players: AtomPlayerObj;
 }
 
 function TradeSnacks({ players }: TradeSnacksProps) {
   const currPlayer = useAtomValue($runePlayer);
+  const gameState = useAtomValue($gameState);
   const [selectedId, setSelectedId] = useState<PlayerId>("");
 
   return (

@@ -93,23 +93,16 @@ function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
   }, [cardRef.current]);
 
   function handleClick() {
-    console.log("handling click");
     setIsOpen(!isOpen);
 
     if (isOpen) {
       setCardStyles({ ...defaultStyle });
-      console.log("isOpen");
     } else {
       const targetX = pinPos[0] - pos.x;
       const targetY = pinPos[1] - pos.y;
       setTarget([Math.floor(targetX), Math.floor(targetY)]);
-      console.log("dist", targetX, targetY);
     }
   }
-
-  useEffect(() => {
-    console.log("target", target);
-  }, [target]);
 
   const description =
     card.name === "Love Note" ? (
@@ -128,7 +121,6 @@ function PlayCard({ game, card, cardRotation, player, pinPos }: CardProps) {
       default:
         animName = "";
     }
-    console.log("animanme", animName, action);
     return animName;
   }
 

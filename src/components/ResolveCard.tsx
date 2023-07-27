@@ -4,9 +4,10 @@ import NosyGlance from "./CardAction/NosyGlance";
 // import ng from "../components/CardAction/NosyGlance.module.css";
 import { Card } from "../logic";
 import { $gameState, $runePlayer, AtomPlayer } from "../state/game";
-import s from "./PlayCard.module.css";
-import TradeSnacks from "./TradeSnacks";
+import TradeSnacks from "./CardAction/TradeSnacks";
 import { useAtomValue } from "jotai";
+import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
+import PassDirection from "./CardAction/PassDirection";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -30,6 +31,7 @@ function ResolveCard({ players }: ResolveCardProps) {
       gameState.discardedCards[gameState.discardedCards.length - 1];
 
     const uiMap: UiMapProps = {
+      2: <PassDirection players={players} />,
       3: (
         <>
           <TradeSnacks players={players} />
@@ -56,35 +58,7 @@ function ResolveCard({ players }: ResolveCardProps) {
     if (!playerSideEffect.active) return null;
 
     const uiMap: UiMapProps = {
-      3: (
-        <>
-          {gameState.currentTurn !== currPlayer.playerId ? (
-            <div>
-              {players[gameState.currentTurn].displayName} is trading snacks
-              with you. Select your lowest card
-            </div>
-          ) : (
-            <div>Select any card to trade.</div>
-          )}
-          <div>
-            {gameState.players[currPlayer.playerId].playerHand.map((card) => {
-              return (
-                <div
-                  key={`exchange-${card.id}`}
-                  className={s.playerCard}
-                  style={{ marginTop: "10px", marginLeft: "30px" }}
-                >
-                  <div className={s.cardHeader}>
-                    <div className={s.cardNum}>{card.cardNum}</div>
-                    <div className={s.cardName}>{card.name}</div>
-                    <div className={s.cardImage}>{card.image}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      ),
+      3: <TradeSnacksSideEffect players={players} />,
     };
 
     return uiMap[playerSideEffect.cardNum as number];
