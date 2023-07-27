@@ -17,6 +17,7 @@ export interface Card {
   restrictionToRole: string;
   count: number;
   canPlay: boolean;
+  autoPlay: boolean;
 }
 
 export interface IdentityCard {
@@ -245,8 +246,6 @@ Rune.initLogic({
       }
 
       game.discardedCards.push(playCard);
-      // console.log("game.discardedCards", game.discardedCards);
-      // console.log("find love note in game", game.loveNotes);
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i].id !== playCard.id) {
