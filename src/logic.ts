@@ -156,7 +156,8 @@ Rune.initLogic({
       discardedCards: [],
       specialDiscardedCards: [],
       currentTurn: allPlayerIds[0],
-      loveNotes: [],
+      // loveNotes: [],
+      loveNotes: [{ id: 0, text: "💕" }],
       turnNum: 0,
       gamePhase: "Draw",
       direction: "right",
@@ -241,8 +242,8 @@ Rune.initLogic({
       }
 
       game.discardedCards.push(playCard);
-      console.log("game.discardedCards", game.discardedCards);
-      console.log("find love note in game", game.loveNotes);
+      // console.log("game.discardedCards", game.discardedCards);
+      // console.log("find love note in game", game.loveNotes);
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i].id !== playCard.id) {

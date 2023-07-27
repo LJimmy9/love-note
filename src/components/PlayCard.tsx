@@ -129,9 +129,9 @@ function PlayCard({ game, card, cardRotation, player, pinPos, clickable }: CardP
         <div
           className={`${s.playerCard}`}
           style={{
-            width: `${isOpen ? "25ch" : "8ch"}`,
-            height: `${isOpen ? "30ch" : "16ch"}`,
-            transform: `translate(${isOpen ? "-20%" : "0"}, ${
+            width: `${isOpen ? "28ch" : "8ch"}`,
+            height: `${isOpen ? "38ch" : "16ch"}`,
+            transform: `translate(${isOpen ? "-25%" : "0"}, ${
               isOpen ? "-130" : "0"
             }%)`,
           }}

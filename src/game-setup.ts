@@ -19,11 +19,10 @@ export function setupIdentityCards() {
 
 export function setupDeck() {
   let cardCounter = 0;
-  const removeRainyDay = cards.filter((card) => card.name !== "Rainy Day");
+  // const removeRainyDay = cards.filter((card) => card.name !== "Rainy Day");
 
   // const staticDeck = [...removeRainyDay] as Array<Card>;
   const staticDeck = [...cards] as Array<Card>;
-
   const startingDeck: Array<Card> = [];
 
   for (const card of staticDeck) {
@@ -35,7 +34,7 @@ export function setupDeck() {
     }
   }
 
-  console.log("startingDeck", startingDeck);
+  // console.log("startingDeck", startingDeck);
 
   shuffleDeck(startingDeck);
 

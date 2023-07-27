@@ -18,18 +18,6 @@
     "role": "Tattle Tale"
   },
   {
-    "name": "Tattle Tidal (Tattle Tale)",
-    "image": "🌊",
-    "description": "Your role is a tattle tale. You must tattle on at least one of the lovers in order to win the game. You only have one chance to tattle. You do not know who the other tattle is.",
-    "role": "Tattle Tale"
-  },
-  {
-    "name": "Pulsar (Friend)",
-    "image": "🌠",
-    "description": "Your role is a friend. You must help the lovers complete their notes before the tattles find out who the lovers are. You do not know who the tattles or the lovers are",
-    "role": "Friend"
-  },
-  {
     "name": "Nebula (Friend)",
     "image": "🌌",
     "description": "Your role is a friend. You must help the lovers complete their notes before the tattles find out who the lovers are. You do not know who the tattles or the lovers are.",
