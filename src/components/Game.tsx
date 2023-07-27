@@ -34,9 +34,10 @@ type classMapConfig = {
 const classMap: classMapConfig = {
   1: `${gf.otherplayerLeftBottom}`,
   2: `${gf.otherplayerLeftMiddle}`,
-  3: `${gf.otherplayerLeftTop}`,
-  4: `${gf.otherplayerRightTop}`,
-  5: `${gf.otherplayerRightBottom}`
+  //3: `${gf.otherplayerLeftTop}`,
+  //4: `${gf.otherplayerRightTop}`,
+  3: `${gf.otherplayerRightBottom}`,
+  4: `${gf.otherplayerRightMiddle}`
 }
 
 const Game = ({ player, pinPos }: GameProps) => {
@@ -187,17 +188,18 @@ const Game = ({ player, pinPos }: GameProps) => {
                   {p.playerHand.map((cardVal, idx) => {
                     return (
                     <PlayCard
-                    key={`${cardVal}- ${idx}- ${p.playerIdentity.name}`}
+                    key={`${cardVal}- ${idx}- ${p.playerIdentity.name}- ${game.yourPlayerId}`}
                     game={game.gameState}
                     card={cardVal}
                     player={p}
-                    cardRotation={"0"}
+                    cardRotation={cardRotationConfig[idx]}
                     pinPos={pinPos}
                     clickable={false}/>
                     );
                     })}
                   </div>
                 </div>
+                <p className={`${gf.otherplayerName}`}>{p.playerIdentity.name}</p>
               </div>
             );
           }
