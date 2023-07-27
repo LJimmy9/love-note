@@ -8,9 +8,10 @@ import DiscardCard from "./DiscardCard";
 import { useState } from "react";
 import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 import { $game, $runePlayer } from "../state/game";
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import ResolveCard from "./ResolveCard";
 import gi from "./GameInfo.module.css";
+import { $playAnimation } from "../state/animations";
 
 interface GameProps {
   player: GamePlayer;
@@ -31,6 +32,8 @@ const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
+
+  const playAnimation = useSetAtom($playAnimation);
 
   return (
     game && (
@@ -143,14 +146,15 @@ const Game = ({ player, pinPos }: GameProps) => {
           <div className={`${ph.flexCenterPlayerHand}`}>
             {player.playerHand.map((cardVal, idx) => {
               return (
-                <PlayCard
-                  key={`${cardVal}- ${idx}`}
-                  game={game.gameState}
-                  card={cardVal}
-                  player={player}
-                  pinPos={pinPos}
-                  cardRotation={cardRotationConfig[idx]}
-                />
+                <div key={`${cardVal}-${idx}`}>
+                  <PlayCard
+                    game={game.gameState}
+                    card={cardVal}
+                    player={player}
+                    pinPos={pinPos}
+                    cardRotation={cardRotationConfig[idx]}
+                  />
+                </div>
               );
             })}
           </div>

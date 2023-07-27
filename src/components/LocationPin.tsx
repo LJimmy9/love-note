@@ -75,7 +75,7 @@ function LocationPin({ start, target }: LocationPinProps) {
         border: "5px solid #c8a2c8",
         color: "black",
         position: "absolute",
-        transition: "1.5s ease-in-out",
+        transition: "1s ease-in-out",
         transformOrigin: "center",
       }}
       hidden={false}

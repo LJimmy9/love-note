@@ -33,6 +33,7 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
         otherPlayers.map((playerId, idx) => {
           return (
             <div
+              key={`${playerId}-${idx}`}
               className={ng.playerDetails}
               onClick={(e) => {
                 glancePlayerAction(e, playerId);

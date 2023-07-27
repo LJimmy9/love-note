@@ -69,12 +69,15 @@ export interface GameState {
   gamePhase: Phase;
   direction: string;
   cardSwapSetup: CardSwapSetupProps;
+  animation: string;
 }
 
 type GameActions = {
   // gets
   getLoveNotes: () => Array<Note>;
   // updates
+  animationDone: () => void;
+  animateLeft: () => void;
   updateLoveNote: (params: { action: string; prompt: string }) => void;
   updateCurrentTurn: () => void;
   // actions
@@ -156,6 +159,7 @@ Rune.initLogic({
       gamePhase: "Draw",
       direction: "right",
       cardSwapSetup: {},
+      animation: "",
     };
   },
   update: ({ game }) => {
@@ -178,6 +182,12 @@ Rune.initLogic({
     },
 
     // updates
+    animationDone: (_, { game }) => {
+      game.animation = "";
+    },
+    animateLeft: (_, { game }) => {
+      game.animation = "allPassLeft";
+    },
     updateLoveNote: ({ action, prompt }, { game }) => {
       switch (action) {
         case "add":

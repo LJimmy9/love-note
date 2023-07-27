@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Game from "./components/Game";
 import Overlay from "./components/Overlay.tsx";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
 import AnimGen from "./components/AnimGen.tsx";
-import { $playAnimation } from "./state/animations.ts";
+import {
+  $currAnimation,
+  $isAnimating,
+  $playAnimation,
+} from "./state/animations.ts";
 
 function App() {
   const [game, setGame] = useAtom($game);
@@ -13,6 +17,8 @@ function App() {
   const [pinPos, setPinPos] = useState<number[]>([]);
 
   const playAnimation = useSetAtom($playAnimation);
+
+  const isAnimating = useAtomValue($isAnimating);
 
   useEffect(() => {
     Rune.initClient({
@@ -22,9 +28,12 @@ function App() {
           players: players,
           yourPlayerId: yourPlayerId ? yourPlayerId : "",
         });
+
+        if (!isAnimating) {
+          playAnimation(newGame.animation);
+        }
       },
     });
-    playAnimation("passLeft");
   }, []);
 
   if (!game || !game.gameState) {
@@ -88,13 +97,13 @@ function App() {
 
   return (
     <>
-      <button
+      {/* <button
         onClick={() => {
           playAnimation("allPassRight");
         }}
       >
         CLICK Me
-      </button>
+      </button> */}
       {configureGameStateUI}
     </>
   );
