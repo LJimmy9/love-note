@@ -5,16 +5,12 @@ import Overlay from "./components/Overlay.tsx";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
 import AnimGen from "./components/AnimGen.tsx";
-import {
-  $currAnimation,
-  $isAnimating,
-  $playAnimation,
-} from "./state/animations.ts";
+import { $isAnimating, $playAnimation } from "./state/animations.ts";
 
 function App() {
   const [game, setGame] = useAtom($game);
 
-  const [pinPos, setPinPos] = useState<number[]>([]);
+  const [pinPos] = useState<number[]>([]);
 
   const playAnimation = useSetAtom($playAnimation);
 

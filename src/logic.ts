@@ -1,4 +1,4 @@
-import type { Player, PlayerId, RuneClient } from "rune-games-sdk/multiplayer";
+import type { PlayerId, RuneClient } from "rune-games-sdk/multiplayer";
 import {
   setupDeck,
   setupIdentityCards,

@@ -1,7 +1,6 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { $currAnimation, $isAnimating } from "../state/animations";
 import LocationPin from "./LocationPin";
-import { useEffect } from "react";
 import { $runePlayer } from "../state/game";
 
 interface Animations {

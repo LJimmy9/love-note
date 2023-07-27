@@ -8,10 +8,9 @@ import DiscardCard from "./DiscardCard";
 import { useState } from "react";
 import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 import { $game, $runePlayer } from "../state/game";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import ResolveCard from "./ResolveCard";
 import gi from "./GameInfo.module.css";
-import { $playAnimation } from "../state/animations";
 
 interface GameProps {
   player: GamePlayer;
@@ -32,8 +31,6 @@ const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
-
-  const playAnimation = useSetAtom($playAnimation);
 
   return (
     game && (
