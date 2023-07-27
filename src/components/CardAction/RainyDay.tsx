@@ -11,9 +11,13 @@ interface RainyDayProps {
 const RainyDay = ({ loveNotes }: RainyDayProps) => {
   const game = useAtomValue($game);
   const player = useAtomValue($runePlayer);
-  // const [showLetter, setShowLetter] = useState<boolean>(false);
   const [fadeOutLetter, setFadeOutLetter] = useState<boolean>(false);
   const [showActionText, setShowActionText] = useState<boolean>(false);
+  const [endTurn, setEndTurn] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (endTurn) Rune.actions.updateCurrentTurn();
+  }, [endTurn]);
 
   return (
     <div className={ln.loveNoteActionContainer}>
@@ -29,8 +33,8 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
               return (
                 <div
                   key={`note-${note.id}`}
-                  style={{ margin: "5px 0" }}
-                  className={`${
+                  style={{ margin: "2vh 0" }}
+                  className={`${ln.text} ${
                     idx === loveNotes.length - 1 &&
                     fadeOutLetter &&
                     ln.fadeOutAnimation
@@ -44,25 +48,27 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
           </div>
         </div>
       </div>
-      <div style={{ fontSize: "10px", lineHeight: "15px" }}>
-        {showActionText && (
-          <p>
-            {game?.gameState.players[player.playerId].playerIdentity.role
-              ? "Oh no! The rain washed off some parts of the note! :( "
-              : "Yes! The rain washed off some parts of the note! >:) "}
-          </p>
-        )}
-      </div>
-      {/* <div className={ln.doneBtnContainer}>
+      {showActionText && (
         <div
-          className={ln.doneBtn}
-          onClick={() => {
-            Rune.actions.updateCurrentTurn();
+          style={{ fontSize: "10px", lineHeight: "15px" }}
+          className={ln.fadeInAnimation}
+          onAnimationEnd={() => {
+            const removeNote = loveNotes[loveNotes.length - 1];
+            Rune.actions.updateLoveNote({
+              action: "remove",
+              prompt: removeNote.text,
+            });
+            setEndTurn(true);
           }}
         >
-          👌
+          <p>
+            {game?.gameState.players[player.playerId].playerIdentity.role ===
+            "Tattle Tale"
+              ? "Yes! The rain washed off some parts of the letter! >:) "
+              : "Oh no! The rain washed off some parts of the letter! :( "}
+          </p>
         </div>
-      </div> */}
+      )}
     </div>
   );
 
