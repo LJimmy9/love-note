@@ -52,6 +52,8 @@ export function updateCurrentTurn(game: GameState) {
   }
   game.currentTurn = allPlayers[nextTurnIdx];
   game.turnNum += 1;
+  game.gamePhase = "Draw";
+  game.cardSwapSetup = {};
 }
 
 export function getReshuffledDeck(game: GameState) {
@@ -81,6 +83,7 @@ export function createPlayer(idCards: IdentityCard[], deck: Card[]) {
       active: false,
       cardNum: -1,
       selectedCard: null,
+      receiveFrom: "",
     },
   };
   return player;

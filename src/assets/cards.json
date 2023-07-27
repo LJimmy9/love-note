@@ -37,7 +37,7 @@
     "description": "Pick a student to give you their lowest or highest card (depending on the priority), you may give them any card in your hand in exchange.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 10
+    "count": 4
   },
   {
     "id": "",
@@ -72,7 +72,7 @@
   {
     "id": "",
     "name": "Rainy Day",
-    "image": "👻",
+    "image": "🌧️",
     "cardNum": 7,
     "description": "It's raining cats and dogs! A note got smeared off from the rain. If this card is drawn, it must be played.",
     "restrictionToRole": "",

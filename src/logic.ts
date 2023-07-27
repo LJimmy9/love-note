@@ -6,6 +6,7 @@ import {
   getReshuffledDeck,
   createPlayer,
 } from "./game-setup";
+import { resolve3 } from "./components/resolve-side-effects";
 
 export interface Card {
   id: string;
@@ -84,7 +85,6 @@ type GameActions = {
     cardNum: number;
     playersInvolved: Array<PlayerId>;
   }) => void;
-  resolveCard: () => void;
   selectCard: (params: { cardNumInPlay: number; selectedCard: Card }) => void;
 };
 
@@ -128,42 +128,6 @@ function handleCard(
     case 8:
       break;
   }
-}
-
-function resolveSideEffect(game: GameState) {
-  const playerIds = Object.keys(game.players);
-  const playersWithActiveSideEffect: Array<PlayerId> = playerIds
-    .filter((playerId) => {
-      const player = game.players[playerId];
-      return player.sideEffect && player.sideEffect.active === true;
-    })
-    .map((playerId) => playerId);
-
-  if (
-    Object.keys(game.cardSwapSetup).length !==
-    playersWithActiveSideEffect.length
-  )
-    return;
-
-  for (let i = 0; i < playersWithActiveSideEffect.length; i++) {
-    const playerId = playersWithActiveSideEffect[i];
-    game.players[playerId].playerHand.push(
-      game.cardSwapSetup[game.players[playerId].sideEffect.receiveFrom]
-    );
-  }
-
-  for (let i = 0; i < playersWithActiveSideEffect.length; i++) {
-    const playerId = playersWithActiveSideEffect[i];
-    game.players[playerId].playerHand = game.players[
-      playerId
-    ].playerHand.filter((card) => card.id != game.cardSwapSetup[playerId].id);
-    game.players[playerId].sideEffect.active = false;
-    game.players[playerId].sideEffect.selectedCard = null;
-  }
-
-  updateCurrentTurn(game);
-  game.gamePhase = "Draw";
-  game.cardSwapSetup = {};
 }
 
 Rune.initLogic({
@@ -213,6 +177,7 @@ Rune.initLogic({
       return game.loveNotes;
     },
 
+    // updates
     updateLoveNote: ({ action, prompt }, { game }) => {
       switch (action) {
         case "add":
@@ -230,9 +195,9 @@ Rune.initLogic({
     },
     updateCurrentTurn: (_, { game }) => {
       updateCurrentTurn(game);
-      game.gamePhase = "Draw";
     },
 
+    // actions
     startGame: (_, { game }) => {
       game.started = true;
     },
@@ -283,16 +248,12 @@ Rune.initLogic({
     handleCard: ({ cardNum, playersInvolved }, { game }) => {
       handleCard(cardNum, playersInvolved, game);
     },
-    resolveCard: (_, { game }) => {
-      game.gamePhase = "Draw";
-    },
     selectCard: ({ cardNumInPlay, selectedCard }, { game, playerId }) => {
       switch (cardNumInPlay) {
         case 3:
           game.cardSwapSetup[playerId] = selectedCard;
-
           // will resolve side effect and move onto next turn if possible
-          resolveSideEffect(game);
+          resolve3(game);
           break;
         default:
           break;

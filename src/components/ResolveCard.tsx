@@ -7,6 +7,7 @@ import { $gameState, $runePlayer, AtomPlayer } from "../state/game";
 import TradeSnacks from "./CardAction/TradeSnacks";
 import { useAtomValue } from "jotai";
 import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
+import PassDirection from "./CardAction/PassDirection";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -30,6 +31,7 @@ function ResolveCard({ players }: ResolveCardProps) {
       gameState.discardedCards[gameState.discardedCards.length - 1];
 
     const uiMap: UiMapProps = {
+      2: <PassDirection players={players} />,
       3: (
         <>
           <TradeSnacks players={players} />

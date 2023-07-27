@@ -2,7 +2,6 @@ import { useAtomValue } from "jotai";
 import { TradeSnacksProps } from "../CardAction/TradeSnacks";
 import { $gameState, $runePlayer } from "../../state/game";
 import ts from "../CardAction/TradeSnacks.module.css";
-import s from "../PlayCard.module.css";
 
 function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
   const currPlayer = useAtomValue($runePlayer);
@@ -29,7 +28,12 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
               key={`exchange-${card.id}`}
               className={ts.playerCard}
               style={{ margin: "10px auto" }}
-              onClick={() => Rune.actions.selectCard({cardNumInPlay: 3, selectedCard: card})}
+              onClick={() =>
+                Rune.actions.selectCard({
+                  cardNumInPlay: 3,
+                  selectedCard: card,
+                })
+              }
             >
               <div className={ts.cardHeader}>
                 <div className={ts.cardNum}>{card.cardNum}</div>
