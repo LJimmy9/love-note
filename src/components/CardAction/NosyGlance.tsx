@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import { GameState } from "../../logic";
 import { useAtomValue } from "jotai";
 import { $game, $runePlayer } from "../../state/game";
@@ -21,7 +21,7 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
     );
 
   function glancePlayerAction(
-    e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+    _e: React.MouseEvent<HTMLSpanElement, MouseEvent>,
     playerId: string
   ) {
     if (glancePlayer === "") setGlancePlayer(playerId);
@@ -33,6 +33,7 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
         otherPlayers.map((playerId, idx) => {
           return (
             <div
+              key={`${playerId}-${idx}`}
               className={ng.playerDetails}
               onClick={(e) => {
                 glancePlayerAction(e, playerId);

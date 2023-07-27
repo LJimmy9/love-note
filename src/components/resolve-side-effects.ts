@@ -26,12 +26,15 @@ export function resolve3(game: GameState) {
 
   for (let i = 0; i < playersWithActiveSideEffect.length; i++) {
     const playerId = playersWithActiveSideEffect[i];
+
     game.players[playerId].playerHand = game.players[
       playerId
     ].playerHand.filter((card) => card.id != game.cardSwapSetup[playerId].id);
     game.players[playerId].sideEffect.active = false;
     game.players[playerId].sideEffect.selectedCard = null;
   }
+
+  game.animation = "passLeft";
 
   updateCurrentTurn(game);
 }

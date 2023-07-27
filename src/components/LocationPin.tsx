@@ -1,20 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Position } from "./PlayCard";
-
-function handleResize(
-  el: HTMLDivElement,
-  updatePosCb: (pos: Position) => void,
-  updateWindowSizeCb: (windowX: number, windowY: number) => void
-) {
-  const x = el.offsetLeft;
-  const y = el.offsetTop;
-  updatePosCb({ x: x, y: y });
-
-  const windowX = window.innerWidth;
-  const windowY = window.innerHeight;
-
-  updateWindowSizeCb(windowX, windowY);
-}
+import { $doneAnimating } from "../state/animations";
+import { useSetAtom } from "jotai";
 
 export interface Size {
   width: number;
@@ -22,125 +8,79 @@ export interface Size {
 }
 
 interface LocationPinProps {
-  location: string;
-  handlePos: (pos: number[]) => void;
+  start: string;
+  target: string;
 }
 
-function LocationPin({ location, handlePos }: LocationPinProps) {
+function LocationPin({ start, target }: LocationPinProps) {
   const elRef = useRef<HTMLDivElement>(null);
+  const [style, setStyle] = useState(parseStyles(start));
 
-  const [_pos, setPos] = useState<Position>({ x: 0, y: 0 });
-  const [_windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
+  const doneAnimating = useSetAtom($doneAnimating);
 
   useEffect(() => {
-    if (!elRef.current) return;
-    const el = elRef.current;
-    handleResize(
-      el,
-      (pos: Position) => setPos(pos),
-      (x, y) => setWindowSize({ width: x, height: y })
-    );
-    window.addEventListener("resize", () =>
-      handleResize(
-        el,
-        (pos: Position) => setPos(pos),
-        (x, y) => setWindowSize({ width: x, height: y })
-      )
-    );
-
-    const rect = elRef.current.getBoundingClientRect();
-    const x = rect.left;
-    const y = rect.top;
-
-    handlePos([x, y]);
-
-    return () => {
-      window.removeEventListener("resize", () => {
-        handleResize(
-          el,
-          (pos: Position) => setPos(pos),
-          (x, y) => setWindowSize({ width: x, height: y })
-        );
-      });
-    };
-  }, [elRef.current]);
-
-  function genTargetStyles(x: number, y: number) {
-    return {
-      left: `${x}%`,
-      top: `${y}%`,
-      transform: `translate(-${x + 20}%, -${y + 25}%)`,
-    };
-  }
+    setStyle(parseStyles(target));
+  }, []);
 
   function parseLocation(location: string) {
     let x, y;
 
     switch (location) {
       case "center":
-        x = 50;
-        y = 50;
+        x = -50;
+        y = -50;
         break;
       case "center_left":
-        x = 0;
-        y = 50;
+        x = -150;
+        y = -50;
         break;
       case "center_right":
-        x = 100;
-        y = 50;
-        break;
-      case "bottom_right":
-        x = 100;
-        y = 100;
-        break;
-      case "bottom_left":
-        x = 0;
-        y = 100;
+        x = 50;
+        y = -50;
         break;
       case "bottom":
-        x = 50;
+        x = -50;
         y = 100;
         break;
       case "top":
-        x = 50;
-        y = 0;
-        break;
-      case "top_left":
-        x = 0;
-        y = 10;
-        break;
-      case "top_right":
-        x = 100;
-        y = 10;
+        x = -50;
+        y = -150;
         break;
       default:
         x = 50;
         y = 50;
     }
-
-    return genTargetStyles(x, y);
+    return [x, y];
   }
 
-  const target = parseLocation(location);
+  function parseStyles(target: string) {
+    const pos = parseLocation(target);
+    return {
+      // transform: `translate(${pos[0]}%, ${pos[1]}%)`,
+      translate: `${pos[0]}% ${pos[1]}%`,
+    };
+  }
 
   return (
     <div
       ref={elRef}
       style={{
-        ...target,
-        width: "10ch",
-        height: "16ch",
+        ...style,
+        top: "50%",
+        left: "50%",
+        width: "6ch",
+        height: "10ch",
         borderRadius: "1rem",
         backgroundColor: "#ffb7c5",
         border: "5px solid #c8a2c8",
         color: "black",
         position: "absolute",
-        transition: "2s ease-in-out",
+        transition: "1s ease-in-out",
+        transformOrigin: "center",
       }}
-      hidden={!location}
-    >
-      pin is here
-    </div>
+      hidden={false}
+      onTransitionEnd={doneAnimating}
+    ></div>
   );
 }
 

@@ -38,9 +38,8 @@ function PlayCard({ game, card, cardRotation, player, pinPos, clickable }: CardP
   const [pos, setPos] = useState<Position>({ x: 0, y: 0 });
   const [_windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [cardStyles, setCardStyles] = useState<CardStyles>(defaultStyle);
-  const [target, setTarget] = useState<number[]>([]);
+  const [_, setTarget] = useState<number[]>([]);
   const [dealt, setDealt] = useState<boolean>(false);
-  const [action, setAction] = useState<string>("pass_left");
 
   const currPlayer = useAtomValue($runePlayer);
 
@@ -112,19 +111,6 @@ function PlayCard({ game, card, cardRotation, player, pinPos, clickable }: CardP
     ) : (
       <>{card.description}</>
     );
-
-  function parseAction(action: string) {
-    let animName = "";
-    switch (action) {
-      case "pass_left":
-        animName = s.passCardLeftAnim;
-        break;
-
-      default:
-        animName = "";
-    }
-    return animName;
-  }
 
   return (
     <div

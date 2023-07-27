@@ -34,6 +34,7 @@ export const $gameState = atom<GameState>((get) => {
       gamePhase: "Draw",
       direction: "right",
       cardSwapSetup: {},
+      animation: "",
     };
     return gameState;
   } else {

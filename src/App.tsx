@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Game from "./components/Game";
-import LocationPin from "./components/LocationPin.tsx";
 import Overlay from "./components/Overlay.tsx";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
+import AnimGen from "./components/AnimGen.tsx";
+import { $isAnimating, $playAnimation } from "./state/animations.ts";
 
 function App() {
   const [game, setGame] = useAtom($game);
 
-  const [pinPos, setPinPos] = useState<number[]>([]);
+  const [pinPos] = useState<number[]>([]);
 
-  const [movement, setMovement] = useState<string>("");
+  const playAnimation = useSetAtom($playAnimation);
+
+  const isAnimating = useAtomValue($isAnimating);
 
   useEffect(() => {
     Rune.initClient({
@@ -21,6 +24,10 @@ function App() {
           players: players,
           yourPlayerId: yourPlayerId ? yourPlayerId : "",
         });
+
+        if (!isAnimating) {
+          playAnimation(newGame.animation);
+        }
       },
     });
   }, []);
@@ -43,7 +50,7 @@ function App() {
           player={game.gameState.players[game.yourPlayerId]}
           pinPos={pinPos}
         />
-        <LocationPin location={movement} handlePos={(pos) => setPinPos(pos)} />
+        <AnimGen />
         {/* Conditionally render the overlay based on showOverlay state */}
         <Overlay
           Name={game.players[game.yourPlayerId].displayName}
@@ -84,7 +91,18 @@ function App() {
       </div>
     );
 
-  return <>{configureGameStateUI}</>;
+  return (
+    <>
+      {/* <button
+        onClick={() => {
+          playAnimation("allPassRight");
+        }}
+      >
+        CLICK Me
+      </button> */}
+      {configureGameStateUI}
+    </>
+  );
 }
 
 export default App;

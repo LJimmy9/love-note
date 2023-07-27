@@ -153,6 +153,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             </div>
           </div>
         )}
+
         {Object.keys(game.gameState.players).map(playerID => 
         {
           const p = game.gameState.players[playerID];
@@ -163,15 +164,16 @@ const Game = ({ player, pinPos }: GameProps) => {
                 <div className={`${ph.flexCenterPlayerHand}`}>
                   {player.playerHand.map((cardVal, idx) => {
                     return (
-                      <PlayCard
-                        key={`${cardVal}- ${idx}`}
-                        game={game.gameState}
-                        card={cardVal}
-                        player={player}
-                        pinPos={pinPos}
-                        cardRotation={cardRotationConfig[idx]}
-                        clickable={true}
-                      />
+                      <div key={`${cardVal}-${idx}`}>
+                        <PlayCard
+                          game={game.gameState}
+                          card={cardVal}
+                          player={player}
+                          pinPos={pinPos}
+                          cardRotation={cardRotationConfig[idx]}
+                          clickable={true}
+                        />
+                      </div>
                     );
                   })}
                 </div>
@@ -187,16 +189,17 @@ const Game = ({ player, pinPos }: GameProps) => {
                 <div className={`${ph.flexCenterPlayerHand}`}>
                   {p.playerHand.map((cardVal, idx) => {
                     return (
-                    <PlayCard
-                    key={`${cardVal}- ${idx}- ${p.playerIdentity.name}- ${game.yourPlayerId}`}
-                    game={game.gameState}
-                    card={cardVal}
-                    player={p}
-                    cardRotation={cardRotationConfig[idx]}
-                    pinPos={pinPos}
-                    clickable={false}/>
+                    <div key={`${cardVal}- ${idx}- ${p.playerIdentity.name}- ${game.yourPlayerId}`}>
+                      <PlayCard
+                      game={game.gameState}
+                      card={cardVal}
+                      player={p}
+                      cardRotation={cardRotationConfig[idx]}
+                      pinPos={pinPos}
+                      clickable={false}/>
+                    </div>
                     );
-                    })}
+                  })}
                   </div>
                 </div>
                 <p className={`${gf.otherplayerName}`}>{p.playerIdentity.name}</p>
@@ -204,6 +207,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             );
           }
         })}
+
         {/* Resolve Card
         {game.gameState.gamePhase == "Resolve" && (
           <div>

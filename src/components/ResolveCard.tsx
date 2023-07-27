@@ -31,7 +31,7 @@ function ResolveCard({ players }: ResolveCardProps) {
       gameState.discardedCards[gameState.discardedCards.length - 1];
 
     const uiMap: UiMapProps = {
-      2: <PassDirection players={players} />,
+      2: <PassDirection />,
       3: (
         <>
           <TradeSnacks players={players} />

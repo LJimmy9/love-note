@@ -12,7 +12,8 @@ interface DeckCardProps {
 function DeckCard({ card, currentTurn }: DeckCardProps) {
   const cardRef = useRef(null);
 
-  const [drawCard, setDrawCard] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setDrawCard] = useState<boolean>(false);
   const [clicked, setClicked] = useState<boolean>(false);
 
   const player = useAtomValue($runePlayer);
