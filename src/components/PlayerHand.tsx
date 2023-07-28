@@ -1,0 +1,100 @@
+import { Player, PlayerId } from "rune-games-sdk/multiplayer";
+import { Dispatch, SetStateAction } from "react";
+import { useAtomValue } from "jotai";
+import { $game } from "../state/game";
+import { GamePlayer } from "../logic";
+import { CardRotationConfig } from "./Game";
+import PlayCard from "./PlayCard";
+
+import ph from "./PlayerHand.module.css";
+import gi from "./GameInfo.module.css";
+
+interface PlayerHandProps {
+  idx: number;
+  currPlayer: Player;
+  player: GamePlayer;
+  playerId: PlayerId;
+  pinPos: number[];
+  cardRotationConfig: CardRotationConfig;
+  showPlayerInfo: boolean;
+  setShowPlayerInfo: Dispatch<SetStateAction<boolean>>;
+}
+
+export const PlayerHand = ({
+  idx,
+  currPlayer,
+  player,
+  playerId,
+  showPlayerInfo,
+  pinPos,
+  cardRotationConfig,
+  setShowPlayerInfo,
+}: PlayerHandProps) => {
+  const game = useAtomValue($game);
+  if (!game) return;
+
+  return (
+    <div
+      className={`${ph.playerHandContainer}`}
+      key={`gamestate-${idx}-${currPlayer.playerId}`}
+      style={{
+        zIndex: "10",
+      }}
+    >
+      <div
+        className={gi.playerInfoActionContainer}
+        onClick={() => setShowPlayerInfo(!showPlayerInfo)}
+      >
+        <img
+          src={game!.players[playerId]["avatarUrl"]}
+          style={{
+            width: "50px",
+          }}
+        />
+      </div>
+      {showPlayerInfo && (
+        <div className={gi.playerInfoContainer}>
+          <button onClick={() => setShowPlayerInfo(false)}>&times;</button>
+          <div className={gi.playerInfoContent}>
+            <p>
+              <span>Display Name:</span> {currPlayer.displayName}
+            </p>{" "}
+            <p>
+              <span>Role:</span>{" "}
+              {game.gameState.players[currPlayer.playerId].playerIdentity.role}
+            </p>
+            <p>
+              <span>Identity Name:</span>{" "}
+              {game.gameState.players[currPlayer.playerId].playerIdentity.name}
+            </p>
+            <p>
+              <span>Your mission:</span>{" "}
+              {
+                game.gameState.players[currPlayer.playerId].playerIdentity
+                  .description
+              }
+            </p>
+          </div>
+        </div>
+      )}
+      <div className={`${ph.flexCenterPlayerHand}`}>
+        {player.playerHand.map((cardVal, phdIdx) => {
+          return (
+            <div key={`${cardVal}-${phdIdx}`}>
+              <PlayCard
+                key={`${cardVal}-${phdIdx}-${currPlayer.playerId}`}
+                game={game.gameState}
+                card={cardVal}
+                player={player}
+                pinPos={pinPos}
+                cardRotation={cardRotationConfig[phdIdx]}
+                clickable={true}
+                currentPlayer={playerId === currPlayer.playerId}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
