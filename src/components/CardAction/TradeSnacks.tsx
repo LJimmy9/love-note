@@ -1,5 +1,5 @@
 import { PlayerId } from "rune-games-sdk/multiplayer";
-import { $runePlayer, AtomPlayer } from "../../state/game";
+import { AtomPlayer, $runePlayer } from "../../state/game";
 import { AtomPlayerObj } from "../ResolveCard";
 import ts from "./TradeSnacks.module.css";
 import { useState } from "react";

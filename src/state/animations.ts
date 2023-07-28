@@ -12,4 +12,5 @@ export const $isAnimating = atom<boolean>(false);
 export const $doneAnimating = atom(null, (_, set) => {
   set($isAnimating, false);
   Rune.actions.animationDone();
+  set($currAnimation, "");
 });

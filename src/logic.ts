@@ -294,6 +294,7 @@ Rune.initLogic({
 
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
 
+      game.animation = "playCenter";
       game.gamePhase = "Resolve";
 
       // only initiate side effect if the card triggers for everyone as soon as it's played
