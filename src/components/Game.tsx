@@ -35,8 +35,8 @@ const classMap: classMapConfig = {
   1: `${gf.otherplayerRightBottom}`,
   2: `${gf.otherplayerLeftMiddle}`,
   3: `${gf.otherplayerRightMiddle}`,
-   //5: `${gf.otherplayerLeftTop}`,
-  //6: `${gf.otherplayerRightTop}`
+   //4: `${gf.otherplayerLeftTop}`,
+  //5: `${gf.otherplayerRightTop}`
 }
 
 const Game = ({ player, pinPos }: GameProps) => {
