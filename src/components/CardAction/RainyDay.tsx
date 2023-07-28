@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { $game, $runePlayer, $gameState } from "../../state/game";
 import { useAtomValue } from "jotai";
 import ln from "./LoveNote.module.css";
@@ -13,7 +13,9 @@ const RainyDay = () => {
   return (
     <div className={ln.loveNoteActionContainer}>
       <div style={{ fontSize: "12px" }}>{`${
-        game?.yourPlayerId === player.playerId ? "You" : `${player.displayName}`
+        game?.yourPlayerId === player.playerId
+          ? "You"
+          : `${game?.players[gameState.currentTurn].displayName}`
       } drew Rainy Day!`}</div>
       <div
         className={`${ln.loveNoteContainer}`}

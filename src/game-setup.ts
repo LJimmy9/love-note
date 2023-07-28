@@ -33,8 +33,6 @@ export function setupDeck() {
     }
   }
 
-  // console.log("startingDeck", startingDeck);
-
   shuffleDeck(startingDeck);
 
   return startingDeck;
