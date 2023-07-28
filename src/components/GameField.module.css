@@ -8,8 +8,6 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-
-  /* border: 1px solid hotpink; */
 }
 
 .currentGameDetail {
@@ -17,8 +15,6 @@
   grid-template-columns: repeat(2, auto);
   gap: 5px;
   padding: 2vw;
-
-  /* border: 2px solid red; */
 }
 
 .turnContainer {
@@ -31,7 +27,6 @@
 .gameActionFieldContainer {
   position: relative;
   flex: 1;
-  /* border: 1px solid red; */
 }
 
 .gameActionField {
@@ -39,12 +34,8 @@
   position: relative;
 }
 
-/* deck */
 .deckContainer {
   position: relative;
-  /* top: 60%; */
-  /* left: 50%; */
-
   overflow: visible;
   border: 1px solid red;
   height: 100%;
@@ -62,48 +53,42 @@
   border-radius: 1rem;
 }
 
-.otherplayerLeftTop 
-{
+.otherplayerLeftTop {
   position: fixed;
   top: 16.5%;
   left: -11.3%;
-  transform: rotate(90deg);  
+  transform: rotate(90deg);
 }
 
-.otherplayerLeftMiddle 
-{
+.otherplayerLeftMiddle {
   position: fixed;
   bottom: 50%;
   left: -11.3%;
   transform: rotate(90deg);
 }
 
-.otherplayerLeftBottom 
-{
+.otherplayerLeftBottom {
   position: fixed;
   bottom: 25%;
   left: -11.3%;
   transform: rotate(90deg);
 }
 
-.otherplayerRightTop 
-{
+.otherplayerRightTop {
   position: fixed;
   top: 20.5%;
   right: -11.3%;
   transform: rotate(270deg);
 }
 
-.otherplayerRightMiddle 
-{
+.otherplayerRightMiddle {
   position: fixed;
   bottom: 54%;
   right: -11.3%;
   transform: rotate(270deg);
 }
 
-.otherplayerRightBottom 
-{
+.otherplayerRightBottom {
   position: fixed;
   bottom: 29%;
   right: -11.3%;

@@ -127,7 +127,10 @@ function PlayCard({
         rotate: `${isOpen ? "0deg" : dealt && cardRotation}`,
         // transform: `translate(-50px, -50px)`,
       }}
-      onAnimationEnd={() => setDealt(true)}
+      onAnimationEnd={() => {
+        setDealt(true);
+        Rune.actions.resolveProcessing();
+      }}
       onClick={() => {
         if (clickable) handleClick();
       }}

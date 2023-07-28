@@ -39,6 +39,10 @@
   position: relative;
 }
 
+.selected {
+  border: 5px solid yellow;
+}
+
 .cardNum {
   margin: 5px 0;
 }
