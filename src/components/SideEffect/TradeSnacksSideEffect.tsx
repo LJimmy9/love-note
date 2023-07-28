@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import { TradeSnacksProps } from "../CardAction/TradeSnacks";
 import { $gameState, $runePlayer } from "../../state/game";
 import ts from "../CardAction/TradeSnacks.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../../logic";
 
 function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
@@ -10,6 +10,24 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
   const gameState = useAtomValue($gameState);
   const [selected, setSelected] = useState<Card>();
   const [doneClicked, setDoneClicked] = useState<boolean>(false);
+  const [priorityCardNum, setPriorityCardNum] = useState<number>();
+  const [priorityError, setPriorityError] = useState<boolean>(false);
+
+  useEffect(() => {
+    const cardNums: number[] = gameState.players[
+      currPlayer.playerId
+    ].playerHand.map((card) => card.cardNum);
+
+    gameState.priority === "highest"
+      ? setPriorityCardNum(Math.max(...cardNums))
+      : setPriorityCardNum(Math.min(...cardNums));
+  }, [gameState]);
+
+  useEffect(() => {
+    return () => {
+      setPriorityError(false);
+    };
+  }, []);
 
   return (
     <>
@@ -18,13 +36,19 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
           {gameState.currentTurn !== currPlayer.playerId ? (
             <div>
               {players[gameState.currentTurn].displayName} is trading snacks
-              with you. Select your lowest card
+              with you. Select your {gameState.priority} card
             </div>
           ) : (
             <div>Select any card to trade.</div>
           )}
         </div>
       }
+      {priorityError && (
+        <div style={{ color: "red" }}>
+          This is not your {gameState.priority} card. Please select the{" "}
+          {gameState.priority} card in your hand.
+        </div>
+      )}
       <div>
         {gameState.players[currPlayer.playerId].playerHand.map((card) => {
           return (
@@ -35,6 +59,13 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
               }`}
               style={{ margin: "10px auto" }}
               onClick={() => {
+                if (
+                  gameState.currentTurn !== currPlayer.playerId &&
+                  card.cardNum !== priorityCardNum
+                ) {
+                  setPriorityError(true);
+                  return;
+                }
                 setSelected(card);
               }}
             >
