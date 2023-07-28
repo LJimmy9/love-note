@@ -11,12 +11,49 @@ function PlaceholderCard({ animConfig }: PlaceholderCardProps) {
   const animationDone = useSetAtom($doneAnimating);
 
   function parse(animConfig: AnimConfig) {
+    let start;
     switch (animConfig[0]) {
       case "bottom":
+        start = `${s.bottom} `;
         switch (animConfig[1]) {
           case "center":
-            return `${s.bottom} ${s.bottomToCenter}`;
-
+            return start + `${s.bottomToCenter}`;
+          case "left":
+            return start + `${s.bottomToLeft}`;
+          case "right":
+            return start + `${s.bottomToRight}`;
+          case "top":
+            return start + `${s.bottomToTop}`;
+          default:
+            return s.noAnim;
+        }
+      case "left":
+        start = `${s.left} `;
+        switch (animConfig[1]) {
+          case "top":
+            return start + `${s.leftToTop}`;
+          case "bottom":
+            return start + `${s.leftToBottom}`;
+          default:
+            return s.noAnim;
+        }
+      case "top":
+        start = `${s.top} `;
+        switch (animConfig[1]) {
+          case "right":
+            return start + `${s.topToRight}`;
+          case "left":
+            return start + `${s.topToLeft}`;
+          default:
+            return s.noAnim;
+        }
+      case "right":
+        start = `${s.right} `;
+        switch (animConfig[1]) {
+          case "bottom":
+            return start + `${s.rightToBottom}`;
+          case "top":
+            return start + `${s.rightToTop}`;
           default:
             return s.noAnim;
         }
@@ -25,44 +62,13 @@ function PlaceholderCard({ animConfig }: PlaceholderCardProps) {
     }
   }
 
-  function parseTarget(targetClass: string) {
-    switch (targetClass) {
-      case "center":
-        return s.centerToLeft;
-      default:
-        return s.noAnim;
-    }
-  }
-
-  function parseStart(startClass: string) {
-    switch (startClass) {
-      case "top":
-        return s.top;
-      case "left":
-        return s.left;
-      case "right":
-        return s.right;
-      case "bottom":
-        return s.bottom;
-      case "center":
-        return s.center;
-      default:
-        return s.noAnim;
-    }
-  }
-
   return (
     <div
       className={`${s.placeholderCard} ${parse(animConfig)} `}
-      // className={`${s.placeholderCard} ${parseStart(
-      //   animConfig[0]
-      // )} ${parseTarget(animConfig[1])}`}
       onAnimationEnd={() => {
         animationDone();
       }}
-    >
-      YOU ARE HERE{" "}
-    </div>
+    ></div>
   );
 }
 

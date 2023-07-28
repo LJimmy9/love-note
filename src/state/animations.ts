@@ -1,16 +1,23 @@
 import { atom } from "jotai";
 
 export const $currAnimation = atom<string>("");
+export const $isAnimating = atom<boolean>(false);
 
-export const $playAnimation = atom(null, (_get, set, value: string) => {
-  set($isAnimating, true);
+export const $toggleAnimating = atom(null, (_, set, value: boolean) => {
+  set($isAnimating, value);
+});
+
+export const $playAnimation = atom(null, (get, set, value: string) => {
+  const currAnim = get($currAnimation);
+  if (currAnim == value) {
+    return;
+  }
+  set($toggleAnimating, true);
   set($currAnimation, value);
 });
 
-export const $isAnimating = atom<boolean>(false);
-
-export const $doneAnimating = atom(null, (_, set) => {
-  set($isAnimating, false);
+export const $doneAnimating = atom(null, (_get, set) => {
+  set($toggleAnimating, false);
   Rune.actions.animationDone();
   set($currAnimation, "");
 });

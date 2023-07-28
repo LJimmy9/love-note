@@ -1,6 +1,5 @@
 import { useAtomValue } from "jotai";
-import { $currAnimation, $isAnimating } from "../../state/animations";
-import LocationPin from "./LocationPin";
+import { $currAnimation } from "../../state/animations";
 import { $runePlayer } from "../../state/game";
 import PlaceholderCard, { AnimConfig } from "./PlaceholderCard";
 
@@ -9,56 +8,37 @@ interface Animations {
 }
 
 function AnimGen() {
-  const isAnimating = useAtomValue($isAnimating);
   const currAnimation = useAtomValue($currAnimation);
 
   const rP = useAtomValue($runePlayer);
 
   const anims: Animations = {
     allPassRight: [
-      ["bottom", "center"],
-      ["center", "top"],
-      ["top", "center"],
-      ["center", "bottom"],
+      ["bottom", "right"],
+      ["right", "top"],
+      ["top", "left"],
+      ["left", "bottom"],
     ],
     allPassLeft: [
-      ["bottom", "center"],
-      ["center", "top"],
-      ["top", "center"],
-      ["center", "bottom"],
+      ["bottom", "left"],
+      ["left", "top"],
+      ["top", "right"],
+      ["right", "bottom"],
     ],
-    passLeft: [["bottom", "center"]],
-    passRight: [["bottom", "center"]],
+    playerPassLeft: [["bottom", "left"]],
+    playerPassRight: [["bottom", "right"]],
+    playerPassTop: [["bottom", "top"]],
     playCenter: [["bottom", "center"]],
   };
 
   // return (
-  //   <PlaceholderCard
-  //     key={`${rP.playerId}-`}
-  //     animConfig={["bottom", "center"]}
-  //   />
+  //   <PlaceholderCard key={`${rP.playerId}-`} animConfig={["left", "bottom"]} />
   // );
   return currAnimation != ""
     ? anims[currAnimation].map((an, idx) => {
-        return (
-          <PlaceholderCard
-            key={`${rP.playerId}-${an[0]}-${idx}`}
-            animConfig={an}
-          />
-        );
+        return <PlaceholderCard key={`${idx}`} animConfig={an} />;
       })
     : null;
-  // return anims[currAnimation] && isAnimating
-  //   ? anims[currAnimation].map((an, idx) => {
-  //       return (
-  //         <LocationPin
-  //           key={`${idx}-${rP.playerId}-${rP.displayName}-${an[0]}`}
-  //           start={an[0]}
-  //           target={an[1]}
-  //         />
-  //       );
-  //     })
-  //   : null;
 }
 
 export default AnimGen;

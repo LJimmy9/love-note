@@ -7,8 +7,14 @@
   border: 5px solid #c8a2c8;
   color: black;
   position: absolute;
-  transition: 1s ease-in-out;
+  /* transition: 1s ease-in-out; */
   transform-origin: center;
+
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+
+  z-index: 1000;
 }
 
 .top {
@@ -50,26 +56,20 @@
 
 .centerToLeft {
   animation-name: cTL;
-  animation-duration: 1s;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in-out;
 }
 
 @keyframes cTL {
   0% {
-    rotate: z 90deg;
+    /* rotate: z 90deg; */
   }
   100% {
     translate: -80% 0;
-    rotate: z 90deg;
+    /* rotate: z 90deg; */
   }
 }
 
 .bottomToCenter {
   animation-name: bTC;
-  animation-duration: 1s;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in-out;
 }
 
 @keyframes bTC {
@@ -77,5 +77,112 @@
   }
   100% {
     translate: 0 -250%;
+  }
+}
+
+.bottomToLeft {
+  animation-name: bTL;
+}
+
+@keyframes bTL {
+  0% {
+  }
+  100% {
+    translate: -150% -150%;
+  }
+}
+
+.bottomToRight {
+  animation-name: bTR;
+}
+
+@keyframes bTR {
+  0% {
+  }
+  100% {
+    translate: 150% -150%;
+  }
+}
+
+.bottomToTop {
+  animation-name: bTT;
+}
+
+@keyframes bTT {
+  0% {
+  }
+  100% {
+    translate: 0% -350%;
+  }
+}
+
+.leftToTop {
+  animation-name: lTT;
+}
+
+@keyframes lTT {
+  0% {
+  }
+  100% {
+    translate: 150% -150%;
+  }
+}
+
+.topToRight {
+  animation-name: tTR;
+}
+
+@keyframes tTR {
+  0% {
+  }
+  100% {
+    translate: 150% 150%;
+  }
+}
+
+.rightToBottom {
+  animation-name: rTB;
+}
+
+@keyframes rTB {
+  0% {
+  }
+  100% {
+    translate: -150% 150%;
+  }
+}
+
+.rightToTop {
+  animation-name: rTT;
+}
+
+@keyframes rTT {
+  0% {
+  }
+  100% {
+    translate: -150% -150%;
+  }
+}
+
+.topToLeft {
+  animation-name: tTL;
+}
+
+@keyframes tTL {
+  0% {
+  }
+  100% {
+    translate: -150% 150%;
+  }
+}
+.leftToBottom {
+  animation-name: lTB;
+}
+
+@keyframes lTB {
+  0% {
+  }
+  100% {
+    translate: 150% 150%;
   }
 }
