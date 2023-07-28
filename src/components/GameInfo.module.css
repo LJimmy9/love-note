@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
 .infoCard {
@@ -104,4 +105,71 @@
 
 .infoIDName {
   font-size: 14px;
+}
+
+/* player information */
+
+.playerInfoActionContainer {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  color: white;
+  background-color: #658bdd;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerInfoContainer {
+  position: fixed;
+
+  padding: 2vh 5vw;
+  color: black;
+  background-color: azure;
+  border: 1px solid black;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.playerInfoContent {
+  text-align: left;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.activePlayerInfoContainer {
+  position: absolute;
+  top: 30%;
+  z-index: 10;
+
+  left: 50%;
+  transform: translate(-50%);
+  border: 1px solid black;
+  background-color: azure;
+
+  padding: 2vh 5vw;
+}
+
+.exitButton {
+  text-align: right;
+}
+
+.activePlayerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.nonActivePlayerInfo {
+  display: none;
 }

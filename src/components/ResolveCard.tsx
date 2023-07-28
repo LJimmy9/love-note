@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import rc from "./ResolveCard.module.css";
 import NosyGlance from "./CardAction/NosyGlance";
 import RainyDay from "./CardAction/RainyDay";
@@ -9,6 +9,7 @@ import TradeSnacks from "./CardAction/TradeSnacks";
 import { useAtomValue } from "jotai";
 import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
 import PassDirection from "./CardAction/PassDirection";
+import OppositeDay from "./CardAction/OppositeDay";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -48,11 +49,6 @@ function ResolveCard({ players }: ResolveCardProps) {
           />
         </div>
       ),
-      7: (
-        <div className={rc.resolveGameActionField}>
-          <RainyDay />
-        </div>
-      ),
     };
 
     return uiMap[cardPlayed.cardNum as number];
@@ -65,6 +61,12 @@ function ResolveCard({ players }: ResolveCardProps) {
     const uiMap: UiMapProps = {
       2: <PassDirection />,
       3: <TradeSnacksSideEffect players={players} />,
+      7: <OppositeDay />,
+      8: (
+        <div className={rc.resolveGameActionField}>
+          <RainyDay />
+        </div>
+      ),
     };
 
     return uiMap[playerSideEffect.cardNum as number];
@@ -73,7 +75,12 @@ function ResolveCard({ players }: ResolveCardProps) {
   const cardAction = getCardAction();
   const sideEffect = getSideEffect();
   return (
-    <div className={rc.resolveActionFieldContainer}>
+    <div
+      className={`${
+        gameState.discardedCards[gameState.discardedCards.length - 1]
+          .cardNum !== 7 && rc.resolveActionFieldContainer
+      }`}
+    >
       {gameState.currentTurn === currPlayer.playerId && !sideEffect && (
         <div className={rc.resolveActionField}>{cardAction}</div>
       )}

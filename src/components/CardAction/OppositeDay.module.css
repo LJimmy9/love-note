@@ -1,0 +1,41 @@
+.oppositeContainer {
+  position: absolute;
+  top: 20vh;
+  left: 25vw;
+  width: 50vw;
+  height: min-content;
+  border: 5px solid rgb(6, 162, 6);
+  background-color: rgb(190, 238, 190);
+
+  z-index: 10;
+  padding: 2vh 2vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 15px;
+
+  transform: scale(0);
+}
+
+.oppositeContainer {
+  animation-name: openContent;
+  animation-duration: 5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes openContent {
+  0% {
+    transform: scale(0);
+  }
+
+  25% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

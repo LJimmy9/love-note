@@ -74,6 +74,7 @@ export interface GameState {
   discardedCards: Array<Card>;
   gamePhase: Phase;
   direction: string;
+  priority: string;
   cardSwapSetup: CardSwapSetupProps;
   animation: string;
   rainyDayIsPlay: boolean;
@@ -145,17 +146,35 @@ function handleCard(
     case 6:
       break;
     case 7:
+      game.priority = game.priority === "highest" ? "lowest" : "highest";
+      game.direction = game.direction === "right" ? "left" : "right";
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 7;
+      }
       break;
     case 8:
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 8;
+      }
       break;
   }
 }
 
 function initiateSideEffect(playCard: Card, game: GameState) {
   switch (playCard.cardNum) {
-    case 2: {
+    case 2:
       handleCard(playCard.cardNum, Object.keys(game.players), game);
-    }
+      break;
+    case 7:
+      handleCard(playCard.cardNum, Object.keys(game.players), game);
+      break;
+    case 8:
+      handleCard(playCard.cardNum, Object.keys(game.players), game);
+      break;
   }
 }
 
@@ -180,14 +199,15 @@ Rune.initLogic({
       identityCards: identityCards,
       discardedCards: [],
       currentTurn: allPlayerIds[0],
-      loveNotes: [],
-      // loveNotes: [
-      //   { id: 0, text: "💕" },
-      //   { id: 1, text: "💝" },
-      // ],
+      // loveNotes: [],
+      loveNotes: [
+        { id: 0, text: "💕" },
+        { id: 1, text: "💝" },
+      ],
       turnNum: 0,
       gamePhase: "Draw",
-      direction: "right",
+      direction: "left",
+      priority: "lowest",
       cardSwapSetup: {},
       animation: "",
       rainyDayIsPlay: false,
