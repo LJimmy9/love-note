@@ -2,7 +2,7 @@ import { PlayerId } from "rune-games-sdk/multiplayer";
 import { GameState } from "../logic";
 import { updateCurrentTurn } from "../game-setup";
 
-export function resolve3(game: GameState) {
+function getPlayersWithActiveSideEffect(game: GameState) {
   const playerIds = Object.keys(game.players);
   const playersWithActiveSideEffect: Array<PlayerId> = playerIds
     .filter((playerId) => {
@@ -11,6 +11,13 @@ export function resolve3(game: GameState) {
     })
     .map((playerId) => playerId);
 
+  return playersWithActiveSideEffect;
+}
+
+export function resolve(game: GameState) {
+  const playersWithActiveSideEffect = getPlayersWithActiveSideEffect(game);
+
+  // if not everyone involved has selected a card, return
   if (
     Object.keys(game.cardSwapSetup).length !==
     playersWithActiveSideEffect.length
@@ -34,7 +41,30 @@ export function resolve3(game: GameState) {
     game.players[playerId].sideEffect.selectedCard = null;
   }
 
-  game.animation = "passLeft";
-
   updateCurrentTurn(game);
+}
+
+function getPlayerToReceiveFrom(
+  game: GameState,
+  playerId: PlayerId,
+  direction: string
+) {
+  const totalPlayers = 3;
+  const allPlayerIds = Object.keys(game.players);
+  const currPlayerIdx = allPlayerIds.indexOf(playerId);
+  let playerIdxToReceiveFrom =
+    direction === "left" ? currPlayerIdx + 1 : currPlayerIdx - 1;
+
+  if (playerIdxToReceiveFrom > totalPlayers) {
+    playerIdxToReceiveFrom = 0;
+  } else if (playerIdxToReceiveFrom < 0) {
+    playerIdxToReceiveFrom = 3;
+  }
+
+  return Object.keys(game.players)[playerIdxToReceiveFrom];
+}
+
+export function setReceiveFrom(game: GameState, playerId: PlayerId) {
+  const receiveFromPlayerId = getPlayerToReceiveFrom(game, playerId, "left");
+  game.players[playerId].sideEffect.receiveFrom = receiveFromPlayerId;
 }

@@ -194,7 +194,9 @@ const Game = ({ player, pinPos }: GameProps) => {
                     })}
                   </div>
                 </div>
-                <p className={`${gf.otherplayerName}`}></p>
+                <p className={`${gf.otherplayerName}`}>
+                  {game.players[playerID].displayName}
+                </p>
               </div>
             );
           }

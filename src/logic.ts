@@ -7,7 +7,7 @@ import {
   createPlayer,
   handleRainyDay,
 } from "./game-setup";
-import { resolve3 } from "./components/resolve-side-effects";
+import { resolve, setReceiveFrom } from "./components/resolve-side-effects";
 
 export interface Card {
   id: string;
@@ -110,6 +110,16 @@ function handleCard(
     case 1:
       break;
     case 2:
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 2;
+      }
+
+      for (let i = 0; i < playersInvolved.length; i++) {
+        setReceiveFrom(game, playersInvolved[i]);
+      }
+
       break;
     case 3:
       for (let i = 0; i < playersInvolved.length; i++) {
@@ -133,6 +143,14 @@ function handleCard(
       break;
     case 8:
       break;
+  }
+}
+
+function initiateSideEffect(playCard: Card, game: GameState) {
+  switch (playCard.cardNum) {
+    case 2: {
+      handleCard(playCard.cardNum, Object.keys(game.players), game);
+    }
   }
 }
 
@@ -269,16 +287,23 @@ Rune.initLogic({
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
 
       game.gamePhase = "Resolve";
+
+      // only initiate side effect if the card triggers for everyone as soon as it's played
+      initiateSideEffect(playCard, game);
     },
     handleCard: ({ cardNum, playersInvolved }, { game }) => {
       handleCard(cardNum, playersInvolved, game);
     },
     selectCard: ({ cardNumInPlay, selectedCard }, { game, playerId }) => {
       switch (cardNumInPlay) {
+        case 2:
+          game.cardSwapSetup[playerId] = selectedCard;
+          resolve(game);
+          break;
         case 3:
           game.cardSwapSetup[playerId] = selectedCard;
           // will resolve side effect and move onto next turn if possible
-          resolve3(game);
+          resolve(game);
           break;
         default:
           break;
