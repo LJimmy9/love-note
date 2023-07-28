@@ -25,6 +25,13 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
       deckCard: card,
       playerIdToUpdate: player.playerId,
     });
+
+    if (card.autoPlay) {
+      Rune.actions.playCard({
+        playCard: card,
+        playerIdToUpdate: player.playerId,
+      });
+    }
   };
 
   return (

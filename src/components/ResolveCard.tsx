@@ -1,6 +1,7 @@
 import { ReactElement, useState } from "react";
 import rc from "./ResolveCard.module.css";
 import NosyGlance from "./CardAction/NosyGlance";
+import RainyDay from "./CardAction/RainyDay";
 // import ng from "../components/CardAction/NosyGlance.module.css";
 import { Card } from "../logic";
 import { $gameState, $runePlayer, AtomPlayer } from "../state/game";
@@ -46,6 +47,11 @@ function ResolveCard({ players }: ResolveCardProps) {
             glancePlayer={glancePlayer}
             setGlancePlayer={setGlancePlayer}
           />
+        </div>
+      ),
+      7: (
+        <div className={rc.resolveGameActionField}>
+          <RainyDay />
         </div>
       ),
     };

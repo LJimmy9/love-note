@@ -19,7 +19,9 @@ export function setupIdentityCards() {
 
 export function setupDeck() {
   let cardCounter = 0;
-  const staticDeck = [...cards] as Array<Card>;
+  const removeRainyDay = cards.filter((card) => card.name !== "Rainy Day");
+  const staticDeck = [...removeRainyDay] as Array<Card>;
+  // const staticDeck = [...cards] as Array<Card>;
   const startingDeck: Array<Card> = [];
 
   for (const card of staticDeck) {
@@ -43,6 +45,14 @@ function shuffleDeck(deck: Array<Card>) {
   }
 }
 
+export function handleRainyDay(game: GameState) {
+  if (game.loveNotes.length > 0 && !game.rainyDayIsPlay) {
+    const rainyDay = cards.filter((card) => card.name === "Rainy Day");
+    game.deck.push(...rainyDay);
+    shuffleDeck(game.deck);
+  }
+}
+
 export function updateCurrentTurn(game: GameState) {
   const allPlayers = Object.keys(game.players);
   const currTurnIdx = allPlayers.indexOf(game.currentTurn);
@@ -57,9 +67,11 @@ export function updateCurrentTurn(game: GameState) {
 }
 
 export function getReshuffledDeck(game: GameState) {
-  const shuffledDeck = [...game.discardedCards];
-  shuffleDeck(shuffledDeck);
+  const shuffledDeck = game.discardedCards.filter(
+    (card) => card.name !== "Rainy Day"
+  );
 
+  shuffleDeck(shuffledDeck);
   return shuffledDeck;
 }
 

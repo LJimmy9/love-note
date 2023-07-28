@@ -5,6 +5,7 @@ import {
   updateCurrentTurn,
   getReshuffledDeck,
   createPlayer,
+  handleRainyDay,
 } from "./game-setup";
 import { resolve3 } from "./components/resolve-side-effects";
 
@@ -17,6 +18,7 @@ export interface Card {
   restrictionToRole: string;
   count: number;
   canPlay: boolean;
+  autoPlay: boolean;
 }
 
 export interface IdentityCard {
@@ -70,6 +72,7 @@ export interface GameState {
   direction: string;
   cardSwapSetup: CardSwapSetupProps;
   animation: string;
+  rainyDayIsPlay: boolean;
 }
 
 type GameActions = {
@@ -155,11 +158,16 @@ Rune.initLogic({
       discardedCards: [],
       currentTurn: allPlayerIds[0],
       loveNotes: [],
+      // loveNotes: [
+      //   { id: 0, text: "💕" },
+      //   { id: 1, text: "💝" },
+      // ],
       turnNum: 0,
       gamePhase: "Draw",
       direction: "right",
       cardSwapSetup: {},
       animation: "",
+      rainyDayIsPlay: false,
     };
   },
   update: ({ game }) => {
@@ -238,6 +246,18 @@ Rune.initLogic({
         throw Rune.invalidAction();
       }
 
+      handleRainyDay(game);
+
+      // Reshuffle discard pile into the deck if deck has been exhausted
+      if (game.deck.length <= 0) {
+        game.deck = getReshuffledDeck(game);
+        game.discardedCards = [];
+      }
+
+      if (playCard.name === "Rainy Day") {
+        game.rainyDayIsPlay = true;
+      }
+
       game.discardedCards.push(playCard);
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
@@ -247,11 +267,6 @@ Rune.initLogic({
       }
 
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
-      // Reshuffle discard pile into the deck if deck has been exhausted
-      if (game.deck.length <= 0) {
-        game.deck = getReshuffledDeck(game);
-        game.discardedCards = [];
-      }
 
       game.gamePhase = "Resolve";
     },

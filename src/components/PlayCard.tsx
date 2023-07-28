@@ -29,7 +29,14 @@ interface CardStyles {
   [key: string]: string;
 }
 
-function PlayCard({ game, card, cardRotation, player, pinPos, clickable }: CardProps) {
+function PlayCard({
+  game,
+  card,
+  cardRotation,
+  player,
+  pinPos,
+  clickable,
+}: CardProps) {
   const defaultStyle = {
     position: "relative",
     rotation: cardRotation,
@@ -92,8 +99,7 @@ function PlayCard({ game, card, cardRotation, player, pinPos, clickable }: CardP
     };
   }, [cardRef.current]);
 
-  function handleClick() 
-  {
+  function handleClick() {
     setIsOpen(!isOpen);
 
     if (isOpen) {
@@ -122,39 +128,40 @@ function PlayCard({ game, card, cardRotation, player, pinPos, clickable }: CardP
         // transform: `translate(-50px, -50px)`,
       }}
       onAnimationEnd={() => setDealt(true)}
-      onClick={() => { if (clickable) handleClick() }}
+      onClick={() => {
+        if (clickable) handleClick();
+      }}
       ref={cardRef}
     >
       <div className={`${s.playerCardFront}`}>
         <div
           className={`${s.playerCard}`}
           style={{
-            width: `${isOpen ? "25ch" : "8ch"}`,
-            height: `${isOpen ? "30ch" : "16ch"}`,
-            transform: `translate(${isOpen ? "-20%" : "0"}, ${
+            width: `${isOpen ? "28ch" : "8ch"}`,
+            height: `${isOpen ? "38ch" : "16ch"}`,
+            transform: `translate(${isOpen ? "-25%" : "0"}, ${
               isOpen ? "-130" : "0"
             }%)`,
           }}
         >
-          
           {/* Header for the card has number and card name */}
           {clickable && (
-          <div className={s.cardHeader}>
-            <div className={s.cardNum}>{card.cardNum}</div>
-            {card.canPlay && isOpen && (
-              <div
-                className={s.playCardBtn}
-                onClick={() => {
-                  Rune.actions.playCard({
-                    playCard: card,
-                    playerIdToUpdate: currPlayer.playerId,
-                  });
-                }}
-              >
-                ▶️
-              </div>
-            )}
-          </div>
+            <div className={s.cardHeader}>
+              <div className={s.cardNum}>{card.cardNum}</div>
+              {card.canPlay && isOpen && (
+                <div
+                  className={s.playCardBtn}
+                  onClick={() => {
+                    Rune.actions.playCard({
+                      playCard: card,
+                      playerIdToUpdate: currPlayer.playerId,
+                    });
+                  }}
+                >
+                  ▶️
+                </div>
+              )}
+            </div>
           )}
 
           {/* Body image */}

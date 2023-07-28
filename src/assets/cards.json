@@ -7,7 +7,8 @@
     "description": "A love note that gets passed around, lovers must write at least x amount of notes in the Love Note to win the game. If a Lover is holding this card, they can treat this card as any number.",
     "restrictionToRole": "Lover",
     "canPlay": false,
-    "count": 1
+    "count": 1,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -17,7 +18,8 @@
     "description": "Tattle on a lover for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and the Tattle Tales win the game. If a Tattle Tale is holding this card, they can treat this card as any number.",
     "restrictionToRole": "Tattle Tale",
     "canPlay": true,
-    "count": 1
+    "count": 1,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -27,7 +29,8 @@
     "description": "Every student must pass their lowest or highest card (depending on the priority) to the direction displayed. If 'Opposite Day' card has been played, the direction and priority are changed to its opposite.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4
+    "count": 4,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -37,7 +40,8 @@
     "description": "Pick a student to give you their lowest or highest card (depending on the priority), you may give them any card in your hand in exchange.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4
+    "count": 4,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -47,7 +51,8 @@
     "description": "A good day to be nosy, pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4
+    "count": 4,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -57,7 +62,8 @@
     "description": "You tamper with the love note; Lovers can add a note to the love note without holding the love note, Tattle Tales can remove a note without holding the love note.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 1
+    "count": 1,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -67,7 +73,8 @@
     "description": "It's opposite day! Once this card is played, the direction and priority of the Pass Direction card is now opposite.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 2
+    "count": 2,
+    "autoPlay": false
   },
   {
     "id": "",
@@ -77,7 +84,8 @@
     "description": "It's raining cats and dogs! A note got smeared off from the rain. If this card is drawn, it must be played.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 1
+    "count": 1,
+    "autoPlay": true
   },
   {
     "id": "",
@@ -87,6 +95,7 @@
     "description": "Cupid has come from above! Everyone must select the lowest or highest card (depending on the priority) in their hand and place it in the middle. Lovers can swap a card in their hand for any student's card. The lovers cannot see the card they choose.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 1
+    "count": 1,
+    "autoPlay": false
   }
 ]
