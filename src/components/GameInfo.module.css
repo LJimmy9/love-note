@@ -115,8 +115,8 @@
 
 .playerInfoActionContainer {
   position: absolute;
-  top: 5%;
-  right: 2%;
+  top: 35%;
+  right: 15%;
   color: white;
   background-color: #658bdd;
   width: 15px;
@@ -126,6 +126,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.playerInfoContainer > button {
+  position: absolute;
+  right: 1%;
+  width: 7%;
+  height: 15%;
+  text-align: center;
+  display: inline-flex;
+}
+
+.playerInfoContent > p > span {
+  font-size: 10px;
 }
 
 .playerInfoContainer {
