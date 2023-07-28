@@ -12,35 +12,13 @@
   },
   {
     "id": "",
-    "name": "Tattle",
-    "image": "📣",
-    "cardNum": 1,
-    "description": "Tattle on a lover for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and the Tattle Tales win the game. If a Tattle Tale is holding this card, they can treat this card as any number.",
-    "restrictionToRole": "Tattle Tale",
-    "canPlay": true,
-    "count": 1,
-    "autoPlay": false
-  },
-  {
-    "id": "",
-    "name": "Pass Direction",
-    "image": "🔛",
-    "cardNum": 2,
-    "description": "Every student must pass their lowest or highest card (depending on the priority) to the direction displayed. If 'Opposite Day' card has been played, the direction and priority are changed to its opposite.",
-    "restrictionToRole": "",
-    "canPlay": true,
-    "count": 4,
-    "autoPlay": false
-  },
-  {
-    "id": "",
     "name": "Trade Snacks",
     "image": "🍪",
     "cardNum": 3,
     "description": "Pick a student to give you their lowest or highest card (depending on the priority), you may give them any card in your hand in exchange.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4,
+    "count": 5,
     "autoPlay": false
   },
   {
@@ -51,29 +29,7 @@
     "description": "A good day to be nosy, pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4,
-    "autoPlay": false
-  },
-  {
-    "id": "",
-    "name": "Meddle",
-    "image": "🖋️",
-    "cardNum": 5,
-    "description": "You tamper with the love note; Lovers can add a note to the love note without holding the love note, Tattle Tales can remove a note without holding the love note.",
-    "restrictionToRole": "",
-    "canPlay": true,
-    "count": 1,
-    "autoPlay": false
-  },
-  {
-    "id": "",
-    "name": "Opposite Day",
-    "image": "♻️",
-    "cardNum": 6,
-    "description": "It's opposite day! Once this card is played, the direction and priority of the Pass Direction card is now opposite.",
-    "restrictionToRole": "",
-    "canPlay": true,
-    "count": 2,
+    "count": 5,
     "autoPlay": false
   },
   {
@@ -84,7 +40,8 @@
     "description": "It's raining cats and dogs! A note got smeared off from the rain. If this card is drawn, it must be played.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 1
+    "count": 1,
+    "autoPlay": true
   },
   {
     "id": "",

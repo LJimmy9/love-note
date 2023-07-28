@@ -16,14 +16,6 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
   const [endTurn, setEndTurn] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("player", player);
-  }, [player]);
-
-  useEffect(() => {
-    console.log("game", game);
-  }, [game]);
-
-  useEffect(() => {
     if (endTurn) Rune.actions.updateCurrentTurn();
   }, [endTurn]);
 
@@ -82,8 +74,6 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
       )}
     </div>
   );
-
-  //   return <div>RainyDay</div>;
 };
 
 export default RainyDay;

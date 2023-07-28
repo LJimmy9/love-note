@@ -47,6 +47,14 @@ function shuffleDeck(deck: Array<Card>) {
   }
 }
 
+export function handleRainyDay(game: GameState) {
+  if (game.loveNotes.length > 0 && !game.rainyDayIsPlay) {
+    const rainyDay = cards.filter((card) => card.name === "Rainy Day");
+    game.deck.push(...rainyDay);
+    shuffleDeck(game.deck);
+  }
+}
+
 export function updateCurrentTurn(game: GameState) {
   const allPlayers = Object.keys(game.players);
   const currTurnIdx = allPlayers.indexOf(game.currentTurn);
@@ -61,26 +69,11 @@ export function updateCurrentTurn(game: GameState) {
 }
 
 export function getReshuffledDeck(game: GameState) {
-  // const rainyDayCard = "Rainy Day";
-  // const rainyDay = cards.filter((card) => card.name === rainyDayCard);
-  // // this is a comment: game.discardedCards: [{ canPlay: true, cardNum: 7, cardName: rainyDayCard  }]
-
-  let shuffledDeck = [...game.discardedCards];
-
-  // if (
-  //   game.loveNotes.length > 0 &&
-  //   !game.specialDiscardedCards.some((card) => card.name === rainyDayCard)
-  // ) {
-  //   shuffledDeck = [...game.discardedCards, ...rainyDay];
-  // } else if (game.discardedCards.some((card) => card.name === rainyDayCard)) {
-  //   shuffledDeck = [
-  //     ...game.discardedCards.filter((card) => card.name !== rainyDayCard),
-  //   ];
-  //   game.specialDiscardedCards.push(...rainyDay);
-  // }
+  const shuffledDeck = game.discardedCards.filter(
+    (card) => card.name !== "Rainy Day"
+  );
 
   shuffleDeck(shuffledDeck);
-
   return shuffledDeck;
 }
 
