@@ -4,13 +4,14 @@ import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
 import gf from "./GameField.module.css";
 import DiscardCard from "./DiscardCard";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 import { $game, $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
 import ResolveCard from "./ResolveCard";
 import gi from "./GameInfo.module.css";
 import AnimGen from "./Animations/AnimGen";
+import bgm from "../assets/bgm.mp3";
 
 interface GameProps {
   player: GamePlayer;
@@ -42,12 +43,29 @@ const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
+  const bgmRef = useRef<any>();
+  const [music, setMusic] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!bgmRef.current) return;
+    bgmRef.current.volume = 0.5;
+    bgmRef.current.onended = () => {
+      bgmRef.current.remove();
+    };
+  }, [bgmRef.current]);
+
+  useEffect(() => {
+    if (music && game) {
+      bgmRef.current.play();
+    }
+  }, [music, game]);
 
   return (
     <>
       <AnimGen />
       {game && (
         <div className={gf.gameContainer}>
+          <audio ref={bgmRef} src={bgm} loop />
           <div className={gf.currentGameDetail}>
             <div className={gf.turnContainer}>
               <p className={gf.gameTurn}>
