@@ -50,11 +50,6 @@ function App() {
           player={game.gameState.players[game.yourPlayerId]}
           pinPos={pinPos}
         />
-        {/* Conditionally render the overlay based on showOverlay state */}
-        {/* <Overlay
-          Name={game.players[game.yourPlayerId].displayName}
-          Avatar={game.players[game.yourPlayerId].avatarUrl}
-        /> */}
       </div>
     ) : (
       <div>

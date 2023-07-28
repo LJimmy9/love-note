@@ -88,7 +88,6 @@ type GameActions = {
   animateLeft: () => void;
   updateLoveNote: (params: { action: string; prompt: string }) => void;
   updateCurrentTurn: () => void;
-  updateDirectionPriority: () => void;
   // actions
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerIdToUpdate: string }) => void;
@@ -147,17 +146,35 @@ function handleCard(
     case 6:
       break;
     case 7:
+      game.priority = game.priority === "highest" ? "lowest" : "highest";
+      game.direction = game.direction === "right" ? "left" : "right";
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 7;
+      }
       break;
     case 8:
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 8;
+      }
       break;
   }
 }
 
 function initiateSideEffect(playCard: Card, game: GameState) {
   switch (playCard.cardNum) {
-    case 2: {
+    case 2:
       handleCard(playCard.cardNum, Object.keys(game.players), game);
-    }
+      break;
+    case 7:
+      handleCard(playCard.cardNum, Object.keys(game.players), game);
+      break;
+    case 8:
+      handleCard(playCard.cardNum, Object.keys(game.players), game);
+      break;
   }
 }
 
@@ -182,15 +199,15 @@ Rune.initLogic({
       identityCards: identityCards,
       discardedCards: [],
       currentTurn: allPlayerIds[0],
-      loveNotes: [],
-      // loveNotes: [
-      //   { id: 0, text: "💕" },
-      //   { id: 1, text: "💝" },
-      // ],
+      // loveNotes: [],
+      loveNotes: [
+        { id: 0, text: "💕" },
+        { id: 1, text: "💝" },
+      ],
       turnNum: 0,
       gamePhase: "Draw",
-      direction: "right",
-      priority: "highest",
+      direction: "left",
+      priority: "lowest",
       cardSwapSetup: {},
       animation: "",
       rainyDayIsPlay: false,
@@ -240,11 +257,6 @@ Rune.initLogic({
           break;
       }
     },
-    updateDirectionPriority: (_, { game }) => {
-      game.priority = game.priority === "highest" ? "lowest" : "highest";
-      game.direction = game.direction === "right" ? "left" : "right";
-    },
-
     updateCurrentTurn: (_, { game }) => {
       updateCurrentTurn(game);
     },

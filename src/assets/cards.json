@@ -29,7 +29,7 @@
     "description": "Every student must pass their lowest or highest card (depending on the priority) to the direction displayed. If 'Opposite Day' card has been played, the direction and priority are changed to its opposite.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4,
+    "count": 6,
     "autoPlay": false
   },
   {

@@ -49,12 +49,6 @@ function ResolveCard({ players }: ResolveCardProps) {
           />
         </div>
       ),
-      7: <OppositeDay />,
-      8: (
-        <div className={rc.resolveGameActionField}>
-          <RainyDay />
-        </div>
-      ),
     };
 
     return uiMap[cardPlayed.cardNum as number];
@@ -67,6 +61,12 @@ function ResolveCard({ players }: ResolveCardProps) {
     const uiMap: UiMapProps = {
       2: <PassDirection />,
       3: <TradeSnacksSideEffect players={players} />,
+      7: <OppositeDay />,
+      8: (
+        <div className={rc.resolveGameActionField}>
+          <RainyDay />
+        </div>
+      ),
     };
 
     return uiMap[playerSideEffect.cardNum as number];

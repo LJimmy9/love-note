@@ -64,6 +64,15 @@ export function updateCurrentTurn(game: GameState) {
   game.turnNum += 1;
   game.gamePhase = "Draw";
   game.cardSwapSetup = {};
+
+  for (let i = 0; i < allPlayers.length; i++) {
+    game.players[allPlayers[i]].sideEffect = {
+      active: false,
+      cardNum: -1,
+      receiveFrom: "",
+      selectedCard: null,
+    };
+  }
 }
 
 export function getReshuffledDeck(game: GameState) {

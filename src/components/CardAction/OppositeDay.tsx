@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import od from "./OppositeDay.module.css";
-import { $gameState } from "../../state/game";
+import { $gameState, $runePlayer } from "../../state/game";
 import { useAtomValue } from "jotai";
 
 const OppositeDay = () => {
+  const currPlayer = useAtomValue($runePlayer);
   const gameState = useAtomValue($gameState);
-  useEffect(() => {
-    Rune.actions.updateDirectionPriority();
-  }, []);
 
   return (
     <div
       className={od.oppositeContainer}
-      onAnimationEnd={() => Rune.actions.updateCurrentTurn()}
+      onAnimationEnd={() => {
+        if (currPlayer.playerId !== gameState.currentTurn) return;
+        Rune.actions.updateCurrentTurn();
+      }}
     >
       <p
         style={{ textAlign: "left" }}

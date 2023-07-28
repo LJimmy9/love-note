@@ -58,11 +58,11 @@ const Game = ({ player, pinPos }: GameProps) => {
     };
   }, [bgmRef.current]);
 
-  useEffect(() => {
-    if (music && game) {
-      bgmRef.current.play();
-    }
-  }, [music, game]);
+  // useEffect(() => {
+  //   if (music && game) {
+  //     bgmRef.current.play();
+  //   }
+  // }, [music, game]);
 
   const displayPlayerInfo = (id: string) => {
     return id === activePlayer
