@@ -42,6 +42,10 @@ const classMap: classMapConfig = {
 const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
+  const [showPlayerInfo, setShowPlayerInfo] = useState<boolean>(false);
+
+  const [activePlayer, setActivePlayer] = useState<string>("");
+
   const game = useAtomValue($game);
   const bgmRef = useRef<any>();
   const [music, setMusic] = useState<boolean>(true);
@@ -60,6 +64,12 @@ const Game = ({ player, pinPos }: GameProps) => {
     }
   }, [music, game]);
 
+  const displayPlayerInfo = (id: string) => {
+    return id === activePlayer
+      ? `${gi.activePlayerInfoContainer}`
+      : `${gi.nonActivePlayerInfo}`;
+  };
+
   return (
     <>
       <AnimGen />
@@ -68,12 +78,9 @@ const Game = ({ player, pinPos }: GameProps) => {
           <audio ref={bgmRef} src={bgm} loop />
           <div className={gf.currentGameDetail}>
             <div className={gf.turnContainer}>
-              <p className={gf.gameTurn}>
-                Identity:{" "}
-                {
-                  game.gameState.players[currPlayer.playerId].playerIdentity
-                    .name
-                }
+              <p>
+                Direction: {game.gameState.priority} to the{" "}
+                {game.gameState.direction}
               </p>
               <p className={gf.playerTurn}>
                 Player Turn:{" "}
@@ -85,7 +92,6 @@ const Game = ({ player, pinPos }: GameProps) => {
               </p>
               <p>{`Current game phase: ${game.gameState.gamePhase}`}</p>
             </div>
-
             <div className={gi.infoButtonContainer}>
               <button
                 onClick={() => setShowInfo(!showInfo)}
@@ -175,7 +181,6 @@ const Game = ({ player, pinPos }: GameProps) => {
               </div>
             </div>
           )}
-
           {Object.keys(game.gameState.players).map((playerID, idx) => {
             const p = game.gameState.players[playerID];
             if (playerID === game.yourPlayerId) {
@@ -187,19 +192,62 @@ const Game = ({ player, pinPos }: GameProps) => {
                     zIndex: "10",
                   }}
                 >
+                  <div
+                    className={gi.playerInfoActionContainer}
+                    onClick={() => setShowPlayerInfo(!showPlayerInfo)}
+                  >
+                    !
+                  </div>
+                  {showPlayerInfo && (
+                    <div className={gi.playerInfoContainer}>
+                      <div
+                        onClick={() => setShowPlayerInfo(false)}
+                        style={{ textAlign: "right" }}
+                      >
+                        X
+                      </div>
+                      <div className={gi.playerInfoContent}>
+                        <p>Display Name: {currPlayer.displayName}</p>
+                        <p>
+                          Identity:{" "}
+                          {
+                            game.gameState.players[currPlayer.playerId]
+                              .playerIdentity.role
+                          }
+                        </p>
+                        <p>
+                          Identity Name:{" "}
+                          {
+                            game.gameState.players[currPlayer.playerId]
+                              .playerIdentity.name
+                          }
+                        </p>
+
+                        <p>
+                          Your mission:{" "}
+                          {
+                            game.gameState.players[currPlayer.playerId]
+                              .playerIdentity.description
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  )}
                   <div className={`${ph.flexCenterPlayerHand}`}>
                     {player.playerHand.map((cardVal, phdIdx) => {
                       return (
-                        <PlayCard
-                          key={`${cardVal}-${phdIdx}-${currPlayer.playerId}`}
-                          game={game.gameState}
-                          card={cardVal}
-                          player={player}
-                          pinPos={pinPos}
-                          cardRotation={cardRotationConfig[phdIdx]}
-                          clickable={true}
-                          currentPlayer={playerID === currPlayer.playerId}
-                        />
+                        <div key={`${cardVal}-${phdIdx}`}>
+                          <PlayCard
+                            key={`${cardVal}-${phdIdx}-${currPlayer.playerId}`}
+                            game={game.gameState}
+                            card={cardVal}
+                            player={player}
+                            pinPos={pinPos}
+                            cardRotation={cardRotationConfig[phdIdx]}
+                            clickable={true}
+                            currentPlayer={playerID === currPlayer.playerId}
+                          />
+                        </div>
                       );
                     })}
                   </div>
@@ -207,42 +255,63 @@ const Game = ({ player, pinPos }: GameProps) => {
               );
             } else {
               return (
-                <div
-                  className={classMap[idx + 1]}
-                  key={`gamestate-${idx}-${currPlayer.playerId}`}
-                >
-                  <div style={{ height: "40px" }}>
-                    <div className={`${ph.flexCenterPlayerHand}`}>
-                      {p.playerHand.map((cardVal, sphIdx) => {
-                        return (
-                          <PlayCard
-                            key={`${cardVal}-${sphIdx}-${currPlayer.playerId}`}
-                            game={game.gameState}
-                            card={cardVal}
-                            player={p}
-                            cardRotation={cardRotationConfig[sphIdx]}
-                            pinPos={pinPos}
-                            clickable={false}
-                            currentPlayer={playerID === currPlayer.playerId}
-                          />
-                        );
-                      })}
+                <div>
+                  {activePlayer !== "" && playerID === activePlayer && (
+                    <div className={displayPlayerInfo(playerID)}>
+                      <div className={gi.activePlayerInfo}>
+                        <div
+                          className={gi.exitButton}
+                          onClick={() => setActivePlayer("")}
+                        >
+                          X
+                        </div>
+                        <p>Player Name: {game.players[playerID].displayName}</p>
+                      </div>
                     </div>
+                  )}
+                  <div
+                    className={classMap[idx + 1]}
+                    key={`gamestate-${idx}-${currPlayer.playerId}`}
+                  >
+                    <div style={{ height: "40px" }}>
+                      <div className={`${ph.flexCenterPlayerHand}`}>
+                        {p.playerHand.map((cardVal, sphIdx) => {
+                          return (
+                            <PlayCard
+                              key={`${cardVal}-${sphIdx}-${currPlayer.playerId}`}
+                              game={game.gameState}
+                              card={cardVal}
+                              player={p}
+                              cardRotation={cardRotationConfig[sphIdx]}
+                              pinPos={pinPos}
+                              clickable={false}
+                              currentPlayer={playerID === currPlayer.playerId}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div
+                      className={`${gf.otherplayerName}`}
+                      onClick={() => setActivePlayer(playerID)}
+                      id={`player-${idx}`}
+                    >
+                      <svg width="20" height="20">
+                        <image
+                          href={game.players[playerID].avatarUrl}
+                          width="15"
+                          height="15"
+                        />
+                      </svg>
+                    </div>
+                    <p className={`${gf.otherplayerName}`}>
+                      {p.playerIdentity.name}
+                    </p>
                   </div>
-                  <p className={`${gf.otherplayerName}`}>
-                    {p.playerIdentity.name}
-                  </p>
                 </div>
               );
             }
           })}
-
-          {/* Resolve Card
-        {game.gameState.gamePhase == "Resolve" && (
-          <div>
-            <ResolveCard players={game.players} />
-          </div>
-        )} */}
         </div>
       )}
     </>

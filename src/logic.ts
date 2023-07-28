@@ -74,6 +74,7 @@ export interface GameState {
   discardedCards: Array<Card>;
   gamePhase: Phase;
   direction: string;
+  priority: string;
   cardSwapSetup: CardSwapSetupProps;
   animation: string;
   rainyDayIsPlay: boolean;
@@ -87,6 +88,7 @@ type GameActions = {
   animateLeft: () => void;
   updateLoveNote: (params: { action: string; prompt: string }) => void;
   updateCurrentTurn: () => void;
+  updateDirectionPriority: () => void;
   // actions
   startGame: () => void;
   drawCard: (params: { deckCard: Card; playerIdToUpdate: string }) => void;
@@ -188,6 +190,7 @@ Rune.initLogic({
       turnNum: 0,
       gamePhase: "Draw",
       direction: "right",
+      priority: "highest",
       cardSwapSetup: {},
       animation: "",
       rainyDayIsPlay: false,
@@ -237,6 +240,11 @@ Rune.initLogic({
           break;
       }
     },
+    updateDirectionPriority: (_, { game }) => {
+      game.priority = game.priority === "highest" ? "lowest" : "highest";
+      game.direction = game.direction === "right" ? "left" : "right";
+    },
+
     updateCurrentTurn: (_, { game }) => {
       updateCurrentTurn(game);
     },

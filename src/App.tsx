@@ -5,6 +5,7 @@ import Overlay from "./components/Overlay.tsx";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
 import { $isAnimating, $playAnimation } from "./state/animations.ts";
+import ph from "./components/PlayerHand.module.css";
 
 function App() {
   const [game, setGame] = useAtom($game);
@@ -50,10 +51,10 @@ function App() {
           pinPos={pinPos}
         />
         {/* Conditionally render the overlay based on showOverlay state */}
-        <Overlay
+        {/* <Overlay
           Name={game.players[game.yourPlayerId].displayName}
           Avatar={game.players[game.yourPlayerId].avatarUrl}
-        />
+        /> */}
       </div>
     ) : (
       <div>
