@@ -82,7 +82,6 @@
   0% {
     translate: -25vw -25vh;
     rotate: y 180deg;
-    border: 1px solid black;
   }
   100% {
     /* transform: translateY(0) rotateY(0deg) rotateX(0deg); */

@@ -1,6 +1,5 @@
 import { useAtomValue } from "jotai";
 import { $currAnimation } from "../../state/animations";
-import { $runePlayer } from "../../state/game";
 import PlaceholderCard, { AnimConfig } from "./PlaceholderCard";
 
 interface Animations {
@@ -9,8 +8,6 @@ interface Animations {
 
 function AnimGen() {
   const currAnimation = useAtomValue($currAnimation);
-
-  const rP = useAtomValue($runePlayer);
 
   const anims: Animations = {
     allPassRight: [
