@@ -223,7 +223,6 @@ const Game = ({ player, pinPos }: GameProps) => {
                               .playerIdentity.name
                           }
                         </p>
-
                         <p>
                           Your mission:{" "}
                           {

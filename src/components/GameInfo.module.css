@@ -27,7 +27,7 @@
   height: 70%;
   font-weight: bolder;
   overflow: auto;
-  z-index: 1;
+  z-index: 11;
 }
 
 .infoHeader {
@@ -52,6 +52,10 @@
 .infoHeader > p {
   margin: 0 auto;
 }
+
+/* .infoHeader > select {
+  height: 100%;
+} */
 
 .infoContent {
   margin-left: 2px;
