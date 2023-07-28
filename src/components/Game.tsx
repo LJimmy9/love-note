@@ -11,6 +11,7 @@ import { useAtomValue } from "jotai";
 import ResolveCard from "./ResolveCard";
 import gi from "./GameInfo.module.css";
 import AnimGen from "./Animations/AnimGen";
+import { useTranslation } from "react-i18next";
 
 interface GameProps {
   player: GamePlayer;
@@ -42,6 +43,13 @@ const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
+
+  const {t, i18n} = useTranslation('common');
+
+  const changeLanguageHandler = (lang: string) =>
+  {
+    i18n.changeLanguage(lang);
+  }
 
   return (
     <>
@@ -113,51 +121,49 @@ const Game = ({ player, pinPos }: GameProps) => {
           {showInfo && (
             <div className={gi.infoCard}>
               <div className={gi.infoHeader}>
-                <p className={gi.infoTitle}>❤️ Love Note ❤️</p>
+                <p className={gi.infoTitle}>❤️ {t("info.title")} ❤️</p>
+                <select onChange={e => changeLanguageHandler(e.target.value)}>
+                  <option value="en">en</option>
+                  <option value="es">es</option>
+                  <option value="cn">cn</option>
+                </select>
                 <button onClick={() => setShowInfo(false)}>&times;</button>
               </div>
               <div>
-                <div className={gi.infoTitle}> Overview </div>
+                <div className={gi.infoTitle}> {t("info.header")} </div>
                 <div className={gi.infoContent}>
-                  You are in school where love and rumors are running rampant.
-                  Lovers are secretly filling out Love Notes, hoping to win a
-                  prize. Tattle Tales are on the prowl, looking for any sign of
-                  love so they can tattle on the Lovers and win a prize of their
-                  own.
+                  {t("info.overview")}
                 </div>
                 <div className={gi.infoContent}>
-                  <span className={gi.infoBullet}>To Win:</span>
+                  <span className={gi.infoBullet}>{t("info.win.header")}</span>
                   <ul>
                     <li key={"li1"}>
-                      Lovers need to fill out a Love Note to win.
+                      {t("info.win.bullet-1")}
                     </li>
                     <li key={"li2"}>
-                      Tattle Tales need to find the Lovers and tattle on them to
-                      win.
+                      {t("info.win.bullet-2")}
                     </li>
-                    <li key={"li3"}>Friends need to help out the lovers.</li>
+                    <li key={"li3"}>{t("info.win.bullet-3")}</li>
                   </ul>
                 </div>
                 <div className={gi.infoContent}>
-                  <span className={gi.infoBullet}>To Play:</span>
+                  <span className={gi.infoBullet}>{t("info.play.header")}</span>
                   <ul>
-                    <li key={"li1"}>To draw tap on the deck.</li>
+                    <li key={"li1"}>{t("info.play.bullet-1")}</li>
                     <li key={"li2"}>
-                      To play a card tap on a card and press the button in the
-                      top right. Tap the card again to cancel.
+                      {t("info.play.bullet-2")}
                     </li>
                   </ul>{" "}
                 </div>
               </div>
               <div>
-                <p className={gi.infoTitle}> Cards </p>
+                <p className={gi.infoTitle}> {t("info.card-header")} </p>
                 <CardInfoDisplay />
-                <p className={gi.infoTitle}> Identity Cards </p>
+                <p className={gi.infoTitle}> {t("info.identityCard-header")} </p>
                 <IdCardInfoDisplay />
               </div>
             </div>
           )}
-
           {Object.keys(game.gameState.players).map((playerID, idx) => {
             const p = game.gameState.players[playerID];
             if (playerID === game.yourPlayerId) {

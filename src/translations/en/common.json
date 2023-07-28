@@ -1,0 +1,20 @@
+{
+    "info": {
+        "title": "Love Note",
+        "header": "Overview",
+        "overview": "You are in school where love and rumors are running rampant. Lovers are secretly filling out Love Notes, hoping to win a prize. Tattle Tales are on the prowl, looking for any sign of love so they can tattle on the Lovers and win a prize of their own.",
+        "win": {
+            "header": "To Win:",
+            "bullet-1": "Lovers need to fill out a Love Note to win.",
+            "bullet-2": "Tattle Tales need to find the Lovers and tattle on them to win.",
+            "bullet-3": "Friends need to help out the lovers."
+        },
+        "play": {
+            "header": "To Play:",
+            "bullet-1": "To draw tap on the deck.",
+            "bullet-2": "To play a card tap on a card and press the button in the top right. Tap the card again to cancel."
+        },
+        "card-header": "Cards",
+        "identityCard-header": "Identity Cards"
+    }
+}
