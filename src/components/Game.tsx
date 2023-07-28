@@ -31,19 +31,18 @@ type classMapConfig = {
 };
 
 const classMap: classMapConfig = {
-  1: `${gf.otherplayerLeftBottom}`,
-  2: `${gf.otherplayerRightBottom}`,
-  3: `${gf.otherplayerLeftMiddle}`,
-  4: `${gf.otherplayerRightMiddle}`,
-   //5: `${gf.otherplayerLeftTop}`,
-  //6: `${gf.otherplayerRightTop}`
+  0: `${gf.otherplayerLeftBottom}`,
+  1: `${gf.otherplayerRightBottom}`,
+  2: `${gf.otherplayerLeftMiddle}`,
+  3: `${gf.otherplayerRightMiddle}`,
+   //4: `${gf.otherplayerLeftTop}`,
+  //5: `${gf.otherplayerRightTop}`
 }
 
 const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
-  let count = 0;
 
   return (
     game && (
@@ -153,7 +152,7 @@ const Game = ({ player, pinPos }: GameProps) => {
           </div>
         )}
 
-        {Object.keys(game.gameState.players).map(playerID => 
+        {Object.keys(game.gameState.players).map((playerID, idx) => 
         {
           const p = game.gameState.players[playerID];
           if (playerID === game.yourPlayerId) 
@@ -181,14 +180,13 @@ const Game = ({ player, pinPos }: GameProps) => {
           }
           else 
           {
-            count++;
             return (
-              <div className={classMap[count]}>
+              <div className={classMap[idx]}>
                 <div style={{height:'40px'}}>
                 <div className={`${ph.flexCenterPlayerHand}`}>
                   {p.playerHand.map((cardVal, idx) => {
                     return (
-                    <div key={`${cardVal}- ${idx}- ${p.playerIdentity.name}- ${game.yourPlayerId}`}>
+                    <div key={`${cardVal}- ${idx}- ${game.yourPlayerId}`}>
                       <PlayCard
                       game={game.gameState}
                       card={cardVal}
@@ -201,7 +199,7 @@ const Game = ({ player, pinPos }: GameProps) => {
                   })}
                   </div>
                 </div>
-                <p className={`${gf.otherplayerName}`}>{p.playerIdentity.name}</p>
+                <p className={`${gf.otherplayerName}`}></p>
               </div>
             );
           }
