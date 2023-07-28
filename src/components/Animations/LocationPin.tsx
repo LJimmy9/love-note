@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { $doneAnimating } from "../state/animations";
+import { $doneAnimating } from "../../state/animations";
 import { useSetAtom } from "jotai";
 
 export interface Size {

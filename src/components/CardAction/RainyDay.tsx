@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { $game, $runePlayer, $gameState } from "../../state/game";
 import { useAtomValue } from "jotai";
 import ln from "./LoveNote.module.css";

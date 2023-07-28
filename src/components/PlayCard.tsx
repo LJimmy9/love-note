@@ -13,6 +13,7 @@ export interface CardProps {
   cardRotation: string;
   pinPos: number[];
   clickable: boolean;
+  currentPlayer: boolean;
 }
 
 export interface Position {
@@ -36,6 +37,7 @@ function PlayCard({
   player,
   pinPos,
   clickable,
+  currentPlayer,
 }: CardProps) {
   const defaultStyle = {
     position: "relative",
@@ -118,9 +120,12 @@ function PlayCard({
       <>{card.description}</>
     );
 
+  // adjust css properties
+  const animStr = currentPlayer ? s.drawCardAnim : s.sideDrawAnim;
+
   return (
     <div
-      className={`${s.playerCardContainer} ${!dealt && s.drawCardAnim} ${
+      className={`${s.playerCardContainer} ${!dealt && animStr} ${
         isOpen ? s.expand : s.default
       }`}
       style={{

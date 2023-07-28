@@ -8,7 +8,7 @@ interface DiscardCardProps {
 
 function DeckCard({ card }: DiscardCardProps) {
   return (
-    <div className={d.discardContainer}>
+    <div className={`${d.discardContainer} ${d.enterAnim}`}>
       <div className={d.discardPile}>
         <div className={p.cardHeader}>
           <div className={d.cardNum}>{card.cardNum}</div>

@@ -4,30 +4,30 @@ import idCardData from "../assets/identity-cards.json";
 
 export const CardInfoDisplay = () => {
   return (
-    <p>
-      {cardData.map((item) => (
-        <p className={gi.infoList}>
+    <>
+      {cardData.map((item, idx) => (
+        <p className={gi.infoList} key={`cid-${item.id}-${idx}`}>
           <span className={gi.infoCardName}>
             {item.cardNum} {item.image}
           </span>{" "}
           {item.description}
         </p>
       ))}
-    </p>
+    </>
   );
 };
 
 export const IdCardInfoDisplay = () => {
   return (
-    <p>
-      {idCardData.map((item) => (
-        <p className={gi.infoList}>
+    <>
+      {idCardData.map((item, idx) => (
+        <p className={gi.infoList} key={`icid-${item.name}-${idx}`}>
           <span className={gi.infoIDName}>
             {item.name} {item.image}
           </span>{" "}
           {item.description}{" "}
         </p>
       ))}
-    </p>
+    </>
   );
 };

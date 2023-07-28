@@ -71,6 +71,24 @@
   }
 }
 
+.sideDrawAnim {
+  animation-name: sideDraw;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes sideDraw {
+  0% {
+    translate: -25vw -25vh;
+    rotate: y 180deg;
+  }
+  100% {
+    /* transform: translateY(0) rotateY(0deg) rotateX(0deg); */
+    translate: 0 0;
+    rotate: 0deg 0deg;
+  }
+}
 .passCardLeftAnim {
   animation-name: passCardLeft;
   animation-duration: 3s;

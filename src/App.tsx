@@ -4,7 +4,6 @@ import Game from "./components/Game";
 import Overlay from "./components/Overlay.tsx";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
-import AnimGen from "./components/AnimGen.tsx";
 import { $isAnimating, $playAnimation } from "./state/animations.ts";
 
 function App() {
@@ -50,7 +49,6 @@ function App() {
           player={game.gameState.players[game.yourPlayerId]}
           pinPos={pinPos}
         />
-        <AnimGen />
         {/* Conditionally render the overlay based on showOverlay state */}
         <Overlay
           Name={game.players[game.yourPlayerId].displayName}
