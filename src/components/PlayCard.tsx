@@ -4,6 +4,7 @@ import s from "./PlayCard.module.css";
 import LoveNoteCard from "./LoveNoteCard";
 import { $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
+import { handleResize, Position } from "../utils/Resize";
 
 export interface CardProps {
   game: GameState;
@@ -16,10 +17,10 @@ export interface CardProps {
   currentPlayer: boolean;
 }
 
-export interface Position {
-  x: number;
-  y: number;
-}
+// export interface Position {
+//   x: number;
+//   y: number;
+// }
 
 export interface Size {
   width: number;
@@ -54,21 +55,21 @@ function PlayCard({
 
   const cardRef = useRef<HTMLDivElement>(null);
 
-  function handleResize(
-    el: HTMLDivElement,
-    updatePosCb: (pos: Position) => void,
-    updateWindowSizeCb: (windowX: number, windowY: number) => void
-  ) {
-    const rect = el.getBoundingClientRect();
-    const x = rect.left;
-    const y = rect.top;
-    updatePosCb({ x: x, y: y });
+  // function handleResize(
+  //   el: HTMLDivElement,
+  //   updatePosCb: (pos: Position) => void,
+  //   updateWindowSizeCb: (windowX: number, windowY: number) => void
+  // ) {
+  //   const rect = el.getBoundingClientRect();
+  //   const x = rect.left;
+  //   const y = rect.top;
+  //   updatePosCb({ x: x, y: y });
 
-    const windowX = window.innerWidth;
-    const windowY = window.innerHeight;
+  //   const windowX = window.innerWidth;
+  //   const windowY = window.innerHeight;
 
-    updateWindowSizeCb(windowX, windowY);
-  }
+  //   updateWindowSizeCb(windowX, windowY);
+  // }
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -123,6 +124,60 @@ function PlayCard({
   // adjust css properties
   const animStr = currentPlayer ? s.drawCardAnim : s.sideDrawAnim;
 
+  const cardFront = (
+    <div className={`${s.playerCardFront}`}>
+      <div
+        className={`${s.playerCard}`}
+        style={{
+          width: `${isOpen ? "28ch" : "8ch"}`,
+          height: `${isOpen ? "38ch" : "16ch"}`,
+          transform: `translate(${isOpen ? "-25%" : "0"}, ${
+            isOpen ? "-130" : "0"
+          }%)`,
+        }}
+      >
+        {/* Header for the card has number and card name */}
+        {clickable && (
+          <div className={s.cardHeader}>
+            <div className={s.cardNum}>{card.cardNum}</div>
+            {card.canPlay && isOpen && (
+              <div
+                className={s.playCardBtn}
+                onClick={() => {
+                  Rune.actions.playCard({
+                    playCard: card,
+                    playerIdToUpdate: currPlayer.playerId,
+                  });
+                }}
+              >
+                ▶️
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Body image */}
+        {clickable && (
+          <>
+            <div className={s.cardImage}>{card.image}</div>
+            <div className={s.cardName}>{card.name}</div>
+          </>
+        )}
+        {/* Footer description */}
+        <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
+          {description}
+          {/* <LoveNoteCard card={card} player={player} /> */}
+        </div>
+      </div>
+    </div>
+  );
+
+  const cardBack = (
+    <div className={`${s.playerCardBack}`}>
+      <div className={`${s.backContent} `}></div>
+    </div>
+  );
+
   return (
     <div
       className={`${s.playerCardContainer} ${!dealt && animStr} ${
@@ -130,7 +185,6 @@ function PlayCard({
       }`}
       style={{
         rotate: `${isOpen ? "0deg" : dealt && cardRotation}`,
-        // transform: `translate(-50px, -50px)`,
       }}
       onAnimationEnd={() => {
         setDealt(true);
@@ -141,55 +195,8 @@ function PlayCard({
       }}
       ref={cardRef}
     >
-      <div className={`${s.playerCardFront}`}>
-        <div
-          className={`${s.playerCard}`}
-          style={{
-            width: `${isOpen ? "28ch" : "8ch"}`,
-            height: `${isOpen ? "38ch" : "16ch"}`,
-            transform: `translate(${isOpen ? "-25%" : "0"}, ${
-              isOpen ? "-130" : "0"
-            }%)`,
-          }}
-        >
-          {/* Header for the card has number and card name */}
-          {clickable && (
-            <div className={s.cardHeader}>
-              <div className={s.cardNum}>{card.cardNum}</div>
-              {card.canPlay && isOpen && (
-                <div
-                  className={s.playCardBtn}
-                  onClick={() => {
-                    Rune.actions.playCard({
-                      playCard: card,
-                      playerIdToUpdate: currPlayer.playerId,
-                    });
-                  }}
-                >
-                  ▶️
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Body image */}
-          {clickable && (
-            <>
-              <div className={s.cardImage}>{card.image}</div>
-              <div className={s.cardName}>{card.name}</div>
-            </>
-          )}
-          {/* Footer description */}
-          <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>
-            {description}
-            {/* <LoveNoteCard card={card} player={player} /> */}
-          </div>
-        </div>
-      </div>
-
-      <div className={`${s.playerCardBack}`}>
-        <div className={`${s.backContent} `}></div>
-      </div>
+      {cardFront}
+      {cardBack}
     </div>
   );
 }

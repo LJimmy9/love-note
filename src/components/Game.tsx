@@ -71,12 +71,11 @@ const Game = ({ player, pinPos }: GameProps) => {
       : `${gi.nonActivePlayerInfo}`;
   };
 
-  const {t, i18n} = useTranslation('common');
+  const { t, i18n } = useTranslation("common");
 
-  const changeLanguageHandler = (lang: string) =>
-  {
+  const changeLanguageHandler = (lang: string) => {
     i18n.changeLanguage(lang);
-  }
+  };
 
   return (
     <>
@@ -146,7 +145,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             <div className={gi.infoCard}>
               <div className={gi.infoHeader}>
                 <p className={gi.infoTitle}>❤️ {t("info.title")} ❤️</p>
-                <select onChange={e => changeLanguageHandler(e.target.value)}>
+                <select onChange={(e) => changeLanguageHandler(e.target.value)}>
                   <option value="en">en</option>
                   <option value="es">es</option>
                   <option value="cn">cn</option>
@@ -155,18 +154,12 @@ const Game = ({ player, pinPos }: GameProps) => {
               </div>
               <div>
                 <div className={gi.infoTitle}> {t("info.header")} </div>
-                <div className={gi.infoContent}>
-                  {t("info.overview")}
-                </div>
+                <div className={gi.infoContent}>{t("info.overview")}</div>
                 <div className={gi.infoContent}>
                   <span className={gi.infoBullet}>{t("info.win.header")}</span>
                   <ul>
-                    <li key={"li1"}>
-                      {t("info.win.bullet-1")}
-                    </li>
-                    <li key={"li2"}>
-                      {t("info.win.bullet-2")}
-                    </li>
+                    <li key={"li1"}>{t("info.win.bullet-1")}</li>
+                    <li key={"li2"}>{t("info.win.bullet-2")}</li>
                     <li key={"li3"}>{t("info.win.bullet-3")}</li>
                   </ul>
                 </div>
@@ -174,16 +167,17 @@ const Game = ({ player, pinPos }: GameProps) => {
                   <span className={gi.infoBullet}>{t("info.play.header")}</span>
                   <ul>
                     <li key={"li1"}>{t("info.play.bullet-1")}</li>
-                    <li key={"li2"}>
-                      {t("info.play.bullet-2")}
-                    </li>
+                    <li key={"li2"}>{t("info.play.bullet-2")}</li>
                   </ul>{" "}
                 </div>
               </div>
               <div>
                 <p className={gi.infoTitle}> {t("info.card-header")} </p>
                 <CardInfoDisplay />
-                <p className={gi.infoTitle}> {t("info.identityCard-header")} </p>
+                <p className={gi.infoTitle}>
+                  {" "}
+                  {t("info.identityCard-header")}{" "}
+                </p>
                 <IdCardInfoDisplay />
               </div>
             </div>
