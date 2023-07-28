@@ -1,0 +1,20 @@
+{
+    "info": {
+        "title": "Àiqíng bǐjì",
+        "header": "Gàishù",
+        "overview": "Nǐ zài xuéxiào lǐ, àiqíng hé yáoyán shèngxíng. Qínglǚmen zhèngzài tōutōu tiánxiě àiqíng bǐjì, xīwàng nénggòu yíngdé jiǎngpǐn. Liúyán fēiyǔ zhèngzài sìchù xúnzhǎo, xúnzhǎo rènhé àiqíng de jīxiàng, zhèyàng tāmen jiù kěyǐ xiàng liànrén xiányánsuìyǔ bìng yíngdé zìjǐ de jiǎngpǐn.",
+        "win": {
+            "header": "Yíngdé shènglì:",
+            "bullet-1": "Liànrén xūyào tiánxiě qíngshū cáinéng huòshèng.",
+            "bullet-2": "Tattle Tales xūyào zhǎodào liànrén bìng gàofā tāmen cáinéng huòshèng.",
+            "bullet-3": "Péngyǒu xūyào bāngzhù liànrén."
+        },
+        "play": {
+            "header": "Wán:",
+            "bullet-1": "Zài jiǎbǎn shàng huìzhì lóngtóu.",
+            "bullet-2": "Yào wán pái, qǐng diǎnjī pái bìng àn yòushàng jiǎo de ànniǔ. Zàicì diǎnjī gāi kǎ jí kě qǔxiāo."
+        },
+        "card-header": "Pái",
+        "identityCard-header": "Shēnfèn zhèng"
+    }
+}

@@ -12,9 +12,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "i18next": "^23.3.0",
     "jotai": "^2.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^13.0.2",
     "rune-games-sdk": "^4.9.6",
     "uuid4": "^2.0.3"
   },

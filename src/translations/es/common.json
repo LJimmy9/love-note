@@ -1,0 +1,20 @@
+{
+    "info": {
+        "title": "Nota de amor",
+        "header": "Descripción general",
+        "overview": "Estás en la escuela donde el amor y los rumores corren desenfrenados. Los amantes están llenando notas de amor en secreto, con la esperanza de ganar un premio. Tattle Tales está al acecho, buscando cualquier señal de amor para poder chismear sobre los Amantes y ganar su propio premio.",
+        "win": {
+            "header": "Ganar:",
+            "bullet-1": "Las amantes necesitan llenar una Nota de amor para ganar.",
+            "bullet-2": "Tattle Tales necesita encontrar a los Amantes y chismear sobre ellos para ganar.",
+            "bullet-3": "Las amigas necesitan ayudar a las amantes."
+        },
+        "play": {
+            "header": "Jugar:",
+            "bullet-1": "Para dibujar toque en la cubierta.",
+            "bullet-2": "Para jugar una carta, toque una carta y presione el botón en la parte superior derecha. Toque la tarjeta de nuevo para cancelar."
+        },
+        "card-header": "Tarjetas",
+        "identityCard-header": "Tarjetas de identidad"
+    }
+}
