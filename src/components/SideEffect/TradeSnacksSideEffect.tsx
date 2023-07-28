@@ -2,10 +2,14 @@ import { useAtomValue } from "jotai";
 import { TradeSnacksProps } from "../CardAction/TradeSnacks";
 import { $gameState, $runePlayer } from "../../state/game";
 import ts from "../CardAction/TradeSnacks.module.css";
+import { useState } from "react";
+import { Card } from "../../logic";
 
 function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
   const currPlayer = useAtomValue($runePlayer);
   const gameState = useAtomValue($gameState);
+  const [selected, setSelected] = useState<Card>();
+  const [doneClicked, setDoneClicked] = useState<boolean>(false);
 
   return (
     <>
@@ -26,14 +30,13 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
           return (
             <div
               key={`exchange-${card.id}`}
-              className={ts.playerCard}
+              className={`${ts.playerCard} ${
+                selected?.id == card.id ? ts.selected : ""
+              }`}
               style={{ margin: "10px auto" }}
-              onClick={() =>
-                Rune.actions.selectCard({
-                  cardNumInPlay: 3,
-                  selectedCard: card,
-                })
-              }
+              onClick={() => {
+                setSelected(card);
+              }}
             >
               <div className={ts.cardHeader}>
                 <div className={ts.cardNum}>{card.cardNum}</div>
@@ -43,6 +46,24 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
             </div>
           );
         })}
+        <div
+          className={ts.doneBtn}
+          onClick={() => {
+            if (!selected) return;
+            setDoneClicked(true);
+            Rune.actions.selectCard({
+              cardNumInPlay: 3,
+              selectedCard: selected,
+            });
+          }}
+        >
+          👌
+        </div>
+        {doneClicked && (
+          <div style={{ fontSize: "14px", marginTop: "20px" }}>
+            Waiting for other player(s) to select a card...
+          </div>
+        )}
       </div>
     </>
   );

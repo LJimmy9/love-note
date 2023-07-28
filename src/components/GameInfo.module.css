@@ -31,7 +31,6 @@
 
 .infoHeader {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   position: sticky;
   top: 0;
@@ -47,7 +46,6 @@
   height: 90%;
   text-align: center;
   display: inline-flex;
-  /* border: 1px solid red; */
 }
 
 .infoHeader > p {

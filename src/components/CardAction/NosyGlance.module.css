@@ -6,27 +6,18 @@
   position: relative;
 }
 
-/* .confirmActionContainer {
-  position: absolute;
-  border: 1px solid red;
-} */
-
 .playerDetails {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-/* .playerName {
-  font-size: 13px;
-} */
 
 .actionContainer {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10vw;
   row-gap: 5vh;
-  /* border: 1px solid red; */
 }
 
 .cardContainer {
