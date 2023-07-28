@@ -197,27 +197,31 @@ const Game = ({ player, pinPos }: GameProps) => {
                     className={gi.playerInfoActionContainer}
                     onClick={() => setShowPlayerInfo(!showPlayerInfo)}
                   >
-                    !
+                    <img
+                      src={game!.players[playerID]["avatarUrl"]}
+                      style={{
+                        width: "50px",
+                      }}
+                    />
                   </div>
                   {showPlayerInfo && (
                     <div className={gi.playerInfoContainer}>
-                      <div
-                        onClick={() => setShowPlayerInfo(false)}
-                        style={{ textAlign: "right" }}
-                      >
-                        X
-                      </div>
+                      <button onClick={() => setShowPlayerInfo(false)}>
+                        &times;
+                      </button>
                       <div className={gi.playerInfoContent}>
-                        <p>Display Name: {currPlayer.displayName}</p>
                         <p>
-                          Identity:{" "}
+                          <span>Display Name:</span> {currPlayer.displayName}
+                        </p>
+                        <p>
+                          <span>Identity:</span>{" "}
                           {
                             game.gameState.players[currPlayer.playerId]
                               .playerIdentity.role
                           }
                         </p>
                         <p>
-                          Identity Name:{" "}
+                          <span>Identity Name:</span>{" "}
                           {
                             game.gameState.players[currPlayer.playerId]
                               .playerIdentity.name
@@ -225,7 +229,7 @@ const Game = ({ player, pinPos }: GameProps) => {
                         </p>
 
                         <p>
-                          Your mission:{" "}
+                          <span>Your mission:</span>{" "}
                           {
                             game.gameState.players[currPlayer.playerId]
                               .playerIdentity.description
