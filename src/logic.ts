@@ -7,7 +7,11 @@ import {
   createPlayer,
   handleRainyDay,
 } from "./game-setup";
-import { resolve, setReceiveFrom } from "./components/resolve-side-effects";
+import {
+  resolve,
+  setReceiveFrom,
+  resolveProcessing,
+} from "./components/resolve-side-effects";
 
 export interface Card {
   id: string;
@@ -51,7 +55,7 @@ export interface Note {
   text: string;
 }
 
-export type Phase = "Draw" | "Play" | "Resolve" | "Default";
+export type Phase = "Draw" | "Play" | "Resolve" | "Default" | "Processing";
 
 export interface CardSwapSetupProps {
   [key: string]: Card;
@@ -92,6 +96,7 @@ type GameActions = {
     playersInvolved: Array<PlayerId>;
   }) => void;
   selectCard: (params: { cardNumInPlay: number; selectedCard: Card }) => void;
+  resolveProcessing: () => void;
 };
 
 declare global {
@@ -202,6 +207,9 @@ Rune.initLogic({
     }
   },
   actions: {
+    resolveProcessing: (_, { game }) => {
+      resolveProcessing(game);
+    },
     // gets
     getLoveNotes: (_, { game }) => {
       return game.loveNotes;

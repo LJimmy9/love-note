@@ -29,19 +29,27 @@ export function resolve(game: GameState) {
     game.players[playerId].playerHand.push(
       game.cardSwapSetup[game.players[playerId].sideEffect.receiveFrom]
     );
-  }
-
-  for (let i = 0; i < playersWithActiveSideEffect.length; i++) {
-    const playerId = playersWithActiveSideEffect[i];
-
-    game.players[playerId].playerHand = game.players[
-      playerId
-    ].playerHand.filter((card) => card.id != game.cardSwapSetup[playerId].id);
     game.players[playerId].sideEffect.active = false;
-    game.players[playerId].sideEffect.selectedCard = null;
   }
 
-  updateCurrentTurn(game);
+  game.gamePhase = "Processing";
+}
+
+export function resolveProcessing(game: GameState) {
+  if (game.gamePhase == "Processing") {
+    const allPlayers = Object.keys(game.players);
+    for (let i = 0; i < allPlayers.length; i++) {
+      if (game.players[allPlayers[i]].playerHand.length != 3) continue;
+      const playerId = allPlayers[i];
+      game.players[playerId].playerHand = game.players[
+        playerId
+      ].playerHand.filter((card) => card.id != game.cardSwapSetup[playerId].id);
+      game.players[playerId].sideEffect.active = false;
+      game.players[playerId].sideEffect.selectedCard = null;
+      game.players[playerId].sideEffect.receiveFrom = "";
+    }
+    updateCurrentTurn(game);
+  }
 }
 
 function getPlayerToReceiveFrom(
