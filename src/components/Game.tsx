@@ -154,7 +154,7 @@ const Game = ({ player, pinPos }: GameProps) => {
           const p = game.gameState.players[playerID];
           if (playerID === game.yourPlayerId) {
             return (
-              <div className={`${ph.playerHandContainer}`}>
+              <div className={`${ph.playerHandContainer}`} key={idx}>
                 <div className={`${ph.flexCenterPlayerHand}`}>
                   {player.playerHand.map((cardVal, idx) => {
                     return (
@@ -175,7 +175,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             );
           } else {
             return (
-              <div className={classMap[idx]}>
+              <div className={classMap[idx]} key={idx}>
                 <div style={{ height: "40px" }}>
                   <div className={`${ph.flexCenterPlayerHand}`}>
                     {p.playerHand.map((cardVal, idx) => {

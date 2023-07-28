@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { $game, $runePlayer } from "../../state/game";
+import React, { useState } from "react";
+import { $game, $runePlayer, $gameState } from "../../state/game";
 import { useAtomValue } from "jotai";
-import { Note } from "../../logic";
 import ln from "./LoveNote.module.css";
 
-interface RainyDayProps {
-  loveNotes: Array<Note>;
-}
-
-const RainyDay = ({ loveNotes }: RainyDayProps) => {
+const RainyDay = () => {
   const game = useAtomValue($game);
+  const gameState = useAtomValue($gameState);
   const player = useAtomValue($runePlayer);
   const [fadeOutLetter, setFadeOutLetter] = useState<boolean>(false);
   const [showActionText, setShowActionText] = useState<boolean>(false);
-  const [endTurn, setEndTurn] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (endTurn) Rune.actions.updateCurrentTurn();
-  }, [endTurn]);
 
   return (
     <div className={ln.loveNoteActionContainer}>
@@ -32,13 +23,13 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
           <div>{"💌"}</div>
           <div>Love Note</div>
           <div>
-            {loveNotes.map((note, idx) => {
+            {gameState.loveNotes.map((note, idx) => {
               return (
                 <div
                   key={`note-${note.id}`}
                   style={{ margin: "2vh 0" }}
                   className={`${ln.text} ${
-                    idx === loveNotes.length - 1 &&
+                    idx === gameState.loveNotes.length - 1 &&
                     fadeOutLetter &&
                     ln.fadeOutAnimation
                   }`}
@@ -56,12 +47,13 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
           style={{ fontSize: "10px", lineHeight: "15px" }}
           className={ln.fadeInAnimation}
           onAnimationEnd={() => {
-            const removeNote = loveNotes[loveNotes.length - 1];
+            const removeNote =
+              gameState.loveNotes[gameState.loveNotes.length - 1];
             Rune.actions.updateLoveNote({
               action: "remove",
               prompt: removeNote.text,
             });
-            setEndTurn(true);
+            Rune.actions.updateCurrentTurn();
           }}
         >
           <p style={{ fontSize: "12px" }}>

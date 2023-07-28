@@ -68,7 +68,6 @@ export interface GameState {
   loveNotes: Array<Note>;
   turnNum: number;
   discardedCards: Array<Card>;
-  specialDiscardedCards: Array<Card>;
   gamePhase: Phase;
   direction: string;
   cardSwapSetup: CardSwapSetupProps;
@@ -157,7 +156,6 @@ Rune.initLogic({
       deck: deck,
       identityCards: identityCards,
       discardedCards: [],
-      specialDiscardedCards: [],
       currentTurn: allPlayerIds[0],
       loveNotes: [],
       // loveNotes: [

@@ -51,7 +51,7 @@ function ResolveCard({ players }: ResolveCardProps) {
       ),
       7: (
         <div className={rc.resolveGameActionField}>
-          <RainyDay loveNotes={gameState.loveNotes} />
+          <RainyDay />
         </div>
       ),
     };

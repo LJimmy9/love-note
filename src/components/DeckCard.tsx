@@ -15,7 +15,6 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setDrawCard] = useState<boolean>(false);
   const [clicked, setClicked] = useState<boolean>(false);
-  // const [autoPlay, setAutoPlay] = useState<boolean>(false);
 
   const player = useAtomValue($runePlayer);
   const gamePhase = useAtomValue($gamePhase);
