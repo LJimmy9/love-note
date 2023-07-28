@@ -1,5 +1,4 @@
 import { GamePlayer } from "../logic";
-
 import DeckCard from "./DeckCard";
 import PlayCard from "./PlayCard";
 import ph from "./PlayerHand.module.css";
@@ -27,10 +26,24 @@ const cardRotationConfig: CardRotationConfig = {
   2: "10deg",
 };
 
+type classMapConfig = {
+  [key: number]: string;
+};
+
+const classMap: classMapConfig = {
+  1: `${gf.otherplayerLeftBottom}`,
+  2: `${gf.otherplayerRightBottom}`,
+  3: `${gf.otherplayerLeftMiddle}`,
+  4: `${gf.otherplayerRightMiddle}`,
+   //5: `${gf.otherplayerLeftTop}`,
+  //6: `${gf.otherplayerRightTop}`
+}
+
 const Game = ({ player, pinPos }: GameProps) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const currPlayer = useAtomValue($runePlayer);
   const game = useAtomValue($game);
+  let count = 0;
 
   return (
     game && (
@@ -139,23 +152,60 @@ const Game = ({ player, pinPos }: GameProps) => {
             </div>
           </div>
         )}
-        <div className={`${ph.playerHandContainer}`}>
-          <div className={`${ph.flexCenterPlayerHand}`}>
-            {player.playerHand.map((cardVal, idx) => {
-              return (
-                <div key={`${cardVal}-${idx}`}>
-                  <PlayCard
-                    game={game.gameState}
-                    card={cardVal}
-                    player={player}
-                    pinPos={pinPos}
-                    cardRotation={cardRotationConfig[idx]}
-                  />
+
+        {Object.keys(game.gameState.players).map(playerID => 
+        {
+          const p = game.gameState.players[playerID];
+          if (playerID === game.yourPlayerId) 
+          {
+            return (
+              <div className={`${ph.playerHandContainer}`}>
+                <div className={`${ph.flexCenterPlayerHand}`}>
+                  {player.playerHand.map((cardVal, idx) => {
+                    return (
+                      <div key={`${cardVal}-${idx}`}>
+                        <PlayCard
+                          game={game.gameState}
+                          card={cardVal}
+                          player={player}
+                          pinPos={pinPos}
+                          cardRotation={cardRotationConfig[idx]}
+                          clickable={true}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
-          </div>
-        </div>
+              </div>
+            )
+          }
+          else 
+          {
+            count++;
+            return (
+              <div className={classMap[count]}>
+                <div style={{height:'40px'}}>
+                <div className={`${ph.flexCenterPlayerHand}`}>
+                  {p.playerHand.map((cardVal, idx) => {
+                    return (
+                    <div key={`${cardVal}- ${idx}- ${p.playerIdentity.name}- ${game.yourPlayerId}`}>
+                      <PlayCard
+                      game={game.gameState}
+                      card={cardVal}
+                      player={p}
+                      cardRotation={cardRotationConfig[idx]}
+                      pinPos={pinPos}
+                      clickable={false}/>
+                    </div>
+                    );
+                  })}
+                  </div>
+                </div>
+                <p className={`${gf.otherplayerName}`}>{p.playerIdentity.name}</p>
+              </div>
+            );
+          }
+        })}
 
         {/* Resolve Card
         {game.gameState.gamePhase == "Resolve" && (
