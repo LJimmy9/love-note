@@ -16,11 +16,22 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
   const [endTurn, setEndTurn] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log("player", player);
+  }, [player]);
+
+  useEffect(() => {
+    console.log("game", game);
+  }, [game]);
+
+  useEffect(() => {
     if (endTurn) Rune.actions.updateCurrentTurn();
   }, [endTurn]);
 
   return (
     <div className={ln.loveNoteActionContainer}>
+      <div style={{ fontSize: "12px" }}>{`${
+        game?.yourPlayerId === player.playerId ? "You" : `${player.displayName}`
+      } drew Rainy Day!`}</div>
       <div
         className={`${ln.loveNoteContainer}`}
         onAnimationEnd={() => setFadeOutLetter(true)}
@@ -61,7 +72,7 @@ const RainyDay = ({ loveNotes }: RainyDayProps) => {
             setEndTurn(true);
           }}
         >
-          <p>
+          <p style={{ fontSize: "12px" }}>
             {game?.gameState.players[player.playerId].playerIdentity.role ===
             "Tattle Tale"
               ? "Yes! The rain washed off some parts of the letter! >:) "

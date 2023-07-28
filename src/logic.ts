@@ -245,6 +245,12 @@ Rune.initLogic({
         throw Rune.invalidAction();
       }
 
+      // Reshuffle discard pile into the deck if deck has been exhausted
+      if (game.deck.length <= 0) {
+        game.deck = getReshuffledDeck(game);
+        game.discardedCards = [];
+      }
+
       game.discardedCards.push(playCard);
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
@@ -254,11 +260,6 @@ Rune.initLogic({
       }
 
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
-      // Reshuffle discard pile into the deck if deck has been exhausted
-      if (game.deck.length <= 0) {
-        game.deck = getReshuffledDeck(game);
-        game.discardedCards = [];
-      }
 
       game.gamePhase = "Resolve";
     },
