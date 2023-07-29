@@ -1,3 +1,5 @@
+@use "../globals.scss";
+
 .discardContainer {
   position: absolute;
   /* padding: 0 1rem; */
@@ -47,4 +49,23 @@
     translate: 0% -35%;
     rotate: z 0deg;
   }
+}
+
+@media screen and (min-height: globals.$large){
+  .discardContainer{
+    width: 10vw;
+    height: 25vh;
+  }
+
+@keyframes enterAnim {
+  0% {
+    opacity: 0;
+    rotate: z 360deg;
+  }
+  100% {
+    opacity: 1;
+    translate: 180% -65%;
+    rotate: z 0deg;
+  }
+}
 }

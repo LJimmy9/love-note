@@ -47,7 +47,7 @@ function PassDirection() {
               {gameState.direction}.
             </div>
           )}
-          <div>
+          <div className={ts.tsCardContainer}>
             {gameState.players[currPlayer.playerId].playerHand.map((card) => {
               return (
                 <div

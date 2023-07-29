@@ -1,3 +1,5 @@
+@use "../globals.scss";
+
 .deckCard {
   position: absolute;
   width: 100%;
@@ -9,6 +11,22 @@
   border: 5px solid #c8a2c8;
   border-radius: 1rem;
 }
+
+@media screen and (max-width: globals.$smallScreen) {
+  .deckCard{ 
+    // z-index: 15;
+    translate: -50% 160%;
+  }
+}
+
+@media screen and (min-height: globals.$large) {
+  .deckCard{
+    border: 2px solid red;
+    translate: -60% 20%;
+    scale: .6;
+  }
+}
+
 
 .theCard {
   width: 100%;

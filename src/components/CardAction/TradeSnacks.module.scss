@@ -30,9 +30,18 @@
   font-size: 60px;
 }
 
+.tsCardContainer{
+}
+
+.cardHeader{
+}
+
 @media screen and (max-height: globals.$smallScreen) {
   .doneBtn {
     translate: 35vw 0vh;
+  }
+  .tsCardContainer {
+    display: flex;
   }
 }
 

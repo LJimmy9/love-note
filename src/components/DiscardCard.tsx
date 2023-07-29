@@ -1,5 +1,5 @@
 import { Card } from "../logic";
-import d from "./DiscardCard.module.css";
+import d from "./DiscardCard.module.scss";
 import p from "./PlayCard.module.scss";
 
 interface DiscardCardProps {

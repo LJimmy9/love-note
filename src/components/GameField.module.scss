@@ -1,4 +1,4 @@
-/* gameField */
+@use "../globals.scss";
 
 .gameContainer {
   font-family: "Andale Mono", monospace;
@@ -19,6 +19,7 @@
   padding: 2vw;
   background-color: #cbb2ff;
   /* border: 1px solid blue; */
+  z-index: 900;
 }
 
 .turnContainer {
@@ -62,7 +63,9 @@
   /* left: -30px; */
   top: 28vh;
   left: -5vw;
-  transform: rotate(90deg);
+  /* transform: rotate(90deg); */
+  rotate: z 90deg;
+  /* rotate: 0 90deg; */
 }
 
 /* .otherplayerLeftMiddle {
@@ -116,3 +119,99 @@
     bottom: 27vh;
   }
 }
+
+.leftPlayer {
+  /* top: 22.5%; */
+  /* left: -30px; */
+  /* position: relative; */
+  top: 50%;
+  left: 50%;
+  translate: -80% 20%;
+  /* left: -5vw; */
+  /* transform: rotate(90deg); */
+  rotate: z 90deg;
+  position: absolute;
+  /* rotate: 0 90deg; */
+}
+
+.topPlayer {
+  /* position: fixed; */
+  /* top: 22.5%; */
+  /* left: -30px; */
+  /* position: relative; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -80% -130%;
+  /* left: -5vw; */
+  /* transform: rotate(90deg); */
+  rotate: z 180deg;
+  z-index: 1;
+  /* rotate: 0 90deg; */
+}
+
+.rightPlayer {
+  position: absolute;
+  /* top: 22.5%; */
+  /* left: -30px; */
+  /* position: relative; */
+  top: 50%;
+  left: 50%;
+  translate: -20% -140%;
+  /* left: -5vw; */
+  /* transform: rotate(90deg); */
+  rotate: z -90deg;
+  /* rotate: 0 90deg; */
+}
+
+.currentPlayer {
+  translate: 100% -20%;
+}
+
+@media screen and (min-height: globals.$m1){
+  .topPlayer {
+    border: 5px solid black;
+  translate: -90% -150%;
+  }
+}
+@media screen and (min-height: globals.$m2){
+  .topPlayer {
+    border: 5px solid red;
+    translate: -50% -200%;
+  }
+  .leftPlayer{
+    translate: -100% -50%;
+  }
+  .rightPlayer{
+    translate: 0% -70%;
+  }
+}
+@media screen and (min-height: globals.$m3){
+  .topPlayer {
+    border: 5px solid green;
+    translate: -50% -260%;
+  }
+  .leftPlayer{
+    translate: -120% -50%;
+  }
+  .rightPlayer{
+    translate: 20% -70%;
+  }
+  .currentPlayer {
+    translate: -110% 20%;
+  }
+}
+
+@media screen and (min-height: globals.$large) {
+  .topPlayer{
+    border: 5px solid orange;
+    translate: -50% -290%;
+  }
+  .leftPlayer{
+    translate: -380% -50%;
+  }
+  .rightPlayer{
+    translate: 280% 10%;
+  }
+}
+

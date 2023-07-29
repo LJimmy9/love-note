@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Card } from "../logic";
-import d from "./DeckCard.module.css";
+import d from "./DeckCard.module.scss";
 import { $gamePhase, $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
 import cardSlide5 from "../assets/cardSlide5.ogg"
