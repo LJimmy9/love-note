@@ -6,6 +6,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
 import { $isAnimating, $playAnimation } from "./state/animations.ts";
 import ph from "./components/PlayerHand.module.css";
+import rain from "./assets/rain.gif";
 
 function App() {
   const [game, setGame] = useAtom($game);
