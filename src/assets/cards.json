@@ -62,7 +62,7 @@
     "description": "You weren't at school! The teacher doesn't believe the tattle tale. This can only be played once by each player",
     "restrictionToRole": "",
     "canPlay": false,
-    "count": 10,
+    "count": 1,
     "autoPlay": false
   },
   {

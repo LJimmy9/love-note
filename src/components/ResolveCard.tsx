@@ -12,6 +12,7 @@ import OppositeDay from "./CardAction/OppositeDay";
 import Tattle from "./CardAction/Tattle";
 import TattleSideEffect from "./SideEffect/TattleSideEffect";
 import AbsentSideEffect from "./SideEffect/AbsentSideEffect";
+import LastWordsSideEffect from "./SideEffect/LastWordsSideEffect";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -69,6 +70,7 @@ function ResolveCard({ players }: ResolveCardProps) {
           <RainyDay />
         </div>
       ),
+      10: <LastWordsSideEffect players={players} />,
     };
 
     return uiMap[playerSideEffect.cardNum as number];

@@ -4,7 +4,7 @@ import { TattleProps } from "../CardAction/Tattle";
 import a from "./AbsentSideEffect.module.css";
 import { useState } from "react";
 
-function AbsentSideEffect({ players }: TattleProps) {
+function LastWordsSideEffect({ players }: TattleProps) {
   const gameState = useAtomValue($gameState);
   const [showText, setShowText] = useState<boolean>(false);
 
@@ -14,20 +14,19 @@ function AbsentSideEffect({ players }: TattleProps) {
         className={`${a.info} ${a.fadeIn}`}
         onAnimationEnd={() => setShowText(true)}
       >
-        {players[gameState.tattledOn].displayName} was absent! The teacher did
-        not believe they were passing notes.
-        <div className={a.ghost}>👻🙅‍♂️🙅‍♀️👻</div>
+        {players[gameState.tattledOn].displayName} says{" "}
+        {gameState.players[gameState.tattledOn].sideEffect.receiveFrom}!
       </div>
       {showText && (
         <div
           className={`${a.afterText} ${a.fadeIn}`}
-          onAnimationEnd={() => Rune.actions.updateCurrentTurn()}
+          onAnimationEnd={() => Rune.actions.handleGameEnd()}
         >
-          Not today Tattle Tale! 💓
+          Good Game 💘
         </div>
       )}
     </>
   );
 }
 
-export default AbsentSideEffect;
+export default LastWordsSideEffect;

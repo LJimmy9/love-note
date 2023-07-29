@@ -39,6 +39,7 @@ export const $gameState = atom<GameState>((get) => {
       rainyDayIsPlay: false,
       loveNoteHolder: "",
       meddleUsed: [],
+      absentUsed: [],
       tattledOn: "",
     };
     return gameState;

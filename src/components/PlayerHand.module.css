@@ -10,32 +10,29 @@
 
 .playerHandLoverTurn {
   background-color: pink;
-  border: 5px solid green;
+  border: 5px solid #77dd77;
 }
 
 .playerHandTattleTurn {
   background-color: rgb(143, 189, 141);
-  border: 5px solid green;
+  border: 5px solid #77dd77;
 }
 
 .playerHandFriendTurn {
   background-color: skyblue;
-  border: 5px solid green;
+  border: 5px solid #77dd77;
 }
 
 .playerHandLover {
   background-color: pink;
-  border: 5px solid red;
 }
 
 .playerHandTattle {
   background-color: rgb(143, 189, 141);
-  border: 5px solid red;
 }
 
 .playerHandFriend {
   background-color: skyblue;
-  border: 5px solid red;
 }
 
 .flexCenterPlayerHand {
