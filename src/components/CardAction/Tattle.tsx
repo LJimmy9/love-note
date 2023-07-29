@@ -19,7 +19,7 @@ function Tattle({ players }: TattleProps) {
         Select a player to Tattle on! Choose wisely, this will send the player
         to detention.
       </div>
-      <div style={{ fontSize: "25px", marginTop: "10px" }}>📣😮</div>
+      <div style={{ fontSize: "25px", marginTop: "10px" }}>😮📣</div>
       <div className={ts.playerSelectionContainer}>
         {Object.keys(players).map((playerId) => {
           const player: AtomPlayer = players[playerId as PlayerId];

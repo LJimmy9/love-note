@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TattleProps } from "../CardAction/Tattle";
 import { PlayerId } from "rune-games-sdk/multiplayer";
 import { $gameState, $runePlayer } from "../../state/game";
@@ -16,7 +16,10 @@ function TattleSideEffect({ players }: TattleProps) {
     const absentCard = gameState.players[tattledOn].playerHand.filter(
       (card) => card.cardNum === 5
     );
-    if (absentCard.length) {
+    if (
+      absentCard.length &&
+      !gameState.absentUsed.includes(currPlayer.playerId)
+    ) {
       const card = absentCard[0];
       return (
         <div>
@@ -28,7 +31,15 @@ function TattleSideEffect({ players }: TattleProps) {
             style={{ margin: "20px auto" }}
             className={t.playerCard}
             onClick={() => {
-              Rune.actions.useAbsentCard();
+              Rune.actions.handleCard({
+                cardNum: 5,
+                playersInvolved: [
+                  currPlayer.playerId,
+                  ...Object.keys(players).filter(
+                    (playerId) => playerId !== currPlayer.playerId
+                  ),
+                ],
+              });
             }}
           >
             <div className={ts.cardHeader}>
@@ -42,7 +53,12 @@ function TattleSideEffect({ players }: TattleProps) {
     } else {
       return (
         <div className={t.defeat}>
-          You have no absent card! You must accept defeat and go to detention.
+          <div>{`${
+            gameState.absentUsed.includes(currPlayer.playerId)
+              ? "You already used the absent card!"
+              : "You have no absent card!"
+          }`}</div>
+          You must accept defeat and go to detention.
           <div style={{ marginTop: "10px" }}>Any last words?</div>
           <div className={t.lastWordsContainer}>
             {["😥", "😂", "🤬", "💔", "👍"].map((lastWord) => {
@@ -50,7 +66,7 @@ function TattleSideEffect({ players }: TattleProps) {
                 <span
                   className={t.lastWord}
                   onClick={() => {
-                    // handle last words
+                    Rune.actions.handleLastWords({ lastWord: lastWord });
                   }}
                 >
                   {lastWord}

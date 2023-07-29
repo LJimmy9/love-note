@@ -87,6 +87,7 @@ export interface GameState {
   rainyDayIsPlay: boolean;
   loveNoteHolder: PlayerId;
   meddleUsed: Array<PlayerId>;
+  absentUsed: Array<PlayerId>;
   cardPlayed?: string;
   tattledOn: PlayerId;
 }
@@ -115,7 +116,8 @@ type GameActions = {
   selectCard: (params: { cardNumInPlay: number; selectedCard: Card }) => void;
   resolveProcessing: () => void;
   setLoveNoteHolder: (params: { loveNoteHolder: string }) => void;
-  useAbsentCard: () => void;
+  handleLastWords: (params: { lastWord: string }) => void;
+  handleGameEnd: () => void;
 };
 
 declare global {
@@ -174,6 +176,11 @@ function handleCard(
       for (let i = 0; i < playersInvolved.length; i++) {
         const playerId = playersInvolved[i];
         game.players[playerId].sideEffect.cardNum = 5;
+
+        // index 0 is the player who played absent card
+        if (i == 0) {
+          game.absentUsed.push(playerId);
+        }
       }
       break;
     case 6:
@@ -236,10 +243,6 @@ Rune.initLogic({
       discardedCards: [],
       currentTurn: allPlayerIds[0],
       loveNotes: [],
-      // loveNotes: [
-      //   { id: 0, text: "💕" },
-      //   { id: 1, text: "💝" },
-      // ],
       turnNum: 0,
       gamePhase: "Draw",
       direction: "left",
@@ -249,6 +252,7 @@ Rune.initLogic({
       rainyDayIsPlay: false,
       loveNoteHolder: "",
       meddleUsed: [], // every player can only use meddle once
+      absentUsed: [], // every player can only use absent once
       tattledOn: "",
     };
   },
@@ -298,6 +302,7 @@ Rune.initLogic({
           if (cardNum === 6) {
             game.meddleUsed.push(requestPlayerId);
           }
+          // check for winning condition
           break;
         case "remove":
           if (game.players[requestPlayerId].hasLoveNoteAction) {
@@ -411,8 +416,26 @@ Rune.initLogic({
       }
       game.loveNoteHolder = loveNoteHolder;
     },
-    useAbsentCard: (_, { game }) => {
-      handleCard(5, Object.keys(game.players), game);
+    handleLastWords: ({ lastWord }, { game }) => {
+      for (let i = 0; i < Object.keys(game.players).length; i++) {
+        const playerId = Object.keys(game.players)[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 10;
+        game.players[playerId].sideEffect.receiveFrom = lastWord;
+      }
+    },
+    handleGameEnd: (_, { game }) => {
+      const otherPlayers = Object.keys(game.players).filter(
+        (playerId) => ![game.currentTurn, game.tattledOn].includes(playerId)
+      );
+      Rune.gameOver({
+        players: {
+          [game.currentTurn]: "WON",
+          [game.tattledOn]: "LOST",
+          [otherPlayers[0]]: "LOST",
+          [otherPlayers[1]]: "LOST",
+        },
+      });
     },
   },
 
