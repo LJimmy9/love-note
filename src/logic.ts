@@ -17,7 +17,7 @@ const env = import.meta.env.MODE;
 // const env = "";
 const setupConfig = createSetupDeck(env);
 const setupDeckConfig = setupConfig("cardNum");
-const setupDeck = setupDeckConfig(1, 0);
+const setupDeck = setupDeckConfig(1, 20);
 
 export interface Card {
   id: string;
@@ -428,12 +428,15 @@ Rune.initLogic({
       const otherPlayers = Object.keys(game.players).filter(
         (playerId) => ![game.currentTurn, game.tattledOn].includes(playerId)
       );
+
+      const isTattledOnFriend =
+        game.players[game.tattledOn].playerIdentity.role === "Friend";
       Rune.gameOver({
         players: {
-          [game.currentTurn]: "WON",
-          [game.tattledOn]: "LOST",
-          [otherPlayers[0]]: "LOST",
-          [otherPlayers[1]]: "LOST",
+          [game.currentTurn]: isTattledOnFriend ? "LOST" : "WON",
+          [game.tattledOn]: isTattledOnFriend ? "WON" : "LOST",
+          [otherPlayers[0]]: isTattledOnFriend ? "WON" : "LOST",
+          [otherPlayers[1]]: isTattledOnFriend ? "WON" : "LOST",
         },
       });
     },
