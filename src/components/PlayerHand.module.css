@@ -2,22 +2,40 @@
   position: relative;
   width: 100%;
   /* border: 5px solid rgb(0, 5, 163); */
-  background-color: brown;
+  /* background-color: brown; */
 
   /* responsive later */
   height: 15vh;
 }
 
+.playerHandLoverTurn {
+  background-color: pink;
+  border: 5px solid green;
+}
+
+.playerHandTattleTurn {
+  background-color: rgb(143, 189, 141);
+  border: 5px solid green;
+}
+
+.playerHandFriendTurn {
+  background-color: skyblue;
+  border: 5px solid green;
+}
+
 .playerHandLover {
   background-color: pink;
+  border: 5px solid red;
 }
 
 .playerHandTattle {
-  background-color: blue;
+  background-color: rgb(143, 189, 141);
+  border: 5px solid red;
 }
 
 .playerHandFriend {
   background-color: skyblue;
+  border: 5px solid red;
 }
 
 .flexCenterPlayerHand {
