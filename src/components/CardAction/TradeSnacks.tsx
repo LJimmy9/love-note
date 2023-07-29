@@ -16,7 +16,7 @@ function TradeSnacks({ players }: TradeSnacksProps) {
   return (
     <div>
       <div className={ts.instruction}>
-        Select a player to exchange cards with
+        Choose a player to exchange cards with
       </div>
       <div className={ts.playerSelectionContainer}>
         {Object.keys(players).map((playerId) => {

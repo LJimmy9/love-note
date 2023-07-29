@@ -26,11 +26,9 @@ const RainyDay = () => {
         }}
         src={rain}
       />
-      <div style={{ fontSize: "12px" }}>{`${
-        game?.yourPlayerId === player.playerId
-          ? "You"
-          : `${game?.players[gameState.currentTurn].displayName}`
-      } drew Rainy Day!`}</div>
+      <div style={{ fontSize: "12px" }}>{`${`${
+        game?.players[gameState.currentTurn].displayName
+      }`} drew Rainy Day!`}</div>
       <div
         className={`${ln.loveNoteContainer}`}
         onAnimationEnd={() => setFadeOutLetter(true)}

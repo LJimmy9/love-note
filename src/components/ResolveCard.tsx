@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import rc from "./ResolveCard.module.css";
 import NosyGlance from "./CardAction/NosyGlance";
 import RainyDay from "./CardAction/RainyDay";
@@ -10,7 +10,6 @@ import { useAtomValue } from "jotai";
 import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
 import PassDirection from "./CardAction/PassDirection";
 import OppositeDay from "./CardAction/OppositeDay";
-import Meddle from "./CardAction/Meddle";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
