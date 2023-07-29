@@ -72,7 +72,7 @@
     "cardNum": 6,
     "description": "You tamper with the love note; Lovers can add a note to the love note without holding the love note, Tattle Tales can remove a note without holding the love note.",
     "restrictionToRole": "",
-    "canPlay": true,
+    "canPlay": false,
     "count": 1,
     "autoPlay": false
   },
@@ -97,16 +97,5 @@
     "canPlay": true,
     "count": 1,
     "autoPlay": true
-  },
-  {
-    "id": "",
-    "name": "Cupid",
-    "image": "💘",
-    "cardNum": 9,
-    "description": "Cupid has come from above! Everyone must select the lowest or highest card (depending on the priority) in their hand and place it in the middle. Lovers can swap a card in their hand for any student's card. The lovers cannot see the card they choose.",
-    "restrictionToRole": "",
-    "canPlay": true,
-    "count": 1,
-    "autoPlay": false
   }
 ]
