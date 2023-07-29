@@ -173,10 +173,10 @@ function PlayCard({
 
         {/* Body image */}
         {clickable && (
-          <>
+          <div className={s.playCardDetail}>
             <div className={s.cardImage}>{card.image}</div>
             <div className={s.cardName}>{card.name}</div>
-          </>
+          </div>
         )}
         {/* Footer description */}
         <div className={`${s.cardbody} ${isOpen ? s.showText : s.hideText}`}>

@@ -54,8 +54,10 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
                       >
                         <div className={ng.frontImageContainer}>
                           <div className={ng.cardDetail}>
-                            <p className={ng.cardNum}>{card.cardNum}</p>
-                            <p>{card.image}</p>
+                            <div className={ng.cardHeader}>
+                              <p className={ng.cardNum}>{card.cardNum}</p>
+                              <p className={ng.cardImage}>{card.image}</p>
+                            </div>
                             <p>{card.name}</p>
                           </div>
                         </div>

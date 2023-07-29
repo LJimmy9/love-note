@@ -1,10 +1,15 @@
 .playerCard {
-  padding: 0 1rem;
+  /* padding: 1rem 1.5rem 2rem 1.5rem; */
+
+  padding: 0 2.5vw;
+
   border-radius: 1rem;
   overflow: hidden;
   transition: 500ms ease;
-  width: 8ch;
-  height: 16ch;
+  /* width: 8ch;
+  height: 16ch; */
+  /* width: 20vw;
+  height: 28vw; */
   background-color: #add8e6;
   border: 5px solid #c8a2c8;
   color: black;
@@ -15,6 +20,18 @@
 
 .playerCardContainer {
   transform-style: preserve-3d;
+}
+
+.cardDiscardHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+}
+
+.cardDiscardImage {
+  padding-top: 2vh;
+  font-size: 20px;
 }
 
 .playerCardBack {
@@ -31,6 +48,8 @@
   transition: 500ms ease;
   width: 8ch;
   height: 16ch;
+  /* width: 20vw;
+  height: 28vw; */
   background-color: #ffb7c5;
   border: 5px solid #c8a2c8;
   color: black;
@@ -118,19 +137,19 @@
   transition: 500ms ease;
 }
 
-.cardNum {
-  margin-top: 5px;
-  float: left;
-  font-weight: bolder;
+.cardName {
+  margin-top: 1.5vh;
+  line-height: 3vh;
 }
 
-.cardName {
-  font-size: 8px;
-  font-weight: bolder;
+.cardNum {
+  margin-top: 2.5vh;
+  margin-left: 2vw;
+  float: left;
 }
 
 .cardImage {
-  margin: 10px 0 5px 0;
+  margin-top: 15px;
   font-size: 20px;
 }
 
@@ -138,7 +157,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 6px;
+  /* font-size: 6px; */
 }
 
 .hideText {
@@ -148,9 +167,11 @@
 }
 
 .showText {
+  margin-top: 3vh;
   opacity: 1;
   transition: opacity 500ms linear;
-  font-size: 10px;
+  /* font-size: 10px; */
+  line-height: 3vh;
 }
 
 .playCardBtn {
@@ -159,4 +180,10 @@
   float: right;
   scale: 2;
   translate: 0 5px;
+}
+
+@media screen and (min-width: 414px) {
+  .playerCard {
+    padding: 1vh 5vw;
+  }
 }

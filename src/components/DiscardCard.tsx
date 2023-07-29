@@ -10,10 +10,10 @@ function DeckCard({ card }: DiscardCardProps) {
   return (
     <div className={`${d.discardContainer} ${d.enterAnim}`}>
       <div className={d.discardPile}>
-        <div className={p.cardHeader}>
+        <div className={p.cardDiscardHeader}>
           <div className={d.cardNum}>{card.cardNum}</div>
+          <div className={`${p.cardDiscardImage}`}>{card.image}</div>
         </div>
-        <div className={p.cardImage}>{card.image}</div>
         <div className={p.cardName}>{card.name}</div>
       </div>
     </div>

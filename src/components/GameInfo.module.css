@@ -75,19 +75,19 @@
 
 .infoContent > ul > li:before {
   content: "❤️ ";
-  font-size: 6px;
+  /* font-size: 6px; */
   vertical-align: middle;
 }
 
 .infoTitle {
   font-weight: bold;
-  font-size: 13px;
+  /* font-size: 13px; */
   margin-top: 3%;
 }
 
 .infoBullet {
   font-weight: bolder;
-  font-size: 13px;
+  /* font-size: 13px; */
 }
 
 /* info card */
@@ -103,13 +103,13 @@
   padding-right: 3%;
 }
 
-.infoCardName {
+/* .infoCardName {
   font-size: 17px;
-}
+} */
 
-.infoIDName {
+/* .infoIDName {
   font-size: 14px;
-}
+} */
 
 /* player information */
 

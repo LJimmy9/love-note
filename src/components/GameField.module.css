@@ -2,7 +2,9 @@
 
 .gameContainer {
   font-family: "Andale Mono", monospace;
-  font-size: 8px;
+
+  /* responsive later: */
+  font-size: 12px;
 
   position: relative;
   display: flex;
@@ -48,53 +50,69 @@
 
 .deck {
   position: relative;
-  top: 10%;
-  width: 12ch;
-  height: 16ch;
+  /* at 375 and height: 667 height */
+  top: -10vh;
+  width: 20vw;
+  height: 28vw;
 }
 
 .otherplayerLeftTop {
   position: fixed;
-  top: 22.5%;
-  left: -30px;
+  /* top: 22.5%; */
+  /* left: -30px; */
+  top: 28vh;
+  left: -5vw;
   transform: rotate(90deg);
 }
 
-.otherplayerLeftMiddle {
+/* .otherplayerLeftMiddle {
   position: fixed;
   bottom: 50%;
   left: -30px;
   transform: rotate(90deg);
-}
+} */
 
 .otherplayerLeftBottom {
   position: fixed;
-  bottom: 25%;
-  left: -30px;
+  /* bottom: 25%; */
+  /* left: -30px; */
+  bottom: 27vh;
+  left: -5vw;
   transform: rotate(90deg);
 }
 
 .otherplayerRightTop {
   position: fixed;
-  top: 17.5%;
-  right: -30px;
+  /* top: 17.5%; */
+  top: 27vh;
+  /* right: -30px; */
+  right: -5vw;
   transform: rotate(270deg);
 }
 
-.otherplayerRightMiddle {
+/* .otherplayerRightMiddle {
   position: fixed;
   bottom: 54%;
   right: -30px;
   transform: rotate(270deg);
-}
+} */
 
 .otherplayerRightBottom {
   position: fixed;
-  bottom: 29%;
-  right: -30px;
+  /* bottom: 29%; */
+  /* right: -30px; */
+
+  bottom: 30vh;
+  right: -5vw;
   transform: rotate(270deg);
 }
 
 .otherplayerName {
   position: relative;
+}
+
+@media screen and (min-width: 414px) {
+  .otherplayerRightBottom {
+    bottom: 27vh;
+  }
 }

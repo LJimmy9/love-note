@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
 
+  /* font-size: 12px; */
   position: relative;
 }
 
@@ -12,23 +13,23 @@
   gap: 5px;
 }
 
-
 .actionContainer {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  gap: 10vw;
+  gap: 5vw;
   row-gap: 5vh;
 }
 
 .cardContainer {
   display: flex;
+  gap: 2vw;
 }
 
 .card {
   position: relative;
 
-  width: 6ch;
-  height: 10ch;
+  width: 16vw;
+  height: 16vh;
   padding: 8px 5px;
 
   border: 5px solid #c8a2c8;
@@ -51,14 +52,22 @@
   transform: rotateY(180deg);
 }
 
-.cardNum {
-  text-align: left;
-}
-
 .cardDetail {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 2vw;
+  line-height: 3vh;
+  padding-top: 1vh;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: center;
+  gap: 2vw;
+}
+
+.cardImage {
+  font-size: 5vw;
 }
 
 .backImageContainer {
