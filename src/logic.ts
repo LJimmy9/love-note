@@ -17,7 +17,7 @@ const env = import.meta.env.MODE;
 // const env = "";
 const setupConfig = createSetupDeck(env);
 const setupDeckConfig = setupConfig("cardNum");
-const setupDeck = setupDeckConfig(1, 20);
+const setupDeck = setupDeckConfig(1, 0);
 
 export interface Card {
   id: string;
