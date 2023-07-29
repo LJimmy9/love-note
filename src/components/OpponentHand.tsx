@@ -95,7 +95,7 @@ export const OppponentHand = ({
             />
           </svg>
         </div>
-        <p className={`${gf.otherplayerName}`}>{p.playerIdentity.name}</p>
+        <p className={`${gf.otherplayerName}`}>{game.players[playerId].displayName}</p>
       </div>
     </div>
   );
