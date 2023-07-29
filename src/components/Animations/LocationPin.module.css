@@ -186,3 +186,71 @@
     translate: 150% 150%;
   }
 }
+
+.topToCenter {
+  animation-name: tTC;
+}
+
+@keyframes tTC {
+  0% {
+  }
+  100% {
+    translate: 0% 150%;
+  }
+}
+
+.leftToCenter {
+  animation-name: lTCC;
+}
+
+@keyframes lTCC {
+  0% {
+    rotate: z 90deg;
+  }
+  100% {
+    translate: 150% 0%;
+    rotate: z 90deg;
+  }
+}
+
+.rightToCenter {
+  animation-name: rTCC;
+}
+
+@keyframes rTCC {
+  0% {
+    rotate: z 90deg;
+  }
+  100% {
+    rotate: z 90deg;
+    translate: -150% 0%;
+  }
+}
+
+.circleAnim {
+  animation-name: circAnim;
+  animation-duration: 1s;
+}
+
+@keyframes circAnim {
+  0% {
+    rotate: z 0deg;
+    translate: 0% 0%;
+  }
+  20% {
+    translate: 250% 0%;
+  }
+  40% {
+    translate: 250% 350%;
+  }
+  60% {
+    translate: 0% 350%;
+  }
+  80% {
+    translate: 0% 0%;
+  }
+  100% {
+    rotate: z 360deg;
+    translate: 250% 250%;
+  }
+}
