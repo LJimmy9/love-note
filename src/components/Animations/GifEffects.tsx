@@ -19,21 +19,20 @@ function GifEffects() {
             }`}
           </div>
         </div>
-        {gameState.cardPlayed != "Pass Direction" &&
-          gameState.cardPlayed != "Trade Snacks" && (
-            <img
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                translate: "-50% -50%",
-                height: "50%",
-                width: "50%",
-                zIndex: "2",
-              }}
-              src={magnifyingGlass}
-            />
-          )}
+        {gameState.cardPlayed == "Nosy Glance" && (
+          <img
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              translate: "-50% -50%",
+              height: "50%",
+              width: "50%",
+              zIndex: "2",
+            }}
+            src={magnifyingGlass}
+          />
+        )}
       </>
     )
   );

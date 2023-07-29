@@ -13,8 +13,10 @@ import {
 } from "./components/resolve-side-effects";
 import { createSetupDeck } from "./components/Configs/DeckFactory";
 
-const env = import.meta.env.MODE;
-const setupDeck = createSetupDeck(env);
+// const env = import.meta.env.MODE;
+const env = "";
+const setupConfig = createSetupDeck(env);
+const setupDeck = setupConfig("cardNum");
 
 export interface Card {
   id: string;
@@ -198,7 +200,7 @@ Rune.initLogic({
   maxPlayers: 4,
   setup: (allPlayerIds): GameState => {
     // enter name of card and count to add to deck -- will not apply to prod
-    const deck = setupDeck()("", 50);
+    const deck = setupDeck(2, 20);
     console.log("deck", deck);
     const identityCards = setupIdentityCards();
     const players: AllPlayers = {};
