@@ -9,6 +9,7 @@ import { useAtomValue } from "jotai";
 import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
 import PassDirection from "./CardAction/PassDirection";
 import OppositeDay from "./CardAction/OppositeDay";
+import Tattle from "./CardAction/Tattle";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -32,11 +33,8 @@ function ResolveCard({ players }: ResolveCardProps) {
       gameState.discardedCards[gameState.discardedCards.length - 1];
 
     const uiMap: UiMapProps = {
-      3: (
-        <>
-          <TradeSnacks players={players} />
-        </>
-      ),
+      1: <Tattle players={players} />,
+      3: <TradeSnacks players={players} />,
       4: (
         <div className={rc.resolveGameActionField}>
           <div style={{ lineHeight: "15px" }}>
@@ -59,6 +57,7 @@ function ResolveCard({ players }: ResolveCardProps) {
     if (!playerSideEffect.active) return null;
 
     const uiMap: UiMapProps = {
+      1: <>tattle tale side effect</>,
       2: <PassDirection />,
       3: <TradeSnacksSideEffect players={players} />,
       7: <OppositeDay />,

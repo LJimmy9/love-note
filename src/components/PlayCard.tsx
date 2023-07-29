@@ -11,17 +11,11 @@ export interface CardProps {
   game: GameState;
   card: Card;
   player: GamePlayer;
-  //position: string;  --hard coded atm to be relative
   cardRotation: string;
   pinPos: number[];
   clickable: boolean;
   currentPlayer: boolean;
 }
-
-// export interface Position {
-//   x: number;
-//   y: number;
-// }
 
 export interface Size {
   width: number;
@@ -55,22 +49,6 @@ function PlayCard({
   const currPlayer = useAtomValue($runePlayer);
 
   const cardRef = useRef<HTMLDivElement>(null);
-
-  // function handleResize(
-  //   el: HTMLDivElement,
-  //   updatePosCb: (pos: Position) => void,
-  //   updateWindowSizeCb: (windowX: number, windowY: number) => void
-  // ) {
-  //   const rect = el.getBoundingClientRect();
-  //   const x = rect.left;
-  //   const y = rect.top;
-  //   updatePosCb({ x: x, y: y });
-
-  //   const windowX = window.innerWidth;
-  //   const windowY = window.innerHeight;
-
-  //   updateWindowSizeCb(windowX, windowY);
-  // }
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -138,6 +116,9 @@ function PlayCard({
 
   // adjust css properties
   const animStr = currentPlayer ? s.drawCardAnim : s.sideDrawAnim;
+  const roleRestriction = card.restrictionToRole
+    ? card.restrictionToRole === player.playerIdentity.role
+    : true;
 
   const cardFront = (
     <div className={`${s.playerCardFront}`}>
@@ -155,7 +136,7 @@ function PlayCard({
         {clickable && (
           <div className={s.cardHeader}>
             <div className={s.cardNum}>{card.cardNum}</div>
-            {card.canPlay && isOpen && (
+            {card.canPlay && isOpen && roleRestriction && (
               <div
                 className={s.playCardBtn}
                 onClick={() => {

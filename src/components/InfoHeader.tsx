@@ -29,7 +29,7 @@ export const InfoHeader = ({ showInfo, setShowInfo }: InfoHeaderProps) => {
               : game.players[game.gameState.currentTurn].displayName
           }`}
         </p>
-        <p>{`Current game phase: ${game.gameState.gamePhase}`}</p>
+        <p>{`Game Phase: ${game.gameState.gamePhase}`}</p>
       </div>
       <div className={gi.infoButtonContainer}>
         <button onClick={() => setShowInfo(!showInfo)} className={gi.infoBtn}>

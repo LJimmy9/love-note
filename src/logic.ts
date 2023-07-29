@@ -13,10 +13,11 @@ import {
 } from "./components/resolve-side-effects";
 import { createSetupDeck } from "./components/Configs/DeckFactory";
 
-// const env = import.meta.env.MODE;
-const env = "";
+const env = import.meta.env.MODE;
+// const env = "";
 const setupConfig = createSetupDeck(env);
-const setupDeck = setupConfig("cardNum");
+const setupDeckConfig = setupConfig("cardNum");
+const setupDeck = setupDeckConfig(2, 20);
 
 export interface Card {
   id: string;
@@ -129,6 +130,11 @@ function handleCard(
     case 0:
       break;
     case 1:
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 1;
+      }
       break;
     case 2:
       for (let i = 0; i < playersInvolved.length; i++) {
@@ -200,7 +206,7 @@ Rune.initLogic({
   maxPlayers: 4,
   setup: (allPlayerIds): GameState => {
     // enter name of card and count to add to deck -- will not apply to prod
-    const deck = setupDeck(2, 20);
+    const deck = setupDeck();
     console.log("deck", deck);
     const identityCards = setupIdentityCards();
     const players: AllPlayers = {};
