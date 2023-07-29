@@ -1,6 +1,5 @@
 import type { PlayerId, RuneClient } from "rune-games-sdk/multiplayer";
 import {
-  setupDeck,
   setupIdentityCards,
   updateCurrentTurn,
   getReshuffledDeck,
@@ -12,6 +11,10 @@ import {
   setReceiveFrom,
   resolveProcessing,
 } from "./components/resolve-side-effects";
+import { createSetupDeck } from "./components/Configs/DeckFactory";
+
+const env = import.meta.env.MODE;
+const setupDeck = createSetupDeck(env);
 
 export interface Card {
   id: string;
@@ -194,7 +197,9 @@ Rune.initLogic({
   minPlayers: 4,
   maxPlayers: 4,
   setup: (allPlayerIds): GameState => {
-    const deck = setupDeck();
+    // enter name of card and count to add to deck -- will not apply to prod
+    const deck = setupDeck()("", 50);
+    console.log("deck", deck);
     const identityCards = setupIdentityCards();
     const players: AllPlayers = {};
 

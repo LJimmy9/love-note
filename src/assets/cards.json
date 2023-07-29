@@ -51,7 +51,7 @@
     "description": "It's a good day to be nosy! Pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 50,
+    "count": 5,
     "autoPlay": false
   },
   {
