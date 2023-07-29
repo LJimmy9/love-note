@@ -4,6 +4,7 @@ import Game from "./components/Game";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
 import { $isAnimating, $playAnimation } from "./state/animations.ts";
+import GifEffects from "./components/Animations/GifEffects.tsx";
 
 function App() {
   const [game, setGame] = useAtom($game);
@@ -62,6 +63,7 @@ function App() {
           backgroundColor: "#fbd9bb",
         }}
       >
+        <GifEffects />
         <Game
           player={game.gameState.players[game.yourPlayerId]}
           pinPos={pinPos}

@@ -81,6 +81,7 @@ export interface GameState {
   rainyDayIsPlay: boolean;
   loveNoteHolder: PlayerId;
   meddleUsed: Array<PlayerId>;
+  cardPlayed?: string;
 }
 
 type GameActions = {
@@ -178,6 +179,8 @@ function initiateSideEffect(playCard: Card, game: GameState) {
     case 2:
       handleCard(playCard.cardNum, Object.keys(game.players), game);
       break;
+    case 4:
+      break;
     case 7:
       handleCard(playCard.cardNum, Object.keys(game.players), game);
       break;
@@ -273,11 +276,15 @@ Rune.initLogic({
           break;
         case "remove":
           if (game.players[requestPlayerId].hasLoveNoteAction) {
-            game.loveNotes = game.loveNotes.filter(
-              (note) => note.text != prompt
-            );
+            for (let i = 0; i < game.loveNotes.length; i++) {
+              if (game.loveNotes[i].text == prompt) {
+                game.loveNotes.splice(i, 1);
+                break;
+              }
+            }
             game.players[requestPlayerId].hasLoveNoteAction = false;
           }
+
           if (cardNum === 6) {
             game.meddleUsed.push(requestPlayerId);
           }
@@ -346,6 +353,7 @@ Rune.initLogic({
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
 
       game.gamePhase = "Resolve";
+      game.cardPlayed = playCard.name;
 
       // only initiate side effect if the card triggers for everyone as soon as it's played
       initiateSideEffect(playCard, game);
