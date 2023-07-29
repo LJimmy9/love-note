@@ -5,14 +5,16 @@ export function configCards(choice: string) {
   if (choice == "cardNum") {
     return (cardNum: any, countConfig: number) => {
       return () => {
+        let counter = 999;
         const deck = setupDeck();
 
         const card = cards.filter((card) => card.cardNum == cardNum);
 
         for (let i = 0; i < countConfig; i++) {
-          deck.push(...card);
+          card[0].id = counter.toString();
+          deck.push({ ...card[0] });
+          counter++;
         }
-
         shuffleDeck(deck);
 
         return deck;

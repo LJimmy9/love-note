@@ -96,11 +96,6 @@ export const OppponentHand = ({
             />
           </svg>
         </div>
-        {players && (
-          <p className={`${gf.otherplayerName}`}>
-            {players[playerId].displayName}
-          </p>
-        )}
       </div>
     </div>
   );

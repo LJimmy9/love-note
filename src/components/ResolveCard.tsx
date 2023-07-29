@@ -10,6 +10,8 @@ import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
 import PassDirection from "./CardAction/PassDirection";
 import OppositeDay from "./CardAction/OppositeDay";
 import Tattle from "./CardAction/Tattle";
+import TattleSideEffect from "./SideEffect/TattleSideEffect";
+import AbsentSideEffect from "./SideEffect/AbsentSideEffect";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -57,9 +59,10 @@ function ResolveCard({ players }: ResolveCardProps) {
     if (!playerSideEffect.active) return null;
 
     const uiMap: UiMapProps = {
-      1: <>tattle tale side effect</>,
+      1: <TattleSideEffect players={players} />,
       2: <PassDirection />,
       3: <TradeSnacksSideEffect players={players} />,
+      5: <AbsentSideEffect players={players} />,
       7: <OppositeDay />,
       8: (
         <div className={rc.resolveGameActionField}>
