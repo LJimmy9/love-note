@@ -6,6 +6,7 @@ import { GamePlayer } from "../logic";
 import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
 
+
 import ph from "./PlayerHand.module.css";
 import gi from "./GameInfo.module.css";
 
@@ -35,7 +36,11 @@ export const PlayerHand = ({
 
   return (
     <div
-      className={`${ph.playerHandContainer}`}
+      className={`
+                ${game.gameState.players[currPlayer.playerId].playerIdentity.role === "Lover" ? ph.playerHandLover : ph.playerHandContainer} 
+                ${game.gameState.players[currPlayer.playerId].playerIdentity.role === "Tattle" ? ph.playerHandTattle : ph.playerHandContainer} 
+                ${game.gameState.players[currPlayer.playerId].playerIdentity.role === "Friend" ? ph.playerHandFriend: ph.playerHandContainer}
+                `}
       key={`gamestate-${idx}-${currPlayer.playerId}`}
       style={{
         zIndex: "10",
@@ -45,6 +50,7 @@ export const PlayerHand = ({
         className={gi.playerInfoActionContainer}
         onClick={() => setShowPlayerInfo(!showPlayerInfo)}
       >
+        <p >{game.gameState.players[currPlayer.playerId].playerIdentity.role}</p>
         <img
           src={game!.players[playerId]["avatarUrl"]}
           style={{

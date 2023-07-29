@@ -1,8 +1,20 @@
 .playerHandContainer {
   position: relative;
   width: 100%;
-  border: 1px solid rgb(0, 5, 163);
-  background-color: brownq;
+  /* border: 5px solid rgb(0, 5, 163); */
+  background-color: brown;
+}
+
+.playerHandLover {
+  background-color: pink;
+}
+
+.playerHandTattle {
+  background-color: blue;
+}
+
+.playerHandFriend {
+  background-color: red;
 }
 
 .flexCenterPlayerHand {
