@@ -33,13 +33,13 @@ function PassDirection() {
   return (
     <>
       {players && (
-        <div>
+        <div className={ts.tradeSnackActionContainer}>
           <div className={ts.instruction}>
             {`${
               players[gameState.currentTurn].displayName
             } has played Pass Direction. Select your ${
               gameState.priority
-            } card to pass ${gameState.direction}.`}
+            } card to pass ${gameState.direction}. Click 👌 when you're done`}
           </div>
           {priorityError && (
             <div style={{ color: "red" }}>
@@ -74,6 +74,7 @@ function PassDirection() {
                 </div>
               );
             })}
+
             <div
               className={ts.doneBtn}
               onClick={() => {

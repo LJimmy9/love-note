@@ -1,23 +1,27 @@
+.tradeSnackActionContainer {
+  font-size: 13px;
+  line-height: 3vh;
+  padding: 3vw 4vh;
+}
+
 .instruction {
-  font-size: 12px;
-  padding: 15px 5px 10px 5px;
   z-index: 5;
 }
 
 .playerSelectionContainer {
   margin-top: 30px;
+}
 
-  .playerSelection {
-    margin-top: 10px;
-    font-size: 14px;
-    cursor: pointer;
-  }
+.playerSelectionContainer > .playerSelection {
+  margin-top: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .doneBtn {
   cursor: pointer;
   position: absolute;
-  top: 60%;
+  bottom: 10%;
   left: 50%;
   transform: translate(-50%, 50%);
   font-size: 60px;

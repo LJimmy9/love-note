@@ -39,9 +39,10 @@ function ResolveCard({ players }: ResolveCardProps) {
       ),
       4: (
         <div className={rc.resolveGameActionField}>
-          <div style={{ fontSize: "10px", lineHeight: "15px" }}>
+          <div style={{ lineHeight: "15px" }}>
             Select a player to peek at their cards
           </div>
+          <div>Click 👌 when you're done</div>
           <NosyGlance
             glancePlayer={glancePlayer}
             setGlancePlayer={setGlancePlayer}
