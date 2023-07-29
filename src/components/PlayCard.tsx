@@ -6,6 +6,8 @@ import { $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
 import { handleResize, Position } from "../utils/Resize";
 import Meddle from "./CardAction/Meddle";
+import { playSound } from "./DeckCard";
+import cardSlide1 from "../assets/cardSlide1.ogg";
 
 export interface CardProps {
   game: GameState;
@@ -140,6 +142,7 @@ function PlayCard({
               <div
                 className={s.playCardBtn}
                 onClick={() => {
+                  playSound(cardSlide1);
                   Rune.actions.playCard({
                     playCard: card,
                     playerIdToUpdate: currPlayer.playerId,
