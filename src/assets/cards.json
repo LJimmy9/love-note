@@ -4,7 +4,7 @@
     "name": "Love Note",
     "image": "💌",
     "cardNum": 0,
-    "description": "A love note that gets passed around. Lovers must write at least 3 notes in the Love Note to win the game! If a Lover is holding this card, they can treat this card as any number.",
+    "description": "A love note that gets passed around. Lovers must write at least 3 notes in the Love Note to win the game!",
     "restrictionToRole": "Lover",
     "canPlay": false,
     "count": 1,
@@ -15,10 +15,10 @@
     "name": "Tattle",
     "image": "📣",
     "cardNum": 1,
-    "description": "Tattle on a lover for passing notes in the classroom. If successful, the lovers are sent to detention and the Tattle Tales win the game! If a Tattle Tale is holding this card, they can treat this card as any number.",
+    "description": "Tattle on a lover for passing notes in the classroom. If successful, the lovers are sent to detention and the Tattle Tale wins the game! Tattle Tales can treat this card as any number and only the Tattle Tale can use this card.",
     "restrictionToRole": "Tattle Tale",
     "canPlay": true,
-    "count": 1,
+    "count": 2,
     "autoPlay": false
   },
   {
@@ -51,7 +51,7 @@
     "description": "It's a good day to be nosy! Pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 5,
+    "count": 4,
     "autoPlay": false
   },
   {
@@ -61,8 +61,8 @@
     "cardNum": 5,
     "description": "You weren't at school! The teacher doesn't believe the tattle tale. This can only be played once by each player",
     "restrictionToRole": "",
-    "canPlay": true,
-    "count": 1,
+    "canPlay": false,
+    "count": 10,
     "autoPlay": false
   },
   {

@@ -13,10 +13,11 @@ import {
 } from "./components/resolve-side-effects";
 import { createSetupDeck } from "./components/Configs/DeckFactory";
 
-// const env = import.meta.env.MODE;
-const env = "";
+const env = import.meta.env.MODE;
+// const env = "";
 const setupConfig = createSetupDeck(env);
-const setupDeck = setupConfig("cardNum");
+const setupDeckConfig = setupConfig("cardNum");
+const setupDeck = setupDeckConfig(1, 0);
 
 export interface Card {
   id: string;
@@ -87,6 +88,7 @@ export interface GameState {
   loveNoteHolder: PlayerId;
   meddleUsed: Array<PlayerId>;
   cardPlayed?: string;
+  tattledOn: PlayerId;
 }
 
 type GameActions = {
@@ -113,6 +115,7 @@ type GameActions = {
   selectCard: (params: { cardNumInPlay: number; selectedCard: Card }) => void;
   resolveProcessing: () => void;
   setLoveNoteHolder: (params: { loveNoteHolder: string }) => void;
+  useAbsentCard: () => void;
 };
 
 declare global {
@@ -129,6 +132,17 @@ function handleCard(
     case 0:
       break;
     case 1:
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.active = true;
+        game.players[playerId].sideEffect.cardNum = 1;
+
+        // index 0 is the player who is being tattled on
+        if (i == 0) {
+          game.tattledOn = playerId;
+          game.players[playerId].sideEffect.receiveFrom = game.currentTurn;
+        }
+      }
       break;
     case 2:
       for (let i = 0; i < playersInvolved.length; i++) {
@@ -157,6 +171,10 @@ function handleCard(
     case 4:
       break;
     case 5:
+      for (let i = 0; i < playersInvolved.length; i++) {
+        const playerId = playersInvolved[i];
+        game.players[playerId].sideEffect.cardNum = 5;
+      }
       break;
     case 6:
       break;
@@ -200,8 +218,7 @@ Rune.initLogic({
   maxPlayers: 4,
   setup: (allPlayerIds): GameState => {
     // enter name of card and count to add to deck -- will not apply to prod
-    const deck = setupDeck(2, 20);
-    console.log("deck", deck);
+    const deck = setupDeck();
     const identityCards = setupIdentityCards();
     const players: AllPlayers = {};
 
@@ -232,6 +249,7 @@ Rune.initLogic({
       rainyDayIsPlay: false,
       loveNoteHolder: "",
       meddleUsed: [], // every player can only use meddle once
+      tattledOn: "",
     };
   },
   update: ({ game }) => {
@@ -393,7 +411,11 @@ Rune.initLogic({
       }
       game.loveNoteHolder = loveNoteHolder;
     },
+    useAbsentCard: (_, { game }) => {
+      handleCard(5, Object.keys(game.players), game);
+    },
   },
+
   events: {
     playerJoined: (playerId, { game }) => {
       if (Object.keys(game.players).includes(playerId)) {

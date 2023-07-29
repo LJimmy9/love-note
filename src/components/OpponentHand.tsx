@@ -1,6 +1,6 @@
 import { PlayerId } from "rune-games-sdk/multiplayer";
 import { SetStateAction, useAtomValue } from "jotai";
-import { $game, $runePlayer } from "../state/game";
+import { $game, $players, $runePlayer } from "../state/game";
 import { Dispatch } from "react";
 import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
@@ -39,6 +39,7 @@ export const OppponentHand = ({
 }: OppponentHandProps) => {
   const game = useAtomValue($game);
   const currPlayer = useAtomValue($runePlayer);
+  const players = useAtomValue($players);
   if (!game) return;
 
   const p = game.gameState.players[playerId];
@@ -95,7 +96,6 @@ export const OppponentHand = ({
             />
           </svg>
         </div>
-        <p className={`${gf.otherplayerName}`}>{p.playerIdentity.name}</p>
       </div>
     </div>
   );

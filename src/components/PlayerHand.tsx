@@ -49,14 +49,28 @@ export const PlayerHand = ({
       return name + " " + id.image;
     }
   });
-  
+
   return (
     <div
-      className={`
-                ${role === "Lover" && currPl != yourId ? ph.playerHandLover : role === "Lover" && currPl === yourId ? ph.playerHandLoverTurn : ph.playerHandContainer} 
-                ${role === "Tattle Tale" && currPl != yourId ? ph.playerHandTattle : role === "Tattle Tale" && currPl === yourId ? ph.playerHandTattleTurn : ph.playerHandContainer} 
-                ${role === "Friend" && currPl != yourId ? ph.playerHandFriend: role === "Friend" && currPl === yourId ? ph.playerHandFriendTurn : ph.playerHandContainer}
-                `}
+      className={`${
+        role === "Lover" && currPl != yourId
+          ? ph.playerHandLover
+          : role === "Lover" && currPl === yourId
+          ? ph.playerHandLoverTurn
+          : ph.playerHandContainer
+      } ${
+        role === "Tattle Tale" && currPl != yourId
+          ? ph.playerHandTattle
+          : role === "Tattle Tale" && currPl === yourId
+          ? ph.playerHandTattleTurn
+          : ph.playerHandContainer
+      } ${
+        role === "Friend" && currPl != yourId
+          ? ph.playerHandFriend
+          : role === "Friend" && currPl === yourId
+          ? ph.playerHandFriendTurn
+          : ph.playerHandContainer
+      }`}
       key={`gamestate-${idx}-${currPlayer.playerId}`}
       style={{
         zIndex: "10",
@@ -66,9 +80,11 @@ export const PlayerHand = ({
         className={gi.playerInfoActionContainer}
         onClick={() => setShowPlayerInfo(!showPlayerInfo)}
       >
-        <p >{game.gameState.players[currPlayer.playerId].playerIdentity.role}</p>
+        <p style={{ zIndex: 1 }}>
+          {game.gameState.players[currPlayer.playerId].playerIdentity.role}
+        </p>
         <img
-          src={game!.players[playerId]["avatarUrl"]}
+          src={game?.players[playerId]["avatarUrl"]}
           style={{
             width: "50px",
           }}

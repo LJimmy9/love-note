@@ -14,7 +14,9 @@ function DeckCard({ card }: DiscardCardProps) {
           <div className={d.cardNum}>{card.cardNum}</div>
           <div className={`${p.cardDiscardImage}`}>{card.image}</div>
         </div>
-        <div className={p.cardName}>{card.name}</div>
+        <div className={p.cardName} style={{ fontSize: "8px" }}>
+          {card.name}
+        </div>
       </div>
     </div>
   );

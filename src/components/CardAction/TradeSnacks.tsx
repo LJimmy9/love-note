@@ -30,6 +30,7 @@ function TradeSnacks({ players }: TradeSnacksProps) {
                 setSelectedId(playerId);
               }}
             >
+              <img className={ts.avatar} src={player.avatarUrl} />
               {player.displayName}
               {selectedId == playerId && (
                 <span style={{ marginLeft: "5px" }}>✔️</span>
