@@ -301,6 +301,7 @@ Rune.initLogic({
       }
 
       if (playCard.name === "Rainy Day") {
+        
         game.rainyDayIsPlay = true;
       }
 

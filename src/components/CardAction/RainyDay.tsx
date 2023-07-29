@@ -2,6 +2,7 @@ import { useState } from "react";
 import { $game, $runePlayer, $gameState } from "../../state/game";
 import { useAtomValue } from "jotai";
 import ln from "./LoveNote.module.css";
+import rain from "../../assets/rain.gif";
 
 const RainyDay = () => {
   const game = useAtomValue($game);
@@ -12,6 +13,14 @@ const RainyDay = () => {
 
   return (
     <div className={ln.loveNoteActionContainer}>
+      <img
+        style={{
+          position: "absolute",
+          height: "100vh",
+          width: "100vw",
+        }}
+        src={rain}
+      />
       <div style={{ fontSize: "12px" }}>{`${
         game?.yourPlayerId === player.playerId
           ? "You"
