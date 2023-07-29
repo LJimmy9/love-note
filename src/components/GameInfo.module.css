@@ -121,7 +121,7 @@
   height: 15px;
   /* color: white;
   background-color: #658bdd; */
-  
+
   border-radius: 50%;
 
   display: flex;
@@ -151,7 +151,7 @@
   border: 1px solid black;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 50;
   display: flex;
   flex-direction: column;
   gap: 2vh;
@@ -190,4 +190,9 @@
 
 .nonActivePlayerInfo {
   display: none;
+}
+
+.directionPriority {
+  display: flex;
+  gap: 10vw;
 }

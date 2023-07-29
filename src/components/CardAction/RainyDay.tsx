@@ -22,7 +22,6 @@ const RainyDay = () => {
           height: "200%",
           width: "200%",
           zIndex: "11",
-          border: "5px solid black",
         }}
         src={rain}
       />

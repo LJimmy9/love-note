@@ -19,12 +19,7 @@ export default function LoveNoteAction({
   const currPlayer = useAtomValue($runePlayer);
   const idCardRole = player.playerIdentity.role;
   const notePrompts = ["💝", "😚", "😉", "💕"];
-  const actionTxt =
-    idCardRole === "Lover"
-      ? "Add Note"
-      : idCardRole === "Tattle Tale"
-      ? "Remove Note"
-      : "View Notes";
+  const actionTxt = "Open Love Note";
 
   function performAction(
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>,

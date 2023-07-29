@@ -37,6 +37,7 @@ function DeckCard({ card, currentTurn }: DeckCardProps) {
   return (
     <div
       ref={cardRef}
+      className={`${d.deckCard}`}
       // onClick={handleDrawCard}
       {...(currentTurn === player.playerId &&
         gamePhase === "Draw" &&

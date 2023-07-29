@@ -29,7 +29,7 @@
     "description": "Every student must pass a card (depending on the current card priority) to the direction displayed.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 6,
+    "count": 5,
     "autoPlay": false
   },
   {
@@ -51,7 +51,7 @@
     "description": "It's a good day to be nosy! Pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 4,
+    "count": 50,
     "autoPlay": false
   },
   {
@@ -84,7 +84,7 @@
     "description": "It's opposite day! The direction and priority of the class room has now reversed.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 2,
+    "count": 4,
     "autoPlay": false
   },
   {

@@ -17,9 +17,10 @@ export const InfoHeader = ({ showInfo, setShowInfo }: InfoHeaderProps) => {
   return (
     <div className={gf.currentGameDetail}>
       <div className={gf.turnContainer}>
-        <p>
-          Direction: {game.gameState.priority} to the {game.gameState.direction}
-        </p>
+        <div className={gi.directionPriority}>
+          <p>Direction: {game.gameState.direction == "left" ? "⬅️" : "➡️"}</p>
+          <p>Priority: {game.gameState.priority == "highest" ? "⬆️" : "⬇️"} </p>
+        </div>
         <p className={gf.playerTurn}>
           Player Turn:{" "}
           {`${

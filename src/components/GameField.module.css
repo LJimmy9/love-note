@@ -15,7 +15,7 @@
   grid-template-columns: repeat(2, auto);
   gap: 5px;
   padding: 2vw;
-  
+
   border: 1px solid blue;
 }
 
@@ -49,10 +49,8 @@
 .deck {
   position: relative;
   top: 10%;
-  border: 5px solid #c8a2c8;
   width: 12ch;
   height: 16ch;
-  border-radius: 1rem;
 }
 
 .otherplayerLeftTop {
