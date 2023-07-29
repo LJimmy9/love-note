@@ -16,8 +16,13 @@ const RainyDay = () => {
       <img
         style={{
           position: "absolute",
-          height: "100vh",
-          width: "100vw",
+          top: "50%",
+          left: "50%",
+          translate: "-50% -50%",
+          height: "200%",
+          width: "200%",
+          zIndex: "11",
+          border: "5px solid black",
         }}
         src={rain}
       />
