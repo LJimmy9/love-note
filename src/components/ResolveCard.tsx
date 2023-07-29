@@ -1,5 +1,5 @@
 import { ReactElement, useState } from "react";
-import rc from "./ResolveCard.module.css";
+import rc from "./ResolveCard.module.scss";
 import NosyGlance from "./CardAction/NosyGlance";
 import RainyDay from "./CardAction/RainyDay";
 import { Card } from "../logic";
@@ -39,10 +39,10 @@ function ResolveCard({ players }: ResolveCardProps) {
       3: <TradeSnacks players={players} />,
       4: (
         <div className={rc.resolveGameActionField}>
-          <div style={{ lineHeight: "15px" }}>
+          <div className={rc.resolveText} style={{ lineHeight: "15px" }}>
             Select a player to peek at their cards
+            <div>Click 👌 when you're done</div>
           </div>
-          <div>Click 👌 when you're done</div>
           <NosyGlance
             glancePlayer={glancePlayer}
             setGlancePlayer={setGlancePlayer}

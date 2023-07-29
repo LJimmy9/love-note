@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
 import { TradeSnacksProps } from "../CardAction/TradeSnacks";
 import { $gameState, $runePlayer } from "../../state/game";
-import ts from "../CardAction/TradeSnacks.module.css";
+import ts from "../CardAction/TradeSnacks.module.scss";
 import { useEffect, useState } from "react";
 import { Card } from "../../logic";
 

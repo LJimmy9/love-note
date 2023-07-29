@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Card, GamePlayer, GameState } from "../logic";
-import s from "./PlayCard.module.css";
+import s from "./PlayCard.module.scss";
 import LoveNoteCard from "./LoveNoteCard";
 import { $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
