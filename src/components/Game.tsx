@@ -36,7 +36,7 @@ const Game = ({ player, pinPos }: GameProps) => {
 
   const game = useAtomValue($game);
   const bgmRef = useRef<any>();
-  const [music, setMusic] = useState<boolean>(true);
+  const [music, _setMusic] = useState<boolean>(true);
 
   useEffect(() => {
     if (!bgmRef.current) return;

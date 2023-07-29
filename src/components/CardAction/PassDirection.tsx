@@ -43,8 +43,7 @@ function PassDirection() {
           </div>
           {priorityError && (
             <div style={{ color: "red" }}>
-              This is not your {gameState.priority} card. Please select the{" "}
-              {gameState.priority} card in your hand and pass{" "}
+              Please select the {gameState.priority} card in your hand to pass
               {gameState.direction}.
             </div>
           )}
