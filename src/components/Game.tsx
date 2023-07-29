@@ -33,10 +33,10 @@ const Game = ({ player, pinPos }: GameProps) => {
   const [showPlayerInfo, setShowPlayerInfo] = useState<boolean>(false);
 
   const [activePlayer, setActivePlayer] = useState<string>("");
+  const music = true;
 
   const game = useAtomValue($game);
   const bgmRef = useRef<any>();
-  const [music, _setMusic] = useState<boolean>(true);
 
   useEffect(() => {
     if (!bgmRef.current) return;
@@ -44,7 +44,7 @@ const Game = ({ player, pinPos }: GameProps) => {
     bgmRef.current.onended = () => {
       bgmRef.current.remove();
     };
-  }, [bgmRef.current]);
+  }, [bgmRef]);
 
   useEffect(() => {
     if (music && game) {

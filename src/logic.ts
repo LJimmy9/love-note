@@ -44,6 +44,7 @@ export interface GamePlayer {
   playerHand: Card[];
   connected: boolean;
   sideEffect: SideEffect;
+  hasLoveNoteAction: boolean;
 }
 
 export interface AllPlayers {
@@ -78,6 +79,8 @@ export interface GameState {
   cardSwapSetup: CardSwapSetupProps;
   animation: string;
   rainyDayIsPlay: boolean;
+  loveNoteHolder: PlayerId;
+  meddleUsed: Array<PlayerId>;
 }
 
 type GameActions = {
@@ -86,7 +89,12 @@ type GameActions = {
   // updates
   animationDone: () => void;
   animateLeft: () => void;
-  updateLoveNote: (params: { action: string; prompt: string }) => void;
+  updateLoveNote: (params: {
+    action: string;
+    prompt: string;
+    requestPlayerId: PlayerId;
+    cardNum: number;
+  }) => void;
   updateCurrentTurn: () => void;
   // actions
   startGame: () => void;
@@ -98,6 +106,7 @@ type GameActions = {
   }) => void;
   selectCard: (params: { cardNumInPlay: number; selectedCard: Card }) => void;
   resolveProcessing: () => void;
+  setLoveNoteHolder: (params: { loveNoteHolder: string }) => void;
 };
 
 declare global {
@@ -211,6 +220,8 @@ Rune.initLogic({
       cardSwapSetup: {},
       animation: "",
       rainyDayIsPlay: false,
+      loveNoteHolder: "",
+      meddleUsed: [], // every player can only use meddle once
     };
   },
   update: ({ game }) => {
@@ -242,16 +253,34 @@ Rune.initLogic({
     animateLeft: (_, { game }) => {
       game.animation = "allPassLeft";
     },
-    updateLoveNote: ({ action, prompt }, { game }) => {
+    updateLoveNote: (
+      { action, prompt, requestPlayerId, cardNum },
+      { game }
+    ) => {
+      if (cardNum === 6 && game.meddleUsed.includes(requestPlayerId)) return;
       switch (action) {
         case "add":
-          game.loveNotes.push({
-            id: game.loveNotes.length,
-            text: prompt,
-          });
+          if (game.players[requestPlayerId].hasLoveNoteAction) {
+            game.loveNotes.push({
+              id: game.loveNotes.length,
+              text: prompt,
+            });
+            game.players[requestPlayerId].hasLoveNoteAction = false;
+          }
+          if (cardNum === 6) {
+            game.meddleUsed.push(requestPlayerId);
+          }
           break;
         case "remove":
-          game.loveNotes = game.loveNotes.filter((note) => note.text != prompt);
+          if (game.players[requestPlayerId].hasLoveNoteAction) {
+            game.loveNotes = game.loveNotes.filter(
+              (note) => note.text != prompt
+            );
+            game.players[requestPlayerId].hasLoveNoteAction = false;
+          }
+          if (cardNum === 6) {
+            game.meddleUsed.push(requestPlayerId);
+          }
           break;
         default:
           break;
@@ -274,9 +303,11 @@ Rune.initLogic({
       }
       const playerHandCopy = [...game.players[playerIdToUpdate].playerHand];
       playerHandCopy.push(deckCard);
+
       game.players[playerIdToUpdate].playerHand = playerHandCopy;
       const deckCopy = [...game.deck];
 
+      // remove the draw'd card from the deck
       const newDeck: Array<Card> = [];
       for (let i = 0; i < deckCopy.length; i++) {
         if (deckCopy[i].id !== deckCard.id) {
@@ -292,6 +323,10 @@ Rune.initLogic({
         throw Rune.invalidAction();
       }
 
+      if (playCard.cardNum === 8) {
+        game.rainyDayIsPlay = true;
+      }
+
       handleRainyDay(game);
 
       // Reshuffle discard pile into the deck if deck has been exhausted
@@ -300,19 +335,14 @@ Rune.initLogic({
         game.discardedCards = [];
       }
 
-      if (playCard.name === "Rainy Day") {
-        
-        game.rainyDayIsPlay = true;
-      }
-
       game.discardedCards.push(playCard);
+      // remove the played card from their hand
       const newPlayerHand: Array<Card> = [];
       for (let i = 0; i < playerHand.length; i++) {
         if (playerHand[i].id !== playCard.id) {
           newPlayerHand.push(playerHand[i]);
         }
       }
-
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
 
       game.gamePhase = "Resolve";
@@ -337,6 +367,16 @@ Rune.initLogic({
         default:
           break;
       }
+    },
+    setLoveNoteHolder: ({ loveNoteHolder }, { game }) => {
+      // only reset hasLoveNoteAction if the previous holder of the love note was another player
+      if (game.loveNoteHolder && loveNoteHolder) {
+        const allPlayers = Object.keys(game.players);
+        for (let i = 0; i < allPlayers.length; i++) {
+          game.players[allPlayers[i]].hasLoveNoteAction = true;
+        }
+      }
+      game.loveNoteHolder = loveNoteHolder;
     },
   },
   events: {

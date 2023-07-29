@@ -37,6 +37,8 @@ export const $gameState = atom<GameState>((get) => {
       cardSwapSetup: {},
       animation: "",
       rainyDayIsPlay: false,
+      loveNoteHolder: "",
+      meddleUsed: [],
     };
     return gameState;
   } else {
