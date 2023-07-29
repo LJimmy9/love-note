@@ -10,7 +10,7 @@ import { InfoHeader } from "./InfoHeader";
 import AnimGen from "./Animations/AnimGen";
 import bgm from "../assets/bgm.mp3";
 
-import gf from "./GameField.module.css";
+import gf from "./GameField.module.scss";
 
 interface GameProps {
   player: GamePlayer;
@@ -52,47 +52,52 @@ const Game = ({ player, pinPos }: GameProps) => {
     }
   }, [music, game]);
 
+  let counter = 0;
+
   return (
-    <>
+    <div>
       <AnimGen />
-      {game && (
-        <div className={gf.gameContainer}>
-          <GameInfo showInfo={showInfo} setShowInfo={setShowInfo} />
-          <audio ref={bgmRef} src={bgm} loop />
-          <InfoHeader showInfo={showInfo} setShowInfo={setShowInfo} />
-          <GameField />
-          {Object.keys(game.gameState.players).map((playerId, idx) => {
-            if (playerId === game.yourPlayerId) {
-              return (
-                <PlayerHand
-                  key={`${currPlayer.playerId}-${idx}`}
-                  idx={idx}
-                  currPlayer={currPlayer}
-                  player={player}
-                  playerId={playerId}
-                  pinPos={pinPos}
-                  cardRotationConfig={cardRotationConfig}
-                  showPlayerInfo={showPlayerInfo}
-                  setShowPlayerInfo={setShowPlayerInfo}
-                />
-              );
-            } else {
-              return (
-                <OppponentHand
-                  key={`${currPlayer.playerId}-${idx}`}
-                  activePlayer={activePlayer}
-                  playerId={playerId}
-                  idx={idx}
-                  pinPos={pinPos}
-                  cardRotationConfig={cardRotationConfig}
-                  setActivePlayer={setActivePlayer}
-                />
-              );
-            }
-          })}
-        </div>
-      )}
-    </>
+      <GameInfo showInfo={showInfo} setShowInfo={setShowInfo} />{" "}
+      <div>
+        {game && (
+          <div className={gf.gameContainer}>
+            <audio ref={bgmRef} src={bgm} loop />
+            <InfoHeader showInfo={showInfo} setShowInfo={setShowInfo} />
+            <GameField />
+            {Object.keys(game.gameState.players).map((playerId, idx) => {
+              if (playerId === game.yourPlayerId) {
+                return (
+                  <PlayerHand
+                    key={`${currPlayer.playerId}-${idx}`}
+                    idx={idx}
+                    currPlayer={currPlayer}
+                    player={player}
+                    playerId={playerId}
+                    pinPos={pinPos}
+                    cardRotationConfig={cardRotationConfig}
+                    showPlayerInfo={showPlayerInfo}
+                    setShowPlayerInfo={setShowPlayerInfo}
+                  />
+                );
+              } else {
+                counter++;
+                return (
+                  <OppponentHand
+                    key={`${currPlayer.playerId}-${idx}`}
+                    activePlayer={activePlayer}
+                    playerId={playerId}
+                    idx={counter}
+                    pinPos={pinPos}
+                    cardRotationConfig={cardRotationConfig}
+                    setActivePlayer={setActivePlayer}
+                  />
+                );
+              }
+            })}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

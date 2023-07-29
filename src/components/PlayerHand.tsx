@@ -9,6 +9,7 @@ import idCardData from "../assets/identity-cards.json";
 
 import ph from "./PlayerHand.module.css";
 import gi from "./GameInfo.module.css";
+import gf from "./GameField.module.scss";
 
 interface PlayerHandProps {
   idx: number;
@@ -116,7 +117,7 @@ export const PlayerHand = ({
       <div className={`${ph.flexCenterPlayerHand}`}>
         {player.playerHand.map((cardVal, phdIdx) => {
           return (
-            <div key={`${cardVal}-${phdIdx}`}>
+            <div key={`${cardVal}-${phdIdx}`} className={gf.currentPlayer}>
               <PlayCard
                 key={`${cardVal}-${phdIdx}-${currPlayer.playerId}`}
                 game={game.gameState}

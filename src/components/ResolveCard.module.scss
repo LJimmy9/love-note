@@ -9,7 +9,7 @@
   height: 100%;
 
   border: 1px solid #966fd6 ;
-  z-index: 1;
+  z-index: 15;
 }
 
 .resolveActionField {
@@ -34,6 +34,9 @@
 @media screen and (max-height: globals.$smallScreen) {
   .resolveText {
     opacity: 0;
+  }
+  .resolveActionFieldContainer{
+    scale: .8;
   }
 }
 

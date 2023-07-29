@@ -4,7 +4,7 @@ import DeckCard from "./DeckCard";
 import DiscardCard from "./DiscardCard";
 import ResolveCard from "./ResolveCard";
 
-import gf from "./GameField.module.css";
+import gf from "./GameField.module.scss";
 
 export const GameField = () => {
   const game = useAtomValue($game);

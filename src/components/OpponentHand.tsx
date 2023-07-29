@@ -6,7 +6,7 @@ import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
 
 import gi from "./GameInfo.module.css";
-import gf from "./GameField.module.css";
+import gf from "./GameField.module.scss";
 import ph from "./PlayerHand.module.css";
 
 interface OppponentHandProps {
@@ -23,9 +23,9 @@ type classMapConfig = {
 };
 
 const classMap: classMapConfig = {
-  1: `${gf.otherplayerLeftBottom}`,
-  2: `${gf.otherplayerRightBottom}`,
-  3: `${gf.otherplayerLeftTop}`,
+  1: `${gf.leftPlayer}`,
+  2: `${gf.topPlayer}`,
+  3: `${gf.rightPlayer}`,
   4: `${gf.otherplayerRightTop}`,
 };
 
@@ -62,7 +62,7 @@ export const OppponentHand = ({
         </div>
       )}
       <div
-        className={classMap[idx + 1]}
+        className={classMap[idx]}
         key={`gamestate-${idx}-${currPlayer.playerId}`}
       >
         <div style={{ height: "30px" }}>

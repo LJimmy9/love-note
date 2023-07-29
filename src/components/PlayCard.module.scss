@@ -24,6 +24,12 @@
   transform-style: preserve-3d;
 }
 
+@media screen and (max-height: globals.$smallScreen) {
+  .playerCardContainer{
+    // scale: .5;
+  }
+}
+
 .cardDiscardHeader {
   display: flex;
   justify-content: center;
@@ -194,7 +200,7 @@
 
 @media screen and (max-height: globals.$smallScreen) {
   .playerCard {
-    translate: -18vw 4vh;
+    translate: -30vw 7vh;
     scale: 0.7;
   }
 }

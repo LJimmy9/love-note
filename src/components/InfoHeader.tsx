@@ -2,7 +2,7 @@ import { SetStateAction, useAtomValue } from "jotai";
 import { $game } from "../state/game";
 import { Dispatch } from "react";
 
-import gf from "./GameField.module.css";
+import gf from "./GameField.module.scss";
 import gi from "./GameInfo.module.css";
 
 interface InfoHeaderProps {
