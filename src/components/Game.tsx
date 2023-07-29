@@ -57,10 +57,10 @@ const Game = ({ player, pinPos }: GameProps) => {
       <AnimGen />
       {game && (
         <div className={gf.gameContainer}>
+          <GameInfo showInfo={showInfo} setShowInfo={setShowInfo} />
           <audio ref={bgmRef} src={bgm} loop />
           <InfoHeader showInfo={showInfo} setShowInfo={setShowInfo} />
           <GameField />
-          <GameInfo showInfo={showInfo} setShowInfo={setShowInfo} />
           {Object.keys(game.gameState.players).map((playerId, idx) => {
             if (playerId === game.yourPlayerId) {
               return (

@@ -1,3 +1,5 @@
+@use '../../globals.scss';
+
 .tradeSnackActionContainer {
   font-size: 13px;
   line-height: 3vh;
@@ -26,6 +28,12 @@
   left: 50%;
   transform: translate(-50%, 50%);
   font-size: 60px;
+}
+
+@media screen and (max-height: globals.$smallScreen) {
+  .doneBtn {
+    translate: 35vw 0vh;
+  }
 }
 
 .playerCard {

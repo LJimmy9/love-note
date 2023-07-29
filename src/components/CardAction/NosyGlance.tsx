@@ -2,8 +2,8 @@ import React from "react";
 // import { GameState } from "../../logic";
 import { useAtomValue } from "jotai";
 import { $game, $runePlayer } from "../../state/game";
-import ng from "./NosyGlance.module.css";
-import rc from "../ResolveCard.module.css";
+import ng from "./NosyGlance.module.scss";
+import rc from "../ResolveCard.module.scss";
 
 interface NosyGlanceProps {
   glancePlayer: string;

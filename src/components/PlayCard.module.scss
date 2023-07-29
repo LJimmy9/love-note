@@ -1,3 +1,5 @@
+@use '../globals.scss';
+
 .playerCard {
   /* padding: 1rem 1.5rem 2rem 1.5rem; */
 
@@ -175,15 +177,24 @@
 }
 
 .playCardBtn {
-  padding: 5px;
+  margin-top: 5px;
+  width: 20vw;
+  font-size: larger;
   cursor: pointer;
   float: right;
   scale: 2;
-  translate: 0 5px;
+  translate: 0 15px;
 }
 
 @media screen and (min-width: 414px) {
   .playerCard {
     padding: 1vh 5vw;
+  }
+}
+
+@media screen and (max-height: globals.$smallScreen) {
+  .playerCard {
+    translate: -18vw 4vh;
+    scale: 0.7;
   }
 }

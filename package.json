@@ -18,6 +18,7 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.2",
     "rune-games-sdk": "^4.9.6",
+    "sass": "^1.64.1",
     "uuid4": "^2.0.3"
   },
   "devDependencies": {

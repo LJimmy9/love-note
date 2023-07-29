@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { $gameState, $players, $runePlayer } from "../../state/game";
-import ts from "./TradeSnacks.module.css";
+import ts from "./TradeSnacks.module.scss";
 import { useAtomValue } from "jotai";
 import { Card } from "../../logic";
 
