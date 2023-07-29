@@ -35,6 +35,8 @@ export const PlayerHand = ({
   if (!game) return;
   const role = game.gameState.players[currPlayer.playerId].playerIdentity.role;
   const name = game.gameState.players[currPlayer.playerId].playerIdentity.name;
+  const currPl = game.gameState.currentTurn;
+  const yourId = game.yourPlayerId;
   const roleEmoji =
     role == "Friend"
       ? role + " 🤝"
@@ -47,13 +49,13 @@ export const PlayerHand = ({
       return name + " " + id.image;
     }
   });
-
+  
   return (
     <div
       className={`
-                ${game.gameState.players[currPlayer.playerId].playerIdentity.role === "Lover" ? ph.playerHandLover : ph.playerHandContainer} 
-                ${game.gameState.players[currPlayer.playerId].playerIdentity.role === "Tattle" ? ph.playerHandTattle : ph.playerHandContainer} 
-                ${game.gameState.players[currPlayer.playerId].playerIdentity.role === "Friend" ? ph.playerHandFriend: ph.playerHandContainer}
+                ${role === "Lover" && currPl != yourId ? ph.playerHandLover : role === "Lover" && currPl === yourId ? ph.playerHandLoverTurn : ph.playerHandContainer} 
+                ${role === "Tattle Tale" && currPl != yourId ? ph.playerHandTattle : role === "Tattle Tale" && currPl === yourId ? ph.playerHandTattleTurn : ph.playerHandContainer} 
+                ${role === "Friend" && currPl != yourId ? ph.playerHandFriend: role === "Friend" && currPl === yourId ? ph.playerHandFriendTurn : ph.playerHandContainer}
                 `}
       key={`gamestate-${idx}-${currPlayer.playerId}`}
       style={{

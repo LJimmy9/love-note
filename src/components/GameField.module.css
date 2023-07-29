@@ -17,8 +17,8 @@
   grid-template-columns: repeat(2, auto);
   gap: 5px;
   padding: 2vw;
-
-  border: 1px solid blue;
+  background-color: #cbb2ff;
+  /* border: 1px solid blue; */
 }
 
 .turnContainer {
@@ -41,7 +41,7 @@
 .deckContainer {
   position: relative;
   overflow: visible;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 100%;
 
   display: flex;

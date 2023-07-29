@@ -26,7 +26,7 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
           <option value="es">es</option>
           <option value="cn">cn</option>
         </select>
-        <button onClick={() => setShowInfo(false)}>&times;</button>
+        <button onClick={() => setShowInfo(false)}>X</button>
       </div>
       <div>
         <div className={gi.infoTitle}> {t("info.header")} </div>
