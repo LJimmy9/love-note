@@ -157,4 +157,6 @@
   margin-top: 5px;
   cursor: pointer;
   float: right;
+  scale: 2;
+  translate: 0 5px;
 }

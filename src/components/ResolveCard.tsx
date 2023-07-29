@@ -10,6 +10,7 @@ import { useAtomValue } from "jotai";
 import TradeSnacksSideEffect from "./SideEffect/TradeSnacksSideEffect";
 import PassDirection from "./CardAction/PassDirection";
 import OppositeDay from "./CardAction/OppositeDay";
+import Meddle from "./CardAction/Meddle";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;

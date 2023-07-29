@@ -199,11 +199,11 @@ Rune.initLogic({
       identityCards: identityCards,
       discardedCards: [],
       currentTurn: allPlayerIds[0],
-      // loveNotes: [],
-      loveNotes: [
-        { id: 0, text: "💕" },
-        { id: 1, text: "💝" },
-      ],
+      loveNotes: [],
+      // loveNotes: [
+      //   { id: 0, text: "💕" },
+      //   { id: 1, text: "💝" },
+      // ],
       turnNum: 0,
       gamePhase: "Draw",
       direction: "left",
@@ -301,6 +301,7 @@ Rune.initLogic({
       }
 
       if (playCard.name === "Rainy Day") {
+        
         game.rainyDayIsPlay = true;
       }
 
@@ -314,7 +315,6 @@ Rune.initLogic({
 
       game.players[playerIdToUpdate].playerHand = newPlayerHand;
 
-      game.animation = "playCenter";
       game.gamePhase = "Resolve";
 
       // only initiate side effect if the card triggers for everyone as soon as it's played

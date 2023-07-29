@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Game from "./components/Game";
-import Overlay from "./components/Overlay.tsx";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { $game } from "./state/game.ts";
 import { $isAnimating, $playAnimation } from "./state/animations.ts";
-import ph from "./components/PlayerHand.module.css";
 
 function App() {
   const [game, setGame] = useAtom($game);

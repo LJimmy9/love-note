@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { $gameState, $players, $runePlayer } from "../../state/game";
 import ts from "./TradeSnacks.module.css";
 import { useAtomValue } from "jotai";
@@ -11,6 +11,25 @@ function PassDirection() {
   const [selected, setSelected] = useState<Card>();
   const [doneClicked, setDoneClicked] = useState<boolean>(false);
 
+  const [priorityCardNum, setPriorityCardNum] = useState<number>();
+  const [priorityError, setPriorityError] = useState<boolean>(false);
+
+  useEffect(() => {
+    const cardNums: number[] = gameState.players[
+      currPlayer.playerId
+    ].playerHand.map((card) => card.cardNum);
+
+    gameState.priority === "highest"
+      ? setPriorityCardNum(Math.max(...cardNums))
+      : setPriorityCardNum(Math.min(...cardNums));
+  }, [gameState]);
+
+  useEffect(() => {
+    return () => {
+      setPriorityError(false);
+    };
+  }, []);
+
   return (
     <>
       {players && (
@@ -18,8 +37,17 @@ function PassDirection() {
           <div className={ts.instruction}>
             {`${
               players[gameState.currentTurn].displayName
-            } has played Pass Direction. Select your lowest card to pass left.`}
+            } has played Pass Direction. Select your ${
+              gameState.priority
+            } card to pass ${gameState.direction}.`}
           </div>
+          {priorityError && (
+            <div style={{ color: "red" }}>
+              This is not your {gameState.priority} card. Please select the{" "}
+              {gameState.priority} card in your hand and pass{" "}
+              {gameState.direction}.
+            </div>
+          )}
           <div>
             {gameState.players[currPlayer.playerId].playerHand.map((card) => {
               return (
@@ -32,6 +60,10 @@ function PassDirection() {
                     margin: "10px auto",
                   }}
                   onClick={() => {
+                    if (card.cardNum !== priorityCardNum) {
+                      setPriorityError(true);
+                      return;
+                    }
                     setSelected(card);
                   }}
                 >

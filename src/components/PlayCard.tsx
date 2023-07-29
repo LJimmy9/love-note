@@ -5,6 +5,7 @@ import LoveNoteCard from "./LoveNoteCard";
 import { $runePlayer } from "../state/game";
 import { useAtomValue } from "jotai";
 import { handleResize, Position } from "../utils/Resize";
+import Meddle from "./CardAction/Meddle";
 
 export interface CardProps {
   game: GameState;
@@ -114,12 +115,26 @@ function PlayCard({
     }
   }
 
-  const description =
-    card.name === "Love Note" ? (
-      <LoveNoteCard card={card} player={player} loveNotes={game.loveNotes} />
-    ) : (
-      <>{card.description}</>
-    );
+  function getCardDescription() {
+    switch (card.name) {
+      case "Love Note":
+        return (
+          <LoveNoteCard
+            card={card}
+            player={player}
+            loveNotes={game.loveNotes}
+          />
+        );
+      case "Meddle":
+        return (
+          <Meddle card={card} player={player} loveNotes={game.loveNotes} />
+        );
+      default:
+        return <>{card.description}</>;
+    }
+  }
+
+  const description = getCardDescription();
 
   // adjust css properties
   const animStr = currentPlayer ? s.drawCardAnim : s.sideDrawAnim;
