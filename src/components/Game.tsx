@@ -65,6 +65,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             if (playerId === game.yourPlayerId) {
               return (
                 <PlayerHand
+                  key={`${currPlayer.playerId}-${idx}`}
                   idx={idx}
                   currPlayer={currPlayer}
                   player={player}
@@ -78,6 +79,7 @@ const Game = ({ player, pinPos }: GameProps) => {
             } else {
               return (
                 <OppponentHand
+                  key={`${currPlayer.playerId}-${idx}`}
                   activePlayer={activePlayer}
                   playerId={playerId}
                   idx={idx}

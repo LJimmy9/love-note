@@ -34,6 +34,8 @@ function PlaceholderCard({ animConfig }: PlaceholderCardProps) {
             return start + `${s.leftToTop}`;
           case "bottom":
             return start + `${s.leftToBottom}`;
+          case "center":
+            return start + `${s.leftToCenter}`;
           default:
             return s.noAnim;
         }
@@ -44,6 +46,8 @@ function PlaceholderCard({ animConfig }: PlaceholderCardProps) {
             return start + `${s.topToRight}`;
           case "left":
             return start + `${s.topToLeft}`;
+          case "center":
+            return start + `${s.topToCenter}`;
           default:
             return s.noAnim;
         }
@@ -54,9 +58,13 @@ function PlaceholderCard({ animConfig }: PlaceholderCardProps) {
             return start + `${s.rightToBottom}`;
           case "top":
             return start + `${s.rightToTop}`;
+          case "center":
+            return start + `${s.rightToCenter}`;
           default:
             return s.noAnim;
         }
+      case "circle":
+        return s.circleAnim;
       default:
         return s.NoAnim;
     }

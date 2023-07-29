@@ -26,11 +26,12 @@ function AnimGen() {
     playerPassRight: [["bottom", "right"]],
     playerPassTop: [["bottom", "top"]],
     playCenter: [["bottom", "center"]],
+    leftToCenter: [["left", "center"]],
+    topToCenter: [["top", "center"]],
+    rightToCenter: [["right", "center"]],
+    circlePlay: [["circle", "circle"]],
   };
 
-  // return (
-  //   <PlaceholderCard key={`${rP.playerId}-`} animConfig={["left", "bottom"]} />
-  // );
   return currAnimation != ""
     ? anims[currAnimation].map((an, idx) => {
         return <PlaceholderCard key={`${idx}`} animConfig={an} />;
