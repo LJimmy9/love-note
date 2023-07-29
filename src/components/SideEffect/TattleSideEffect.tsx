@@ -4,7 +4,7 @@ import { PlayerId } from "rune-games-sdk/multiplayer";
 import { $gameState, $runePlayer } from "../../state/game";
 import { useAtomValue } from "jotai";
 
-import ts from "../CardAction/TradeSnacks.module.css";
+import ts from "../CardAction/TradeSnacks.module.scss";
 import t from "./Tattle.module.css";
 
 function TattleSideEffect({ players }: TattleProps) {
