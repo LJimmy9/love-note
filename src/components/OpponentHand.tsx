@@ -25,8 +25,8 @@ type classMapConfig = {
 const classMap: classMapConfig = {
   1: `${gf.otherplayerLeftBottom}`,
   2: `${gf.otherplayerRightBottom}`,
-  3: `${gf.otherplayerLeftMiddle}`,
-  4: `${gf.otherplayerRightMiddle}`,
+  3: `${gf.otherplayerLeftTop}`,
+  4: `${gf.otherplayerRightTop}`,
 };
 
 export const OppponentHand = ({
@@ -64,7 +64,7 @@ export const OppponentHand = ({
         className={classMap[idx + 1]}
         key={`gamestate-${idx}-${currPlayer.playerId}`}
       >
-        <div style={{ height: "40px" }}>
+        <div style={{ height: "30px" }}>
           <div className={`${ph.flexCenterPlayerHand}`}>
             {p.playerHand.map((cardVal, sphIdx) => {
               return (
