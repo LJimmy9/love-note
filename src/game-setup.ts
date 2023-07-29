@@ -48,8 +48,10 @@ function shuffleDeck(deck: Array<Card>) {
 export function handleRainyDay(game: GameState) {
   if (game.loveNotes.length > 0 && !game.rainyDayIsPlay) {
     const rainyDay = cards.filter((card) => card.name === "Rainy Day");
-    game.deck.push(...rainyDay);
-    shuffleDeck(game.deck);
+    const deckCopy = [...game.deck];
+    deckCopy.push(...rainyDay);
+    shuffleDeck(deckCopy);
+    game.deck = deckCopy;
   }
 }
 

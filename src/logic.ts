@@ -199,11 +199,11 @@ Rune.initLogic({
       identityCards: identityCards,
       discardedCards: [],
       currentTurn: allPlayerIds[0],
-      // loveNotes: [],
-      loveNotes: [
-        { id: 0, text: "💕" },
-        { id: 1, text: "💝" },
-      ],
+      loveNotes: [],
+      // loveNotes: [
+      //   { id: 0, text: "💕" },
+      //   { id: 1, text: "💝" },
+      // ],
       turnNum: 0,
       gamePhase: "Draw",
       direction: "left",
