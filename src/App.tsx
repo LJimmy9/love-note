@@ -7,8 +7,8 @@ import { $isAnimating, $playAnimation } from "./state/animations.ts";
 
 function App() {
   const [game, setGame] = useAtom($game);
-
   const [pinPos] = useState<number[]>([]);
+  const [loveNoteHolder, setLoveNoteHolder] = useState<string>("");
 
   const playAnimation = useSetAtom($playAnimation);
 
@@ -17,6 +17,18 @@ function App() {
   useEffect(() => {
     Rune.initClient({
       onChange: ({ newGame, yourPlayerId, players }) => {
+        // assign loveNoteHolder
+        const allPlayers = Object.keys(newGame.players);
+        if (allPlayers.length) {
+          for (let i = 0; i < allPlayers.length; i++) {
+            const playerHand = newGame.players[allPlayers[i]].playerHand;
+            if (playerHand.find((card) => card.cardNum === 0)) {
+              setLoveNoteHolder(allPlayers[i]);
+              break;
+            }
+          }
+        }
+
         setGame({
           gameState: newGame,
           players: players,
@@ -29,6 +41,12 @@ function App() {
       },
     });
   }, []);
+
+  useEffect(() => {
+    if (loveNoteHolder) {
+      Rune.actions.setLoveNoteHolder({ loveNoteHolder: loveNoteHolder });
+    }
+  }, [loveNoteHolder]);
 
   if (!game || !game.gameState) {
     return <div>Loading...</div>;

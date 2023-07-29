@@ -26,9 +26,11 @@ const RainyDay = () => {
         }}
         src={rain}
       />
-      <div style={{ fontSize: "12px" }}>{`${`${
-        game?.players[gameState.currentTurn].displayName
-      }`} drew Rainy Day!`}</div>
+      <div style={{ fontSize: "12px" }}>{`${
+        player.playerId === gameState.currentTurn
+          ? "You"
+          : `${game?.players[gameState.currentTurn].displayName}`
+      } drew Rainy Day!`}</div>
       <div
         className={`${ln.loveNoteContainer}`}
         onAnimationEnd={() => setFadeOutLetter(true)}
@@ -66,6 +68,8 @@ const RainyDay = () => {
             Rune.actions.updateLoveNote({
               action: "remove",
               prompt: removeNote.text,
+              requestPlayerId: player.playerId,
+              cardNum: 8,
             });
             Rune.actions.updateCurrentTurn();
           }}

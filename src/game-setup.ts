@@ -108,6 +108,7 @@ export function createPlayer(idCards: IdentityCard[], deck: Card[]) {
       selectedCard: null,
       receiveFrom: "",
     },
+    hasLoveNoteAction: true,
   };
   return player;
 }

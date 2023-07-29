@@ -1,17 +1,22 @@
 import { Dispatch, SetStateAction } from "react";
-import { GamePlayer } from "../../logic";
+import { GamePlayer, Note } from "../../logic";
+import { useAtomValue } from "jotai";
+import { $runePlayer } from "../../state/game";
 
 interface LoveNoteActionProps {
   player: GamePlayer;
   showNotes: boolean;
   setShowNotes: Dispatch<SetStateAction<boolean>>;
+  loveNotes: Array<Note>;
 }
 
 export default function LoveNoteAction({
   player,
   showNotes,
   setShowNotes,
+  loveNotes,
 }: LoveNoteActionProps) {
+  const currPlayer = useAtomValue($runePlayer);
   const idCardRole = player.playerIdentity.role;
   const notePrompts = ["💝", "😚", "😉", "💕"];
   const actionTxt =
@@ -29,13 +34,23 @@ export default function LoveNoteAction({
 
     switch (idCardRole) {
       case "Lover":
-        Rune.actions.updateLoveNote({ action: "add", prompt: prompt });
+        Rune.actions.updateLoveNote({
+          action: "add",
+          prompt: prompt,
+          requestPlayerId: currPlayer.playerId,
+          cardNum: -1,
+        });
         break;
       case "Tattle Tale":
-        Rune.actions.updateLoveNote({ action: "remove", prompt: prompt });
+        Rune.actions.updateLoveNote({
+          action: "remove",
+          prompt: prompt,
+          requestPlayerId: currPlayer.playerId,
+          cardNum: -1,
+        });
         break;
       default:
-      // console.log("view only");
+        break;
     }
   }
 
@@ -49,7 +64,18 @@ export default function LoveNoteAction({
       case "Lover":
         return (
           <>
-            <div style={{ marginBottom: "5px" }}>click to add</div>
+            {loveNotes.map((note: Note) => {
+              return (
+                <span
+                  key={`note-${note.id}`}
+                  style={{ margin: "5px" }}
+                  onClick={(e) => performAction(e, note.text)}
+                >
+                  {note.text}
+                </span>
+              );
+            })}
+            <div style={{ margin: "10px 0" }}>click to add</div>
             <div>
               {notePrompts.map((prompt, idx) => {
                 return (
