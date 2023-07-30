@@ -1,14 +1,16 @@
 @use "../../globals.scss";
 
 .tradeSnackActionContainer {
-  font-size: 13px;
   line-height: 3vh;
-  padding: 3vw 4vh;
+  padding: 3vh 2vw;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
 }
 
 .instruction {
-  padding-top: 10px;
-  z-index: 5;
+  font-size: 12px;
 }
 
 .playerSelectionContainer {
@@ -30,8 +32,15 @@
   font-size: 40px;
 }
 
-// .tsCardContainer{
-// }
+.cardActionPlayContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.tsCardContainer {
+  display: flex;
+}
 
 // .cardHeader{
 // }
@@ -80,4 +89,15 @@
   width: 20px;
   top: 5px;
   margin-right: 5px;
+}
+
+// all tablets and Surface Pro
+@media only screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .instruction {
+    font-size: 24px;
+  }
+
+  .doneBtn {
+    font-size: 60px;
+  }
 }

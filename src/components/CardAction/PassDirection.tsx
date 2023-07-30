@@ -36,45 +36,51 @@ function PassDirection() {
         <div className={ts.tradeSnackActionContainer}>
           <div className={ts.instruction}>
             {`${
+              currPlayer.displayName ===
               players[gameState.currentTurn].displayName
-            } has played Pass Direction. Select your ${
-              gameState.priority
-            } card to pass ${gameState.direction}. Click 👌 when you're done`}
+                ? "You've played"
+                : `${players[gameState.currentTurn].displayName} has played`
+            } Pass Direction. Select your ${gameState.priority} card to pass ${
+              gameState.direction
+            }. Click 👌 when you're done`}
           </div>
-          {priorityError && (
-            <div style={{ color: "red" }}>
-              Please select the {gameState.priority} card in your hand to pass{" "}
-              {gameState.direction}.
-            </div>
-          )}
-          <div className={ts.tsCardContainer}>
-            {gameState.players[currPlayer.playerId].playerHand.map((card) => {
-              return (
-                <div
-                  key={`exchange-${card.id}`}
-                  className={`${ts.playerCard} ${
-                    selected?.id == card.id ? ts.selected : ""
-                  }`}
-                  style={{
-                    margin: "10px auto",
-                  }}
-                  onClick={() => {
-                    if (card.cardNum !== priorityCardNum) {
-                      setPriorityError(true);
-                      return;
-                    }
-                    setSelected(card);
-                  }}
-                >
-                  <div className={ts.cardHeader}>
-                    <div className={ts.cardNum}>{card.cardNum}</div>
-                    <div className={ts.cardName}>{card.name}</div>
-                    <div className={ts.cardImage}>{card.image}</div>
-                  </div>
-                </div>
-              );
-            })}
 
+          <div className={ts.cardActionPlayContainer}>
+            <div className={ts.tsCardContainer}>
+              {gameState.players[currPlayer.playerId].playerHand.map((card) => {
+                return (
+                  <div
+                    key={`exchange-${card.id}`}
+                    className={`${ts.playerCard} ${
+                      selected?.id == card.id ? ts.selected : ""
+                    }`}
+                    style={{
+                      margin: "10px auto",
+                    }}
+                    onClick={() => {
+                      if (card.cardNum !== priorityCardNum) {
+                        setPriorityError(true);
+                        return;
+                      }
+                      priorityError && setPriorityError(false);
+                      setSelected(card);
+                    }}
+                  >
+                    <div className={ts.cardHeader}>
+                      <div className={ts.cardNum}>{card.cardNum}</div>
+                      <div className={ts.cardName}>{card.name}</div>
+                      <div className={ts.cardImage}>{card.image}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {priorityError && (
+              <div style={{ color: "red" }}>
+                Please select the {gameState.priority} card in your hand to pass{" "}
+                {gameState.direction}.
+              </div>
+            )}
             <div
               className={ts.doneBtn}
               onClick={() => {
