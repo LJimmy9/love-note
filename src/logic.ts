@@ -16,7 +16,7 @@ import { createSetupDeck } from "./components/Configs/DeckFactory";
 const env = import.meta.env.MODE;
 const setupConfig = createSetupDeck(env);
 const setupDeckConfig = setupConfig("cardNum");
-const setupDeck = setupDeckConfig(7, 0);
+const setupDeck = setupDeckConfig(3, 0);
 
 export interface Card {
   id: string;

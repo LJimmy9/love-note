@@ -2,8 +2,6 @@
 
 .gameContainer {
   font-family: "Andale Mono", monospace;
-
-  /* responsive later: */
   font-size: 12px;
 
   position: relative;
@@ -16,17 +14,17 @@
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 5px;
-  padding: 2vw;
+  padding: 2vh 5vw;
   background-color: #cbb2ff;
-  /* border: 1px solid blue; */
-  z-index: 14;
+
+  z-index: 5;
 }
 
 .turnContainer {
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1.5vh;
 }
 
 .gameActionFieldContainer {
@@ -37,36 +35,48 @@
 .gameActionField {
   height: 100%;
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .deckContainer {
   position: relative;
   overflow: visible;
-  /* border: 1px solid red; */
-  height: 100%;
+  height: 50%;
 
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.discardContainer {
+  position: relative;
+  overflow: visible;
+  height: 50%;
   display: flex;
   justify-content: center;
 }
 
-.deck {
+.deck,
+.discard {
   position: relative;
-  /* at 375 and height: 667 height */
-  top: -10vh;
-  width: 20vw;
-  height: 28vw;
+  width: 6rem;
+  height: 8.5rem;
+
+  font-size: 10px;
+  line-height: 15px;
 }
 
-.otherplayerLeftTop {
-  position: fixed;
-  /* top: 22.5%; */
-  /* left: -30px; */
-  top: 28vh;
-  left: -5vw;
-  /* transform: rotate(90deg); */
-  rotate: z 90deg;
-  /* rotate: 0 90deg; */
-}
+// .otherplayerLeftTop {
+//   position: fixed;
+//   top: 28vh;
+//   left: -5vw;
+
+//   rotate: z 90deg;
+
+// }
 
 /* .otherplayerLeftMiddle {
   position: fixed;
@@ -75,23 +85,23 @@
   transform: rotate(90deg);
 } */
 
-.otherplayerLeftBottom {
-  position: fixed;
-  /* bottom: 25%; */
-  /* left: -30px; */
-  bottom: 27vh;
-  left: -5vw;
-  transform: rotate(90deg);
-}
+// .otherplayerLeftBottom {
+//   position: fixed;
+//   /* bottom: 25%; */
+//   /* left: -30px; */
+//   bottom: 27vh;
+//   left: -5vw;
+//   transform: rotate(90deg);
+// }
 
-.otherplayerRightTop {
-  position: fixed;
-  /* top: 17.5%; */
-  top: 27vh;
-  /* right: -30px; */
-  right: -5vw;
-  transform: rotate(270deg);
-}
+// .otherplayerRightTop {
+//   position: fixed;
+//   /* top: 17.5%; */
+//   top: 27vh;
+//   /* right: -30px; */
+//   right: -5vw;
+//   transform: rotate(270deg);
+// }
 
 /* .otherplayerRightMiddle {
   position: fixed;
@@ -100,178 +110,336 @@
   transform: rotate(270deg);
 } */
 
-.otherplayerRightBottom {
-  position: fixed;
-  /* bottom: 29%; */
-  /* right: -30px; */
+// .otherplayerRightBottom {
+//   position: fixed;
 
-  bottom: 30vh;
-  right: -5vw;
-  transform: rotate(270deg);
-}
+//   bottom: 30vh;
+//   right: -5vw;
+//   transform: rotate(270deg);
+// }
 
-.otherplayerName {
+.otherPlayerDetails {
   position: relative;
-  translate: 80% -60%;
+  translate: 90% -60%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-@media screen and (min-width: 414px) {
-  .otherplayerRightBottom {
-    bottom: 27vh;
-  }
+.otherPlayerNameTop {
+  position: relative;
+  translate: 50% -200%;
+  rotate: z 180deg;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .leftPlayer {
-  /* top: 22.5%; */
-  /* left: -30px; */
-  /* position: relative; */
   top: 50%;
   left: 50%;
-  translate: -80% 20%;
-  /* left: -5vw; */
-  /* transform: rotate(90deg); */
+  // translate: -120% 0;
+  translate: -150% 0;
   rotate: z 90deg;
   position: absolute;
-  /* rotate: 0 90deg; */
 }
 
 .topPlayer {
-  /* position: fixed; */
-  /* top: 22.5%; */
-  /* left: -30px; */
-  /* position: relative; */
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  translate: -80% -130%;
-  /* left: -5vw; */
-  /* transform: rotate(90deg); */
+  translate: -50% -360%;
   rotate: z 180deg;
-  // z-index: 1;
-  /* rotate: 0 90deg; */
 }
 
 .rightPlayer {
   position: absolute;
-  /* top: 22.5%; */
-  /* left: -30px; */
-  /* position: relative; */
   top: 50%;
   left: 50%;
-  translate: -20% -140%;
-  /* left: -5vw; */
-  /* transform: rotate(90deg); */
+  translate: 50% -50%;
   rotate: z -90deg;
-  /* rotate: 0 90deg; */
 }
 
 .currentPlayer {
   translate: 100% -20%;
 }
 
-@media screen and (min-height: globals.$m1){
+// @media screen and (min-height: globals.$m1) {
+//   .topPlayer {
+//     // border: 5px solid black;
+//     translate: -90% -150%;
+//   }
+// }
+// @media screen and (min-height: globals.$m2) {
+//   .topPlayer {
+//     translate: -50% -200%;
+//   }
+//   .leftPlayer {
+//     translate: -100% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 0% -70%;
+//   }
+// }
+// @media screen and (min-height: globals.$m3) {
+//   .topPlayer {
+//     translate: -50% -260%;
+//   }
+//   .leftPlayer {
+//     translate: -120% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 20% -70%;
+//   }
+//   .currentPlayer {
+//     translate: -110% 20%;
+//   }
+// }
+
+// @media screen and (min-height: globals.$m4) {
+//   .topPlayer {
+//     // border: 5px solid orange;
+//     translate: -50% -270%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid orange;
+//     translate: -140% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 40% -80%;
+//   }
+// }
+
+// @media screen and (min-height: globals.$m5) {
+//   .topPlayer {
+//     // border: 5px solid grey;
+//     translate: -50% -270%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid grey;
+//     translate: -120% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 30% -80%;
+//   }
+// }
+
+// @media screen and (min-height: globals.$m6) {
+//   .topPlayer {
+//     // border: 5px solid green;
+//     translate: -50% -520%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid green;
+//     translate: -170% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 70% -80%;
+//   }
+// }
+
+// @media screen and (min-height: globals.$large) {
+//   .topPlayer {
+//     // border: 5px solid red;
+//     translate: -50% -470%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid red;
+//     translate: -360% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 280% -80%;
+//   }
+// }
+
+// @media screen and (min-width: globals.$m1) {
+//   .topPlayer {
+//     // border: 5px solid red;
+//     translate: -50% -580%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid red;
+//     translate: -180% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 80% -80%;
+//   }
+//   .currentPlayer {
+//     translate: -110% 40%;
+//   }
+// }
+
+// iPhone SE and Galaxy S8:
+@media screen and (min-width: 360px) and (max-width: 376px) {
+  .rightPlayer {
+    top: 64%;
+    left: 40%;
+  }
+
+  .leftPlayer {
+    left: 60%;
+  }
+
   .topPlayer {
-    // border: 5px solid black;
-    translate: -90% -150%;
+    top: 40%;
+  }
+
+  .otherPlayerDetails {
+    translate: 100% -60%;
+  }
+
+  .otherPlayerNameTop {
+    translate: 20% -200%;
   }
 }
-@media screen and (min-height: globals.$m2){
+
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .gameContainer {
+    font-size: 16px;
+  }
+
+  .deck,
+  .discard {
+    width: 7rem;
+    height: 10rem;
+    font-size: 12px;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 40%;
+  }
+
+  .leftPlayer {
+    left: 60%;
+  }
+
   .topPlayer {
-    translate: -50% -200%;
+    translate: -20% -360%;
+    top: 37%;
   }
-  .leftPlayer{
-    translate: -100% -50%;
-  }
-  .rightPlayer{
-    translate: 0% -70%;
+
+  .otherPlayerDetails {
+    translate: 110% -60%;
   }
 }
-@media screen and (min-height: globals.$m3){
+
+// XR, S20 Ultra and A51 / 71
+@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .gameContainer {
+    font-size: 16px;
+  }
+
+  .deck,
+  .discard {
+    width: 8rem;
+    height: 12rem;
+    font-size: 12px;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 40%;
+  }
+
+  .leftPlayer {
+    left: 60%;
+  }
+
   .topPlayer {
-    translate: -50% -260%;
+    top: 35%;
+    translate: -20% -350%;
   }
-  .leftPlayer{
-    translate: -120% -50%;
-  }
-  .rightPlayer{
-    translate: 20% -70%;
-  }
-  .currentPlayer {
-    translate: -110% 20%;
+
+  .otherPlayerDetails {
+    translate: 120% -60%;
   }
 }
 
-@media screen and (min-height: globals.$m4) {
-  .topPlayer{
-    // border: 5px solid orange;
-    translate: -50% -270%;
+// Surface Duo
+@media only screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+  .deck,
+  .discard {
+    font-size: 9px;
   }
-  .leftPlayer{
-    // border: 5px solid orange;
-    translate: -140% -50%;
+
+  .deck,
+  .discard {
+    width: 7rem;
+    height: 10rem;
+    font-size: 12px;
   }
-  .rightPlayer{
-    translate: 40% -80%;
+
+  .leftPlayer {
+    translate: -120% -170%;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 35%;
+  }
+
+  .topPlayer {
+    top: 40%;
+    translate: -20% -340%;
+  }
+
+  .otherPlayerDetails {
+    translate: 100% -60%;
+  }
+
+  .otherPlayerNameTop {
+    translate: 30% -200%;
   }
 }
 
+// all tablets and Surface Pro
+@media only screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .gameContainer {
+    font-size: 24px;
+  }
 
-@media screen and (min-height: globals.$m5) {
-  .topPlayer{
-    // border: 5px solid grey;
-    translate: -50% -270%;
+  .deck,
+  .discard {
+    width: 12rem;
+    height: 18rem;
+    font-size: 16px;
   }
-  .leftPlayer{
-    // border: 5px solid grey;
-    translate: -120% -50%;
+
+  .leftPlayer {
+    translate: -120% -350%;
   }
-  .rightPlayer{
-    translate: 30% -80%;
+
+  .rightPlayer {
+    top: 64%;
+    left: 35%;
+  }
+
+  .topPlayer {
+    top: 33%;
+    translate: -10% -350%;
+  }
+
+  .otherPlayerDetails {
+    translate: 120% -60%;
   }
 }
 
-@media screen and (min-height: globals.$m6) {
-  .topPlayer{
-    // border: 5px solid green;
-    translate: -50% -520%;
-  }
-  .leftPlayer{
-    // border: 5px solid green;
-    translate: -170% -50%;
-  }
-  .rightPlayer{
-    translate: 70% -80%;
-  }
-}
-
-@media screen and (min-height: globals.$large) {
-  .topPlayer{
-    // border: 5px solid red;
-    translate: -50% -470%;
-  }
-  .leftPlayer{
-    // border: 5px solid red;
-    translate: -360% -50%;
-  }
-  .rightPlayer{
-    translate: 280% -80%;
-  }
-}
-
-@media screen and (min-width: globals.$m1) {
-  .topPlayer{
-    // border: 5px solid red;
-    translate: -50% -580%;
-  }
-  .leftPlayer{
-    // border: 5px solid red;
-    translate: -180% -50%;
-  }
-  .rightPlayer{
-    translate: 80% -80%;
-  }
-  .currentPlayer {
-    translate: -110% 40%;
+// Nest Hub / Max:
+@media only screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+  .gameContainer {
+    font-size: 8px;
   }
 
+  .deck,
+  .discard {
+    width: 4rem;
+    height: 6rem;
+
+    font-size: 8px;
+    line-height: 10px;
+  }
 }

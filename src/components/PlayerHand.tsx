@@ -7,8 +7,8 @@ import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
 import idCardData from "../assets/identity-cards.json";
 
-import ph from "./PlayerHand.module.css";
-import gi from "./GameInfo.module.css";
+import ph from "./PlayerHand.module.scss";
+import gi from "./GameInfo.module.scss";
 import gf from "./GameField.module.scss";
 
 interface PlayerHandProps {

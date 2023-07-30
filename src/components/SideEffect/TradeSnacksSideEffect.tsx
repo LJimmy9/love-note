@@ -30,7 +30,7 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
   }, []);
 
   return (
-    <>
+    <div>
       {
         <div className={ts.instruction}>
           {gameState.currentTurn !== currPlayer.playerId ? (
@@ -50,33 +50,35 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
         </div>
       )}
       <div>
-        {gameState.players[currPlayer.playerId].playerHand.map((card) => {
-          return (
-            <div
-              key={`exchange-${card.id}`}
-              className={`${ts.playerCard} ${
-                selected?.id == card.id ? ts.selected : ""
-              }`}
-              style={{ margin: "10px auto" }}
-              onClick={() => {
-                if (
-                  gameState.currentTurn !== currPlayer.playerId &&
-                  card.cardNum !== priorityCardNum
-                ) {
-                  setPriorityError(true);
-                  return;
-                }
-                setSelected(card);
-              }}
-            >
-              <div className={ts.cardHeader}>
-                <div className={ts.cardNum}>{card.cardNum}</div>
-                <div className={ts.cardName}>{card.name}</div>
-                <div className={ts.cardImage}>{card.image}</div>
+        <div className={ts.cardActionPlay}>
+          {gameState.players[currPlayer.playerId].playerHand.map((card) => {
+            return (
+              <div
+                key={`exchange-${card.id}`}
+                className={`${ts.playerCard} ${
+                  selected?.id == card.id ? ts.selected : ""
+                }`}
+                style={{ margin: "10px auto" }}
+                onClick={() => {
+                  if (
+                    gameState.currentTurn !== currPlayer.playerId &&
+                    card.cardNum !== priorityCardNum
+                  ) {
+                    setPriorityError(true);
+                    return;
+                  }
+                  setSelected(card);
+                }}
+              >
+                <div className={ts.cardHeader}>
+                  <div className={ts.cardNum}>{card.cardNum}</div>
+                  <div className={ts.cardName}>{card.name}</div>
+                  <div className={ts.cardImage}>{card.image}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
         <div
           className={ts.doneBtn}
           onClick={() => {
@@ -96,7 +98,7 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
