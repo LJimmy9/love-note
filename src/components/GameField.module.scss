@@ -59,6 +59,9 @@
   position: relative;
   width: 6rem;
   height: 8.5rem;
+
+  font-size: 10px;
+  line-height: 15px;
 }
 
 .otherplayerLeftTop {
@@ -278,23 +281,56 @@
 //   }
 // }
 
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .deck,
+  .discard {
+    width: 7rem;
+    height: 10rem;
+    font-size: 12px;
+  }
+}
+
 // XR, S20 Ultra and A51 / 71
 @media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
   .gameContainer {
     font-size: 16px;
   }
 
-  // .deck,
-  // .discard {
-  //   width: 6rem;
-  //   height: 8.5rem;
-  // }
+  .deck,
+  .discard {
+    width: 8rem;
+    height: 12rem;
+    font-size: 12px;
+  }
 }
 
-// all tablets except iPad Mini
+// Surface Duo
+@media screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+  .deck,
+  .discard {
+    font-size: 9px;
+  }
+
+  .deck,
+  .discard {
+    width: 7rem;
+    height: 10rem;
+    font-size: 12px;
+  }
+}
+
+// all tablets and Surface Pro
 @media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
   .gameContainer {
     font-size: 24px;
+  }
+
+  .deck,
+  .discard {
+    width: 12rem;
+    height: 18rem;
+    font-size: 16px;
   }
 }
 
@@ -302,5 +338,13 @@
 @media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
   .gameContainer {
     font-size: 8px;
+  }
+
+  .deck,
+  .discard {
+    width: 4rem;
+    height: 6rem;
+    font-size: 8px;
+    line-height: 10px;
   }
 }

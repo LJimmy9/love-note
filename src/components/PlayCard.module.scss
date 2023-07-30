@@ -31,18 +31,6 @@
 //   }
 // }
 
-.cardDiscardHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2vw;
-}
-
-.cardDiscardImage {
-  padding-top: 2vh;
-  font-size: 20px;
-}
-
 .playerCardBack {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -144,11 +132,6 @@
 .default {
   scale: 1;
   transition: 500ms ease;
-}
-
-.cardName {
-  margin-top: 1.5vh;
-  line-height: 3vh;
 }
 
 .cardNum {

@@ -21,6 +21,26 @@
   height: 100%;
 }
 
+.cardDiscardHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+}
+
+.cardDiscardImage {
+  padding-top: 2vh;
+  font-size: 20px;
+}
+
+.cardName {
+  margin-top: 1.5vh;
+  line-height: 3vh;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .cardNum {
   margin-top: 5px;
   font-weight: bolder;
@@ -67,3 +87,13 @@
 //     }
 // }
 // }
+
+@media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+  .discardPile {
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
