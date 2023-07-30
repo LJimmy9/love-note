@@ -5,9 +5,9 @@ import { Dispatch } from "react";
 import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
 
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 import gf from "./GameField.module.scss";
-import ph from "./PlayerHand.module.css";
+import ph from "./PlayerHand.module.scss";
 
 interface OppponentHandProps {
   activePlayer: string;
@@ -84,18 +84,24 @@ export const OppponentHand = ({
           </div>
         </div>
         <div
-          className={`${gf.otherplayerName}`}
+          className={` ${
+            idx === 2 ? gf.otherPlayerNameTop : gf.otherPlayerDetails
+          }`}
           onClick={() => setActivePlayer(playerId)}
           id={`player-${idx}`}
         >
-          <span>{players && players[playerId].displayName}</span>
-          <svg width="25" height="25">
-            <image
-              href={game.players[playerId].avatarUrl}
-              width="20"
-              height="20"
-            />
-          </svg>
+          <div className={`${gf.otherPlayerName}`}>
+            <p>{players && players[playerId].displayName}</p>
+          </div>
+          <div>
+            <svg width="25" height="25">
+              <image
+                href={game.players[playerId].avatarUrl}
+                width="20"
+                height="20"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>

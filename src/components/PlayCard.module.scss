@@ -1,4 +1,4 @@
-@use '../globals.scss';
+@use "../globals.scss";
 
 .playerCard {
   /* padding: 1rem 1.5rem 2rem 1.5rem; */
@@ -8,10 +8,6 @@
   border-radius: 1rem;
   overflow: hidden;
   transition: 500ms ease;
-  /* width: 8ch;
-  height: 16ch; */
-  /* width: 20vw;
-  height: 28vw; */
   background-color: #add8e6;
   border: 5px solid #c8a2c8;
   color: black;
@@ -25,23 +21,11 @@
   transform-style: preserve-3d;
 }
 
-@media screen and (max-height: globals.$smallScreen) {
-  .playerCardContainer{
-    // scale: .5;
-  }
-}
-
-.cardDiscardHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2vw;
-}
-
-.cardDiscardImage {
-  padding-top: 2vh;
-  font-size: 20px;
-}
+// @media screen and (max-height: globals.$smallScreen) {
+//   .playerCardContainer{
+//     // scale: .5;
+//   }
+// }
 
 .playerCardBack {
   backface-visibility: hidden;
@@ -50,21 +34,21 @@
 }
 
 .backContent {
+  position: relative;
   padding: 0 1rem;
   border-radius: 1rem;
-  /* box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.5); */
+
   overflow: hidden;
   transition: 500ms ease;
-  width: 8ch;
-  height: 16ch;
-  /* width: 20vw;
-  height: 28vw; */
+
   background-color: #ffb7c5;
   border: 5px solid #c8a2c8;
   color: black;
-  font-weight: bolder;
-  font-family: "Andale Mono", monospace;
-  position: relative;
+  // font-weight: bolder;
+  // font-family: "Andale Mono", monospace;
+
+  width: 4rem;
+  height: 8rem;
 }
 
 .playerCardFront {
@@ -72,6 +56,16 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   /* rotate: y 180deg; */
+}
+
+.playerCardOpen {
+  width: 16rem;
+  height: 22rem;
+}
+
+.playerCardClosed {
+  width: 4rem;
+  height: 8rem;
 }
 
 .drawCardAnim {
@@ -146,11 +140,6 @@
   transition: 500ms ease;
 }
 
-.cardName {
-  margin-top: 1.5vh;
-  line-height: 3vh;
-}
-
 .cardNum {
   margin-top: 2.5vh;
   margin-left: 2vw;
@@ -193,15 +182,58 @@
   translate: 0 15px;
 }
 
-@media screen and (min-width: 414px) {
-  .playerCard {
-    // padding: 1vh 5vw;
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .playerCardClosed,
+  .backContent {
+    width: 5.5rem;
+    height: 10rem;
   }
 }
 
-@media screen and (max-height: globals.$smallScreen) {
-  .playerCard {
-    translate: -30vw 7vh;
-    scale: 0.7;
+// XR, S20 Ultra and A51 / 71
+@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .playerCardOpen {
+    width: 18rem;
+    height: 28rem;
+  }
+
+  .playerCardClosed,
+  .backContent {
+    width: 7rem;
+    height: 12rem;
+  }
+}
+
+// all tablets and Surface Pro
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .playerCardOpen {
+    width: 18rem;
+    height: 28rem;
+  }
+
+  .playerCardClosed,
+  .backContent {
+    width: 8rem;
+    height: 15rem;
+  }
+
+  .playerCardFront {
+    font-size: 16px;
+  }
+}
+
+// Nest Hub / Max:
+// nest hub layouts aren't working for some reason
+@media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+  .playerCardClosed,
+  .backContent {
+    width: 3rem;
+    height: 5rem;
+  }
+
+  .playerCardOpen {
+    width: 10rem;
+    height: 5rem;
   }
 }

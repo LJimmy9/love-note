@@ -3,7 +3,7 @@ import { $game } from "../state/game";
 import { Dispatch } from "react";
 
 import gf from "./GameField.module.scss";
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 
 interface InfoHeaderProps {
   showInfo: boolean;
@@ -27,10 +27,11 @@ export const InfoHeader = ({ showInfo, setShowInfo }: InfoHeaderProps) => {
         </p>
         <p>{`Game Phase: ${game.gameState.gamePhase}`}</p>
       </div>
-      <div className={gi.infoButtonContainer}>
-        <button onClick={() => setShowInfo(!showInfo)} className={gi.infoBtn}>
-          i
-        </button>
+      <div
+        className={gi.infoButtonContainer}
+        onClick={() => setShowInfo(!showInfo)}
+      >
+        <div className={gi.infoBtn}>i</div>
       </div>
     </div>
   );

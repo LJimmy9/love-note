@@ -16,28 +16,39 @@ function Tattle({ players }: TattleProps) {
   return (
     <div>
       <div className={ts.instruction}>
-        Select a player to Tattle on! Choose wisely, this will send the player
+        Select a player to Tattle on. Choose wisely! This will send the player
         to detention.
       </div>
-      <div style={{ fontSize: "25px", marginTop: "10px" }}>😮📣</div>
+      <div style={{ fontSize: "25px", marginTop: "10px" }}>😮 📣</div>
       <div className={ts.playerSelectionContainer}>
         {Object.keys(players).map((playerId) => {
           const player: AtomPlayer = players[playerId as PlayerId];
           if (playerId == currPlayer.playerId) return null;
           return (
-            <div
-              key={`trade-${playerId}`}
-              className={ts.playerSelection}
-              onClick={() => {
-                setSelectedId(playerId);
-              }}
-            >
-              <img className={ts.avatar} src={player.avatarUrl} />
-              {player.displayName}
-
-              {selectedId == playerId && (
-                <span style={{ marginLeft: "5px" }}>✔️</span>
-              )}
+            <div className={ts.playerSelection}>
+              <div
+                key={`trade-${playerId}`}
+                className={ts.playerSelectionDetails}
+                onClick={() => {
+                  setSelectedId(playerId);
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  <img className={ts.avatar} src={player.avatarUrl} />
+                </div>
+                <div className={ts.selectionPlayerName}>
+                  {player.displayName}
+                </div>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {selectedId == playerId && <span>✔️</span>}
+                </div>
+              </div>
             </div>
           );
         })}
