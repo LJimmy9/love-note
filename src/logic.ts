@@ -224,6 +224,7 @@ function checkForWin(game: GameState) {
       game.players[playerId].sideEffect.active = true;
       game.players[playerId].sideEffect.cardNum = 9;
     }
+    game.cardPlayed = "Love Note";
     game.gamePhase = "Resolve";
   }
 }
@@ -299,6 +300,7 @@ Rune.initLogic({
             game.meddleUsed.push(requestPlayerId);
           }
           checkForWin(game);
+          handleRainyDay(game);
           break;
         case "remove":
           if (game.players[requestPlayerId].hasLoveNoteAction) {
@@ -314,6 +316,7 @@ Rune.initLogic({
           if (cardNum === 6) {
             game.meddleUsed.push(requestPlayerId);
           }
+          handleRainyDay(game);
           break;
         default:
           break;
@@ -360,8 +363,6 @@ Rune.initLogic({
       if (playCard.cardNum === 8) {
         game.rainyDayIsPlay = true;
       }
-
-      handleRainyDay(game);
 
       // Reshuffle discard pile into the deck if deck has been exhausted
       if (game.deck.length <= 0) {

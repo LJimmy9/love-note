@@ -70,7 +70,7 @@
     "name": "Meddle",
     "image": "🖋️",
     "cardNum": 6,
-    "description": "You can tamper with the love note even if you're not holding it!",
+    "description": "You can tamper with the Love Note even if you're not holding it! You may only tamper with the Love Note once.",
     "restrictionToRole": "",
     "canPlay": false,
     "count": 1,

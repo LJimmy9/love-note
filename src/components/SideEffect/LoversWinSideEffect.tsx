@@ -46,7 +46,7 @@ function LoversWinSideEffect({ players }: TattleProps) {
           className={`${lw.info} ${lw.fadeIn}`}
           onAnimationEnd={() => setShowText(true)}
         >
-          {`${players[loverSun].displayName} (Lover Sun) and ${players[loverMoon].displayName} (Lover Moon) has 
+          {`${players[loverSun].displayName} (Lover Sun) and ${players[loverMoon].displayName} (Lover Moon) has
           successfully completed their Love Note with the help of ${players[friend].displayName}! Here is their note...`}
         </div>
         {showText && (
@@ -58,9 +58,9 @@ function LoversWinSideEffect({ players }: TattleProps) {
               <div className={lw.noteEmoji}>💌</div>
               {gameState.loveNotes.map((note) => {
                 return (
-                  <div key={`win-${note.id}`} className={lw.note}>
+                  <span key={`win-${note.id}`} className={lw.note}>
                     {note.text}
-                  </div>
+                  </span>
                 );
               })}
             </div>

@@ -3,6 +3,12 @@
 }
 .noteEmoji {
   margin: 10px 0;
+  font-size: 30px;
+}
+
+.note {
+  margin: 0 5px;
+  font-size: 20px;
 }
 
 .fadeIn {
