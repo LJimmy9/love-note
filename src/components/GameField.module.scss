@@ -112,6 +112,7 @@
 
 .otherplayerName {
   position: relative;
+  translate: 80% -60%;
 }
 
 @media screen and (min-width: 414px) {
@@ -259,7 +260,7 @@
 
 @media screen and (min-width: globals.$m1) {
   .topPlayer{
-    border: 5px solid red;
+    // border: 5px solid red;
     translate: -50% -580%;
   }
   .leftPlayer{

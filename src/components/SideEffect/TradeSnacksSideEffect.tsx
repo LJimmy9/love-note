@@ -88,7 +88,7 @@ function TradeSnacksSideEffect({ players }: TradeSnacksProps) {
             });
           }}
         >
-          👌
+          {`${doneClicked ? "✔️" : "👌"}`}
         </div>
         {doneClicked && (
           <div style={{ fontSize: "14px", marginTop: "20px" }}>

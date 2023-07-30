@@ -86,7 +86,14 @@ function PassDirection() {
                 });
               }}
             >
-              👌
+              <span
+                style={{
+                  borderRadius: "8px",
+                  // backgroundColor: `${doneClicked ? "#FFFF00" : ""}`,
+                }}
+              >
+                {`${doneClicked ? "✔️" : "👌"}`}
+              </span>
             </div>
             {doneClicked && (
               <div style={{ fontSize: "14px", marginTop: "20px" }}>
