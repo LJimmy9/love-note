@@ -87,11 +87,11 @@ export const OppponentHand = ({
           onClick={() => setActivePlayer(playerId)}
           id={`player-${idx}`}
         >
-          <svg width="20" height="20">
+          <svg width="25" height="25">
             <image
               href={game.players[playerId].avatarUrl}
-              width="15"
-              height="15"
+              width="25"
+              height="25"
             />
           </svg>
         </div>
