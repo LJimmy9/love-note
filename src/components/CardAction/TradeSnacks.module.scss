@@ -91,10 +91,26 @@
   margin-right: 5px;
 }
 
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .instruction {
+    font-size: 16px;
+  }
+}
+
+// XR, S20 Ultra and A51 / 71
+@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .instruction {
+    font-size: 16px;
+  }
+}
+
 // all tablets and Surface Pro
 @media only screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
   .instruction {
     font-size: 24px;
+    padding: 0 2rem;
+    line-height: 50px;
   }
 
   .doneBtn {
