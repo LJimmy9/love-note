@@ -2,7 +2,6 @@
 
 .playerHandContainer {
   position: relative;
-  width: 100%;
 
   height: 11vh;
 }
@@ -36,9 +35,10 @@
 
 .flexCenterPlayerHand {
   display: grid;
-  justify-content: center;
-
+  // justify-content: center;
+  padding-left: 23vw;
   grid-template-columns: repeat(5, 25px);
+  border: 5px solid red;
 }
 
 .expand {
@@ -54,8 +54,23 @@
   transition: 500ms ease;
 }
 
+// XR, S20 Ultra and A51 / 71
 @media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
   .playerHandContainer {
     height: 10vh;
+  }
+}
+
+// Surface Duo
+@media screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+  .flexCenterPlayerHand {
+    padding-left: 36vw;
+  }
+}
+
+// all tablets and Surface Pro
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .flexCenterPlayerHand {
+    padding-left: 38vw;
   }
 }
