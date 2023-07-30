@@ -40,7 +40,7 @@ export function configCards(choice: string) {
 }
 
 export function defaultSetup() {
-  return (cardNum: any, countConfig: number) => () => setupDeck();
+  return (_cardNum: any, _countConfig: number) => () => setupDeck();
 }
 
 export function createSetupDeck(env?: string) {

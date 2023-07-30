@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Card } from "../logic";
 import d from "./DeckCard.module.scss";
 import { $game, $gamePhase, $runePlayer } from "../state/game";

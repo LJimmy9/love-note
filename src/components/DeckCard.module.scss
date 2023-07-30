@@ -19,11 +19,18 @@
   }
 }
 
-@media screen and (min-height: globals.$large) {
-  .deckCard {
-    border: 2px solid red;
-    translate: -60% 20%;
-    scale: 0.6;
+// @media screen and (max-height: globals.$large) {
+//   .deckCard{
+//     border: 2px solid red;
+//     translate: -60% 90%;
+//     scale: .6;
+//   }
+// }
+
+@media screen and (min-height: globals.$xLarge), screen and (min-width: 700px) {
+  .deckCard{
+    translate: -60% 120%;
+    scale: .6;
   }
 }
 
