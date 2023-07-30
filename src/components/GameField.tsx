@@ -27,14 +27,16 @@ export const GameField = () => {
           </div>
         </div>
         <div className={gf.discardContainer}>
-          {game.gameState.discardedCards.map((discardedCard, idx) => {
-            return (
-              <DiscardCard
-                key={`discard-card-${discardedCard.id}-${idx}`}
-                card={discardedCard}
-              />
-            );
-          })}
+          <div className={gf.discard}>
+            {game.gameState.discardedCards.map((discardedCard, idx) => {
+              return (
+                <DiscardCard
+                  key={`discard-card-${discardedCard.id}-${idx}`}
+                  card={discardedCard}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
 

@@ -1,7 +1,8 @@
 @use "../globals.scss";
 
-.discardContainer {
-  position: absolute;
+.discardContentContainer {
+  // position: absolute;
+  position: relative;
   /* padding: 0 1rem; */
   border-radius: 1rem;
   /* overflow: hidden; */
@@ -9,13 +10,13 @@
   width: 20vw;
   height: 28vw;
 
-  left: 38vw;
+  // left: 38vw;
 
-  top: 50vh;
+  // top: 50vh;
 
   background-color: #add8e6;
   border: 5px solid #c8a2c8;
-  opacity: 0;
+  // opacity: 0;
 }
 
 .discardPile {
@@ -46,29 +47,28 @@
   }
   100% {
     opacity: 1;
-    translate: 0% -35%;
     rotate: z 0deg;
   }
 }
 
-@media screen and (min-height: globals.$large){
-  .discardContainer{
-    width: 16vw;
-    height: 12vh;
-    left: 20vw;
-    // border: 5px solid red;
-  }
+// @media screen and (min-height: globals.$large){
+//   .discardContainer{
+//     width: 16vw;
+//     height: 12vh;
+//     left: 20vw;
+//     // border: 5px solid red;
+//   }
 
-  @keyframes enterAnim {
-    0% {
-      opacity: 0;
-      rotate: z 360deg;
-    }
+//   @keyframes enterAnim {
+//     0% {
+//       opacity: 0;
+//       rotate: z 360deg;
+//     }
 
-    100% {
-      opacity: 1;
-      translate: 100% -45%;
-      rotate: z 0deg;
-    }
-}
-}
+//     100% {
+//       opacity: 1;
+//       translate: 100% -45%;
+//       rotate: z 0deg;
+//     }
+// }
+// }

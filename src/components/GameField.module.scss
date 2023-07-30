@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+
+  border: 5px solid red;
 }
 
 .currentGameDetail {
@@ -19,7 +21,7 @@
   padding: 2vw;
   background-color: #cbb2ff;
   /* border: 1px solid blue; */
-  z-index: 14;
+  // z-index: 14;
 }
 
 .turnContainer {
@@ -30,6 +32,7 @@
 }
 
 .gameActionFieldContainer {
+  border: 5px solid blue;
   position: relative;
   flex: 1;
 }
@@ -42,19 +45,29 @@
 .deckContainer {
   position: relative;
   overflow: visible;
-  /* border: 1px solid red; */
-  height: 100%;
+  height: 50%;
 
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.deck {
+.discardContainer {
   position: relative;
-  /* at 375 and height: 667 height */
-  top: -10vh;
+  overflow: visible;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+}
+
+.deck,
+.discard {
+  position: relative;
   width: 20vw;
   height: 28vw;
+
+  border: 5px solid red;
 }
 
 .otherplayerLeftTop {
@@ -169,31 +182,31 @@
   translate: 100% -20%;
 }
 
-@media screen and (min-height: globals.$m1){
+@media screen and (min-height: globals.$m1) {
   .topPlayer {
     // border: 5px solid black;
     translate: -90% -150%;
   }
 }
-@media screen and (min-height: globals.$m2){
+@media screen and (min-height: globals.$m2) {
   .topPlayer {
     translate: -50% -200%;
   }
-  .leftPlayer{
+  .leftPlayer {
     translate: -100% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 0% -70%;
   }
 }
-@media screen and (min-height: globals.$m3){
+@media screen and (min-height: globals.$m3) {
   .topPlayer {
     translate: -50% -260%;
   }
-  .leftPlayer{
+  .leftPlayer {
     translate: -120% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 20% -70%;
   }
   .currentPlayer {
@@ -202,76 +215,74 @@
 }
 
 @media screen and (min-height: globals.$m4) {
-  .topPlayer{
+  .topPlayer {
     // border: 5px solid orange;
     translate: -50% -270%;
   }
-  .leftPlayer{
+  .leftPlayer {
     // border: 5px solid orange;
     translate: -140% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 40% -80%;
   }
 }
 
-
 @media screen and (min-height: globals.$m5) {
-  .topPlayer{
+  .topPlayer {
     // border: 5px solid grey;
     translate: -50% -270%;
   }
-  .leftPlayer{
+  .leftPlayer {
     // border: 5px solid grey;
     translate: -120% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 30% -80%;
   }
 }
 
 @media screen and (min-height: globals.$m6) {
-  .topPlayer{
+  .topPlayer {
     // border: 5px solid green;
     translate: -50% -520%;
   }
-  .leftPlayer{
+  .leftPlayer {
     // border: 5px solid green;
     translate: -170% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 70% -80%;
   }
 }
 
 @media screen and (min-height: globals.$large) {
-  .topPlayer{
+  .topPlayer {
     // border: 5px solid red;
     translate: -50% -470%;
   }
-  .leftPlayer{
+  .leftPlayer {
     // border: 5px solid red;
     translate: -360% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 280% -80%;
   }
 }
 
 @media screen and (min-width: globals.$m1) {
-  .topPlayer{
+  .topPlayer {
     // border: 5px solid red;
     translate: -50% -580%;
   }
-  .leftPlayer{
+  .leftPlayer {
     // border: 5px solid red;
     translate: -180% -50%;
   }
-  .rightPlayer{
+  .rightPlayer {
     translate: 80% -80%;
   }
   .currentPlayer {
     translate: -110% 40%;
   }
-
 }

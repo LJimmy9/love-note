@@ -56,7 +56,7 @@ const Game = ({ player, pinPos }: GameProps) => {
 
   return (
     <div>
-      <AnimGen />
+      {/* <AnimGen /> */}
       <GameInfo showInfo={showInfo} setShowInfo={setShowInfo} />{" "}
       <div>
         {game && (
@@ -79,20 +79,21 @@ const Game = ({ player, pinPos }: GameProps) => {
                     setShowPlayerInfo={setShowPlayerInfo}
                   />
                 );
-              } else {
-                counter++;
-                return (
-                  <OppponentHand
-                    key={`${currPlayer.playerId}-${idx}`}
-                    activePlayer={activePlayer}
-                    playerId={playerId}
-                    idx={counter}
-                    pinPos={pinPos}
-                    cardRotationConfig={cardRotationConfig}
-                    setActivePlayer={setActivePlayer}
-                  />
-                );
               }
+              // else {
+              //   counter++;
+              //   return (
+              //     <OppponentHand
+              //       key={`${currPlayer.playerId}-${idx}`}
+              //       activePlayer={activePlayer}
+              //       playerId={playerId}
+              //       idx={counter}
+              //       pinPos={pinPos}
+              //       cardRotationConfig={cardRotationConfig}
+              //       setActivePlayer={setActivePlayer}
+              //     />
+              //   );
+              // }
             })}
           </div>
         )}
