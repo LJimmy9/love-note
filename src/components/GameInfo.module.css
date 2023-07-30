@@ -3,12 +3,15 @@
 .infoButtonContainer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .infoBtn {
   background-color: #658bdd;
-  height: 20px;
-  width: fit-content;
+
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
 
   display: flex;
   align-items: center;
@@ -55,10 +58,6 @@
   margin: 0 auto;
 }
 
-/* .infoHeader > select {
-  height: 100%;
-} */
-
 .infoContent {
   margin-left: 2px;
   text-align: left;
@@ -83,13 +82,11 @@
 
 .infoTitle {
   font-weight: bold;
-  /* font-size: 13px; */
   margin-top: 3%;
 }
 
 .infoBullet {
   font-weight: bolder;
-  /* font-size: 13px; */
 }
 
 /* info card */
@@ -121,8 +118,6 @@
   right: 15%;
   width: 15px;
   height: 15px;
-  /* color: white;
-  background-color: #658bdd; */
 
   border-radius: 50%;
 

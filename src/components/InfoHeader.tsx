@@ -27,10 +27,11 @@ export const InfoHeader = ({ showInfo, setShowInfo }: InfoHeaderProps) => {
         </p>
         <p>{`Game Phase: ${game.gameState.gamePhase}`}</p>
       </div>
-      <div className={gi.infoButtonContainer}>
-        <button onClick={() => setShowInfo(!showInfo)} className={gi.infoBtn}>
-          i
-        </button>
+      <div
+        className={gi.infoButtonContainer}
+        onClick={() => setShowInfo(!showInfo)}
+      >
+        <div className={gi.infoBtn}>i</div>
       </div>
     </div>
   );

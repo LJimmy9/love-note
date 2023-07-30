@@ -2,8 +2,6 @@
 
 .gameContainer {
   font-family: "Andale Mono", monospace;
-
-  /* responsive later: */
   font-size: 12px;
 
   position: relative;
@@ -18,17 +16,15 @@
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 5px;
-  padding: 2vw;
+  padding: 2vh 5vw;
   background-color: #cbb2ff;
-  /* border: 1px solid blue; */
-  // z-index: 14;
 }
 
 .turnContainer {
   text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 1.5vh;
 }
 
 .gameActionFieldContainer {
@@ -58,7 +54,6 @@
   height: 50%;
   display: flex;
   justify-content: center;
-  // align-items: center;
 }
 
 .deck,
@@ -128,11 +123,11 @@
   translate: 80% -60%;
 }
 
-@media screen and (min-width: 414px) {
-  .otherplayerRightBottom {
-    bottom: 27vh;
-  }
-}
+// @media screen and (min-width: 414px) {
+//   .otherplayerRightBottom {
+//     bottom: 27vh;
+//   }
+// }
 
 .leftPlayer {
   /* top: 22.5%; */
@@ -182,107 +177,107 @@
   translate: 100% -20%;
 }
 
-@media screen and (min-height: globals.$m1) {
-  .topPlayer {
-    // border: 5px solid black;
-    translate: -90% -150%;
-  }
-}
-@media screen and (min-height: globals.$m2) {
-  .topPlayer {
-    translate: -50% -200%;
-  }
-  .leftPlayer {
-    translate: -100% -50%;
-  }
-  .rightPlayer {
-    translate: 0% -70%;
-  }
-}
-@media screen and (min-height: globals.$m3) {
-  .topPlayer {
-    translate: -50% -260%;
-  }
-  .leftPlayer {
-    translate: -120% -50%;
-  }
-  .rightPlayer {
-    translate: 20% -70%;
-  }
-  .currentPlayer {
-    translate: -110% 20%;
-  }
-}
+// @media screen and (min-height: globals.$m1) {
+//   .topPlayer {
+//     // border: 5px solid black;
+//     translate: -90% -150%;
+//   }
+// }
+// @media screen and (min-height: globals.$m2) {
+//   .topPlayer {
+//     translate: -50% -200%;
+//   }
+//   .leftPlayer {
+//     translate: -100% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 0% -70%;
+//   }
+// }
+// @media screen and (min-height: globals.$m3) {
+//   .topPlayer {
+//     translate: -50% -260%;
+//   }
+//   .leftPlayer {
+//     translate: -120% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 20% -70%;
+//   }
+//   .currentPlayer {
+//     translate: -110% 20%;
+//   }
+// }
 
-@media screen and (min-height: globals.$m4) {
-  .topPlayer {
-    // border: 5px solid orange;
-    translate: -50% -270%;
-  }
-  .leftPlayer {
-    // border: 5px solid orange;
-    translate: -140% -50%;
-  }
-  .rightPlayer {
-    translate: 40% -80%;
-  }
-}
+// @media screen and (min-height: globals.$m4) {
+//   .topPlayer {
+//     // border: 5px solid orange;
+//     translate: -50% -270%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid orange;
+//     translate: -140% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 40% -80%;
+//   }
+// }
 
-@media screen and (min-height: globals.$m5) {
-  .topPlayer {
-    // border: 5px solid grey;
-    translate: -50% -270%;
-  }
-  .leftPlayer {
-    // border: 5px solid grey;
-    translate: -120% -50%;
-  }
-  .rightPlayer {
-    translate: 30% -80%;
-  }
-}
+// @media screen and (min-height: globals.$m5) {
+//   .topPlayer {
+//     // border: 5px solid grey;
+//     translate: -50% -270%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid grey;
+//     translate: -120% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 30% -80%;
+//   }
+// }
 
-@media screen and (min-height: globals.$m6) {
-  .topPlayer {
-    // border: 5px solid green;
-    translate: -50% -520%;
-  }
-  .leftPlayer {
-    // border: 5px solid green;
-    translate: -170% -50%;
-  }
-  .rightPlayer {
-    translate: 70% -80%;
-  }
-}
+// @media screen and (min-height: globals.$m6) {
+//   .topPlayer {
+//     // border: 5px solid green;
+//     translate: -50% -520%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid green;
+//     translate: -170% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 70% -80%;
+//   }
+// }
 
-@media screen and (min-height: globals.$large) {
-  .topPlayer {
-    // border: 5px solid red;
-    translate: -50% -470%;
-  }
-  .leftPlayer {
-    // border: 5px solid red;
-    translate: -360% -50%;
-  }
-  .rightPlayer {
-    translate: 280% -80%;
-  }
-}
+// @media screen and (min-height: globals.$large) {
+//   .topPlayer {
+//     // border: 5px solid red;
+//     translate: -50% -470%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid red;
+//     translate: -360% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 280% -80%;
+//   }
+// }
 
-@media screen and (min-width: globals.$m1) {
-  .topPlayer {
-    // border: 5px solid red;
-    translate: -50% -580%;
-  }
-  .leftPlayer {
-    // border: 5px solid red;
-    translate: -180% -50%;
-  }
-  .rightPlayer {
-    translate: 80% -80%;
-  }
-  .currentPlayer {
-    translate: -110% 40%;
-  }
-}
+// @media screen and (min-width: globals.$m1) {
+//   .topPlayer {
+//     // border: 5px solid red;
+//     translate: -50% -580%;
+//   }
+//   .leftPlayer {
+//     // border: 5px solid red;
+//     translate: -180% -50%;
+//   }
+//   .rightPlayer {
+//     translate: 80% -80%;
+//   }
+//   .currentPlayer {
+//     translate: -110% 40%;
+//   }
+// }
