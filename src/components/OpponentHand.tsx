@@ -5,7 +5,7 @@ import { Dispatch } from "react";
 import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
 
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 import gf from "./GameField.module.scss";
 import ph from "./PlayerHand.module.css";
 

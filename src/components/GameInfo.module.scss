@@ -1,3 +1,4 @@
+@use "../globals.scss";
 /* display more information on game */
 
 .infoButtonContainer {
@@ -195,4 +196,20 @@
 .directionPriority {
   display: flex;
   gap: 10vw;
+}
+
+// tablets
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .infoBtn {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+// Nest Hub / Max:
+@media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+  .infoBtn {
+    width: 15px;
+    height: 15px;
+  }
 }

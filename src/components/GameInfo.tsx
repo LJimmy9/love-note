@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 
 interface GameInfoProps {
   showInfo: boolean;

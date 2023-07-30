@@ -3,7 +3,7 @@ import { $game } from "../state/game";
 import { Dispatch } from "react";
 
 import gf from "./GameField.module.scss";
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 
 interface InfoHeaderProps {
   showInfo: boolean;

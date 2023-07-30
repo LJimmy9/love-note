@@ -1,4 +1,4 @@
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 import cardData from "../assets/cards.json";
 import idCardData from "../assets/identity-cards.json";
 
