@@ -29,8 +29,12 @@
 
 @media screen and (min-height: globals.$xLarge), screen and (min-width: 700px) {
   .deckCard{
-    translate: -60% 120%;
-    scale: .6;
+    border: 5px solid blue;
+    translate: -60% 90%;
+    scale: .8;
+  }
+  .backImg{
+    scale: 2;
   }
 }
 
@@ -72,9 +76,10 @@
 .backImg {
   position: relative;
   margin: 10 auto;
-  font-size: 16px;
+  font-size: 8px;
   padding-top: 10vh;
   width: 100%;
+  translate: 0 -40%;
 
   display: flex;
   flex-direction: column;
