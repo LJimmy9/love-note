@@ -19,11 +19,22 @@
   }
 }
 
-@media screen and (min-height: globals.$large) {
-  .deckCard {
-    border: 2px solid red;
-    translate: -60% 20%;
-    scale: 0.6;
+// @media screen and (max-height: globals.$large) {
+//   .deckCard{
+//     border: 2px solid red;
+//     translate: -60% 90%;
+//     scale: .6;
+//   }
+// }
+
+@media screen and (min-height: globals.$xLarge), screen and (min-width: 700px) {
+  .deckCard{
+    border: 5px solid blue;
+    translate: -60% 90%;
+    scale: .8;
+  }
+  .backImg{
+    scale: 2;
   }
 }
 
@@ -65,9 +76,10 @@
 .backImg {
   position: relative;
   margin: 10 auto;
-  font-size: 16px;
+  font-size: 8px;
   padding-top: 10vh;
   width: 100%;
+  translate: 0 -40%;
 
   display: flex;
   flex-direction: column;
