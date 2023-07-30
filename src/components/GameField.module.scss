@@ -282,6 +282,10 @@
 
 // iPhone 12 Pro:
 @media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .gameContainer {
+    font-size: 16px;
+  }
+
   .deck,
   .discard {
     width: 7rem;
@@ -305,7 +309,7 @@
 }
 
 // Surface Duo
-@media screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+@media only screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
   .deck,
   .discard {
     font-size: 9px;
@@ -320,7 +324,7 @@
 }
 
 // all tablets and Surface Pro
-@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+@media only screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
   .gameContainer {
     font-size: 24px;
   }
@@ -334,7 +338,7 @@
 }
 
 // Nest Hub / Max:
-@media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+@media only screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
   .gameContainer {
     font-size: 8px;
   }
