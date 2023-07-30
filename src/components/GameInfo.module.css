@@ -27,7 +27,7 @@
   height: 70%;
   font-weight: bolder;
   overflow: auto;
-  z-index: 11;
+  z-index: 15;
 }
 
 .infoHeader {
