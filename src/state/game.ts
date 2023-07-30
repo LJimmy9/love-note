@@ -21,8 +21,6 @@ export const $gameState = atom<GameState>((get) => {
   const game = get($game);
   if (!game) {
     const gameState: GameState = {
-      readyToStart: false,
-      started: false,
       players: {},
       timer: 2,
       deck: [],

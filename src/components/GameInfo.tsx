@@ -10,10 +10,7 @@ interface GameInfoProps {
 }
 
 export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
-  const { t, i18n } = useTranslation("common");
-  const changeLanguageHandler = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
+  const { t } = useTranslation("common");
 
   if (!showInfo) return;
 
@@ -21,12 +18,11 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
     <div className={gi.infoCard}>
       <div className={gi.infoHeader}>
         <p className={gi.infoTitle}>❤️ {t("info.title")} ❤️</p>
-        {/* <select onChange={(e) => changeLanguageHandler(e.target.value)}>
-          <option value="en">en</option>
-          <option value="es">es</option>
-          <option value="cn">cn</option>
-        </select> */}
-        <button onClick={() => setShowInfo(false)}>X</button>
+        <div>
+          <button className={gi.closeBtn} onClick={() => setShowInfo(false)}>
+            &times;
+          </button>
+        </div>
       </div>
       <div>
         <div className={gi.infoTitle}> {t("info.header")} </div>
@@ -52,6 +48,13 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
         <CardInfoDisplay />
         <p className={gi.infoTitle}> {t("info.identityCard-header")} </p>
         <IdCardInfoDisplay />
+      </div>
+      <div className={gi.credits}>
+        <div>Credits:</div>
+        <div>
+          Background Music: Waiting For a Sign (Instrumental) - LilyPichu
+        </div>
+        <div>Sound Effects:</div>
       </div>
     </div>
   );

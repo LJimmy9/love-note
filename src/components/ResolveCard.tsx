@@ -14,6 +14,7 @@ import TattleSideEffect from "./SideEffect/TattleSideEffect";
 import AbsentSideEffect from "./SideEffect/AbsentSideEffect";
 import LastWordsSideEffect from "./SideEffect/LastWordsSideEffect";
 import LoversWinSideEffect from "./SideEffect/LoversWinSideEffect";
+import OppositeDaySideEffect from "./SideEffect/OppositeDaySideEffect";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -53,6 +54,7 @@ function ResolveCard({ players }: ResolveCardProps) {
           />
         </div>
       ),
+      7: <OppositeDay />,
       9: <></>,
     };
 
@@ -68,12 +70,8 @@ function ResolveCard({ players }: ResolveCardProps) {
       2: <PassDirection />,
       3: <TradeSnacksSideEffect players={players} />,
       5: <AbsentSideEffect players={players} />,
-      7: <OppositeDay />,
-      8: (
-        <div className={rc.resolveGameActionField}>
-          <RainyDay />
-        </div>
-      ),
+      7: <OppositeDaySideEffect />,
+      8: <RainyDay />,
       9: <LoversWinSideEffect players={players} />,
       10: <LastWordsSideEffect players={players} />,
     };
@@ -88,13 +86,7 @@ function ResolveCard({ players }: ResolveCardProps) {
     gameState.discardedCards.length - 1
   ] ? (
     <>
-      {" "}
-      <div
-        className={`${
-          gameState.discardedCards[gameState.discardedCards.length - 1]
-            .cardNum !== 7 && rc.resolveActionFieldContainer
-        }`}
-      >
+      <div className={`${rc.resolveActionFieldContainer}`}>
         {gameState.currentTurn === currPlayer.playerId && !sideEffect && (
           <div className={rc.resolveActionField}>{cardAction}</div>
         )}

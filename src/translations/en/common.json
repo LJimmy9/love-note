@@ -1,68 +1,68 @@
 {
     "info": {
         "title": "Love Note",
-        "header": "Overview",
-        "overview": "You are in school where love and rumors are running rampant. Lovers are secretly filling out a Love Note. Tattle Tales are on the prowl, looking for any sign of love so they can tattle on the Lovers. Friends are helping lovers pass the Love Note.",
+        "header": "Welcome!",
+        "overview": "You are in school where love and rumors are running rampant. Lovers are secretly writing each other love notes. Tattle Tales are on the prowl, looking for any sign of love so they can tattle to the teachers. Friends are helping lovers pass the Love Note.",
         "win": {
             "header": "To Win:",
-            "bullet-1": "Lovers need to fill out a Love Note to win.",
-            "bullet-2": "Tattle Tales need to find the Lovers and tattle on them to win.",
-            "bullet-3": "Friends need to help out the lovers."
+            "bullet-1": "Lovers need write at least 3 love notes on the Love Note to win.",
+            "bullet-2": "Tattle Tales need to figure out who the Lovers are and tattle on at least one to win.",
+            "bullet-3": "Friends need to help pass the Love Note to the lovers."
         },
         "play": {
             "header": "To Play:",
-            "bullet-1": "To draw tap on the deck.",
-            "bullet-2": "To play a card tap on a card and press the button in the top right. Tap the card again to cancel."
+            "bullet-1": "Tap on the deck to draw. The direction and priority of card passing is on the deck card.",
+            "bullet-2": "To play a card, tap on a card and press the play button on the top right. Tap the card again to cancel."
         },
         "card-header": "Cards",
         "identityCard-header": "Identity Cards"
     },
-    "cards": 
+    "cards":
     {
-        "card-0": 
+        "card-0":
         {
             "cardNum": 0,
             "name": "Love Note",
             "image": "💌",
             "description": "A love note that gets passed around, lovers must write at least x amount of notes in the Love Note to win the game. If a Lover is holding this card, they can treat this card as any number."
         },
-        "card-1": 
+        "card-1":
         {
             "name": "Tattle",
             "image": "📣",
             "description": "Tattle on a lover for passing notes in the classroom. If tattle is successful, the lovers are sent to detention and the Tattle Tales win the game. If a Tattle Tale is holding this card, they can treat this card as any number."
         },
-        "card-2": 
+        "card-2":
         {
             "name": "Pass Direction",
             "image": "🔛",
             "description": "Every student must pass their lowest or highest card (depending on the priority) to the direction displayed. If 'Opposite Day' card has been played, the direction and priority are changed to its opposite."
         },
-        "card-3": 
+        "card-3":
         {
             "name": "Trade Snacks",
             "image": "🍪",
             "description": "Pick a student to give you their lowest or highest card (depending on the priority), you may give them any card in your hand in exchange."
         },
-        "card-4": 
+        "card-4":
         {
             "name": "Nosy Glance",
             "image": "👀",
             "description": "A good day to be nosy, pick a student to peek at the cards in their hands."
         },
-        "card-5": 
+        "card-5":
         {
             "name": "Meddle",
             "image": "🖋️",
             "description": "You tamper with the love note; Lovers can add a note to the love note without holding the love note, Tattle Tales can remove a note without holding the love note."
         },
-        "card-6": 
+        "card-6":
         {
             "name": "Opposite Day",
             "image": "♻️",
             "description": "It's opposite day! Once this card is played, the direction and priority of the Pass Direction card is now opposite."
         },
-        "card-7": 
+        "card-7":
         {
             "name": "Rainy Day",
             "image": "🌧️",

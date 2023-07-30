@@ -4,8 +4,8 @@
   left: 25vw;
   width: 50vw;
   height: min-content;
-  border: 5px solid rgb(6, 162, 6);
-  background-color: rgb(190, 238, 190);
+  border: 5px solid #FEDD00;
+  background-color: #fdfd96;
 
   z-index: 10;
   padding: 2vh 2vw;
@@ -38,4 +38,24 @@
   100% {
     transform: scale(1);
   }
+}
+
+.instruction {
+  padding-top: 10px;
+}
+
+.direction, .priority {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.selected {
+  border: 3px solid yellow;
+  border-radius: 1rem;
+  padding: 2px;
+}
+
+.resultTxt {
+  padding-top: 10px;
 }
