@@ -1,0 +1,20 @@
+.info {
+  padding: 10px;
+}
+.noteEmoji {
+  margin: 10px 0;
+}
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeInAnimation 5s ease-in forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

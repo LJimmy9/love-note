@@ -39,17 +39,19 @@ function TradeSnacks({ players }: TradeSnacksProps) {
           );
         })}
       </div>
-      <div
-        className={ts.doneBtn}
-        onClick={() => {
-          Rune.actions.handleCard({
-            cardNum: 3,
-            playersInvolved: [selectedId, currPlayer.playerId],
-          });
-        }}
-      >
-        👌
-      </div>
+      {selectedId && (
+        <div
+          className={ts.doneBtn}
+          onClick={() => {
+            Rune.actions.handleCard({
+              cardNum: 3,
+              playersInvolved: [selectedId, currPlayer.playerId],
+            });
+          }}
+        >
+          👌
+        </div>
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import Tattle from "./CardAction/Tattle";
 import TattleSideEffect from "./SideEffect/TattleSideEffect";
 import AbsentSideEffect from "./SideEffect/AbsentSideEffect";
 import LastWordsSideEffect from "./SideEffect/LastWordsSideEffect";
+import LoversWinSideEffect from "./SideEffect/LoversWinSideEffect";
 
 export interface AtomPlayerObj {
   [key: string]: AtomPlayer;
@@ -35,6 +36,8 @@ function ResolveCard({ players }: ResolveCardProps) {
     const cardPlayed: Card =
       gameState.discardedCards[gameState.discardedCards.length - 1];
 
+    if (!cardPlayed) return <></>;
+
     const uiMap: UiMapProps = {
       1: <Tattle players={players} />,
       3: <TradeSnacks players={players} />,
@@ -50,6 +53,7 @@ function ResolveCard({ players }: ResolveCardProps) {
           />
         </div>
       ),
+      9: <></>,
     };
 
     return uiMap[cardPlayed.cardNum as number];
@@ -70,6 +74,7 @@ function ResolveCard({ players }: ResolveCardProps) {
           <RainyDay />
         </div>
       ),
+      9: <LoversWinSideEffect players={players} />,
       10: <LastWordsSideEffect players={players} />,
     };
 
@@ -78,19 +83,32 @@ function ResolveCard({ players }: ResolveCardProps) {
 
   const cardAction = getCardAction();
   const sideEffect = getSideEffect();
-  return (
-    <div
-      className={`${
-        gameState.discardedCards[gameState.discardedCards.length - 1]
-          .cardNum !== 7 && rc.resolveActionFieldContainer
-      }`}
-    >
-      {gameState.currentTurn === currPlayer.playerId && !sideEffect && (
-        <div className={rc.resolveActionField}>{cardAction}</div>
-      )}
+
+  const display = gameState.discardedCards[
+    gameState.discardedCards.length - 1
+  ] ? (
+    <>
+      {" "}
+      <div
+        className={`${
+          gameState.discardedCards[gameState.discardedCards.length - 1]
+            .cardNum !== 7 && rc.resolveActionFieldContainer
+        }`}
+      >
+        {gameState.currentTurn === currPlayer.playerId && !sideEffect && (
+          <div className={rc.resolveActionField}>{cardAction}</div>
+        )}
+        {sideEffect && (
+          <div className={rc.resolveActionField}>{sideEffect}</div>
+        )}
+      </div>
+    </>
+  ) : (
+    <div className={rc.resolveActionFieldContainer}>
       {sideEffect && <div className={rc.resolveActionField}>{sideEffect}</div>}
     </div>
   );
+  return <>{display}</>;
 }
 
 export default ResolveCard;
