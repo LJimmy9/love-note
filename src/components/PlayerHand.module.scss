@@ -36,7 +36,7 @@
 .flexCenterPlayerHand {
   display: grid;
   // justify-content: center;
-  padding-left: 23vw;
+  // padding-left: 23vw;
   grid-template-columns: repeat(5, 25px);
   border: 5px solid red;
 }
@@ -54,8 +54,25 @@
   transition: 500ms ease;
 }
 
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .flexCenterPlayerHand {
+    padding-left: 23vw;
+  }
+}
+
+// iPhone SE and Galaxy S8:
+@media screen and (min-width: 360px) and (max-width: 376px) {
+  .flexCenterPlayerHand {
+    padding-left: 20vw;
+  }
+}
+
 // XR, S20 Ultra and A51 / 71
-@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+@media screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .flexCenterPlayerHand {
+    padding-left: 23vw;
+  }
   .playerHandContainer {
     height: 10vh;
   }
