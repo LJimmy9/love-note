@@ -28,7 +28,7 @@ const cardRotationConfig: CardRotationConfig = {
 };
 
 const Game = ({ player, pinPos }: GameProps) => {
-  const [showInfo, setShowInfo] = useState<boolean>(false);
+  const [showInfo, setShowInfo] = useState<boolean>(true);
   const currPlayer = useAtomValue($runePlayer);
   const [showPlayerInfo, setShowPlayerInfo] = useState<boolean>(false);
 
