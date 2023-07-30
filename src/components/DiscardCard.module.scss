@@ -1,7 +1,7 @@
 @use "../globals.scss";
 
 .discardContentContainer {
-  position: relative;
+  position: absolute;
   border-radius: 1rem;
   transition: 500ms ease;
   height: 100%;
@@ -10,7 +10,7 @@
   background-color: #add8e6;
   border: 5px solid #c8a2c8;
 
-  // this might be an issue later in the element below discardContentContainer
+  // not sure what opacity was for:
   // opacity: 0;
 }
 
