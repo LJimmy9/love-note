@@ -40,7 +40,7 @@ const Game = ({ player, pinPos }: GameProps) => {
 
   useEffect(() => {
     if (!bgmRef.current) return;
-    bgmRef.current.volume = 0.5;
+    bgmRef.current.volume = 0.35;
     bgmRef.current.onended = () => {
       bgmRef.current.remove();
     };

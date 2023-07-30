@@ -110,6 +110,23 @@
   transform: rotate(270deg);
 }
 
+.otherplayerNameTop {
+  position: relative;
+  translate: 80% -60%;
+  rotate: 180deg;
+}
+
+.otherplayerNameLeft {
+  position: relative;
+  translate: 80% -60%;
+  rotate: 270deg;
+}
+.otherplayerNameRight {
+  position: relative;
+  translate: 80% -60%;
+  rotate: 90deg;
+}
+
 .otherplayerName {
   position: relative;
 }

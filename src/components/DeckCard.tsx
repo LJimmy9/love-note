@@ -12,7 +12,7 @@ interface DeckCardProps {
 
 export function playSound(sfx: any) {
   const audio = new Audio(sfx);
-  audio.volume = 0.35;
+  audio.volume = 0.40;
   audio.play();
 }
 

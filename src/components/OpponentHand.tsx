@@ -83,7 +83,11 @@ export const OppponentHand = ({
           </div>
         </div>
         <div
-          className={`${gf.otherplayerName}`}
+          className={`
+            ${idx === 1 ? gf.otherplayerNameLeft : gf.otherplayerName}
+            ${idx === 2 ? gf.otherplayerNameTop : gf.otherplayerName}
+            ${idx === 3 ? gf.otherplayerNameRight : gf.otherplayerName} 
+          `}
           onClick={() => setActivePlayer(playerId)}
           id={`player-${idx}`}
         >
