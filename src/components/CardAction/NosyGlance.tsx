@@ -63,7 +63,7 @@ const NosyGlance = ({ glancePlayer, setGlancePlayer }: NosyGlanceProps) => {
                         </div>
 
                         <div className={ng.backImageContainer}>
-                          <div className={ng.backImg}>💟</div>
+                          <div className={ng.backImg}></div>
                         </div>
                       </div>
                     );
