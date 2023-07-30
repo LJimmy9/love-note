@@ -29,7 +29,7 @@ export const InfoHeader = ({ showInfo, setShowInfo }: InfoHeaderProps) => {
       </div>
       <div className={gi.infoButtonContainer}>
         <button onClick={() => setShowInfo(!showInfo)} className={gi.infoBtn}>
-          info
+          i
         </button>
       </div>
     </div>
