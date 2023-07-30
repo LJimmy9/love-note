@@ -17,7 +17,7 @@ const env = import.meta.env.MODE;
 // const env = "";
 const setupConfig = createSetupDeck(env);
 const setupDeckConfig = setupConfig("cardNum");
-const setupDeck = setupDeckConfig(1, 0);
+const setupDeck = setupDeckConfig(3, 0);
 
 export interface Card {
   id: string;
@@ -118,6 +118,7 @@ type GameActions = {
   setLoveNoteHolder: (params: { loveNoteHolder: string }) => void;
   handleLastWords: (params: { lastWord: string }) => void;
   handleGameEnd: () => void;
+  handleLoversWin: () => void;
 };
 
 declare global {
@@ -220,6 +221,18 @@ function initiateSideEffect(playCard: Card, game: GameState) {
   }
 }
 
+function checkForWin(game: GameState) {
+  if (game.loveNotes.length >= 3) {
+    const allPlayers = Object.keys(game.players);
+    for (let i = 0; i < allPlayers.length; i++) {
+      const playerId = allPlayers[i];
+      game.players[playerId].sideEffect.active = true;
+      game.players[playerId].sideEffect.cardNum = 9;
+    }
+    game.gamePhase = "Resolve";
+  }
+}
+
 Rune.initLogic({
   minPlayers: 4,
   maxPlayers: 4,
@@ -302,7 +315,7 @@ Rune.initLogic({
           if (cardNum === 6) {
             game.meddleUsed.push(requestPlayerId);
           }
-          // check for winning condition
+          checkForWin(game);
           break;
         case "remove":
           if (game.players[requestPlayerId].hasLoveNoteAction) {
@@ -437,6 +450,33 @@ Rune.initLogic({
           [game.tattledOn]: isTattledOnFriend ? "WON" : "LOST",
           [otherPlayers[0]]: isTattledOnFriend ? "WON" : "LOST",
           [otherPlayers[1]]: isTattledOnFriend ? "WON" : "LOST",
+        },
+      });
+    },
+    handleLoversWin: (_, { game }) => {
+      const allPlayers = Object.keys(game.players);
+      const loverSun = allPlayers.find(
+        (playerId) => game.players[playerId].playerIdentity.name === "Lover Sun"
+      );
+      const loverMoon = allPlayers.find(
+        (playerId) =>
+          game.players[playerId].playerIdentity.name === "Lover Moon"
+      );
+      const friend = allPlayers.find(
+        (playerId) => game.players[playerId].playerIdentity.name === "Nebula"
+      );
+      const tattleTale = allPlayers.find(
+        (playerId) =>
+          game.players[playerId].playerIdentity.name === "Tattle Thunder"
+      );
+
+      if (!loverMoon || !loverSun || !friend || !tattleTale) return;
+      Rune.gameOver({
+        players: {
+          [loverSun]: "WON",
+          [loverMoon]: "WON",
+          [friend]: "WON",
+          [tattleTale]: "LOST",
         },
       });
     },
