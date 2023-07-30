@@ -24,15 +24,14 @@
   padding: 20px 10px;
 }
 
-
-@media screen and (max-height: globals.$smallScreen) {
-  .resolveText {
-    opacity: 0;
-  }
-  .resolveActionFieldContainer{
-    scale: .8;
-  }
-}
+// @media screen and (max-height: globals.$smallScreen) {
+//   .resolveText {
+//     opacity: 0;
+//   }
+//   .resolveActionFieldContainer{
+//     scale: .8;
+//   }
+// }
 
 .doneBtnContainer {
   /* position: absolute; */

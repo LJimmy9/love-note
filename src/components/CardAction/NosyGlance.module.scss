@@ -1,4 +1,4 @@
-@use '../../globals.scss';
+@use "../../globals.scss";
 
 .playerCardsContainer {
   display: flex;
@@ -21,11 +21,12 @@
   gap: 5vw;
   row-gap: 5vh;
 }
-@media screen and (max-height: globals.$smallScreen) {
-  .playerCardsContainer {
-    translate: -1vw -30vh;
-  }
-}
+
+// @media screen and (max-height: globals.$smallScreen) {
+//   .playerCardsContainer {
+//     translate: -1vw -30vh;
+//   }
+// }
 
 .cardContainer {
   display: flex;

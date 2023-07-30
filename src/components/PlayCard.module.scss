@@ -1,4 +1,4 @@
-@use '../globals.scss';
+@use "../globals.scss";
 
 .playerCard {
   /* padding: 1rem 1.5rem 2rem 1.5rem; */
@@ -25,11 +25,11 @@
   transform-style: preserve-3d;
 }
 
-@media screen and (max-height: globals.$smallScreen) {
-  .playerCardContainer{
-    // scale: .5;
-  }
-}
+// @media screen and (max-height: globals.$smallScreen) {
+//   .playerCardContainer{
+//     // scale: .5;
+//   }
+// }
 
 .cardDiscardHeader {
   display: flex;
@@ -193,15 +193,15 @@
   translate: 0 15px;
 }
 
-@media screen and (min-width: 414px) {
-  .playerCard {
-    // padding: 1vh 5vw;
-  }
-}
+// @media screen and (min-width: 414px) {
+//   .playerCard {
+//     // padding: 1vh 5vw;
+//   }
+// }
 
-@media screen and (max-height: globals.$smallScreen) {
-  .playerCard {
-    translate: -30vw 7vh;
-    scale: 0.7;
-  }
-}
+// @media screen and (max-height: globals.$smallScreen) {
+//   .playerCard {
+//     translate: -30vw 7vh;
+//     scale: 0.7;
+//   }
+// }

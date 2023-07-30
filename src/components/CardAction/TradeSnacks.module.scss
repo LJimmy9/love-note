@@ -1,4 +1,4 @@
-@use '../../globals.scss';
+@use "../../globals.scss";
 
 .tradeSnackActionContainer {
   font-size: 13px;
@@ -30,20 +30,20 @@
   font-size: 60px;
 }
 
-.tsCardContainer{
-}
+// .tsCardContainer{
+// }
 
-.cardHeader{
-}
+// .cardHeader{
+// }
 
-@media screen and (max-height: globals.$smallScreen) {
-  .doneBtn {
-    translate: 35vw 0vh;
-  }
-  .tsCardContainer {
-    display: flex;
-  }
-}
+// @media screen and (max-height: globals.$smallScreen) {
+//   .doneBtn {
+//     translate: 35vw 0vh;
+//   }
+//   .tsCardContainer {
+//     display: flex;
+//   }
+// }
 
 .playerCard {
   padding: 0 1rem;

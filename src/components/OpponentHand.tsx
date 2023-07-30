@@ -7,7 +7,7 @@ import PlayCard from "./PlayCard";
 
 import gi from "./GameInfo.module.scss";
 import gf from "./GameField.module.scss";
-import ph from "./PlayerHand.module.css";
+import ph from "./PlayerHand.module.scss";
 
 interface OppponentHandProps {
   activePlayer: string;

@@ -1,11 +1,10 @@
+@use "../globals.scss";
+
 .playerHandContainer {
   position: relative;
   width: 100%;
-  /* border: 5px solid rgb(0, 5, 163); */
-  /* background-color: brown; */
 
-  /* responsive later */
-  height: 15vh;
+  height: 11vh;
 }
 
 .playerHandLoverTurn {
@@ -53,4 +52,10 @@
 .default {
   scale: 1 1;
   transition: 500ms ease;
+}
+
+@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .playerHandContainer {
+    height: 10vh;
+  }
 }

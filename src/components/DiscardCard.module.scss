@@ -1,21 +1,16 @@
 @use "../globals.scss";
 
 .discardContentContainer {
-  // position: absolute;
   position: relative;
-  /* padding: 0 1rem; */
   border-radius: 1rem;
-  /* overflow: hidden; */
   transition: 500ms ease;
-  width: 20vw;
-  height: 28vw;
-
-  // left: 38vw;
-
-  // top: 50vh;
+  height: 100%;
+  width: 100%;
 
   background-color: #add8e6;
   border: 5px solid #c8a2c8;
+
+  // this might be an issue later in the element below discardContentContainer
   // opacity: 0;
 }
 

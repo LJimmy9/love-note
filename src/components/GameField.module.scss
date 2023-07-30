@@ -3,7 +3,6 @@
 .gameContainer {
   font-family: "Andale Mono", monospace;
   font-size: 12px;
-  // font-size: 20px;
 
   position: relative;
   display: flex;
@@ -58,8 +57,8 @@
 .deck,
 .discard {
   position: relative;
-  width: 20vw;
-  height: 28vw;
+  width: 6rem;
+  height: 8.5rem;
 }
 
 .otherplayerLeftTop {
@@ -279,22 +278,28 @@
 //   }
 // }
 
-// S20 Ultra and A51 / 71
+// XR, S20 Ultra and A51 / 71
 @media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
   .gameContainer {
     font-size: 16px;
   }
+
+  // .deck,
+  // .discard {
+  //   width: 6rem;
+  //   height: 8.5rem;
+  // }
 }
 
 // all tablets except iPad Mini
-@media only screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
   .gameContainer {
     font-size: 24px;
   }
 }
 
 // Nest Hub / Max:
-@media only screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+@media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
   .gameContainer {
     font-size: 8px;
   }
