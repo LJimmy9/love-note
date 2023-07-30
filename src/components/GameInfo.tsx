@@ -42,6 +42,16 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
             <li key={"li2"}>{t("info.play.bullet-2")}</li>
           </ul>{" "}
         </div>
+        <div className={gi.infoContent}>
+          <span className={gi.infoBullet}>{t("info.faq.header")}</span>
+          <ul>
+            <li key={"li1"}>{t("info.faq.bullet-1")}</li>
+            <li key={"li2"}>{t("info.faq.bullet-2")}</li>
+            <li key={"li1"}>{t("info.faq.bullet-3")}</li>
+            <li key={"li2"}>{t("info.faq.bullet-4")}</li>
+            <li key={"li2"}>{t("info.faq.bullet-5")}</li>
+          </ul>{" "}
+        </div>
       </div>
       <div>
         <p className={gi.infoTitle}> {t("info.card-header")} </p>

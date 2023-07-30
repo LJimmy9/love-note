@@ -13,11 +13,20 @@ function PassDirection() {
 
   const [priorityCardNum, setPriorityCardNum] = useState<number>();
   const [priorityError, setPriorityError] = useState<boolean>(false);
+  const [tattleException, setTattleException] = useState<boolean>(false);
 
   useEffect(() => {
     const cardNums: number[] = gameState.players[
       currPlayer.playerId
     ].playerHand.map((card) => card.cardNum);
+
+    if (
+      gameState.players[currPlayer.playerId].playerIdentity.role ===
+        "Tattle Tale" &&
+      cardNums.includes(1)
+    ) {
+      setTattleException(true);
+    }
 
     gameState.priority === "highest"
       ? setPriorityCardNum(Math.max(...cardNums))
@@ -59,7 +68,7 @@ function PassDirection() {
                     margin: "10px auto",
                   }}
                   onClick={() => {
-                    if (card.cardNum !== priorityCardNum) {
+                    if (card.cardNum !== priorityCardNum && !tattleException) {
                       setPriorityError(true);
                       return;
                     }

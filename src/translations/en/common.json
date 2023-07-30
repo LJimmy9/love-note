@@ -14,6 +14,14 @@
             "bullet-1": "Tap on the deck to draw. The direction and priority of card passing is on the deck card.",
             "bullet-2": "To play a card, tap on a card and press the play button on the top right. Tap the card again to cancel."
         },
+        "faq": {
+          "header": "FAQ:",
+          "bullet-1": "Lovers can write one note each time the Love Note is received.",
+          "bullet-2": "The Tattle Tale can remove one note each time the Love Note is received.",
+          "bullet-3": "Each player may only use Meddle once.",
+          "bullet-4": "The Tattle Tale can treat the Tattle (1) card as any number.",
+          "bullet-5": "The Tattle Tale automatically loses if they tattle on the friend."
+        },
         "card-header": "Cards",
         "identityCard-header": "Identity Cards"
     },

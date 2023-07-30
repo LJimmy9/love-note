@@ -62,6 +62,7 @@ const RainyDay = () => {
           style={{ fontSize: "10px", lineHeight: "15px" }}
           className={ln.fadeInAnimation}
           onAnimationEnd={() => {
+            if (gameState.currentTurn !== player.playerId) return;
             const removeNote =
               gameState.loveNotes[gameState.loveNotes.length - 1];
             Rune.actions.updateLoveNote({

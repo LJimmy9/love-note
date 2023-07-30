@@ -20,6 +20,7 @@ function LoveNoteCard({ card, player, loveNotes }: LoveNoteCardProps) {
         showNotes={showNotes}
         setShowNotes={setShowNotes}
         loveNotes={loveNotes}
+        cardNum={6}
       />
     </div>
   );

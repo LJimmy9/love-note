@@ -1,11 +1,12 @@
 import { useAtomValue } from "jotai";
-import { $gameState } from "../../state/game";
+import { $gameState, $runePlayer } from "../../state/game";
 import { TattleProps } from "../CardAction/Tattle";
 import a from "./AbsentSideEffect.module.css";
 import { useState } from "react";
 
 function AbsentSideEffect({ players }: TattleProps) {
   const gameState = useAtomValue($gameState);
+  const currPlayer = useAtomValue($runePlayer);
   const [showText, setShowText] = useState<boolean>(false);
 
   return (
@@ -21,7 +22,10 @@ function AbsentSideEffect({ players }: TattleProps) {
       {showText && (
         <div
           className={`${a.afterText} ${a.fadeIn}`}
-          onAnimationEnd={() => Rune.actions.updateCurrentTurn()}
+          onAnimationEnd={() => {
+            if (gameState.currentTurn !== currPlayer.playerId) return;
+            Rune.actions.updateCurrentTurn();
+          }}
         >
           Not today Tattle Tale! 💓
         </div>
