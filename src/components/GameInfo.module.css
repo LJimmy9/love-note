@@ -175,7 +175,10 @@
   left: 50%;
   transform: translate(-50%);
   /* border: 1px solid black; */
-  background-color: azure;
+  /* background-color: azure; */
+  border-radius: 8px;
+  background-color: #add8e6;
+  border: 5px solid #c8a2c8;
 
   padding: 2vh 5vw;
 }
