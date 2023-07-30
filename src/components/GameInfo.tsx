@@ -55,6 +55,7 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
           Background Music: Waiting For a Sign (Instrumental) - LilyPichu
         </div>
         <div>Sound Effects:</div>
+        <div>Music Jingles - Kenney Vleugels</div>
       </div>
     </div>
   );
