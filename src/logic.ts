@@ -17,7 +17,7 @@ const env = import.meta.env.MODE;
 // const env = "";
 const setupConfig = createSetupDeck(env);
 const setupDeckConfig = setupConfig("cardNum");
-const setupDeck = setupDeckConfig(3, 20);
+const setupDeck = setupDeckConfig(3, 0);
 
 export interface Card {
   id: string;
@@ -222,7 +222,7 @@ function initiateSideEffect(playCard: Card, game: GameState) {
 }
 
 function checkForWin(game: GameState) {
-  if (game.loveNotes.length >= 1) {
+  if (game.loveNotes.length >= 3) {
     const allPlayers = Object.keys(game.players);
     for (let i = 0; i < allPlayers.length; i++) {
       const playerId = allPlayers[i];

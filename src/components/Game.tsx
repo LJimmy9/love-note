@@ -48,7 +48,7 @@ const Game = ({ player, pinPos }: GameProps) => {
 
   useEffect(() => {
     if (music && game) {
-      // bgmRef.current.play();
+      bgmRef.current.play();
     }
   }, [music, game]);
 
