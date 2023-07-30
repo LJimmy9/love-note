@@ -21,11 +21,11 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
     <div className={gi.infoCard}>
       <div className={gi.infoHeader}>
         <p className={gi.infoTitle}>❤️ {t("info.title")} ❤️</p>
-        <select onChange={(e) => changeLanguageHandler(e.target.value)}>
+        {/* <select onChange={(e) => changeLanguageHandler(e.target.value)}>
           <option value="en">en</option>
           <option value="es">es</option>
           <option value="cn">cn</option>
-        </select>
+        </select> */}
         <button onClick={() => setShowInfo(false)}>X</button>
       </div>
       <div>

@@ -1,20 +1,20 @@
 {
     "info": {
-        "title": "Àiqíng bǐjì",
-        "header": "Gàishù",
-        "overview": "Nǐ zài xuéxiào lǐ, àiqíng hé yáoyán shèngxíng. Qínglǚmen zhèngzài tōutōu tiánxiě àiqíng bǐjì, xīwàng nénggòu yíngdé jiǎngpǐn. Liúyán fēiyǔ zhèngzài sìchù xúnzhǎo, xúnzhǎo rènhé àiqíng de jīxiàng, zhèyàng tāmen jiù kěyǐ xiàng liànrén xiányánsuìyǔ bìng yíngdé zìjǐ de jiǎngpǐn.",
+        "title": "爱情笔记",
+        "header": "概述",
+        "overview": "你在学校里，爱情和谣言盛行。情侣们正在偷偷填写爱情笔记，希望能够赢得奖品。流言蜚语正在四处寻找，寻找任何爱情的迹象，这样他们就可以向恋人闲言碎语并赢得自己的奖品.",
         "win": {
-            "header": "Yíngdé shènglì:",
-            "bullet-1": "Liànrén xūyào tiánxiě qíngshū cáinéng huòshèng.",
-            "bullet-2": "Tattle Tales xūyào zhǎodào liànrén bìng gàofā tāmen cáinéng huòshèng.",
-            "bullet-3": "Péngyǒu xūyào bāngzhù liànrén."
+            "header": "赢得胜利:",
+            "bullet-1": "恋人需要填写情书才能获胜.",
+            "bullet-2": "Tattle Tales 需要找到恋人并告发他们才能获胜.",
+            "bullet-3": "朋友需要帮助恋人."
         },
         "play": {
-            "header": "Wán:",
-            "bullet-1": "Zài jiǎbǎn shàng huìzhì lóngtóu.",
-            "bullet-2": "Yào wán pái, qǐng diǎnjī pái bìng àn yòushàng jiǎo de ànniǔ. Zàicì diǎnjī gāi kǎ jí kě qǔxiāo."
+            "header": "玩:",
+            "bullet-1": "在甲板上绘制龙头.",
+            "bullet-2": "要玩牌，请点击牌并按右上角的按钮。再次点击该卡即可取消."
         },
-        "card-header": "Pái",
-        "identityCard-header": "Shēnfèn zhèng"
+        "card-header": "牌",
+        "identityCard-header": "身份证"
     }
 }
