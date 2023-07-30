@@ -55,7 +55,7 @@ export const OppponentHand = ({
         <div className={displayPlayerInfo(playerId)}>
           <div className={gi.activePlayerInfo}>
             <div className={gi.exitButton} onClick={() => setActivePlayer("")}>
-              X
+              ❌
             </div>
             <p>Player Name: {game.players[playerId].displayName}</p>
           </div>
