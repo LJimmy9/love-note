@@ -35,10 +35,8 @@
 
 .flexCenterPlayerHand {
   display: grid;
-  // justify-content: center;
-  // padding-left: 23vw;
+  padding-left: 20vw;
   grid-template-columns: repeat(5, 25px);
-  // border: 5px solid red;
 }
 
 .expand {
