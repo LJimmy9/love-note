@@ -5,6 +5,7 @@ import {
   getReshuffledDeck,
   createPlayer,
   handleRainyDay,
+  setupDeck,
 } from "./game-setup";
 import {
   resolve,
@@ -13,10 +14,10 @@ import {
 } from "./components/resolve-side-effects";
 import { createSetupDeck } from "./components/Configs/DeckFactory";
 
-const env = import.meta.env.MODE;
-const setupConfig = createSetupDeck(env);
-const setupDeckConfig = setupConfig("cardNum");
-const setupDeck = setupDeckConfig(3, 0);
+// const env = import.meta.env.MODE;
+// const setupConfig = createSetupDeck(env);
+// const setupDeckConfig = setupConfig("cardNum");
+// const setupDeck = setupDeckConfig(3, 0);
 
 export interface Card {
   id: string;

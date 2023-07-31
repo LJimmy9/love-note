@@ -32,10 +32,10 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
           <ul>
             <li key={"li1"}>{t("info.faq.bullet-1")}</li>
             <li key={"li2"}>{t("info.faq.bullet-2")}</li>
-            <li key={"li1"}>{t("info.faq.bullet-3")}</li>
-            <li key={"li2"}>{t("info.faq.bullet-4")}</li>
-            <li key={"li2"}>{t("info.faq.bullet-5")}</li>
-            <li key={"li1"}>{t("info.faq.bullet-6")}</li>
+            <li key={"li3"}>{t("info.faq.bullet-3")}</li>
+            <li key={"li4"}>{t("info.faq.bullet-4")}</li>
+            <li key={"li5"}>{t("info.faq.bullet-5")}</li>
+            <li key={"li6"}>{t("info.faq.bullet-6")}</li>
             <li key={"li2"}>{t("info.faq.bullet-7")}</li>
             <li key={"li1"}>{t("info.faq.bullet-8")}</li>
           </ul>{" "}
