@@ -189,6 +189,10 @@
     width: 5.5rem;
     height: 10rem;
   }
+  .playCardBtn{
+    translate: 7vw 15px;
+    scale: 1.5;
+  }
 }
 
 // XR, S20 Ultra and A51 / 71
@@ -202,6 +206,9 @@
   .backContent {
     width: 7rem;
     height: 12rem;
+  }
+  .playCardBtn{
+    translate: 6vw 15px;
   }
 }
 
@@ -220,6 +227,9 @@
 
   .playerCardFront {
     font-size: 16px;
+  }
+  .playCardBtn{
+    translate: 9vw 15px;
   }
 }
 
