@@ -54,7 +54,7 @@
 .playerCardFront {
   position: absolute;
   backface-visibility: hidden;
-  // -webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   /* rotate: y 180deg; */
 }
 

@@ -36,8 +36,8 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
             <li key={"li4"}>{t("info.faq.bullet-4")}</li>
             <li key={"li5"}>{t("info.faq.bullet-5")}</li>
             <li key={"li6"}>{t("info.faq.bullet-6")}</li>
-            <li key={"li2"}>{t("info.faq.bullet-7")}</li>
-            <li key={"li1"}>{t("info.faq.bullet-8")}</li>
+            <li key={"li7"}>{t("info.faq.bullet-7")}</li>
+            <li key={"li8"}>{t("info.faq.bullet-8")}</li>
           </ul>{" "}
         </div>
       </div>
@@ -53,7 +53,7 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
           Background Music: Waiting For a Sign (Instrumental) - LilyPichu
         </div>
         <div>Sound Effects:</div>
-        <div>Music Jingles - Kenney Vleugels</div>
+        <div>SFX - Kenney Vleugels</div>
       </div>
     </div>
   );

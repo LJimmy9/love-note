@@ -166,113 +166,8 @@
   translate: 100% -20%;
 }
 
-// @media screen and (min-height: globals.$m1) {
-//   .topPlayer {
-//     // border: 5px solid black;
-//     translate: -90% -150%;
-//   }
-// }
-// @media screen and (min-height: globals.$m2) {
-//   .topPlayer {
-//     translate: -50% -200%;
-//   }
-//   .leftPlayer {
-//     translate: -100% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 0% -70%;
-//   }
-// }
-// @media screen and (min-height: globals.$m3) {
-//   .topPlayer {
-//     translate: -50% -260%;
-//   }
-//   .leftPlayer {
-//     translate: -120% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 20% -70%;
-//   }
-//   .currentPlayer {
-//     translate: -110% 20%;
-//   }
-// }
-
-// @media screen and (min-height: globals.$m4) {
-//   .topPlayer {
-//     // border: 5px solid orange;
-//     translate: -50% -270%;
-//   }
-//   .leftPlayer {
-//     // border: 5px solid orange;
-//     translate: -140% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 40% -80%;
-//   }
-// }
-
-// @media screen and (min-height: globals.$m5) {
-//   .topPlayer {
-//     // border: 5px solid grey;
-//     translate: -50% -270%;
-//   }
-//   .leftPlayer {
-//     // border: 5px solid grey;
-//     translate: -120% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 30% -80%;
-//   }
-// }
-
-// @media screen and (min-height: globals.$m6) {
-//   .topPlayer {
-//     // border: 5px solid green;
-//     translate: -50% -520%;
-//   }
-//   .leftPlayer {
-//     // border: 5px solid green;
-//     translate: -170% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 70% -80%;
-//   }
-// }
-
-// @media screen and (min-height: globals.$large) {
-//   .topPlayer {
-//     // border: 5px solid red;
-//     translate: -50% -470%;
-//   }
-//   .leftPlayer {
-//     // border: 5px solid red;
-//     translate: -360% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 280% -80%;
-//   }
-// }
-
-// @media screen and (min-width: globals.$m1) {
-//   .topPlayer {
-//     // border: 5px solid red;
-//     translate: -50% -580%;
-//   }
-//   .leftPlayer {
-//     // border: 5px solid red;
-//     translate: -180% -50%;
-//   }
-//   .rightPlayer {
-//     translate: 80% -80%;
-//   }
-//   .currentPlayer {
-//     translate: -110% 40%;
-//   }
-// }
-
 // iPhone 14 Pro Max 
-@media only screen and (max-width: 430px) and (min-height: 900px) and (max-height: 932px) {
+@media only screen and (max-width: 430px) and (min-height: 850px) and (max-height: 932px) {
   .rightPlayer {
     top: 54%;
     left: 40%;
@@ -286,6 +181,7 @@
   .topPlayer {
     top: 33%;
     left: 65%;
+    border: 2px solid red;
   }
 
   .otherPlayerDetails {
@@ -306,6 +202,7 @@
 
   .leftPlayer {
     left: 60%;
+    top: 40%;
   }
 
   .topPlayer {
@@ -341,6 +238,7 @@
 
   .leftPlayer {
     left: 60%;
+    top: 40%;
   }
 
   .topPlayer {
