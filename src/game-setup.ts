@@ -40,6 +40,7 @@ export function setupDeck() {
   const randomIdx = Math.round(Math.random() * (17 - 11) + 11);
   shuffleDeck(startingDeck);
   if (loveNoteCard) {
+    loveNoteCard.id = "100";
     startingDeck.splice(randomIdx, 0, loveNoteCard);
   }
 
@@ -57,11 +58,12 @@ export function handleRainyDay(game: GameState) {
   const deckCopy = [...game.deck];
   if (game.loveNotes.length > 0 && !game.rainyDayIsPlay) {
     const rainyDay = cards.filter((card) => card.name === "Rainy Day");
+    rainyDay[0].id = "200";
     deckCopy.push(...rainyDay);
     shuffleDeck(deckCopy);
     game.deck = deckCopy;
   } else if (game.loveNotes.length === 0 && !game.rainyDayIsPlay) {
-    const filtered = deckCopy.filter((card) => card.name === "Rainy Day");
+    const filtered = deckCopy.filter((card) => card.name !== "Rainy Day");
     shuffleDeck(filtered);
     game.deck = filtered;
   }
