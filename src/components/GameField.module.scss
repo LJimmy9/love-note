@@ -16,6 +16,8 @@
   gap: 5px;
   padding: 2vh 5vw;
   background-color: #cbb2ff;
+
+  z-index: 5;
 }
 
 .turnContainer {
@@ -33,6 +35,10 @@
 .gameActionField {
   height: 100%;
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .deckContainer {
@@ -42,7 +48,7 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .discardContainer {
@@ -63,16 +69,14 @@
   line-height: 15px;
 }
 
-.otherplayerLeftTop {
-  position: fixed;
-  /* top: 22.5%; */
-  /* left: -30px; */
-  top: 28vh;
-  left: -5vw;
-  /* transform: rotate(90deg); */
-  rotate: z 90deg;
-  /* rotate: 0 90deg; */
-}
+// .otherplayerLeftTop {
+//   position: fixed;
+//   top: 28vh;
+//   left: -5vw;
+
+//   rotate: z 90deg;
+
+// }
 
 /* .otherplayerLeftMiddle {
   position: fixed;
@@ -81,23 +85,23 @@
   transform: rotate(90deg);
 } */
 
-.otherplayerLeftBottom {
-  position: fixed;
-  /* bottom: 25%; */
-  /* left: -30px; */
-  bottom: 27vh;
-  left: -5vw;
-  transform: rotate(90deg);
-}
+// .otherplayerLeftBottom {
+//   position: fixed;
+//   /* bottom: 25%; */
+//   /* left: -30px; */
+//   bottom: 27vh;
+//   left: -5vw;
+//   transform: rotate(90deg);
+// }
 
-.otherplayerRightTop {
-  position: fixed;
-  /* top: 17.5%; */
-  top: 27vh;
-  /* right: -30px; */
-  right: -5vw;
-  transform: rotate(270deg);
-}
+// .otherplayerRightTop {
+//   position: fixed;
+//   /* top: 17.5%; */
+//   top: 27vh;
+//   /* right: -30px; */
+//   right: -5vw;
+//   transform: rotate(270deg);
+// }
 
 /* .otherplayerRightMiddle {
   position: fixed;
@@ -106,69 +110,42 @@
   transform: rotate(270deg);
 } */
 
-.otherplayerRightBottom {
-  position: fixed;
-  /* bottom: 29%; */
-  /* right: -30px; */
+// .otherplayerRightBottom {
+//   position: fixed;
 
-  bottom: 30vh;
-  right: -5vw;
-  transform: rotate(270deg);
-}
+//   bottom: 30vh;
+//   right: -5vw;
+//   transform: rotate(270deg);
+// }
 
 .otherplayerName {
   position: relative;
   translate: 80% -60%;
 }
 
-// @media screen and (min-width: 414px) {
-//   .otherplayerRightBottom {
-//     bottom: 27vh;
-//   }
-// }
-
 .leftPlayer {
-  /* top: 22.5%; */
-  /* left: -30px; */
-  /* position: relative; */
   top: 50%;
   left: 50%;
-  translate: -80% 20%;
-  /* left: -5vw; */
-  /* transform: rotate(90deg); */
+  // translate: -120% 0;
+  translate: -150% 0;
   rotate: z 90deg;
   position: absolute;
-  /* rotate: 0 90deg; */
 }
 
 .topPlayer {
-  /* position: fixed; */
-  /* top: 22.5%; */
-  /* left: -30px; */
-  /* position: relative; */
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  translate: -80% -130%;
-  /* left: -5vw; */
-  /* transform: rotate(90deg); */
+  translate: -50% -360%;
   rotate: z 180deg;
-  // z-index: 1;
-  /* rotate: 0 90deg; */
 }
 
 .rightPlayer {
   position: absolute;
-  /* top: 22.5%; */
-  /* left: -30px; */
-  /* position: relative; */
   top: 50%;
   left: 50%;
-  translate: -20% -140%;
-  /* left: -5vw; */
-  /* transform: rotate(90deg); */
+  translate: 50% -50%;
   rotate: z -90deg;
-  /* rotate: 0 90deg; */
 }
 
 .currentPlayer {
@@ -280,6 +257,22 @@
 //   }
 // }
 
+// iPhone SE and Galaxy S8:
+@media screen and (min-width: 360px) and (max-width: 376px) {
+  .rightPlayer {
+    top: 64%;
+    left: 40%;
+  }
+
+  .leftPlayer {
+    left: 60%;
+  }
+
+  .topPlayer {
+    top: 40%;
+  }
+}
+
 // iPhone 12 Pro:
 @media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
   .gameContainer {
@@ -291,6 +284,20 @@
     width: 7rem;
     height: 10rem;
     font-size: 12px;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 40%;
+  }
+
+  .leftPlayer {
+    left: 60%;
+  }
+
+  .topPlayer {
+    translate: -20% -360%;
+    top: 37%;
   }
 }
 
@@ -305,6 +312,20 @@
     width: 8rem;
     height: 12rem;
     font-size: 12px;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 40%;
+  }
+
+  .leftPlayer {
+    left: 60%;
+  }
+
+  .topPlayer {
+    top: 35%;
+    translate: -20% -350%;
   }
 }
 
@@ -321,6 +342,20 @@
     height: 10rem;
     font-size: 12px;
   }
+
+  .leftPlayer {
+    translate: -120% -170%;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 35%;
+  }
+
+  .topPlayer {
+    top: 40%;
+    translate: -20% -340%;
+  }
 }
 
 // all tablets and Surface Pro
@@ -334,6 +369,20 @@
     width: 12rem;
     height: 18rem;
     font-size: 16px;
+  }
+
+  .leftPlayer {
+    translate: -120% -350%;
+  }
+
+  .rightPlayer {
+    top: 64%;
+    left: 35%;
+  }
+
+  .topPlayer {
+    top: 33%;
+    translate: -10% -350%;
   }
 }
 
