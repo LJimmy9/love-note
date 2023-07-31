@@ -7,7 +7,7 @@
     "description": "A love note that gets passed around. Lovers must write at least 3 notes in the Love Note to win the game!",
     "restrictionToRole": "Lover",
     "canPlay": false,
-    "count": 5,
+    "count": 1,
     "autoPlay": false
   },
   {
@@ -18,7 +18,7 @@
     "description": "Tattle on a lover for passing notes in the classroom. If successful, the lovers are sent to detention and the Tattle Tale wins the game!",
     "restrictionToRole": "Tattle Tale",
     "canPlay": true,
-    "count": 0,
+    "count": 2,
     "autoPlay": false
   },
   {
@@ -29,7 +29,7 @@
     "description": "Every student must pass a card (depending on the current card priority) to the direction displayed.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 0,
+    "count": 4,
     "autoPlay": false
   },
   {
@@ -40,7 +40,7 @@
     "description": "Pick a student to give you their lowest or highest card (depending on priority displayed). You may give them any card in your hand in exchange.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 7,
+    "count": 5,
     "autoPlay": false
   },
   {
@@ -51,7 +51,7 @@
     "description": "It's a good day to be nosy! Pick a student to peek at the cards in their hands.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 2,
+    "count": 4,
     "autoPlay": false
   },
   {
@@ -62,7 +62,7 @@
     "description": "You weren't at school! The teacher doesn't believe the tattle tale. This can only be played once by each player.",
     "restrictionToRole": "",
     "canPlay": false,
-    "count": 0,
+    "count": 1,
     "autoPlay": false
   },
   {
@@ -73,7 +73,7 @@
     "description": "You can tamper with the Love Note even if you're not holding it! You may only tamper with the Love Note once.",
     "restrictionToRole": "",
     "canPlay": false,
-    "count": 0,
+    "count": 1,
     "autoPlay": false
   },
   {
@@ -84,7 +84,7 @@
     "description": "It's opposite day! The direction and priority of the class room has now reversed.",
     "restrictionToRole": "",
     "canPlay": true,
-    "count": 0,
+    "count": 3,
     "autoPlay": false
   },
   {
