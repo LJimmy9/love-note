@@ -1,4 +1,4 @@
-@use '../../globals.scss';
+@use "../../globals.scss";
 
 .playerCardsContainer {
   display: flex;
@@ -18,25 +18,20 @@
 .actionContainer {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  gap: 5vw;
+  gap: 2vw;
   row-gap: 5vh;
-}
-@media screen and (max-height: globals.$smallScreen) {
-  .playerCardsContainer {
-    translate: -1vw -30vh;
-  }
 }
 
 .cardContainer {
   display: flex;
-  gap: 2vw;
+  gap: 1vw;
 }
 
 .card {
   position: relative;
 
-  width: 16vw;
-  height: 16vh;
+  width: 3rem;
+  height: 5rem;
   padding: 8px 5px;
 
   border: 5px solid #c8a2c8;
@@ -64,7 +59,10 @@
   flex-direction: column;
   gap: 2vw;
   line-height: 3vh;
-  padding-top: 1vh;
+  padding: 1vh 1vw;
+
+  overflow: hidden;
+  font-size: 8px;
 }
 
 .cardHeader {
@@ -74,7 +72,7 @@
 }
 
 .cardImage {
-  font-size: 5vw;
+  font-size: 10px;
 }
 
 .backImageContainer {
@@ -110,4 +108,83 @@
 .doneBtn {
   font-size: 48px;
   cursor: pointer;
+}
+
+// // iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .card {
+    width: 5rem;
+    height: 8rem;
+  }
+  .cardImage {
+    font-size: 15px;
+  }
+
+  .cardDetail {
+    font-size: 12px;
+  }
+}
+
+// iPhone SE and Galaxy S8:
+@media screen and (min-width: 360px) and (max-width: 376px) {
+  .card {
+    width: 4rem;
+    height: 7rem;
+  }
+
+  .cardImage {
+    font-size: 10px;
+  }
+
+  .cardDetail {
+    font-size: 10px;
+  }
+}
+
+// XR, S20 Ultra and A51 / 71
+@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .card {
+    width: 6rem;
+    height: 10rem;
+  }
+
+  .cardImage {
+    font-size: 20px;
+  }
+
+  .cardDetail {
+    font-size: 12px;
+  }
+}
+
+// all tablets and Surface Pro
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .card {
+    width: 8rem;
+    height: 12rem;
+  }
+
+  .cardImage {
+    font-size: 20px;
+  }
+
+  .cardDetail {
+    font-size: 18px;
+  }
+}
+
+// Surface Duo
+@media only screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+  .card {
+    width: 6rem;
+    height: 8rem;
+  }
+
+  .cardImage {
+    font-size: 15px;
+  }
+
+  .cardDetail {
+    font-size: 12px;
+  }
 }

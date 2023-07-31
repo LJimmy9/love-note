@@ -1,0 +1,91 @@
+@use "../globals.scss";
+
+.playerHandContainer {
+  position: relative;
+
+  height: 11vh;
+}
+
+.playerHandLoverTurn {
+  background-color: pink;
+  border: 5px solid #77dd77;
+}
+
+.playerHandTattleTurn {
+  background-color: rgb(143, 189, 141);
+  border: 5px solid #77dd77;
+}
+
+.playerHandFriendTurn {
+  background-color: skyblue;
+  border: 5px solid #77dd77;
+}
+
+.playerHandLover {
+  background-color: pink;
+}
+
+.playerHandTattle {
+  background-color: rgb(143, 189, 141);
+}
+
+.playerHandFriend {
+  background-color: skyblue;
+}
+
+.flexCenterPlayerHand {
+  display: grid;
+  padding-left: 20vw;
+  grid-template-columns: repeat(5, 25px);
+}
+
+.expand {
+  /* width: 18ch; */
+  height: 20ch;
+  scale: 1.8 2;
+  transition: 500ms ease;
+  position: relative;
+}
+
+.default {
+  scale: 1 1;
+  transition: 500ms ease;
+}
+
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .flexCenterPlayerHand {
+    padding-left: 23vw;
+  }
+}
+
+// iPhone SE and Galaxy S8:
+@media screen and (min-width: 360px) and (max-width: 376px) {
+  .flexCenterPlayerHand {
+    padding-left: 20vw;
+  }
+}
+
+// XR, S20 Ultra and A51 / 71
+@media screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .flexCenterPlayerHand {
+    padding-left: 23vw;
+  }
+  .playerHandContainer {
+    height: 10vh;
+  }
+}
+
+// Surface Duo
+@media screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+  .flexCenterPlayerHand {
+    padding-left: 36vw;
+  }
+}
+
+// all tablets and Surface Pro
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .flexCenterPlayerHand {
+    padding-left: 38vw;
+  }
+}

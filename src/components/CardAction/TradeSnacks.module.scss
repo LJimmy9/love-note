@@ -1,56 +1,67 @@
-@use '../../globals.scss';
+@use "../../globals.scss";
 
 .tradeSnackActionContainer {
-  font-size: 13px;
-  line-height: 3vh;
-  padding: 3vw 4vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .instruction {
-  padding-top: 10px;
-  z-index: 5;
+  font-size: 10px;
+  padding: 1rem;
+  line-height: 15px;
+}
+
+.playerSelection {
+  display: flex;
+  justify-content: center;
 }
 
 .playerSelectionContainer {
   margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
 }
 
-.playerSelectionContainer > .playerSelection {
-  margin-top: 10px;
-  font-size: 14px;
-  cursor: pointer;
+.selectionPlayerName {
+  display: flex;
+  align-items: center;
+}
+
+.playerSelectionDetails {
+  display: flex;
+  gap: 10px;
 }
 
 .doneBtn {
-  cursor: pointer;
   position: absolute;
-  bottom: 10%;
+  bottom: 30%;
   left: 50%;
   transform: translate(-50%, 50%);
-  font-size: 60px;
+  font-size: 40px;
 }
 
-.tsCardContainer{
+.doneClick {
+  font-size: 12px;
 }
 
-.cardHeader{
+.cardActionPlayContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
 }
 
-@media screen and (max-height: globals.$smallScreen) {
-  .doneBtn {
-    translate: 35vw 0vh;
-  }
-  .tsCardContainer {
-    display: flex;
-  }
+.tsCardContainer {
+  display: flex;
 }
 
 .playerCard {
   padding: 0 1rem;
   border-radius: 1rem;
   overflow: hidden;
-  cursor: pointer;
-  margin: "0 auto";
+  margin: 0 auto;
   transition: 500ms ease;
   width: 8ch;
   height: 16ch;
@@ -78,6 +89,79 @@
 .avatar {
   position: relative;
   width: 20px;
-  top: 5px;
   margin-right: 5px;
+  top: -5px;
+}
+
+// iPhone 12 Pro:
+@media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
+  .instruction,
+  .selectionPlayerName,
+  .doneClick {
+    font-size: 16px;
+  }
+
+  .instruction {
+    line-height: 20px;
+  }
+
+  .playerSelectionContainer {
+    gap: 20px;
+  }
+}
+
+// Surface Duo
+@media only screen and (min-width: globals.$m6) and (max-width: globals.$m7) {
+  .instruction,
+  .selectionPlayerName,
+  .doneClick {
+    font-size: 16px;
+  }
+
+  .playerSelectionContainer {
+    gap: 20px;
+  }
+}
+
+// XR, S20 Ultra and A51 / 71
+@media only screen and (min-width: globals.$m2) and (max-width: globals.$m3) {
+  .instruction,
+  .selectionPlayerName,
+  .doneClick {
+    font-size: 16px;
+  }
+
+  .instruction {
+    line-height: 20px;
+  }
+
+  .playerSelectionContainer {
+    gap: 20px;
+  }
+}
+
+// iPhone SE and Galaxy S8:
+@media screen and (min-width: 360px) and (max-width: 376px) {
+  .instruction,
+  .selectionPlayerName,
+  .doneClick {
+    font-size: 12px;
+  }
+}
+
+// all tablets and Surface Pro
+@media only screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .instruction {
+    font-size: 24px;
+    padding: 6rem 2rem;
+    line-height: 40px;
+  }
+  .selectionPlayerName,
+  .doneClick {
+    font-size: 24px;
+  }
+  .doneBtn {
+    font-size: 60px;
+    bottom: 10%;
+  }
 }

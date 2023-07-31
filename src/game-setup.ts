@@ -19,8 +19,11 @@ export function setupIdentityCards() {
 
 export function setupDeck() {
   let cardCounter = 0;
-  const removeRainyDay = cards.filter((card) => card.name !== "Rainy Day");
-  const staticDeck = [...removeRainyDay] as Array<Card>;
+  const loveNoteCard = cards.find((card) => card.cardNum === 0);
+  const deckWithExclusions = cards.filter(
+    (card) => card.name !== "Rainy Day" && card.name !== "Love Note"
+  );
+  const staticDeck = [...deckWithExclusions] as Array<Card>;
   // const staticDeck = [...cards] as Array<Card>;
   const startingDeck: Array<Card> = [];
 
@@ -33,7 +36,12 @@ export function setupDeck() {
     }
   }
 
+  // random idx between 11 - 17 to ensure Love Note is in starting hand
+  const randomIdx = Math.round(Math.random() * (17 - 11) + 11);
   shuffleDeck(startingDeck);
+  if (loveNoteCard) {
+    startingDeck.splice(randomIdx, 0, loveNoteCard);
+  }
 
   return startingDeck;
 }

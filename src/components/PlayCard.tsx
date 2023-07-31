@@ -125,10 +125,11 @@ function PlayCard({
   const cardFront = (
     <div className={`${s.playerCardFront}`}>
       <div
-        className={`${s.playerCard}`}
+        className={`${s.playerCard} ${
+          isOpen ? s.playerCardOpen : s.playerCardClosed
+        } 
+        `}
         style={{
-          width: `${isOpen ? "28ch" : "8ch"}`,
-          height: `${isOpen ? "38ch" : "16ch"}`,
           transform: `translate(${isOpen ? "-25%" : "0"}, ${
             isOpen ? "-130" : "0"
           }%)`,

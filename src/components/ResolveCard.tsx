@@ -44,7 +44,7 @@ function ResolveCard({ players }: ResolveCardProps) {
       3: <TradeSnacks players={players} />,
       4: (
         <div className={rc.resolveGameActionField}>
-          <div className={rc.resolveText} style={{ lineHeight: "15px" }}>
+          <div className={rc.resolveText}>
             Select a player to peek at their cards
             <div>Click 👌 when you're done</div>
           </div>

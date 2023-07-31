@@ -7,8 +7,8 @@ import { CardRotationConfig } from "./Game";
 import PlayCard from "./PlayCard";
 import idCardData from "../assets/identity-cards.json";
 
-import ph from "./PlayerHand.module.css";
-import gi from "./GameInfo.module.css";
+import ph from "./PlayerHand.module.scss";
+import gi from "./GameInfo.module.scss";
 import gf from "./GameField.module.scss";
 
 interface PlayerHandProps {
@@ -93,7 +93,14 @@ export const PlayerHand = ({
       </div>
       {showPlayerInfo && (
         <div className={gi.playerInfoContainer}>
-          <button onClick={() => setShowPlayerInfo(false)}>&times;</button>
+          <div>
+            <button
+              className={gi.closeBtn}
+              onClick={() => setShowPlayerInfo(false)}
+            >
+              &times;
+            </button>
+          </div>
           <div className={gi.playerInfoContent}>
             <p>
               <span>Display Name:</span> {currPlayer.displayName}

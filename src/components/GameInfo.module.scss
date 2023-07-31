@@ -1,14 +1,18 @@
+@use "../globals.scss";
 /* display more information on game */
 
 .infoButtonContainer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .infoBtn {
   background-color: #658bdd;
-  height: 20px;
-  width: fit-content;
+
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
 
   display: flex;
   align-items: center;
@@ -56,10 +60,6 @@
   margin: 0 auto;
 }
 
-/* .infoHeader > select {
-  height: 100%;
-} */
-
 .infoContent {
   margin-left: 2px;
   text-align: left;
@@ -84,13 +84,11 @@
 
 .infoTitle {
   font-weight: bold;
-  /* font-size: 13px; */
   margin-top: 3%;
 }
 
 .infoBullet {
   font-weight: bolder;
-  /* font-size: 13px; */
 }
 
 /* info card */
@@ -122,8 +120,6 @@
   right: 15%;
   width: 15px;
   height: 15px;
-  /* color: white;
-  background-color: #658bdd; */
 
   border-radius: 50%;
 
@@ -205,16 +201,31 @@
 
 .closeBtn {
   padding: 0 1px;
-  margin: 1px 5px 1px 1px ;
+  margin: 1px 5px 1px 1px;
   background-color: transparent;
   border: none;
 }
 
 .closeBtn:hover {
-  border: none
+  border: none;
 }
 
 .credits {
   font-size: 8px;
   margin-bottom: 5px;
+}
+// tablets
+@media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
+  .infoBtn {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+// Nest Hub / Max:
+@media screen and (min-width: globals.$nestHubWidth) and (max-width: globals.$nestHubMaxWidth) and (min-height: globals.$nestHubHeight) and (max-height: globals.$nestHubMaxHeight) {
+  .infoBtn {
+    width: 15px;
+    height: 15px;
+  }
 }

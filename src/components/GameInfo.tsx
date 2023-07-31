@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 import { CardInfoDisplay, IdCardInfoDisplay } from "./InfoCard";
 
-import gi from "./GameInfo.module.css";
+import gi from "./GameInfo.module.scss";
 
 interface GameInfoProps {
   showInfo: boolean;
@@ -28,28 +28,16 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
         <div className={gi.infoTitle}> {t("info.header")} </div>
         <div className={gi.infoContent}>{t("info.overview")}</div>
         <div className={gi.infoContent}>
-          <span className={gi.infoBullet}>{t("info.win.header")}</span>
-          <ul>
-            <li key={"li1"}>{t("info.win.bullet-1")}</li>
-            <li key={"li2"}>{t("info.win.bullet-2")}</li>
-            <li key={"li3"}>{t("info.win.bullet-3")}</li>
-          </ul>
-        </div>
-        <div className={gi.infoContent}>
-          <span className={gi.infoBullet}>{t("info.play.header")}</span>
-          <ul>
-            <li key={"li1"}>{t("info.play.bullet-1")}</li>
-            <li key={"li2"}>{t("info.play.bullet-2")}</li>
-          </ul>{" "}
-        </div>
-        <div className={gi.infoContent}>
           <span className={gi.infoBullet}>{t("info.faq.header")}</span>
           <ul>
             <li key={"li1"}>{t("info.faq.bullet-1")}</li>
             <li key={"li2"}>{t("info.faq.bullet-2")}</li>
-            <li key={"li1"}>{t("info.faq.bullet-3")}</li>
-            <li key={"li2"}>{t("info.faq.bullet-4")}</li>
-            <li key={"li2"}>{t("info.faq.bullet-5")}</li>
+            <li key={"li3"}>{t("info.faq.bullet-3")}</li>
+            <li key={"li4"}>{t("info.faq.bullet-4")}</li>
+            <li key={"li5"}>{t("info.faq.bullet-5")}</li>
+            <li key={"li6"}>{t("info.faq.bullet-6")}</li>
+            <li key={"li7"}>{t("info.faq.bullet-7")}</li>
+            <li key={"li8"}>{t("info.faq.bullet-8")}</li>
           </ul>{" "}
         </div>
       </div>
@@ -65,7 +53,7 @@ export const GameInfo = ({ showInfo, setShowInfo }: GameInfoProps) => {
           Background Music: Waiting For a Sign (Instrumental) - LilyPichu
         </div>
         <div>Sound Effects:</div>
-        <div>Music Jingles - Kenney Vleugels</div>
+        <div>SFX - Kenney Vleugels</div>
       </div>
     </div>
   );
