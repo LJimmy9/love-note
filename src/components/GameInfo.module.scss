@@ -30,6 +30,7 @@
   width: 80%;
   height: 70%;
   font-weight: bolder;
+  font-family: "Andale Mono", monospace;
   overflow: auto;
   z-index: 15;
 }
@@ -198,6 +199,21 @@
   gap: 10vw;
 }
 
+.closeBtn {
+  padding: 0 1px;
+  margin: 1px 5px 1px 1px;
+  background-color: transparent;
+  border: none;
+}
+
+.closeBtn:hover {
+  border: none;
+}
+
+.credits {
+  font-size: 8px;
+  margin-bottom: 5px;
+}
 // tablets
 @media screen and (min-width: globals.$large) and (max-width: globals.$xLarge) {
   .infoBtn {

@@ -8,6 +8,7 @@ interface LoveNoteActionProps {
   showNotes: boolean;
   setShowNotes: Dispatch<SetStateAction<boolean>>;
   loveNotes: Array<Note>;
+  cardNum: number;
 }
 
 export default function LoveNoteAction({
@@ -15,10 +16,11 @@ export default function LoveNoteAction({
   showNotes,
   setShowNotes,
   loveNotes,
+  cardNum,
 }: LoveNoteActionProps) {
   const currPlayer = useAtomValue($runePlayer);
   const idCardRole = player.playerIdentity.role;
-  const notePrompts = ["💝", "😚", "😉", "💕"];
+  const notePrompts = ["💝", "😚", "💙", "😉", "💗", "😘"];
   const actionTxt = "Open Love Note";
 
   function performAction(
@@ -33,7 +35,7 @@ export default function LoveNoteAction({
           action: "add",
           prompt: prompt,
           requestPlayerId: currPlayer.playerId,
-          cardNum: -1,
+          cardNum: cardNum,
         });
         break;
       case "Tattle Tale":
@@ -41,7 +43,15 @@ export default function LoveNoteAction({
           action: "remove",
           prompt: prompt,
           requestPlayerId: currPlayer.playerId,
-          cardNum: -1,
+          cardNum: cardNum,
+        });
+        break;
+      case "Friend":
+        Rune.actions.updateLoveNote({
+          action: "add",
+          prompt: prompt,
+          requestPlayerId: currPlayer.playerId,
+          cardNum: cardNum,
         });
         break;
       default:
@@ -54,57 +64,69 @@ export default function LoveNoteAction({
     setShowNotes(!showNotes);
   }
 
+  const addNotePrompts = (
+    <>
+      <div style={{ margin: "10px 0" }}>click to add</div>
+      <div>
+        {notePrompts.map((prompt, idx) => {
+          return (
+            <span
+              key={`prompt-${idx}`}
+              style={{
+                margin: "0 5px",
+                padding: "2px",
+                border: "1px solid #FDFD96",
+                borderRadius: "1rem",
+                backgroundColor: "#FDFD96",
+              }}
+              onClick={(e) => performAction(e, prompt)}
+            >
+              {prompt}
+            </span>
+          );
+        })}
+      </div>
+    </>
+  );
+
   function getNotesDisplay() {
     switch (idCardRole) {
       case "Lover":
-        return (
-          <>
-            {loveNotes.map((note: Note) => {
-              return (
-                <span
-                  key={`note-${note.id}`}
-                  style={{ margin: "5px" }}
-                  onClick={(e) => performAction(e, note.text)}
-                >
-                  {note.text}
-                </span>
-              );
-            })}
-            <div style={{ margin: "10px 0" }}>click to add</div>
-            <div>
-              {notePrompts.map((prompt, idx) => {
-                return (
-                  <span
-                    key={`prompt-${idx}`}
-                    style={{
-                      margin: "0 5px",
-                      padding: "2px",
-                      border: "1px solid #FDFD96",
-                      borderRadius: "1rem",
-                      backgroundColor: "#FDFD96",
-                    }}
-                    onClick={(e) => performAction(e, prompt)}
-                  >
-                    {prompt}
-                  </span>
-                );
-              })}
-            </div>
-          </>
-        );
+        return <>{addNotePrompts}</>;
       case "Tattle Tale":
         return (
           <>
-            <div style={{ marginBottom: "5px" }}>click to remove</div>
+            <div style={{ margin: "10px 0px" }}>click a note to remove</div>
           </>
         );
         break;
+      case "Friend":
+        if (cardNum === 6) {
+          return <>{addNotePrompts}</>;
+        } else {
+          return <></>;
+        }
       default:
         return <></>;
     }
   }
 
-  const loveNotesDisplay = showNotes ? getNotesDisplay() : null;
+  const loveNotesDisplay = showNotes ? (
+    <div>
+      {loveNotes.map((note: Note) => {
+        return (
+          <span
+            key={`note-${note.id}`}
+            style={{ margin: "5px" }}
+            onClick={(e) => performAction(e, note.text)}
+          >
+            {note.text}
+          </span>
+        );
+      })}
+      {getNotesDisplay()}
+    </div>
+  ) : null;
 
   const closeBtn = showNotes ? (
     <div

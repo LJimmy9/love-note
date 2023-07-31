@@ -14,7 +14,6 @@ import {
 import { createSetupDeck } from "./components/Configs/DeckFactory";
 
 const env = import.meta.env.MODE;
-// const env = "";
 const setupConfig = createSetupDeck(env);
 const setupDeckConfig = setupConfig("cardNum");
 const setupDeck = setupDeckConfig(3, 0);
@@ -69,8 +68,6 @@ export interface CardSwapSetupProps {
 }
 
 export interface GameState {
-  readyToStart: boolean;
-  started: boolean;
   players: AllPlayers;
   timer: number;
   deck: Array<Card>;
@@ -106,7 +103,6 @@ type GameActions = {
   }) => void;
   updateCurrentTurn: () => void;
   // actions
-  startGame: () => void;
   drawCard: (params: { deckCard: Card; playerIdToUpdate: string }) => void;
   playCard: (params: { playCard: Card; playerIdToUpdate: string }) => void;
   handleCard: (params: {
@@ -119,6 +115,10 @@ type GameActions = {
   handleLastWords: (params: { lastWord: string }) => void;
   handleGameEnd: () => void;
   handleLoversWin: () => void;
+  updateForOppositeDay: (params: {
+    direction: string;
+    priority: string;
+  }) => void;
 };
 
 declare global {
@@ -187,8 +187,6 @@ function handleCard(
     case 6:
       break;
     case 7:
-      game.priority = game.priority === "highest" ? "lowest" : "highest";
-      game.direction = game.direction === "right" ? "left" : "right";
       for (let i = 0; i < playersInvolved.length; i++) {
         const playerId = playersInvolved[i];
         game.players[playerId].sideEffect.active = true;
@@ -212,9 +210,6 @@ function initiateSideEffect(playCard: Card, game: GameState) {
       break;
     case 4:
       break;
-    case 7:
-      handleCard(playCard.cardNum, Object.keys(game.players), game);
-      break;
     case 8:
       handleCard(playCard.cardNum, Object.keys(game.players), game);
       break;
@@ -229,6 +224,7 @@ function checkForWin(game: GameState) {
       game.players[playerId].sideEffect.active = true;
       game.players[playerId].sideEffect.cardNum = 9;
     }
+    game.cardPlayed = "Love Note";
     game.gamePhase = "Resolve";
   }
 }
@@ -247,8 +243,6 @@ Rune.initLogic({
     }
 
     return {
-      readyToStart: false,
-      started: false,
       players: players,
       timer: 2,
       deck: deck,
@@ -269,18 +263,8 @@ Rune.initLogic({
       tattledOn: "",
     };
   },
-  update: ({ game }) => {
-    if (Object.keys(game.players).length >= 4) {
-      game.readyToStart = true;
-    }
-
-    if (game.readyToStart && game.timer > 0 && !game.started) {
-      game.timer -= 1;
-    }
-
-    if (game && game.timer === 0 && !game.started) {
-      game.started = true;
-    }
+  update: () => {
+    // handle update
   },
   actions: {
     resolveProcessing: (_, { game }) => {
@@ -316,6 +300,7 @@ Rune.initLogic({
             game.meddleUsed.push(requestPlayerId);
           }
           checkForWin(game);
+          handleRainyDay(game);
           break;
         case "remove":
           if (game.players[requestPlayerId].hasLoveNoteAction) {
@@ -331,6 +316,7 @@ Rune.initLogic({
           if (cardNum === 6) {
             game.meddleUsed.push(requestPlayerId);
           }
+          handleRainyDay(game);
           break;
         default:
           break;
@@ -339,10 +325,11 @@ Rune.initLogic({
     updateCurrentTurn: (_, { game }) => {
       updateCurrentTurn(game);
     },
+    updateForOppositeDay: ({ direction, priority }, { game }) => {
+      game.direction = direction;
+      game.priority = priority;
 
-    // actions
-    startGame: (_, { game }) => {
-      game.started = true;
+      handleCard(7, Object.keys(game.players), game);
     },
     drawCard: ({ deckCard, playerIdToUpdate }, { game }) => {
       if (
@@ -376,8 +363,6 @@ Rune.initLogic({
       if (playCard.cardNum === 8) {
         game.rainyDayIsPlay = true;
       }
-
-      handleRainyDay(game);
 
       // Reshuffle discard pile into the deck if deck has been exhausted
       if (game.deck.length <= 0) {

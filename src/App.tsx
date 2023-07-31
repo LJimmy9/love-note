@@ -53,68 +53,24 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const configureGameStateUI =
-    game.gameState.started && game.yourPlayerId ? (
-      <div
-        style={{
-          position: "relative",
-          height: "100vh",
-          overflow: "hidden",
-          backgroundColor: "#fbd9bb",
-        }}
-      >
-        <GifEffects />
-        <Game
-          player={game.gameState.players[game.yourPlayerId]}
-          pinPos={pinPos}
-        />
-      </div>
-    ) : (
-      <div>
-        {Object.keys(game.players).map((playerId, idx) => {
-          return (
-            <div key={playerId + idx}>
-              <div key={idx}>
-                {game.players[playerId].displayName}{" "}
-                {game.yourPlayerId === playerId && "(You)"}
-              </div>
-            </div>
-          );
-        })}
-        <div>
-          {game.gameState.readyToStart ? (
-            <p>
-              {game.gameState.timer >= 0 &&
-                `Game starts in: ${game.gameState.timer} seconds`}
-            </p>
-          ) : (
-            <>
-              <p>Waiting for more players....</p>
-              {game.players[game.yourPlayerId].avatarUrl && (
-                <img
-                  src={game.players[game.yourPlayerId].avatarUrl}
-                  alt="Player Avatar"
-                  hidden
-                />
-              )}
-            </>
-          )}
-        </div>
-      </div>
-    );
-
-  return (
-    <>
-      {/* <button
-        onClick={() => {
-          playAnimation("allPassRight");
-        }}
-      >
-        CLICK Me
-      </button> */}
-      {configureGameStateUI}
-    </>
+  const configureGameStateUI = (
+    <div
+      style={{
+        position: "relative",
+        height: "100vh",
+        overflow: "hidden",
+        backgroundColor: "#fbd9bb",
+      }}
+    >
+      <GifEffects />
+      <Game
+        player={game.gameState.players[game.yourPlayerId]}
+        pinPos={pinPos}
+      />
+    </div>
   );
+
+  return <>{configureGameStateUI}</>;
 }
 
 export default App;
