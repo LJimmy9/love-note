@@ -12,6 +12,12 @@
   border-radius: 1rem;
 }
 
+@for $i from 1 through 8 {
+  .deckCard:nth-child(#{$i}n) {
+    transform: rotate(random(12) - 2 * 1deg);
+  }
+}
+
 // @media screen and (max-width: globals.$smallScreen) {
 //   .deckCard {
 //     // z-index: 15;
