@@ -19,7 +19,7 @@ export function setupIdentityCards() {
 
 export function setupDeck() {
   let cardCounter = 0;
-  const loveNoteCard = cards.find((card) => card.cardNum === 0);
+  const lnCard = cards.find((card) => card.cardNum === 0);
   const deckWithExclusions = cards.filter(
     (card) => card.name !== "Rainy Day" && card.name !== "Love Note"
   );
@@ -39,7 +39,18 @@ export function setupDeck() {
   // random idx between 11 - 17 to ensure Love Note is in starting hand
   const randomIdx = Math.round(Math.random() * (17 - 11) + 11);
   shuffleDeck(startingDeck);
-  if (loveNoteCard) {
+  if (lnCard) {
+    const loveNoteCard: Card = {
+      id: "100",
+      name: lnCard.name,
+      image: lnCard.image,
+      cardNum: lnCard.cardNum,
+      description: lnCard.description,
+      restrictionToRole: lnCard.restrictionToRole,
+      canPlay: lnCard.canPlay,
+      count: lnCard.count,
+      autoPlay: lnCard.autoPlay,
+    };
     loveNoteCard.id = "100";
     startingDeck.splice(randomIdx, 0, loveNoteCard);
   }
@@ -57,9 +68,19 @@ export function shuffleDeck(deck: Array<Card>) {
 export function handleRainyDay(game: GameState) {
   const deckCopy = [...game.deck];
   if (game.loveNotes.length > 0 && !game.rainyDayIsPlay) {
-    const rainyDay = cards.filter((card) => card.name === "Rainy Day");
-    rainyDay[0].id = "200";
-    deckCopy.push(...rainyDay);
+    const rain = cards.filter((card) => card.name === "Rainy Day");
+    const rainyDay: Card = {
+      id: "200",
+      name: rain[0].name,
+      image: rain[0].image,
+      cardNum: rain[0].cardNum,
+      description: rain[0].description,
+      restrictionToRole: rain[0].restrictionToRole,
+      canPlay: rain[0].canPlay,
+      count: rain[0].count,
+      autoPlay: rain[0].autoPlay,
+    };
+    deckCopy.push(rainyDay);
     shuffleDeck(deckCopy);
     game.deck = deckCopy;
   } else if (game.loveNotes.length === 0 && !game.rainyDayIsPlay) {
