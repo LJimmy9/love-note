@@ -127,6 +127,16 @@
   gap: 10px;
 }
 
+.otherPlayerNameTop {
+  position: relative;
+  translate: 50% -200%;
+  rotate: z 180deg;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .leftPlayer {
   top: 50%;
   left: 50%;
