@@ -182,6 +182,18 @@
   translate: 0 15px;
 }
 
+// iPhone SE, Galaxy Fold
+@media only screen and (max-width: globals.$m1) and (max-width: globals.$large) {
+  .playerCardClosed,
+  .backContent {
+    width: 5.5rem;
+    height: 10rem;
+  }
+  .playCardBtn{
+    translate: 7vw 15px;
+  }
+}
+
 // iPhone 12 Pro:
 @media only screen and (min-width: globals.$m1) and (max-width: globals.$m2) {
   .playerCardClosed,
@@ -190,8 +202,8 @@
     height: 10rem;
   }
   .playCardBtn{
-    translate: 7vw 15px;
-    scale: 1.5;
+    translate: 8vw 15px;
+    scale: 1.3;
   }
 }
 
@@ -209,6 +221,7 @@
   }
   .playCardBtn{
     translate: 6vw 15px;
+    scale: 1.5;
   }
 }
 
