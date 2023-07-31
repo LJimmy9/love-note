@@ -118,9 +118,13 @@
 //   transform: rotate(270deg);
 // }
 
-.otherplayerName {
+.otherPlayerDetails {
   position: relative;
-  translate: 80% -60%;
+  translate: 90% -60%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .leftPlayer {
@@ -271,6 +275,10 @@
   .topPlayer {
     top: 40%;
   }
+
+  .otherPlayerDetails {
+    translate: 100% -60%;
+  }
 }
 
 // iPhone 12 Pro:
@@ -299,6 +307,10 @@
     translate: -20% -360%;
     top: 37%;
   }
+
+  .otherPlayerDetails {
+    translate: 110% -60%;
+  }
 }
 
 // XR, S20 Ultra and A51 / 71
@@ -326,6 +338,10 @@
   .topPlayer {
     top: 35%;
     translate: -20% -350%;
+  }
+
+  .otherPlayerDetails {
+    translate: 120% -60%;
   }
 }
 
@@ -356,6 +372,10 @@
     top: 40%;
     translate: -20% -340%;
   }
+
+  .otherPlayerDetails {
+    translate: 100% -60%;
+  }
 }
 
 // all tablets and Surface Pro
@@ -383,6 +403,10 @@
   .topPlayer {
     top: 33%;
     translate: -10% -350%;
+  }
+
+  .otherPlayerDetails {
+    translate: 120% -60%;
   }
 }
 

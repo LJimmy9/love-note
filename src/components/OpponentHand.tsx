@@ -84,18 +84,22 @@ export const OppponentHand = ({
           </div>
         </div>
         <div
-          className={`${gf.otherplayerName}`}
+          className={`${gf.otherPlayerDetails}`}
           onClick={() => setActivePlayer(playerId)}
           id={`player-${idx}`}
         >
-          <span>{players && players[playerId].displayName}</span>
-          <svg width="25" height="25">
-            <image
-              href={game.players[playerId].avatarUrl}
-              width="20"
-              height="20"
-            />
-          </svg>
+          <div className={gf.otherPlayerName}>
+            <p>{players && players[playerId].displayName}</p>
+          </div>
+          <div>
+            <svg width="25" height="25">
+              <image
+                href={game.players[playerId].avatarUrl}
+                width="20"
+                height="20"
+              />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
