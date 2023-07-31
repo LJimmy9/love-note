@@ -93,7 +93,14 @@ export const PlayerHand = ({
       </div>
       {showPlayerInfo && (
         <div className={gi.playerInfoContainer}>
-          <button onClick={() => setShowPlayerInfo(false)}>&times;</button>
+          <div>
+            <button
+              className={gi.closeBtn}
+              onClick={() => setShowPlayerInfo(false)}
+            >
+              &times;
+            </button>
+          </div>
           <div className={gi.playerInfoContent}>
             <p>
               <span>Display Name:</span> {currPlayer.displayName}
