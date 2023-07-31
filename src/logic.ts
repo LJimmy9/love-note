@@ -12,9 +12,9 @@ import {
   setReceiveFrom,
   resolveProcessing,
 } from "./components/resolve-side-effects";
-import { createSetupDeck } from "./components/Configs/DeckFactory";
+// import { createSetupDeck } from "./components/Configs/DeckFactory";
 
-// const env = import.meta.env.MODE;
+// // const env = import.meta.env.MODE;
 // const setupConfig = createSetupDeck(env);
 // const setupDeckConfig = setupConfig("cardNum");
 // const setupDeck = setupDeckConfig(3, 0);

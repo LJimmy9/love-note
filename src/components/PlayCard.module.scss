@@ -54,7 +54,7 @@
 .playerCardFront {
   position: absolute;
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  // -webkit-backface-visibility: hidden;
   /* rotate: y 180deg; */
 }
 
@@ -79,12 +79,6 @@
   0% {
     translate: -5vw -55vh;
     rotate: y 180deg;
-  }
-  30% {
-    translatey: -20vh;
-  }
-  45% {
-    translatey: -20vh;
   }
   100% {
     /* transform: translateY(0) rotateY(0deg) rotateX(0deg); */
@@ -190,6 +184,19 @@
     height: 10rem;
   }
   .playCardBtn{
+    translate: 7vw 15px;
+  }
+}
+
+// iPhone 14 Pro Max 
+@media only screen and (max-width: 430px) and (min-height: 900px) and (max-height: 932px) {
+  .playerCardClosed,
+  // .backContent {
+  //   width: 5.5rem;
+  //   height: 10rem;
+  // }
+  .playCardBtn{
+    // border: 2px solid red;
     translate: 7vw 15px;
   }
 }
