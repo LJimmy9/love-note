@@ -92,7 +92,10 @@ function TattleSideEffect({ players }: TattleProps) {
         </>
       ) : (
         <div className={t.header}>
-          <div> {players[tattledOn].displayName} is being tattled on!! </div>
+          <div>
+            {players[tattledOn].displayName} is being tattled on by
+            {players[gameState.currentTurn].displayName} !!
+          </div>
           <div style={{ marginTop: "5px" }}>Waiting for their response ...</div>
           <div className={t.hourglass}>⏳</div>
         </div>
