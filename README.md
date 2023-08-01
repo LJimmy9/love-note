@@ -1,58 +1,22 @@
-```javascript
+# Love Note
 
-Player = {
-    playerId,
-    displayName,
-    avatarUrl,
-    identity,
-    hands,
-    isAdmin,
-}
+Card version of the social deduction game, Werewolf
 
-Notes = {
-    id,
-    description: "give emoji options"
-    crossedOut: boolean
-}
+This multi-player game was built as a fun side project that showcased our React skills with Rune SDK for the React Jam event. A large part of building the game was creating the cards' logic, what they do and how they interact with the players.
 
-loveNote = {
-    cardId
-    cardNum: 0
-    numberOfNote
-    notes: Notes
-}
+## Packages
 
-GameState = {
-    players,
-    current_turn,
-    game_phase: draw | play | resolve,
-    current_round,
-    timer: 45 seconds,
-    cardPriority,
-    playField,
-    discard,
-    deck,
-    hasWinner
-}
+- [`rune-games-sdk`](https://github.com/rune/rune-games-sdk#rune-games-sdk): building mutliplayer HTML5 games that can run easily on iOS and Android
+- [`jotai`](https://github.com/pmndrs/jotai): lightweight state management for React
 
-card = {
-    cardId
-    image,
-    number,
-    description,
-    restrictionToPlayer: identityCardName,
-}
+## Technologies
 
-identityCard = {
-    image:
-    name:
-    description:
+- React
+- TypeScript
+- Sass
 
-}
+## How to set up
 
-```
-
-4 players: 3 messages - 4 rounds
-5 - 6 players: 4 messages - 6 rounds
-
-Exchange / Peeking / Remove / Tattle (highlighted on screen)
+- Run `npm install`
+- Run `npm run dev`
+- Go to `localhost:5173` on browser
